@@ -1,0 +1,642 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>物流商设置</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <p class="alert bg-info" style="padding: 8px;line-height:25px">
+            <hg:trans>系统提示</hg:trans>：1、<hg:trans>点击 “+添加物流商” 按钮即可查看更多物流商并添加。</hg:trans><br />
+            　　　　　2、<hg:trans>添加物流商之后，点击 “状态” 按钮进行启用或禁用物流商。</hg:trans><br />
+            　　　　　3、<hg:trans>点击物流商列表中的&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>&nbsp;&nbsp;按钮可复制多个物流进行分账号预报订单。</hg:trans>
+                <button type="button" class="btn btn-info btn-sm" style="float:right;margin-bottom:10px" onclick="doAddMoreLogistics()"><i class="glyphicon glyphicon-plus"></i>&nbsp;<hg:trans>添加物流商</hg:trans></button>
+            <a id="awindowopen" class="btn btn-primary" style="display:none" href="javascript:void(0)" target="_blank"><span id="spanwindowopen"><hg:trans>隐藏链接</hg:trans></span></a>
+        </p>
+<form action="/Logistics/IndexNew?Length=9" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1920440255divDataList" id="searchForm" method="post">            <div class="form-group" style="max-width:300px;" id="Search">
+                <div class="input-group input-group-sm">
+                    <input type="text" name="txtLogisticsName" hgtrans="true" id="txtLogisticsName" class="form-control" placeholder="请输入物流商名称" />
+                    <span class="input-group-btn">
+                        <input value="搜索(S)" hgtrans="true" type="submit" accesskey="S" class="btn btn-primary" />
+                    </span>
+                </div>
+            </div>
+</form>        <div id="p1920440255divDataList">
+            <table class="table table-bordered table-hover">
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://www.sfcservice.com/" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/sfc.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                三态速递
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+公司总部位于中国深圳，并在广州、杭州、上海、义乌、香港、印度等设有分公司。同时与Amazon、Aliexpress、eBay、Linio、Paytm、Payoneer、PayPal、WorldFirst等各大平台建立良好的战略合作伙伴关系。 三态速递与多家国际知名快递公司和各国邮政密切合作，整合最优质的物流资源，致力于为电商卖家提供快速高效、安全稳定、有竞争力的运输渠道。公司凭借领先的大数据精益化管理理念实现高效的跨境物流运作，并多次重金购入先进的智能自动化物流仓储设备，日处理国际包裹数量超过47万件，已为超7万家跨境电商客户提供国内仓储、海外仓和第三方跨境物流的一站式解决方案。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+<hg:trans>电话</hg:trans>：<span style="font-size:13px;color:#ff950c">4008818106</span>                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode8" name="StatusCode" checked value="8|SFC|1" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px; display:" id="btnEdit8" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('8','SFC')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('SFC')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://www.sumool.com/" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/customize.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                自定义物流商
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+自定义物流商，用户可以自定义物流方式，使用自定义地址标签，填写或使用跟踪号码池的跟踪号。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+<hg:trans>电话</hg:trans>：<span style="font-size:13px;color:#ff950c">0755-23599551</span>                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode7" name="StatusCode" checked value="7|Customize|1" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px; display:" id="btnEdit7" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('7','Customize')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('Customize')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://www.yunexpress.com/" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/express.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                云途物流
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+云途物流是一家创新型的新锐公司，致力于跨境电子商务物流服务，成立于2012年，座落在热情洋溢、交通便捷的深圳市龙岗区坂田街道赛盒跨境电商产业园，公司占地面积5000平方米，环境优雅舒适。公司有超过八年的电商专家、物流专家、IT专家，专业攻破跨境电商物流中遇到的阻力与难点，强势出动，迅速风靡整个跨境电商圈。合作跨境电商包括亚马逊、Wish、Ebay、速卖通、Lazada、Linio等自有平台全国知名卖家。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+<hg:trans>电话</hg:trans>：<span style="font-size:13px;color:#ff950c">4000-2621-26 </span>                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode9" name="StatusCode" checked value="9|YunTu|1" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px; display:" id="btnEdit9" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('9','YunTu')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('YunTu')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="https://www.equickchina.com/" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/equick56logo.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                Equick 国际快递
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+北京网易速达国际货运代理有限公司(Equick)成立于2009年3月，是经北京市工商部门批准注册的营国际航空货运及包裹递送的专业物流服务公司，并与2010年9月成为中国首批获得中国邮政总局颁发的国际快递经营许可资质的公司。公司的主要管理人员均具备丰富的国际快递、空运操作和管理经验，能够为客户提供全面的国际空运物流解决方案。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+<hg:trans>电话</hg:trans>：<span style="font-size:13px;color:#ff950c">010-61654416</span>                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode10" name="StatusCode" checked value="10|Equick|1" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px; display:" id="btnEdit10" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('10','Equick')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('Equick')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://www.hh-exp.com" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/huahan.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                华翰物流（新版）
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+专注于国际电商平台服务：EBAY、亚马逊、阿里巴巴、速卖通等国际电商平台提供专业优质的服务物流商。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+<hg:trans>电话</hg:trans>：<span style="font-size:13px;color:#ff950c">400-015-6080</span>                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode11" name="StatusCode"  value="11|HuaHanNew|0" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px;display:none" id="btnEdit11" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('11','HuaHanNew')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('HuaHanNew')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://www.wedoexpress.com" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/wedoexpress.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                运德物流
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+一家以跨境物流配送与海外仓储服务为核心，为跨境电商公司提供涵盖信息流、商流、资金流、物流及技术流“五流合一”的完整的供应链解决方案的物流商。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode1" name="StatusCode"  value="1|WedoExpress|0" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px;display:none" id="btnEdit1" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('1','WedoExpress')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('WedoExpress')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://www.11183.com.cn/" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/ems.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                线下E邮宝
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+中国经营历史最悠久、规模最大、网络覆盖范围最广、业务品种最丰富的快递物流综合服务提供商。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode2" name="StatusCode"  value="2|EMS|0" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px;display:none" id="btnEdit2" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('2','EMS')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('EMS')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://shipping.11185.cn:9000/produceWeb/barCodesAssgineServlet" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/post.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                中国邮政小包
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+中国邮政跨境电商信息服务平台，提供公众服务平台、电商服务平台、物流服务平台、电商发货平台。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode3" name="StatusCode"  value="3|POST|0" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px;display:none" id="btnEdit3" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('3','POST')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('POST')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://seller.aliexpress.com/so/freight.php" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/aliexpress.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                速卖通线上
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+速卖通线上                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode4" name="StatusCode"  value="4|AliExpress|0" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px;display:none" id="btnEdit4" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('4','AliExpress')"><hg:trans>编辑</hg:trans></button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="https://apacshipping.ebay.com.hk/aspweb/login" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/ebay.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                Ebay亚太物流
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+Ebay亚太物流                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode5" name="StatusCode"  value="5|EbayAPAC|0" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px;display:none" id="btnEdit5" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('5','EbayAPAC')"><hg:trans>编辑</hg:trans></button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left !important">
+                <div style="width:95%">
+                    <div class="media" style="margin-top:8px;margin-bottom:8px">
+                        <div class="media-left media-middle">
+
+                            <a href="http://www.wishpost.com" target="_blank">
+                                <img style="width:152px;height:48px;margin-left:25px" class="media-object" src="picture/shpostwish.png" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading" style="color:#05B5E1;font-weight:700;font-size:14px;margin-left:20px">
+                                Wish邮
+                            </p>
+                            <p style="line-height:23px;margin-left:20px">
+“Wish邮”是由Wish和中国邮政共同推出的Wish专属商户跨境电商物流产品。“Wish邮”可为Wish优质商户提供专属集货仓、专线产品、专业仓储等一体化物流解决方案。                                <br />
+                            </p>
+                            <p style="font-size:13px;margin-left:20px">
+                            </p>
+                            <p style="margin-left:20px;margin-top:15px">
+                                <label class="text-warning"><hg:trans>状态</hg:trans>：</label><input type="checkbox" id="StatusCode6" name="StatusCode"  value="6|Wish|0" data-size="mini" data-off-color="warning" data-on-color="success" />&nbsp;&nbsp;
+                                <button type="button" style="width:68px;display:none" id="btnEdit6" class="btn btn-info btn-xs" onclick="doEditLogisticsAndMode('6','Wish')"><hg:trans>编辑</hg:trans></button>
+                                        <button type="button" class="btn btn-default btn-xs" style="margin-left:10px" onclick="doConfirmCopyLogistics('Wish')" hgtrans="true" title="复制">
+                                            <span class="glyphicon glyphicon-duplicate" style="color:#5cb85c;"></span>
+                                        </button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+</table>
+<script>
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        $("[type='checkbox'][name='StatusCode']").each(function () {
+            //$(this).bootstrapSwitch();
+            $(this).bootstrapSwitch('onSwitchChange', function () {
+p1920440255doIsEnableLogistic($(this).val());
+            });
+        });
+    });
+</script>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+        //初次从物流中心添加物流时需要将编辑页面打开
+        var localHash = location.hash;//hash格式：#Point=1|huahan|0
+        if (localHash.length > 0) {
+
+            //如果哈希值包含WishCode，则是wish邮授权后跳转至首页的
+            if (localHash.indexOf("WishCode") > -1) {
+
+                //WishCode存储格式：WishCode="+codeStr+"|" + wishInfo
+                //codeStr为接收的wish邮返回的code，wishInfo包含的内容为：物流ID | client_id | client_secret | Redirect_URI
+                var wishCodeAndInfo = localHash.substring(localHash.indexOf("=") + 1);
+                GetWishToken(wishCodeAndInfo);
+            }
+            else {
+                var pointCode = localHash.substring(localHash.indexOf("=") + 1);
+                if (pointCode.split('|').length == 3)
+p1920440255doIsEnableLogistic(pointCode);
+                else
+p1920440255doReloadData();
+            }
+        }
+    });
+    function GetWishToken(wishCodeAndInfo) {
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/GetWishToken",
+            datatype: "text",
+            data: { wishCodeAndInfo: wishCodeAndInfo },
+            success: function (data) {
+                var arrwishCodeAndInfo = wishCodeAndInfo.split("|");
+                var logisticsId = "";
+                if (arrwishCodeAndInfo.length == 5)
+                    logisticsId = arrwishCodeAndInfo[1];
+                var turnUrl = "";
+                if (logisticsId.length == 0)
+                    turnUrl = "/LogisticMode/IndexNew?logisticsCode=Wish&resultObject=" + data.ResultObject;
+                else
+                    turnUrl = "/LogisticMode/IndexNew?logisticsId=" + logisticsId + "&resultObject=" + data.ResultObject;
+                redgle.tab.create("liLogisticsMode", turnUrl, translate.format("<hg:trans>物流方式</hg:trans>"), "", "",p1920440255doReloadData);
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //弹出错误信息
+    function p1920440255doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).parent().addClass("has-error");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).parent().removeClass("has-error");
+            });
+        });
+    }
+
+    //设置物流状态
+    function p1920440255doIsEnableLogistic(IdAndStatues) {
+        var arr = IdAndStatues.split('|');
+        var logisticsId = arr[0];
+        var logisticsCode = arr[1];
+        var statues = arr[2];
+        //设置并刷新页面
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/EnableLogistics",
+            datatype: "text",
+            data: { logisticsId: logisticsId, logisticsCode: logisticsCode, statusCode: statues },
+            success: function (data) {
+                if (data.HasError) {
+                    if (data.MapData.NeedEditLogisticMode == "Y") {
+                        //NeedEditLogisticMode=Y则说明是第一次点击启用，需要跳转到物流方式编辑页面
+p1920440255doReloadData();
+                        doEditLogisticsAndMode(logisticsId);
+                    }
+                    else
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    if (statues == 1) {//处理编辑按钮是否显示，使用doReloadData可以解决但是页面数据会刷新并重新排序
+                        $("#btnEdit" + logisticsId + "").css("display", "none");
+                        $("#StatusCode" + logisticsId + "").val(logisticsId + "|" + logisticsCode + "|0");
+                    }
+                    else {
+                        $("#btnEdit" + logisticsId + "").css("display", "");
+                        $("#StatusCode" + logisticsId + "").val(logisticsId + "|" + logisticsCode + "|1");
+                    }
+                    //$("#p1920440255divDataList").html(data);
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1920440255doReloadData() {
+        var postData = redgle.request.getFormData("searchForm");
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/IndexNew",
+            data:postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1920440255divDataList").html(data);
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //发货渠道
+    function doEditLogisticsAndMode(LogisticsId) {
+        var url = "/LogisticMode/IndexNew?logisticsId=" + LogisticsId;
+        redgle.tab.create("liLogisticsMode", url, translate.format("<hg:trans>物流方式</hg:trans>"), "", "",p1920440255doReloadData);
+    }
+
+    function doAddMoreLogistics() {
+        var thisHostUrl = "cYidYxGkquX0YJDXjlsijBQKQZRsUPo1";
+        var cloudUrl = "";
+        if (cloudUrl == "")
+            cloudUrl = "http://shipping.sumool.com"
+        var url = cloudUrl + "?fromHost=" + thisHostUrl;
+        $("#awindowopen").attr("href", url);
+        $("#spanwindowopen").trigger("click");
+    }
+
+    function doConfirmCopyLogistics(logisticsCode) {
+        redgle.showConfirm("您确认要添加该物流多账号吗？", "doCopyLogistics('" + logisticsCode + "')");
+    }
+
+    function doCopyLogistics(logisticsCode) {
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/CopyLogistics",
+            data: { logisticsCode: logisticsCode },
+            datatype: "text",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.Message);
+                }
+                else {
+p1920440255doReloadData();
+                    redgle.showMessage("添加成功！");
+                }
+            },
+            error: function () {
+                redgle.showMessage("添加失败！");
+            }
+        });
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

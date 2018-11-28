@@ -1,0 +1,408 @@
+{:widget('Blog/header')}
+<html>
+ <head>
+
+  <script src="__STATIC__/index/js/c6102531548c4f988e485ab0333845b4.js"></script> 
+  <script src="__STATIC__/index/js/74c4de9c7b314e3287f3b215e15b5158.js"></script> 
+  <script src="__STATIC__/index/js/hg.common.js"></script> 
+  <script src="__STATIC__/index/js/jquery.fancybox.js"></script> 
+ 
+ </head> 
+ <body> >{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabSKUMappingManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>SKU映射</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabSKUMappingManage" role="tabpanel" class="tab-pane fade active in">
+        <p class="alert bg-info" style="padding: 8px;line-height:25px">
+            PS：<hg:trans>在这里您可以建立线上商品与本地产品的映射关系，同步订单、线上商品会自动关联本地产品。</hg:trans>
+        </p>
+        <div style="float:right; margin-top:5px; margin-right:5px;">
+            <button type="button" class="btn btn-info btn-sm" onclick="p1390506121doAddData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p1390506121doImportData()"><i class="glyphicon glyphicon-log-in"></i> <hg:trans>导入</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p1390506121doExport()"><hg:trans>导出</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p1390506121doDeleteData()"><hg:trans>删除</hg:trans></button>
+        </div>
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/SKUMapping?Length=7" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1390506121divDataList" id="searchForm" method="post">                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;top:7px;text-align:center;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items parents-nodest">
+                        <span itemid="local" class="active" chooseid="Search" hgtrans="true" name="请输入本地产品SKU，多个SKU请用逗号隔开"><hg:trans>本地产品SKU</hg:trans></span>
+                        <span itemid="saler" chooseid="Search" hgtrans="true" name="请输入线上商品SKU，多个SKU请用逗号隔开"><hg:trans>线上商品SKU</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="local" />
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:550px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;top:7px;text-align:center;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" hgtrans="true" placeholder="请输入本地产品SKU，多个SKU请用逗号隔开" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                        <span class="input-group-addon" style="background:#fff;border:none" id="addMoreOrderno">
+                            <a href="javascript:void(0)" onclick="addPublicMoreOrderno('inputOrderNos', 'txtSearchMoreOrder')"><hg:trans>输入更多SKU</hg:trans></a>
+                        </span>
+                    </div>
+                </div>
+</form>        </div>
+        <div id="p1390506121divDataList">
+            
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/SKUMapping?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 4 条数据</span></div><div style="clear:both"></div></div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p1390506121doSetCheckBox(this)" />
+            </th>
+            <th style="width:45%;"><hg:trans>本地产品SKU</hg:trans></th>
+            <th style="width:45%;"><hg:trans>线上商品SKU</hg:trans></th>
+            <th style="width:10%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_SKURelationId" value="6" />
+                </td>
+                <td>
+                    B0769DGLKT
+                </td>
+                <td>
+                    LANL-ZHBC-762434-17
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p1390506121doEditData('6')" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p1390506121doDeleteData(this)" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_SKURelationId" value="5" />
+                </td>
+                <td>
+                    B01N4CTFKC
+                </td>
+                <td>
+                    IT-31504-ZX
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p1390506121doEditData('5')" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p1390506121doDeleteData(this)" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_SKURelationId" value="4" />
+                </td>
+                <td>
+                    KFJGR-PFSJH-1034298-07
+                </td>
+                <td>
+                    KFJGR-PFSJH-1034298-07
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p1390506121doEditData('4')" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p1390506121doDeleteData(this)" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_SKURelationId" value="2" />
+                </td>
+                <td>
+                    6930995760136
+                </td>
+                <td>
+                    6930995760136
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p1390506121doEditData('2')" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p1390506121doDeleteData(this)" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1390506121divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/SKUMapping?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 4 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+
+<script src="js/c2a1c24976944c6aaecd8efb4208268b.js"></script>
+
+<script language="javascript" type="text/javascript">
+    //搜索选择
+    $("#divChooseItems>span").click(function () {
+        $("#divChooseItems>span").removeClass("active");
+        $(this).addClass("active");
+        $("#hidChoose").val($(this).attr("itemid"));
+        $("#txtSearchKey").attr("placeholder", $(this).attr("title")).val("");
+        $("#addMoreOrderno").show();
+    });
+
+    //输入更多订单号
+    function addPublicMoreOrderno(modalName, inputName) {
+
+        var Text = $("#addMoreOrderno a").text();
+
+
+        var explainText = "";//"每个单号占一行，单号必须填写完整，不支持模糊搜索";
+        var tempText = "";
+        if (Text.indexOf("SKU") > 0) {
+            tempText = "SKU";
+        }
+        else {
+            tempText = "单号";
+        }
+        explainText = translate.format("<hg:trans>每个{0}占一行，{0}必须填写完整，不支持模糊搜索</hg:trans>", [tempText]);
+        var modelDiv = '<div class="modal fade" id="' + modalName + '" tabindex="-1" role="dialog" aria-labelledby="moreOrdernoModalLabel" aria-hidden="true" style="padding-top:150px;">'
+        modelDiv += '<div class="modal-dialog" style="width:500px;height: 280px;">';
+        modelDiv += '<div class="modal-content">';
+        modelDiv += ' <div class="modal-header">';
+        modelDiv += ' <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        modelDiv += '<h4 class="modal-title">' + Text + '</h4>';
+        modelDiv += '  </div>';
+        modelDiv += ' <div class="modal-body">';
+        modelDiv += ' <div class="panel-body">';
+        modelDiv += '<div class="form-group" style="padding: 10px 5px 0px;">';
+        modelDiv += '<span style="color:red"><hg:trans>PS：' + explainText + '</hg:trans></span>';
+        modelDiv += '<div style="margin:5px 0px;">';
+        modelDiv += '<textarea class="form-control input-sm" cols="20" style="resize: vertical;" id="orderNos" name="orderNos" rows="5"></textarea>';
+        modelDiv += '</div>';
+        modelDiv += ' <div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '<div class="modal-footer">';
+        modelDiv += "<button type=\"button\" class=\"btn btn-default\" onclick=\"btnPublicOrderNos('" + modalName + "','" + inputName + "')\" data-dismiss=\"modal\"><hg:trans>确定</hg:trans></button>";
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += "</div>";
+
+        if ($("#" + modalName).length == 0) {
+            $("body").append(modelDiv);
+        }
+        else {
+            $("#" + modalName).replaceWith(modelDiv);
+        }
+
+
+        $("#" + modalName).modal("show");
+    }
+
+    function btnPublicOrderNos(modalName, inputName) {  //modalName：随便取的用于区分页面，inputName：搜索框的Id
+        var orderNos = $("#orderNos").val().replace(/[\r\n]/g, ","); //用逗号替换回车换行
+        $("#txtSearchKey").val(orderNos);
+        $("#searchForm").submit();
+    }
+
+
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    function  p1390506121doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+    function p1390506121doEditData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/SKUMapping/Edit/" + id;
+        redgle.tab.create("liSKUMappingEdit", url, translate.format("<hg:trans>编辑SKU映射</hg:trans>"));
+    }
+
+    function p1390506121doAddData() {
+        var url = "/SKUMapping/Edit/0";
+        redgle.tab.create("liSKUMappingEdit", url, translate.format("<hg:trans>编辑SKU映射</hg:trans>"));
+    }
+
+    function p1390506121doDeleteData(obj) {
+        var skuRelationIdList = new Array();
+        if (obj == undefined) {
+            $('input[name="chk_list"]:checked').each(function () {
+                skuRelationIdList.push($(this).val());
+            });
+        }
+        else {
+
+            skuRelationIdList.push($(obj).parent().parent().find("#item_SKURelationId").val());
+        }
+        if (skuRelationIdList.length == 0) {
+            alert(translate.format("<hg:trans>请先选择要删除的数据！</hg:trans>"));
+            return;
+        }
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return;
+
+        var strSKURelationIds = JSON.stringify(skuRelationIdList);
+        $.ajax({
+            type: "POST",
+            url: "/SKUMapping/Delete",
+            data: { strSKURelationIds: strSKURelationIds },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    try {
+p1390506121doReloadData();
+                    } catch (e) { alert(translate.format("<hg:trans>操作发生未知异常：{0}}</hg:trans>", ["重新加载数据失败"])); }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1390506121doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/SKUMapping",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1390506121divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //导入
+    function p1390506121doImportData() {
+        var url = "/SKUMapping/ImportSKU";
+        redgle.tab.create("liImportSKU", url, translate.format("<hg:trans>导入SKU</hg:trans>"));
+    }
+
+    //导出sku
+    function p1390506121doExport() {
+        var itemIds = "";
+        $(' input[name=chk_list]:checked').each(function () {
+            itemIds += $(this).val() + ",";
+        });
+        var postData = {};
+        if (itemIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择导出项，将导出符合当前搜索条件的项，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");
+        }
+        postData["itemIds"] = itemIds;
+
+        $.ajax({
+            type: "POST",
+            url: "/SKUMapping/ExportSKUData",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/b7d66376a1ff47df918cb770bf2c3739.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

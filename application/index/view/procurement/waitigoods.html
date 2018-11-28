@@ -1,0 +1,870 @@
+{:widget('Blog/header')}
+
+
+    <script src="__STATIC__/index/js/c556be63d1234f3bb4022c5dcd4be9d4.js"></script>
+
+    <script src="__STATIC__/index/js/8e1680447bbd4e069b0a62c61310c8f2.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+    {:widget('Blog/left')}
+                
+<script src="js/4100ea93d57c4d72bed23ad6096e5816.js"></script>
+
+<link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+
+<script src="js/dot.js"></script>
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabPurOrderManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>采购单</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabPurOrderManage" role="tabpanel" class="tab-pane fade active in">
+        <input type="hidden" id="hidStoreInfo" name="hidStoreInfo" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;默认仓库（自有仓）&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+        <input type="hidden" id="hidSupplierInfo" name="hidSupplierInfo" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;&quot;,&quot;Value&quot;:&quot;&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;1688供应商&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+        <input type="hidden" id="hidMarkInfo" name="hidMarkInfo" value="" />
+        <input type="hidden" id="hidUserInfo" name="hidUserInfo" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;乔志梅&quot;,&quot;Value&quot;:&quot;83&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张沁松&quot;,&quot;Value&quot;:&quot;82&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗小娥&quot;,&quot;Value&quot;:&quot;81&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭秋爱&quot;,&quot;Value&quot;:&quot;80&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王庆&quot;,&quot;Value&quot;:&quot;79&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王彦杰&quot;,&quot;Value&quot;:&quot;78&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;田晓雄&quot;,&quot;Value&quot;:&quot;77&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;马艳伟&quot;,&quot;Value&quot;:&quot;76&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王然&quot;,&quot;Value&quot;:&quot;75&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李保明&quot;,&quot;Value&quot;:&quot;74&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝东元&quot;,&quot;Value&quot;:&quot;73&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;姚青琴&quot;,&quot;Value&quot;:&quot;72&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高海峰&quot;,&quot;Value&quot;:&quot;71&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;韩晋&quot;,&quot;Value&quot;:&quot;70&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;白伟连&quot;,&quot;Value&quot;:&quot;69&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;樊艳军&quot;,&quot;Value&quot;:&quot;68&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝军娥&quot;,&quot;Value&quot;:&quot;67&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李媛&quot;,&quot;Value&quot;:&quot;66&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张弘&quot;,&quot;Value&quot;:&quot;65&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;田峰&quot;,&quot;Value&quot;:&quot;64&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;崔新雅&quot;,&quot;Value&quot;:&quot;63&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王鑫磊&quot;,&quot;Value&quot;:&quot;62&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王乾&quot;,&quot;Value&quot;:&quot;61&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;赵敏&quot;,&quot;Value&quot;:&quot;60&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张艳伟&quot;,&quot;Value&quot;:&quot;59&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;宋健&quot;,&quot;Value&quot;:&quot;58&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高卫峰&quot;,&quot;Value&quot;:&quot;57&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;史岱&quot;,&quot;Value&quot;:&quot;56&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;陈小燕&quot;,&quot;Value&quot;:&quot;55&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;吕瑞芳&quot;,&quot;Value&quot;:&quot;54&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张曼微&quot;,&quot;Value&quot;:&quot;53&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘静&quot;,&quot;Value&quot;:&quot;52&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;魏泽平&quot;,&quot;Value&quot;:&quot;51&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;韩江龙&quot;,&quot;Value&quot;:&quot;50&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高俊伟&quot;,&quot;Value&quot;:&quot;49&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;尹琪梦&quot;,&quot;Value&quot;:&quot;48&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王燕香&quot;,&quot;Value&quot;:&quot;47&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛海存&quot;,&quot;Value&quot;:&quot;46&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭建珍&quot;,&quot;Value&quot;:&quot;45&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;许璐&quot;,&quot;Value&quot;:&quot;44&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;白萌&quot;,&quot;Value&quot;:&quot;43&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;孙婷婷&quot;,&quot;Value&quot;:&quot;42&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;樊港港&quot;,&quot;Value&quot;:&quot;41&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘晓瑶&quot;,&quot;Value&quot;:&quot;40&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;冯状&quot;,&quot;Value&quot;:&quot;39&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗利军&quot;,&quot;Value&quot;:&quot;38&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘睿&quot;,&quot;Value&quot;:&quot;37&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;崔新宇&quot;,&quot;Value&quot;:&quot;36&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗艳梅&quot;,&quot;Value&quot;:&quot;35&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;吕彩锋&quot;,&quot;Value&quot;:&quot;34&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高利军&quot;,&quot;Value&quot;:&quot;33&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张艳荣&quot;,&quot;Value&quot;:&quot;32&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗海云&quot;,&quot;Value&quot;:&quot;31&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;白艳飞&quot;,&quot;Value&quot;:&quot;30&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高海龙&quot;,&quot;Value&quot;:&quot;29&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王艳军&quot;,&quot;Value&quot;:&quot;28&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杜艳萍&quot;,&quot;Value&quot;:&quot;27&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;cheerwsn&quot;,&quot;Value&quot;:&quot;23&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张飞&quot;,&quot;Value&quot;:&quot;22&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝军龙&quot;,&quot;Value&quot;:&quot;21&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗小云&quot;,&quot;Value&quot;:&quot;20&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗贵鹏&quot;,&quot;Value&quot;:&quot;19&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;管理员&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/PurOrder/PuringOrder?Length=8" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p129938878divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <input type="hidden" id="hidStore" name="hidStore" value="" />
+                <input type="hidden" id="hidSupplier" name="hidSupplier" value="" />
+                <input type="hidden" id="hidMark" name="hidMark" value="" />
+                <input type="hidden" id="hidUser" name="hidUser" value="" />
+                <div id="J_selector" class="selector" style="border:none">
+                    <div id="DropListItem"></div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px !important;"><hg:trans>搜索类型</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divChooseItems" class="input-group para-items-sm">
+                            <span itemid="PurOrderNo" chooseid="Search" class="active"><hg:trans>采购单号</hg:trans></span>
+                            <span itemid="RelationNo" chooseid="Search"><hg:trans>来源单号</hg:trans></span>
+                            <span itemid="SKU" chooseid="Search"><hg:trans>SKU</hg:trans></span>
+                            <span itemid="ProductName" chooseid="Search"><hg:trans>产品名称</hg:trans></span>
+                            <span itemid="CreateTime" chooseid="Date"><hg:trans>创建日期</hg:trans></span>
+                            <input type="hidden" id="hidChoose" name="hidChoose" value="PurOrderNo" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group " style="display:none" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:90px !important;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm">
+                            <span class="date">
+                                <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" placeholder="开始时间" />
+                            </span>
+                            <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                            <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" placeholder="结束时间" /></span>
+                            <span class="input-group-btn">
+                                &nbsp;<input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:90px !important;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" />
+                            <span class="input-group-btn">
+                                <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:90px !important;"><hg:trans>排序方式</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divSort" class="input-group para-items-sm">
+                            <span itemid="PurOrderNo" sorttype="DESC" class="active"><hg:trans>采购单号</hg:trans>&nbsp;<span id="PurOrderNoSortMark" class="glyphicon glyphicon-menu-down"></span></span>
+                            <span itemid="SupplierNo" sorttype=""><hg:trans>供应商编号</hg:trans>&nbsp;<span id="SupplierNoSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <input type="hidden" id="hidSort" name="hidSort" value="PurOrderNo" />
+                            <input type="hidden" id="hidSortType" name="hidSortType" value="DESC" />
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+</form>        </div>
+        <div class="status-group" id="divStateItems">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="-1"><a><hg:trans>等待到货</hg:trans></a><span></span></label>
+            <label itemid="0"><a><hg:trans>部分到货</hg:trans></a><span></span></label>
+        </div>
+        <div class="datalist-top">
+            <div class="button-area parents-nodes" style="float:right" id="divFollowButtons">
+                
+                <button type="button" class="btn btn-info btn-sm" onclick="p129938878doExportData()"> <i class="glyphicon glyphicon-log-out"></i>&nbsp;<hg:trans>导出</hg:trans></button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon glyphicon-print"></i>&nbsp;<hg:trans>打印采购单</hg:trans><span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a href="javascript:void(0)" onclick="p129938878doPrintPurOrder('SKU')"><hg:trans>按SKU打印</hg:trans></a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)" onclick="p129938878doPrintPurOrder('PurOrder')"><hg:trans>按采购单打印</hg:trans></a></li>
+                    </ul>
+                </div>
+                <input type="hidden" id="hidOpenAllDetailType" value="false" />
+                <a id="btnOpenWindow" class="btn btn-primary" target="_blank" style="display:none" href="javascript:void(0)"></a>
+            </div>
+        </div>
+        <div id="p129938878divDataList">
+            <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th><input type="checkbox" name="chk_all" id="chk_all" onclick="p129938878doSetCheckBox(this)" /></th>
+            <th><hg:trans>标记</hg:trans></th>
+            <th><hg:trans>采购单号</hg:trans><br /><hg:trans>采购员</hg:trans></th>
+            <th><hg:trans>仓库</hg:trans><br /><hg:trans>供应商</hg:trans></th>
+            <th><hg:trans>金额</hg:trans></th>
+            <th>
+                <hg:trans>数量</hg:trans>
+                <input type="hidden" id="hidOpenAllDetailType1" value="false" />
+                <span class="glyphicon glyphicon-triangle-right" id="spanForPurDetailid" style="cursor:pointer" hgtrans="true" onclick="javascript: p129938878doOpenAllDetail(event)" title="展开全部采购单明细"></span>
+            </th>
+            <th><hg:trans>来源单号</hg:trans></th>
+            <th><hg:trans>创建日期</hg:trans><br /><hg:trans>状态</hg:trans></th>
+            <th style="width:8%"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p129938878divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/PurOrder/PuringOrder?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+
+<script>
+    $(function () {
+        $('[data-toggle="orderoperation"]').tooltip();
+        if ($("#hidOpenAllDetailType1").attr("name") == "sku") {
+            var isOpen = $("#hidOpenAllDetailType").val();
+            $('input[name="chk_list"]').each(function () {
+                var span = $(this).parent().parent().find("[name=spanForPurDetail]");
+                var cls = span.attr("class");
+                if (cls.indexOf("glyphicon glyphicon-triangle-right") >= 0 && isOpen == "false") {
+                    span.click();
+                }
+                else if (cls.indexOf("glyphicon glyphicon-triangle-bottom") >= 0 && isOpen == "true") {
+                    span.click();
+                }
+            });
+            if (isOpen == "true") {
+                $("#spanForPurDetailid").removeClass();
+                $("#spanForPurDetailid").addClass("glyphicon glyphicon-triangle-right");
+                $("#hidOpenAllDetailType").val("false");
+            }
+            else {
+                $("#spanForPurDetailid").removeClass();
+                $("#spanForPurDetailid").addClass("glyphicon glyphicon-triangle-bottom");
+                $("#hidOpenAllDetailType").val("true");
+            }
+        }
+    })
+</script>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:600px;height:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><hg:trans>采购单作废</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div style="margin-left:30px">
+                        <input type="hidden" id="cancelPurOrderId" />
+                        <div><hg:trans>温馨提示：采购单【<span id='cancelPurOrderNo'></span>】将作废，关联采购中数量将会被冲销。</hg:trans><br /></div>
+                        <div>
+                            <hg:trans>作废原因</hg:trans>：<br />
+                            <textarea class="form-control" rows="3" id="cancelRemart"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="p129938878doCancel()"><hg:trans>确定</hg:trans></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<script type="text/x-dot-template" id="DropItemTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        搜索(S)
+                    </span>
+                </div>
+            </div>
+            {{?}}
+            <ul class="J_valueList clearfix {{=it.ClassName}}">
+                {{  var objarray=it.data;  for(var i=0;i
+                <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                    <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                    <li id="{{=objarray[i].Value}}" style="display:block;">
+                        <a href="javascript:;" title="{{=textname}}">
+                            <i></i>{{=textname}}
+                        </a>
+                    </li>
+                    {{ } }}
+            </ul>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+<script>
+
+    jQuery(function () {
+        //选项卡初始化
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        //日历控件初始化
+        $('.date input').datepicker();
+        //选择供应商
+        $(".chosen-select").chosen();
+        //$(".chosen-container").css("width", "250px");
+        //状态筛选
+        $("#divStateItems>label").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                $("#txtStatusCode").val("");
+                $this.removeClass();
+            } else {
+                $("#txtStatusCode").val($this.attr("itemid"));
+                $("#divStateItems>label").removeClass();
+                $this.addClass("active");
+            };
+            $("#searchForm").submit();
+        });
+        //搜索类型筛选
+        $("#divChooseItems>span").click(function () {
+            var $this = $(this);
+            $("#divChooseItems>span").removeClass();
+            $this.addClass("active");
+            $("#hidChoose").val($this.attr("itemid"))
+            if ($this.attr("chooseid") == "Search") {
+                $("#Date").css("display", "none");
+                $("#Search").css("display", "");
+            } else {
+                $("#Date").css("display", "");
+
+                $("#Search").css("display", "none");
+            }
+        });
+        //采购、供应商筛选
+        $('#txtStoreId,#txtSupplier,#txtUser').bind('change', function () {
+            $("#searchForm").submit();
+        });
+        LoadMenuInfo();
+    });
+
+    function removeAllSpace(str) {
+        return str.replace(/\s+/g, "");
+    }
+    function LoadMenuInfo() {
+        //重置
+        $("#listItem,#DropListItem").html("");
+
+        var SearchOption = SearchOptonRedgle();//初始化方法
+        SearchOption.Droptempl = $("#DropItemTempl").html();
+        //仓库
+        var storelist = $("#hidStoreInfo").val();
+        if (storelist.length > 0) {
+            storelist = JSON.parse(storelist)
+        }
+        if (storelist.length > 0) {
+            SearchOption.BindDropDataUI(storelist, "仓库", "StoreIdType", false, "", true, true, false);
+        }
+
+        //供应商
+        var supplierlist = $("#hidSupplierInfo").val();
+        if (supplierlist.length > 0) {
+            supplierlist = JSON.parse(supplierlist)
+        }
+        if (supplierlist.length > 0) {
+            SearchOption.BindDropDataUI(supplierlist, "供应商", "SupplierType", false, "", true, true, false);
+        }
+        //采购员
+        var userlist = $("#hidUserInfo").val();
+        if (userlist.length > 0) {
+            userlist = JSON.parse(userlist)
+        }
+        if (userlist.length > 0) {
+            SearchOption.BindDropDataUI(userlist, "采购员", "txtSaleMan", false, "", true, true, false);
+        }
+        //处理标记
+        var markStrList = $("#hidMarkInfo").val();
+        var ArrayMark = [];
+        if (markStrList.length > 0) {
+            ArrayMark = JSON.parse(markStrList);
+        }
+        if (ArrayMark.length > 0) {
+            SearchOption.BindDropDataUI(ArrayMark, "采购单标记", "markList", false, "", false, true);
+        }
+        //展开，收缩回调
+        SearchOption.CallExtendFun = function (typeid, isExtend) {
+            if (!isExtend) {
+                if ($("#" + typeid + " .MenuSearchInfo input").length > 0) {
+                    var text = $("#" + typeid + " .MenuSearchInfo input").val().trim();
+                    if (text.length > 0) {
+                        $("#" + typeid + " .MenuSearchInfo input").val("");
+                        $("#" + typeid + " .J_valueList li ").show();
+                    }
+                }
+
+            }
+        }
+        //删除类型模块的时候回调处理
+        SearchOption.CallDelFun = function (typeid) {
+            switch (typeid) {
+                case "StoreIdType":
+                    $("#hidStore").val("");
+                    break;
+                case "SupplierType":
+                    $("#hidSupplier").val("");
+                    break;
+                case "txtSaleMan":
+                    $("#hidUser").val("");
+                    break;
+                case "markList":
+                    $("#hidMark").val("");
+                    break;
+                default:
+                    break;
+            }
+            $("#searchForm").submit();
+        };
+        SearchOption.CallUserFun = function (typeid, id, title) {
+            //获取到类型，与参数id
+            switch (typeid) {
+                case "StoreIdType":
+                    $("#hidStore").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "SupplierType":
+                    $("#hidSupplier").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "markList":
+                    $("#hidMark").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "txtSaleMan":
+                    $("#hidUser").val(id);
+                    $("#searchForm").submit();
+                    break;
+            }
+        }
+        SearchOption.CallTabFun = function (typeid) {
+            var Search = "";
+            var paramFiled = "";
+            switch (typeid) {
+
+                case "StoreIdType":
+                    paramFiled = "hidStore";
+                    break;
+                case "SupplierType":
+                    paramFiled = "hidSupplier";
+                    break;
+                case "markList":
+                    paramFiled = "hidMark";
+                    break;
+                case "txtSaleMan":
+                    paramFiled = "hidUser";
+                    break;
+            }
+
+            var data = $("#J_crumbsBar .crumb-select-item[typeid='" + typeid + "']");
+            if (data) {
+                Search = $(data).attr("atrrvalue");
+            }
+
+            $("#" + paramFiled).val(Search);
+            $("#searchForm").submit();
+        }
+        SearchOption.initEvent(false);//初始化事件绑定
+
+        //替换样式保持界面一致
+        $("#DropListItem .sl-key").each(function () {
+            $(this).css("color", "#333");
+            $(this).css("font-weight", "700");
+            $(this).css("padding-top", "6px");
+        })
+        $("#DropListItem .sl-wrap").each(function () {
+            $(this).css("border", "none");
+        })
+        $("#DropListItem .sl-tab-trigger").each(function () {
+            $(this).css("height", "32px");
+        })
+        $("#DropListItem .trig-item").each(function () {
+            $(this).css("height", "24px");
+            $(this).css("padding", "0px 3px 0 6px");
+        })
+        $("#DropListItem .sl-tab-cont-item").each(function () {
+            $(this).css("top", "28px");
+        })
+    }
+    //复选框选中
+    function  p129938878doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+    
+    //导出选择数据列
+    function p129938878doExportData() {
+        var exportmode = "";
+        var width = 950;
+        var height = 560;
+        var url = "../Order/Export?viewName=PurOrder&pagekey=PurOrder/Export&exportmode=" + exportmode + "&functionName=p129938878doExport";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+    //导出
+    function p129938878doExport(fieldName) {
+        var codeList = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            codeList += $(this).val() + ",";
+        });
+        if (codeList != "") {
+            codeList = codeList.substring(0, codeList.length - 1);
+        }
+        var postData = redgle.request.getFormData("searchForm");
+        //window.open("/PurOrder/PurOrderExport?txtStoreId=" + $("#txtStoreId").val() + "&hidChoose=" + $("#hidChoose").val() + "&txtSearchKey=" + $("#txtSearchKey").val() + "&DateBegin=" + $("#txtDateBegin").val() + "&DateEnd=" + $("#txtDateEnd").val() + "&txtStatusCode=" + $("#txtStatusCode").val() + "&codeList=" + codeList, "_self");
+        postData["viewName"] = "PurOrder";
+        postData["pageKey"] = "PurOrder/Export";
+        postData["codeList"] = codeList;
+        postData["fieldName"] = fieldName;
+        postData["waiting"] = "1";
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/PurOrderExport",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //打印
+    function p129938878doPrintPurOrder(type) {
+        var codeList = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            codeList += $(this).val() + ",";
+        });
+        if (codeList != "") {
+            codeList = codeList.substring(0, codeList.length - 1);
+        } else if (codeList.length == 0) {
+            alert(translate.format("<hg:trans>请至少选择一个订单</hg:trans>！"));
+            return;
+        }
+        codeList = JSON.stringify(codeList);
+        $.ajax({
+            url: "/PurOrder/PrintPurOrder",
+            type: "post",
+            data: { codeList: codeList, type: type },
+            datatype: "json",
+            success: function (data) {
+                if (!data.HasError) {
+                    $("#btnOpenWindow").attr("href", "../Order/ViewPdf?fileName=" + escape(data.ResultObject));
+                    document.getElementById("btnOpenWindow").click();
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的打印采购单操作没有成功，原因如下{0}</hg:trans>:", [data.Message]));
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+
+    }
+    //详情
+    function p129938878doViewData(id) {
+        if (id == null || id == "")
+            id = "0";
+        var url = "/PurOrder/Edit/" + id;
+        redgle.tab.create("liPurOrderEdit", url, translate.format("<hg:trans>采购单详情</hg:trans>"));
+    }
+
+    //创建采购单
+    function p129938878doCreate() {
+        var url = "/PurOrder/Edit/0";
+        redgle.tab.create("liPurOrderEdit", url, translate.format("<hg:trans>创建采购单</hg:trans>"));
+    }
+    //弹出作废确认框
+    function  p129938878doCancelConfirm(purOrderId, purOrderNo) {
+        $("#cancelPurOrderId").val(purOrderId);
+        $("#cancelPurOrderNo").html(purOrderNo);
+        $("#myModal").modal('show');
+    }
+    //作废
+    function  p129938878doCancel() {
+        var purOrderId = $("#cancelPurOrderId").val();
+        var cancelRemart = $("#cancelRemart").val().replace(/[\r\n]/g, "");
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/Cancel",
+            data: { purOrderId: purOrderId, cancelRemart: cancelRemart },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    $("#myModal").modal('hide');
+                    redgle.showMessage(translate.format("<hg:trans>您所做的修改已保存成功</hg:trans>！"))
+                    try { p129938878doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //删除
+    function  p129938878doDelte(purOrderId) {
+        if (window.confirm("确认要删除采购单吗？")) {
+            $.ajax({
+                type: "POST",
+                url: "/PurOrder/Delete",
+                data: { purOrderId: purOrderId },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0} </hg:trans>", [data.Message]));
+                    }
+                    else {
+                        redgle.showMessage(translate.format("<hg:trans>您所做的修改已保存成功</hg:trans>！"));
+                        try { p129938878doReloadData(); } catch (e) { }
+                    }
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+    //采购到货
+    function p129938878doArrival(id) {
+        var url = "/PurOrder/PurchaseArrivalIndex?id=" + id;
+        redgle.tab.create("liPurchaseArrival", url, translate.format("<hg:trans>采购到货</hg:trans>"));
+
+        //var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>采购到货</hg:trans>") });
+        //selectManageModal.show();
+    }
+    //到货记录
+    function p129938878doArrivalRecord(id) {
+        var url = "/PurOrder/PurchaseArrivalRecord?id=" + id;
+        var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>到货记录</hg:trans>") });
+        selectManageModal.show();
+
+    }
+    //完成下单
+    function p129938878doConfirm(purOrderId) {
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/Confirm",
+            data: { purOrderId: purOrderId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的下单操作没有成功，原因如下{0}</hg:trans>:", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的下单已成功</hg:trans>！"))
+                    try { p129938878doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //结束
+    function p129938878doEndPur(purOrderId) {
+        if (window.confirm(translate.format("<hg:trans>结束采购将不能恢复，确定结束该采购单吗</hg:trans>？"))) {
+            $.ajax({
+                type: "POST",
+                url: "/PurOrder/EndPur",
+                data: { purOrderId: purOrderId },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的结束采购操作没有成功，原因如下{0}</hg:trans>:", [data.Message]));
+                    }
+                    else {
+                        redgle.showMessage(translate.format("<hg:trans>您所做的结束采购已成功</hg:trans>！"))
+                        try { p129938878doReloadData(); } catch (e) { }
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+    //重新加载
+    function p129938878doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/PuringOrder",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p129938878divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //查看采购单明细
+    function showPurOrderDetail(event, id) {
+        var src = event.target || window.event.srcElement;
+        if ($("#d_" + id + "").length > 0) {
+            if ($("#d_" + id + "").is(":visible")) {
+                $("#d_" + id + "").hide();
+                $(src).removeClass();
+                $(src).addClass("glyphicon glyphicon-triangle-right");
+            } else {
+                $("#d_" + id + "").show();
+                $(src).removeClass();
+                $(src).addClass("glyphicon glyphicon-triangle-bottom");
+            }
+        } else {
+            $.ajax({
+                url: "/PurOrder/GetPurOrderDetailListUsePurOrderId",
+                data: { purOrderId: id },
+                success: function (data) {
+                    $(src).parent().parent().after("<tr id='d_" + id + "'><td colspan='9'><div style='float:right;width:80%;margin-top:0;'><table  class='table table-condensed table-hover' style='float:right;width:80%'><thead><tr><th><hg:trans>产品图片</hg:trans></th><th><hg:trans>SKU<br />产品属性</hg:trans></th><th><hg:trans>产品名称</hg:trans></th><th><hg:trans>采购数量</hg:trans></th><th><hg:trans>到货数量</hg:trans></th><th><hg:trans>采购价</hg:trans></th><th><hg:trans>采购链接</hg:trans></th></tr></thead><tbody></tbody></table></div></td></tr>");
+                    $.each(data, function (index, value) {
+                        var sku = value.Sku == null ? "" : value.Sku
+                        var productAttr = value.Attr;//产品属性
+                        if (productAttr == null || productAttr.trim() == "") {
+                            productAttr = "无"
+                        }
+                        $("#d_" + id + " tbody").append("<tr><td><img onmouseover='showPic(this)' onmouseout='hidePic(this)' class='img-thumbnail' style='width:50px; height:50px;' src="picture/+ value.productpicurl +"></td><td>" + sku + "<br/>" + productAttr + "</td><td><span title='" + value.ProductName + "' class='text-overflow' style='max-width:250px;'>" + value.ProductName + "</span></td><td>" + value.Num + "</td><td>" + value.ArrivedNum + "</td><td>" + value.Price + "</td><td><a class='text-overflow' style='max-width:250px;cursor:pointer' target='_blank' href='" + value.PurLink + "'>" + value.PurLink + "</a></td></tr>")
+                    })
+                    $(src).removeClass();
+                    $(src).addClass("glyphicon glyphicon-triangle-bottom");
+                }
+            })
+        }
+    }
+    //显示来源单详情divSupplierItem
+    function p129938878doViewDetailData(RelationId, RelationType) {
+        switch (RelationType) {
+            case "ErpPurPlan":  //采购计划编辑
+                var url = "/PurOrder/PurPlanEdit/" + RelationId + "?view=false";
+                redgle.tab.create("liPurPlanEdit", url, translate.format("<hg:trans>采购计划</hg:trans>"));
+
+                break;
+        }
+    }
+    //选择供应商
+    $("[divSupplierItem] >span").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+            }
+            var selectedItems = "";
+            $("[divSupplierItem] >span").each(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) != "undefined" && cls.indexOf("active") >= 0) {
+                    selectedItems += $(this).attr("supplierid") + ",";
+                }
+            })
+            if (selectedItems.length > 0) {
+                selectedItems = selectedItems.substr(0, selectedItems.length - 1);
+            }
+            $("#txtSupplier").val(selectedItems);
+            $("#searchForm").submit();
+
+        });
+    });
+
+
+
+    //扫描到货
+    function p129938878doScanArrival() {
+        var url = "../PurOrder/ScanArrival";
+        redgle.tab.create("liScanArrival", url, translate.format("<hg:trans>扫描到货</hg:trans>"));
+    }
+
+    //点击数量全部展开
+    function p129938878doOpenAllDetail(event) {
+        var src = event.target || window.event.srcElement;
+        var isOpen = $("#hidOpenAllDetailType1").val();
+        $('input[name="chk_list"]').each(function () {
+            var span = $(this).parent().parent().find("[name=spanForPurDetail]");
+            var cls = span.attr("class");
+            if (cls.indexOf("glyphicon glyphicon-triangle-right") >= 0 && isOpen == "false") {
+                span.click();
+            }
+            else if (cls.indexOf("glyphicon glyphicon-triangle-bottom") >= 0 && isOpen == "true") {
+                span.click();
+            }
+        });
+        if (isOpen == "true") {
+            $(src).removeClass();
+            $(src).addClass("glyphicon glyphicon-triangle-right");
+            $("#hidOpenAllDetailType1").val("false");
+        }
+        else {
+            $(src).removeClass();
+            $(src).addClass("glyphicon glyphicon-triangle-bottom");
+            $("#hidOpenAllDetailType1").val("true");
+        }
+    }
+
+
+    //选择排序
+    $("#divSort > span").click(function () {
+        var selectedItems = "";
+        var sortType = "";
+        var cls = $(this).attr("class");
+        if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+            $("#divSort > span").removeClass("active");
+            $("#divSort > span").attr("sorttype", "");
+            $(this).addClass("active");
+            $("#divSort > span > span").removeClass().addClass("glyphicon glyphicon-resize-vertical");
+        }
+        selectedItems = $(this).attr("itemid");
+        sortType = $(this).attr("sorttype");
+        if (sortType == "" || sortType == "DESC") {
+            $(this).attr("sorttype", "ASC");
+            $("#hidSortType").val("ASC");
+            $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-menu-up");
+        }
+        else {
+            $(this).attr("sorttype", "DESC");
+            $("#hidSortType").val("DESC");
+            $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-menu-down");
+        }
+        $("#hidSort").val(selectedItems);
+        $("#searchForm").submit();
+    });
+</script>
+<link href="css/chosen.css" rel="stylesheet"/>
+
+<script src="js/chosen.jquery.js"></script>
+
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/88aca97bf1c44451b447b22a17229d05.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

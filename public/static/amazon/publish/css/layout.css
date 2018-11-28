@@ -1,0 +1,254 @@
+﻿body{
+    margin: 0;
+    font-size: 14px;
+    line-height: 30px;
+    color: #333;
+    background-color: #373d41;
+}
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 {
+    font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+.header{
+    background: #293038;
+    z-index: 100;
+}
+.section{
+    padding-top: 30px;
+    background: #fff;
+    min-height: 1000px;
+}
+.logo{
+    float: left;
+    margin: 0 10px;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #fff;
+    line-height: 40px;
+    font-weight: bold;
+}
+.header-nav a.btn {
+    color: #fff !important;
+    text-shadow: none !important;
+    padding: 10px;
+}
+.header .nav>li>a:focus, .header .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #121320;
+}
+#msg-li:hover{
+    text-decoration: none;
+    background-color: #121320;
+}
+.nav>li{
+    float: left;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+   background-color: transparent;
+   border-color: transparent;
+}
+.header-nav .dropdown-menu{
+    width: 100px;
+    padding: 0;
+    margin-top: 10px;
+    min-width: 120px;
+}
+.header-nav>.nav>li{
+    border-left: 1px solid #121320;
+}
+.header-nav .dropdown-menu>li>a{
+    padding-left: 10px;
+}
+.header-nav .dropdown-menu:before {
+    position: absolute;
+    top: -9px;
+    right: 8px;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid rgba(0,0,0,.15) !important;
+    border-left: 9px solid transparent;
+    content: '';
+}
+.wrap{
+    margin-left: 180px;
+}
+.sidebar-nav{
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 180px;
+    background: #373d41;
+    /*border-bottom: 1px solid #333;*/
+}
+.sidebar-nav li>a{
+    color: #eee;
+    display: block;
+    padding: 8px 25px;
+    text-decoration: none;
+    /*border-top: 1px solid #333;*/
+    /*border-bottom: 1px solid #22282e;*/
+}
+.sidebar-nav li i.glyphicon{
+    float: left;
+    line-height: 30px;
+    font-size: 16px;
+}
+.sidebar-nav li.active>a{
+    background: #0099cc;
+    border-top: 1px solid #0099cc;
+    /*border-bottom: 1px solid #0099cc;*/
+}
+.sidebar-nav li>a>span{
+    margin-left: 15px;
+}
+.sidebar-nav li.normal>a:hover{
+    background: #37424f;
+}
+.shop-detail{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    color: #fff;
+    display: inline-block;
+}
+.workspace{
+    margin-left: -15px;
+    min-height: 1106px;
+    margin-right: -15px;
+    padding: 20px;
+    background: #fff;
+}
+.breadcrumb{
+    color: #333;
+    background-color: #eee;
+    padding: 4px 20px;
+    margin: -20px -20px 20px -20px;
+    border-radius: 0;
+}
+.breadcrumb li>a{
+    color: #333;
+}
+.footer{
+    background: #373d41;
+    color: #fff;
+    padding: 10px 0;
+    position: absolute;
+    z-index: 99999;
+    width: 100%;
+    height: 50px;
+    left: 0;"
+}
+.footer span{
+    padding: 10px;
+    color: #fff;
+}
+.footer a{
+    padding: 10px;
+    color: #fff;
+}
+#change-shop{
+    color: #0099cc;
+    border-width: 0;
+}
+#change-shop:focus{
+    outline: none;
+}
+.shop-info{
+    padding: 10px 0 10px 25px;
+    color: #fff;
+    /*border-bottom: 1px solid #22282e;*/
+}
+.shop-info .name{
+    line-height: 30px;
+    margin: 5px 0;
+}
+.shop-info .icon{
+    float: left;
+    font-size: 40px;
+}
+.shop-info .icon i{
+    line-height: 60px;
+}
+.shop-info .text{
+    padding-left: 0;
+    font-size: 14px;
+}
+#shops{
+    margin-bottom: -20px;
+}
+.pro-5{
+    width: 5%;
+}
+.pro-10{
+    width: 9%;
+}
+.pro-15{
+    width: 15%;
+}
+.pro-20{
+    width: 20%;
+}
+.pro-25{
+    width: 25%;
+}
+.pro-30{
+    width: 30%;
+}
+.pro-35{
+    width: 35%;
+}
+.pro-40{
+    width: 40%;
+}
+.pro-45{
+    width: 45%;
+}
+.pro-50{
+    width: 50%;
+}
+.pro-55{
+    width: 55%;
+}
+.pro-60{
+    width: 60%;
+}
+.pro-65{
+    width: 65%;
+}
+.pro-70{
+    width: 70%;
+}
+.pro-75{
+    width: 75%;
+}
+.pro-80{
+    width: 80%;
+}
+.pro-85{
+    width: 85%;
+}
+.pro-90{
+    width: 90%;
+}
+.pro-95{
+    width: 95%;
+}
+.beta{
+    position: absolute;
+    top: 6px;
+    right: -12px;
+    padding: 0 2px;
+    color: #fff;
+    background: #eb3c00;
+    text-align: center;
+    font-size: 12px;
+    height: 14px;
+    line-height: 12px;
+    border-radius: 2px;
+    z-index: 1;
+}
+.global-attention{
+    line-height: 30px;
+    background: #fae79d;
+    color: #eb3c00;
+    text-align: center;
+    font-size: 16px;
+}

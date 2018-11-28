@@ -1,0 +1,424 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabFinanceManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>账期管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabFinanceManage" role="tabpanel" class="tab-pane fade active in">
+        <div style="padding-left:20px;margin-bottom:20px;" class="panel panel-default">
+<form action="/Finance?Length=7" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#divFinanceDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>账期</hg:trans></label>
+                    <div class="col-sm-3" style="margin-left:-18px">
+
+                        <select class="form-control input-sm chzn-select" id="FianceNo" name="FianceNo"><option value="">--选择账期--</option>
+<option value="20180901-20180930">2018-09</option>
+<option value="20180801-20180831">2018-08</option>
+<option value="20180701-20180731">2018-07</option>
+<option value="20180601-20180630">2018-06</option>
+<option value="20180501-20180531">2018-05</option>
+<option value="20180401-20180430">2018-04</option>
+<option value="20180301-20180331">2018-03</option>
+</select>
+                        <input type="hidden" id="hidFinanceNo" name="hidFinanceNo" value="" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>状态</hg:trans></label>
+                    <div id="divStatuesCode" class="input-group para-items" style="float:left">
+                        <span itemid="0">已生成</span>
+                        <span itemid="1">已结算</span>
+                        <input type="hidden" id="hidStatusCode" name="hidStatusCode">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        
+                        <span itemid="StatementDate" chooseid="Date" class="active"><hg:trans>结算时间</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="" />
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <span class="date"><input type="text" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" hgtrans="true" placeholder="结算日期" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <input type="hidden" id="txtQuerySearch" name="txtQuerySearch" value="" />
+</form>        </div>
+        <div id="divFinanceDataList" style="margin-top:0px">
+            
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th><hg:trans>账期编号</hg:trans></th>
+            <th><hg:trans>账期 / 结算日期</hg:trans></th>
+            <th><hg:trans>结算币种</hg:trans></th>
+            <th><hg:trans>收入 / 支出</hg:trans></th>
+            <th><hg:trans>毛利</hg:trans></th>
+            <th><hg:trans>状态</hg:trans></th>
+            <th><hg:trans>结算汇率</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>20180901-20180930</td>
+                <td>
+                    <label>2018-09</label> /
+                            <span>--</span>
+
+                </td>
+                <td><label>人民币</label></td>
+                <td><label class="text-success" style="font-size:14px">+ 0.00</label> / <label class="text-danger" style="font-size:14px">- 0.00</label></td>
+                <td><label style="font-size:14px" class="text-success">0.00</label> </td>
+                <td>
+                        <label class="text-danger"><hg:trans>未生成</hg:trans></label>
+
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p594206926doSetFinanceCurrency('20180901-20180930','Y')" hgtrans="true" title="查看或编辑">编辑</a>
+                </td>
+                <td>
+                            <span>--</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td>20180801-20180831</td>
+                <td>
+                    <label>2018-08</label> /
+                            <span>--</span>
+
+                </td>
+                <td><label>人民币</label></td>
+                <td><label class="text-success" style="font-size:14px">+ 0.00</label> / <label class="text-danger" style="font-size:14px">- 0.00</label></td>
+                <td><label style="font-size:14px" class="text-success">0.00</label> </td>
+                <td>
+                        <label class="text-danger"><hg:trans>未生成</hg:trans></label>
+
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p594206926doSetFinanceCurrency('20180801-20180831','Y')" hgtrans="true" title="查看或编辑">编辑</a>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="p594206926doToStatement('20180801-20180831','2018-08')" hgtrans="true" title="重新结算">结算</a>　
+
+                </td>
+            </tr>
+            <tr>
+                <td>20180701-20180731</td>
+                <td>
+                    <label>2018-07</label> /
+                            <span>--</span>
+
+                </td>
+                <td><label>人民币</label></td>
+                <td><label class="text-success" style="font-size:14px">+ 0.00</label> / <label class="text-danger" style="font-size:14px">- 0.00</label></td>
+                <td><label style="font-size:14px" class="text-success">0.00</label> </td>
+                <td>
+                        <label class="text-danger"><hg:trans>未生成</hg:trans></label>
+
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p594206926doSetFinanceCurrency('20180701-20180731','Y')" hgtrans="true" title="查看或编辑">编辑</a>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="p594206926doToStatement('20180701-20180731','2018-07')" hgtrans="true" title="重新结算">结算</a>　
+
+                </td>
+            </tr>
+            <tr>
+                <td>20180601-20180630</td>
+                <td>
+                    <label>2018-06</label> /
+                            <span>--</span>
+
+                </td>
+                <td><label>人民币</label></td>
+                <td><label class="text-success" style="font-size:14px">+ 0.00</label> / <label class="text-danger" style="font-size:14px">- 0.00</label></td>
+                <td><label style="font-size:14px" class="text-success">0.00</label> </td>
+                <td>
+                        <label class="text-danger"><hg:trans>未生成</hg:trans></label>
+
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p594206926doSetFinanceCurrency('20180601-20180630','Y')" hgtrans="true" title="查看或编辑">编辑</a>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="p594206926doToStatement('20180601-20180630','2018-06')" hgtrans="true" title="重新结算">结算</a>　
+
+                </td>
+            </tr>
+            <tr>
+                <td>20180501-20180531</td>
+                <td>
+                    <label>2018-05</label> /
+                            <span>--</span>
+
+                </td>
+                <td><label>人民币</label></td>
+                <td><label class="text-success" style="font-size:14px">+ 0.00</label> / <label class="text-danger" style="font-size:14px">- 0.00</label></td>
+                <td><label style="font-size:14px" class="text-success">0.00</label> </td>
+                <td>
+                        <label class="text-danger"><hg:trans>未生成</hg:trans></label>
+
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p594206926doSetFinanceCurrency('20180501-20180531','Y')" hgtrans="true" title="查看或编辑">编辑</a>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="p594206926doToStatement('20180501-20180531','2018-05')" hgtrans="true" title="重新结算">结算</a>　
+
+                </td>
+            </tr>
+            <tr>
+                <td>20180401-20180430</td>
+                <td>
+                    <label>2018-04</label> /
+                            <span>--</span>
+
+                </td>
+                <td><label>人民币</label></td>
+                <td><label class="text-success" style="font-size:14px">+ 0.00</label> / <label class="text-danger" style="font-size:14px">- 0.00</label></td>
+                <td><label style="font-size:14px" class="text-success">0.00</label> </td>
+                <td>
+                        <label class="text-danger"><hg:trans>未生成</hg:trans></label>
+
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p594206926doSetFinanceCurrency('20180401-20180430','Y')" hgtrans="true" title="查看或编辑">编辑</a>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="p594206926doToStatement('20180401-20180430','2018-04')" hgtrans="true" title="重新结算">结算</a>　
+
+                </td>
+            </tr>
+            <tr>
+                <td>20180301-20180331</td>
+                <td>
+                    <label>2018-03</label> /
+                            <span>--</span>
+
+                </td>
+                <td><label>人民币</label></td>
+                <td><label class="text-success" style="font-size:14px">+ 0.00</label> / <label class="text-danger" style="font-size:14px">- 0.00</label></td>
+                <td><label style="font-size:14px" class="text-success">0.00</label> </td>
+                <td>
+                        <label class="text-danger"><hg:trans>未生成</hg:trans></label>
+
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p594206926doSetFinanceCurrency('20180301-20180331','Y')" hgtrans="true" title="查看或编辑">编辑</a>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="p594206926doToStatement('20180301-20180331','2018-03')" hgtrans="true" title="重新结算">结算</a>　
+
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divFinanceDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Finance?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 7 条数据</span></div><div style="clear:both"></div></div>
+<script type="text/javascript">
+
+</script>
+        </div>
+    </div>
+</div>
+<script src="static/js/d05995537ae64acc938930736235afe9.js"></script>
+
+<script type="text/javascript">
+    jQuery(function () {
+        $(".chzn-select").chosen();
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        if ("" != "")
+            redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [""]));
+        try {
+            $('.date input').datepicker();
+        } catch (e) {
+
+        }
+    });
+    $("#FianceNo").change(function () {
+        $("#hidFinanceNo").val($("#FianceNo").val());
+        $("#searchForm").submit();
+    })
+    $("#divStatuesCode > span").each(function () {
+        $(this).click(function () {
+            var selectedItems = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divStatuesCode > span").removeClass("active");
+                $(this).addClass("active");
+                selectedItems = $(this).attr("itemid");
+            }
+            else {
+                $(this).removeClass("active");
+            }
+            $("#hidStatusCode").val(selectedItems);
+            $("#searchForm").submit();
+        });
+    });
+    function p594206926doSetFinanceCurrency(financeNo, canEdit) {
+        var url = "/Finance/CurrencyViewAndEdit?financeNo=" + financeNo + "&canEdit=" + canEdit;
+        redgle.tab.create("liTabCurrencyViewAndEdit", url, translate.format("<hg:trans>账期汇率</hg:trans>"));
+    }
+    //结算
+    function p594206926doToStatement(financeNo, finance) {
+        var url = "/Finance/StatementIndex?financeNo=" + financeNo;
+        redgle.tab.create("liTabStatementIndex", url, translate.format("<hg:trans>{0}月账期手工结算</hg:trans>", [finance]));
+    }
+
+    //确认结算
+    function p594206926doConfirmStatement(financeNo) {
+        $.ajax({
+            type: "POST",
+            url: "/Finance/ConfirmStatement",
+            data: { financeNo: financeNo },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    doReloadData();
+                    redgle.showMessage(translate.format("<hg:trans>确认结算成功！</hg:trans>"));
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+        //把查询条件传递给本页面
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/Finance",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#divFinanceDataList").html(data);
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+    }
+
+    function p594206926doViewHistory(finance,financeNo) {
+        var url = "/Finance/HistoryView?isFirst=Y&financeNo=" + financeNo;
+        redgle.tab.create("liTabHistoryView", url, translate.format("<hg:trans>{0}月账期流水</hg:trans>", [finance]));
+    }
+</script>
+<link href="static/css/chosen_1.css" rel="stylesheet"/>
+
+<script src="static/js/chosen.jquery_1.js"></script>
+
+<script src="static/js/jquery.unobtrusive-ajax.min_1.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/16611bd61beb46da968ab56bfcc84ffd.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

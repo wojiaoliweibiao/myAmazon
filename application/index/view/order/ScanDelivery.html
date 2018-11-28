@@ -1,0 +1,620 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+  
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabInStoreManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>扫描发货</hg:trans></a></li>
+</ul>
+<div>
+
+</div>
+<p class="alert bg-info" style="line-height:22px">
+    <hg:trans>提示：</hg:trans><br />
+    <hg:trans>1、请扫描跟踪号或订单号或服务商单号、重量，完毕后系统自动提交；虚拟已发货的订单再次扫描发货，系统只扣减库存并将订单设为已发货。</hg:trans><br />
+    <hg:trans>2、请将输入法切换至英文进行扫描，如果扫描后未带换行，请联系扫描枪卖家进行设置。</hg:trans><br />
+    <span class="text-danger"><hg:trans>3、由于亚马逊API接口限制，扫描后不会立即上传跟踪号，需要点击下面【亚马逊发货】按钮上传跟踪号；可全部扫描完后再点击该按钮批量上传。</hg:trans></span>
+</p>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-horizontal" style="margin-left:10px">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" style="float:right"><hg:trans>今日累计发货订单数</hg:trans>：<b id="delivedOrderCount" style="color:blue"></b></label>
+            </div>
+            <div class="form-group" style="display:none">
+                <label class="col-sm-1 control-label"><hg:trans>发货模式</hg:trans></label>
+                <div class="col-sm-6">
+                    <div class="radio" style="padding-top:0">
+                        <label><input type="radio" name="DeliveryType" value="Actual" checked /><hg:trans>标记发货（扣库存后上传跟踪号至平台并标记发货）</hg:trans></label><br />
+                        <label><input type="radio" name="DeliveryType" value="Virtual" /><hg:trans>虚拟发货（上传跟踪号至平台并标记发货）</hg:trans></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label"><hg:trans>扫描格式</hg:trans></label>
+                <div class="col-sm-3">
+                    <div class="radio" style="padding-top:0;font-size:14px">
+                        <label><input type="radio" name="ScanType" value="1" checked /><hg:trans>跟踪号+重量（G）</hg:trans></label><br />
+                        <label><input type="radio" name="ScanType" value="2" /><hg:trans>跟踪号+重量（KG）</hg:trans></label><br />
+                        <label><input type="radio" name="ScanType" value="3" /><hg:trans>仅跟踪号</hg:trans></label><br />
+                        <label><input type="radio" name="ScanType" value="10" /><hg:trans>箱号/跟踪号</hg:trans></label>
+                        <input type="hidden" value="0" id="packingId" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="radio" style="padding-top:0;font-size:14px">
+                        <label><input type="radio" name="ScanType" value="4" /><hg:trans>订单号+重量（G）</hg:trans></label><br />
+                        <label><input type="radio" name="ScanType" value="5" /><hg:trans>订单号+重量（KG）</hg:trans></label><br />
+                        <label><input type="radio" name="ScanType" value="6" /><hg:trans>仅订单号</hg:trans></label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="radio" style="padding-top:0;font-size:14px">
+                        <label><input type="radio" name="ScanType" value="7" /><hg:trans>服务单号+重量（G）</hg:trans></label><br />
+                        <label><input type="radio" name="ScanType" value="8" /><hg:trans>服务单号+重量（KG）</hg:trans></label><br />
+                        <label><input type="radio" name="ScanType" value="9" /><hg:trans>仅服务单号</hg:trans></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="divScanHabit">
+                <label class="col-sm-1 control-label"><hg:trans>扫描习惯</hg:trans></label>
+                <div class="col-sm-3">
+                    <div class="radio" style="padding-top:0;font-size:14px">
+                        <label><input type="radio" name="scanHabit" value="1" checked /><hg:trans>称重&nbsp;<span class="glyphicon glyphicon-arrow-right" style="color:#269abc"></span>&nbsp;扫描</hg:trans></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="scanHabit" value="2" /><hg:trans>扫描&nbsp;<span class="glyphicon glyphicon-arrow-right" style="color:#269abc"></span>&nbsp;称重</hg:trans></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="divSacnHabit1">
+                <label class="col-sm-1 control-label"><hg:trans>扫描信息</hg:trans></label>
+                <div class="col-sm-4">
+                    <div class="input-group input-group-lg">
+                        <span id="scanTitle1" class="input-group-addon"><hg:trans>包裹重量</hg:trans></span>
+                        <input type="text" class="form-control input-sm" id="scanText1">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group input-group-lg">
+                        <span id="scanTitle2" class="input-group-addon"><hg:trans>单号</hg:trans></span>
+                        <input type="text" class="form-control input-sm" id="scanText2">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label"><hg:trans>处理信息</hg:trans></label>
+                <div class="col-sm-8">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="min-height:80px;font-size:16px;font-weight:700">
+                            <span id="spMessage"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="AmazonDeliveryBut">
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-6">
+                    
+                    <input type="hidden" id="hidAmazonOrder" />
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning btn-lg" onclick="doSumbitScanDeliveryForAmazon()"><hg:trans>亚马逊发货</hg:trans>（<span id="amazonCount" style="color:red;font-size:16px;font-weight:700">0</span>）</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div id="divOrder" style="margin-left:10px;margin-top:30px">
+            
+        </div>
+        <div id="rightDIV"></div>
+        <div id="errorDIV"></div>
+        <div id="warningDIV"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).bind('beforeunload', function () {
+        //return translate.format("<hg:trans>请检查是否还有亚马逊订单尚未标记发货！</hg:trans>");
+        if ($("#hidAmazonOrder").val() != "")
+            return translate.format("<hg:trans>系统检查到您还有亚马逊订单尚未标记发货，确认要离开吗？</hg:trans>");
+    });
+    jQuery(function () {
+        $("#scanText1").focus();
+        $("#scanText1").keydown(function (e) {
+            if (e.keyCode == 13) {
+                //扫描格式为：跟踪号+重量的
+                if ($("input:radio[name='ScanType']:checked").val() != "3" && $("input:radio[name='ScanType']:checked").val() != "6" && $("input:radio[name='ScanType']:checked").val() != "9" && $("input:radio[name='ScanType']:checked").val() != "10") {
+                    if ($("input:radio[name='scanHabit']:checked").val() == "1")//称重在扫描
+                    {
+                        if (checkDecimal($("#scanText1").val().trim()))
+                            $("#scanText2").focus();
+                        else {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：扫描有误，请重新扫描！</hg:trans>"));
+p1000113898doClear();
+                            return false;
+                        }
+                    }
+                    else {
+                        $("#scanText2").focus();
+                    }
+                } else if ($("input:radio[name='ScanType']:checked").val() == "10") {//直接装箱
+                    if ($("#scanText1").val().trim().match(/^[Z][X][-]([0-9]{12})$/g) != null) {//验证箱号是否符合规则（验证箱号 否则就 是添加订单）
+p1000113898SavePacking(); //验证箱号
+                    } else {
+p1000113898doSubmitScanDelivery();//发货或者装箱
+                    }
+                }
+                else {
+                    //否则是只扫描跟踪号提交的
+p1000113898doSubmitScanDelivery();
+                    return false;
+                }
+            }
+        });
+        $("#scanText2").keydown(function (e) {
+            if (e.keyCode == 13) {
+                if ($("input:radio[name='scanHabit']:checked").val() == "2")//扫描在称重
+                {
+                    if (!checkDecimal($("#scanText2").val().trim())) {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：扫描有误，请重新扫描！</hg:trans>"));
+p1000113898doClear();
+                        return false;
+                    }
+                    else {
+p1000113898doSubmitScanDelivery();
+                        return false;
+                    }
+                }
+                else {
+p1000113898doSubmitScanDelivery();
+                    return false;
+                }
+            }
+        })
+        //加载声音文件
+        $('<audio id="errorAudio"><source src="../../Content/sounds/order_error.wav" type="audio/ogg"></audio>').appendTo('#errorDIV');
+        $('<audio id="rightAudio"><source src="../../Content/sounds/order_right.wav" type="audio/ogg"></audio>').appendTo('#rightDIV');
+        $('<audio id="warningAudio"><source src="../../Content/sounds/order_warning.wav" type="audio/ogg"></audio>').appendTo('#warningDIV');
+        SearchTodayDeliveryOrderCount();
+    })
+
+    $("input:radio[name='ScanType']").click(function () {
+        if ($("input:radio[name='ScanType']:checked").val() == "3" || $("input:radio[name='ScanType']:checked").val() == "6" || $("input:radio[name='ScanType']:checked").val() == "9") {
+            $("#divScanHabit").css("display", "none");
+            $("#scanTitle1").html(translate.format("<hg:trans>单号</hg:trans>"));
+            $("#scanTitle2").html(translate.format("<hg:trans>包裹重量</hg:trans>"));
+            $("#scanText2").attr("disabled", true);
+        } else if ($("input:radio[name='ScanType']:checked").val() == "10") {
+            $("#divScanHabit").css("display", "none");
+            $("#scanTitle1").html(translate.format("<hg:trans>箱号/跟踪号</hg:trans>"));
+            $("#scanText2").attr("disabled", true);
+        }
+        else {
+            $("#divScanHabit").css("display", "");
+            $("#scanText2").attr("disabled", false);
+            var ScanTypeChecked = $("input:radio[name='ScanType']:checked").val();
+            if (ScanTypeChecked == "1" || ScanTypeChecked == "2" || ScanTypeChecked == "4" || ScanTypeChecked == "5" || ScanTypeChecked == "7" || ScanTypeChecked == "8")//选择“跟踪号+重量(G)”
+            {
+                if ($("input:radio[name='scanHabit']:checked").val() == "1")//扫描习惯“称重--扫描 ”
+                {
+                    $("#scanTitle1").html(translate.format("<hg:trans>包裹重量</hg:trans>"));
+                    $("#scanTitle2").html(translate.format("<hg:trans>单号</hg:trans>"));
+                } else {
+                    $("#scanTitle1").html(translate.format("<hg:trans>单号</hg:trans>"));
+                    $("#scanTitle2").html(translate.format("<hg:trans>包裹重量</hg:trans>"));
+                }
+            }
+        }
+        $("#scanText1").focus();
+    });
+    $("input:radio[name='scanHabit']").click(function () {
+        if ($("input:radio[name='scanHabit']:checked").val() == "1") {
+            $("#scanTitle1").html(translate.format("<hg:trans>包裹重量</hg:trans>"));
+            $("#scanTitle2").html(translate.format("<hg:trans>单号</hg:trans>"));
+        }
+        else {
+            $("#scanTitle1").html(translate.format("<hg:trans>单号</hg:trans>"));
+            $("#scanTitle2").html(translate.format("<hg:trans>包裹重量</hg:trans>"));
+        }
+        $("#scanText1").focus();
+    });
+    function p1000113898doReset() {
+        $("#txtTrackNo").val("");
+        $("#spMessage").text("");
+        $("#spMessage").removeClass();
+        $("#hidAmazonOrder").val("");
+        $("#amazonCount").text("0");
+        $("#packageWeight").val("");
+    }
+
+    //设置提示消息
+    function p1000113898doSetMessage(type, text) {
+        $("#spMessage").html(text);
+        if (type == 0) {
+            $('#errorAudio')[0].play(); //播放声音
+            $("#spMessage").removeClass().addClass("text-danger");
+        }
+        else if (type == 1) {
+            $('#rightAudio')[0].play();
+            $("#spMessage").removeClass().addClass("text-success");
+        }
+        else {
+            $('#warningAudio')[0].play();
+            $("#spMessage").removeClass().addClass("text-warning");
+        }
+    }
+    //除了提示语，其余清空掉
+    function p1000113898doClear() {
+        $("#scanText1").val("");
+        $("#scanText2").val("");
+        $("#divOrder").html("");
+        $("#scanText1").focus();
+    }
+
+    //js四舍五入
+    function toDecimal(num, v) {
+        var vv = Math.pow(10, v);
+        return Math.round(num * vv) / vv;
+    }
+
+    function p1000113898doSubmitScanDelivery() {
+        var trackingNo = "";
+        var weight = 0;
+        var ScanType = $("input:radio[name='ScanType']:checked").val();
+        //不为仅扫描跟踪号的情况
+        if (ScanType != "3" && ScanType != "6" && ScanType != "9" && ScanType != "10") {
+            if ($("input:radio[name='scanHabit']:checked").val() == "1")//称重在扫描，文本框1为重量，文本框2为条码
+            {
+                weight = $("#scanText1").val().trim();
+                trackingNo = $("#scanText2").val();
+            } else {
+                weight = $("#scanText2").val().trim();
+                trackingNo = $("#scanText1").val();
+            }
+        }
+        else {
+            trackingNo = $("#scanText1").val();
+        }
+        //重量为G的情况
+        if (ScanType == "1" || ScanType == "4" || ScanType == "7") {
+            weight = toDecimal(weight / 1000, 4);
+        }
+        else if (ScanType == "2" || ScanType == "5" || ScanType == "8") {//重量为KG的情况
+            weight = toDecimal(weight, 4);
+        }
+        var scanNoType = "OrderNo";//扫描号码类型，跟踪号或是订单号
+        if (ScanType < 4)
+            scanNoType = "TrackingNo";
+        else if (ScanType > 6 && ScanType != 10)
+            scanNoType = "LogisticNo";
+        else if (ScanType == 10) {
+            scanNoType = "PackingNo";
+        }
+        var deliveryType = $("[name='DeliveryType']:checked").val();
+        $.ajax({
+            type: "POST",
+            url: "../Order/SubmitScanDelivery",
+            datatype: "json",
+            global: false,
+            data: { scanNos: trackingNo, deliveryType: deliveryType, packageWeight: weight, scanNoType: scanNoType },
+            success: function (data) {
+                if (data.HasError) {
+                    var errorType = data.MapData.errorType;
+                    if (errorType != undefined) {
+                        if (errorType == "0") {
+                            if (scanNoType == "TrackingNo")
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：待发货中不存在使用跟踪号为：【{0}】的订单！</hg:trans>", [trackingNo]));
+                            else if (scanNoType == "LogisticNo")
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：待发货中不存在使用服务商单号为：【{0}】的订单！</hg:trans>", [trackingNo]));
+                            else
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：待发货中不存在订单号为：【{0}】的订单！</hg:trans>", [trackingNo]));
+p1000113898doClear();
+                        }
+                        else if (errorType == "1") {
+                            if (scanNoType == "TrackingNo")
+p1000113898doSetMessage(2, translate.format("<hg:trans>提示：系统存在多个订单使用跟踪号【{0}】，请选择提交！</hg:trans>", [trackingNo]));
+                            else if (scanNoType == "LogisticNo")
+p1000113898doSetMessage(2, translate.format("<hg:trans>提示：系统存在多个订单使用服务商单号【{0}】，请选择提交！</hg:trans>", [trackingNo]));
+                            $("#divOrder").html(data.ResultObject);
+                        }
+                        else if (errorType == "2") {//亚马逊订单
+                            var order = data.MapData.order;
+                            if ($("#hidAmazonOrder").val().indexOf(order.OrderId + ",") < 0) {
+                                var orderIds = $("#hidAmazonOrder").val() + order.OrderId + ",";
+                                $("#hidAmazonOrder").val(orderIds);
+                                $("#amazonCount").text(parseInt($("#amazonCount").text()) + 1);
+                            }
+p1000113898doClear();
+                        } else if (errorType == "3" && scanNoType == "PackingNo") {//装箱已发货的订单
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：已发货订单【{0}】，直接装箱！</hg:trans>", [trackingNo]));
+p1000113898SavePackingOrderNo();//装箱
+                        }
+                    }
+                    else {
+                        if (scanNoType == "TrackingNo")
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：使用跟踪号为：【{0}】的订单发货失败！</hg:trans>", [trackingNo]) + data.Message);
+                        else if (scanNoType == "LogisticNo")
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：使用服务商单号为：【{0}】的订单发货失败！</hg:trans>", [trackingNo]) + data.Message);
+                        else
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：订单号【{0}】发货失败！</hg:trans>", [trackingNo]) + data.Message);
+p1000113898doClear();
+                    }
+                } else {
+                    if (scanNoType == "TrackingNo")
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：使用跟踪号为：【{0}】的订单发货成功！</hg:trans>", [trackingNo]));
+                    else if (scanNoType == "LogisticNo")
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：使用服务商单号为：【{0}】的订单发货成功！</hg:trans>", [trackingNo]));
+                    else if (scanNoType == "PackingNo") {
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：使用跟踪号为：【{0}】的订单发货成功，即将开始装箱！</hg:trans>", [trackingNo]));
+p1000113898SavePackingOrderNo();//装箱
+                    }
+                    else
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：订单【{0}】发货成功！</hg:trans>", [trackingNo]));
+p1000113898doClear();
+                }
+                SearchTodayDeliveryOrderCount();
+            },
+            error: function () {
+                if (scanNoType == "TrackingNo")
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：使用跟踪号为：【{0}】的订单发货失败！</hg:trans>", [trackingNo]));
+                else if (scanNoType == "LogisticNo")
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：使用服务商单号为：【{0}】的订单发货失败！</hg:trans>", [trackingNo]));
+                else
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：订单【{0}】发货失败！</hg:trans>", [trackingNo]));
+            }
+        });
+    }
+
+    function doSumbitScanDeliveryForAmazon() {
+        var deliveryType = $("[name='DeliveryType']:checked").val();
+        var orderIds = $("#hidAmazonOrder").val();
+        if (orderIds == "") {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：没有亚马逊订单可发货！</hg:trans>"));
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "../Order/SumbitScanDeliveryForAmazon",
+            datatype: "json",
+            data: { orderIds: orderIds, deliveryType: deliveryType },
+            success: function (data) {
+                if (data.HasError) {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：订单发货失败！</hg:trans>") + data.Message);
+                } else {
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：亚马逊订单发货成功！</hg:trans>"));
+                    var ScanType = $("input:radio[name='ScanType']:checked").val();    //发货成功了就直接装箱
+                    if (ScanType == "10") {
+p1000113898SaveAmazonPackingOrderNo(orderIds);
+                    }
+                }
+p1000113898doClear();
+                $("#hidAmazonOrder").val("");
+                $("#amazonCount").text("0");
+                SearchTodayDeliveryOrderCount();
+            },
+            error: function () {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：订单发货失败！</hg:trans>"));
+p1000113898doClear();
+                $("#hidAmazonOrder").val("");
+                $("#amazonCount").text("0");
+            }
+        });
+    }
+
+    function doSignSubmitScanDelivery(orderId) {
+        var deliveryType = $("[name='DeliveryType']:checked").val();
+        var packageWeight = $("#packageWeight").val();
+        if (packageWeight) {
+            if (!checkDecimal(packageWeight)) {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：重量有误！</hg:trans>"));
+                return;
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "../Order/SignSubmitScanDelivery",
+            datatype: "json",
+            data: { orderId: orderId, deliveryType: deliveryType, packageWeight: $("#packageWeight").val() },
+            success: function (data) {
+                if (data.HasError) {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：订单发货失败！</hg:trans>") + data.Message);
+                } else {
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：订单发货成功！</hg:trans>"));
+                }
+p1000113898doClear();
+                //doResetAmazon();
+                SearchTodayDeliveryOrderCount();
+            },
+            error: function () {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：订单发货失败！</hg:trans>"));
+p1000113898doClear();
+                //doResetAmazon();
+            }
+        });
+    }
+    function doResetAmazon() {
+        $("#hidAmazonOrder").val("");
+        $("#amazonCount").text("0");
+    }
+    function doDownLoadScanBarCode() {
+        var url = "/DownLoad/DownLoadFile/?filePath=/Content/img/scan_bar_code.jpg&fileName=扫描条码.jpg";
+        window.open(url);
+    }
+
+
+    //加载今日累计发货订单数
+    function SearchTodayDeliveryOrderCount() {
+        $.ajax({
+            type: "post",
+            url: "/Order/SearchTodayDeliveryOrderCount",
+            global: false,
+            success: function (data) {
+                if (data.HasError) {
+                    $("#delivedOrderCount").text(data.Message);
+                } else {
+                    $("#delivedOrderCount").text(data.MapData.TotalNum);
+                }
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        })
+    }
+
+    //保存装箱数据
+    function p1000113898SavePacking() {
+        $.ajax({
+            type: "post",
+            url: "/OrderPacking/GetPackingNo",
+            data: { packingNo: $("#scanText1").val() },
+            success: function (data) {
+                if (data.HasError) {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：" + data.Message + "！</hg:trans>"));
+                    $("#scanText1").focus();
+                } else {
+                    $("#packingId").val(data.MapData.packing.PackingId);
+p1000113898doSetMessage(1, translate.format("<hg:trans>箱号：" + $("#scanText1").val() + " 验证成功，请开始录单：</hg:trans>"));
+                    $("#scanText1").val("");
+                }
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+    }
+
+    //保存箱子对应订单数量
+    function p1000113898SavePackingOrderNo() {
+        $.ajax({
+            type: "post",
+            url: "/OrderPacking/SavePackingOrderNo",
+            data: { transitNo: $("#scanText1").val(), packingId: $("#packingId").val() },
+            success: function (data) {
+                if (data.HasError) {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：" + data.Message + "！</hg:trans>"));
+                    $("#scanText1").val("");
+                } else {
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：订单" + $("#scanText1").val() + " 装箱成功。</hg:trans>"));
+                    $("#scanText1").val("");
+                }
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+    }
+
+    function p1000113898SaveAmazonPackingOrderNo(orderIds) {
+        $.ajax({
+            type: "post",
+            url: "/OrderPacking/SaveAmazonPackingOrderNo",
+            data: { orderIds: $("#orderIds").val(), packingId: $("#packingId").val() },
+            success: function (data) {
+                if (data.HasError) {
+p1000113898doSetMessage(0, translate.format("<hg:trans>提示：" + data.Message + "！</hg:trans>"));
+                    $("#scanText1").val("");
+                } else {
+                    if (data.Message.length > 0) {
+p1000113898doSetMessage(1, translate.format("<hg:trans>提示：" + data.Message + "。</hg:trans>"));
+                        $("#scanText1").val("");
+                    }
+                }
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+    }
+</script>
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

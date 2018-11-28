@@ -1,0 +1,397 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+    
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liReceiptAuth" role="presentation" class="active"><a href="javascript:void(0);">连连支付认证</a></li>
+    <li id="liTokenView" role="presentation"><a href="javascript:void(0);">认证信息</a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liReceiptAuth" role="tabpanel" class="tab-pane fade active in">
+        <div id="divRegisterPanel" class="edit-conent-area" style="margin-right: 310px;">
+            <div class="row llpay-guide" style="margin-top: 15px;">
+    <span class="col-sm-4 active">第一步：选择认证方式</span>
+    <span class="col-sm-4">第二步：上传资料</span>
+    <span class="col-sm-4">第三步：认证结果</span>
+</div>
+<div style="border:1px solid #ccc;border-radius:4px;padding:10px;margin:10px;">
+    <iframe src="/FileData/Receipt/LianLian/Protocol.html" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width:100%;height:320px"></iframe>
+</div>
+<div class="form-horizontal">
+    <div class="form-group" style="margin-bottom:10px;">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-9 checkbox">
+            <label style="color:#337ab7;font-size:14px;font-weight:700">
+                <input type="checkbox" id="ckbProtocol"> 我已经阅读并同步上述协议
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="IdNumber"><hg:trans>选择认证方式</hg:trans></label>
+        <div class="col-sm-9">
+            <div class="status-group" style="margin-left:0px !important">
+                <label itemid="enterprise" class="active" style="line-height: 35px;width: 120px;font-size: 16px;text-align: center;"><a>企业认证</a><span></span></label>
+                <label itemid="personal" style="line-height: 35px;width: 120px;font-size: 16px;text-align: center;"><a>个人认证</a><span></span></label>
+            </div>
+            <div style="border: 1px solid #ccc;padding: 10px;border-radius:4px;">
+                <div group="registerType" itemid="enterprise">
+                    <strong>企业认证</strong>：收款收到公司帐户，提现时能提现到公司帐户以及公司法人所属的个人银行卡
+                </div>
+                <div group="registerType" itemid="personal" style="display:none">
+                    <strong>个人认证</strong>：收款收到个人帐户，提现时只能提现到当前个人所属的银行卡。注意：个人账户无法申请英镑、欧元账户
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="edit-button-area" style="width: 300px;">
+    <button class="btn btn-primary btn-lg btn-block" id="btnShowNextGuide" type="button" disabled="disabled">下一步</button>
+</div>
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $("#ckbProtocol").click(function () {
+            if ($(this).prop("checked")) {
+                $("#btnShowNextGuide").prop("disabled", false);
+            }
+            else {
+                $("#btnShowNextGuide").prop("disabled", true);
+            }
+        });
+        $(".status-group").find("label").each(function () {
+            $(this).click(function () {
+                var item = $(this).attr("itemid");
+                $(".status-group").find("label").removeClass("active");
+                $("div[group='registerType']").css("display", "none");
+
+                $(".status-group").find("label[itemid='" + item + "']").addClass("active");
+                $("div[group='registerType'][itemid='" + item + "']").css("display", "");
+            });
+        });
+
+        $("#btnShowNextGuide").click(function () {
+            var replayTokenId = $("#hidReplayTokenId").val();
+            var registerType = $(".status-group").find("label[class='active']").attr("itemid");
+            var data = {
+                part: "submit",
+                registerType: registerType,
+                replayTokenId: replayTokenId
+            };
+
+            doLoadLLRegisterPart(data);
+        })
+    });
+</script>
+
+        </div>
+        <div class="edit-nav-area" style="width: 300px;border:1px solid #ccc;border-radius:4px;padding-top: 10px;">
+            <ul class="left-remark-panel">
+                <li>
+                    <span>收款功能</span>
+                    <div style="margin-left:15px;">
+                        <div class="form-group">
+                            收款功能由连连支付提供，具体请参见：<a href="http://www.lianlianpay.com/">http://www.lianlianpay.com/</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <span>实名认证</span>
+                    <div style="margin-left:15px;">
+                        <div class="form-group">
+                            本功能是向连连支付提交实名身份认证。申请虚拟收款帐号，必须要申请实名认证。
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <span>认证方式</span>
+                    <div style="margin-left:15px;">
+                        <div class="form-group">
+                            <strong>企业认证</strong>：收款收到公司帐户，提现时能提现到公司帐户以及公司法人所属的个人银行卡
+                        </div>
+                        <div class="form-group">
+                            <strong>个人认证</strong>：收款收到个人帐户，提现时只能提现到当前个人所属的银行卡。注意：个人账户无法申请英镑、欧元账户
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <input type="hidden" id="hidReplayTokenId" name="hidReplayTokenId" value="" />
+    <div id="tabContent_liTokenView" role="tabpanel" class="tab-pane fade">
+        <div style="clear:both;"></div>
+        <div id="divTokenView" status="unload"></div>
+    </div>
+</div>
+<script type="text/javascript" language="javascript">
+    $(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+        $(document).scroll(function () {
+            doSetNavPanelStyle();
+        });
+        $(window).resize(function () {
+            doSetNavPanelStyle();
+        });
+        doSetNavPanelStyle();
+
+        $("#liTokenView").click(function () {
+            doLoadTokenView();
+        });
+    });
+
+    function doLoadTokenView() {
+        var panel = $("#divTokenView");
+        var status = panel.attr("status");
+
+        $("#divTokenView").html("正在加载中...").attr("loading")
+        $.ajax({
+            type: "POST",
+            url: "/Receipt/LoadRegisterView",
+            data: {},
+            datatype: "text",
+            success: function (data) {
+                panel.html(data);
+            },
+            error: function (xhr) {
+                panel.html("<span class='text-danger'>" + translate.format(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText])) + "</span>");
+            },
+            complete: function () {
+                panel.attr("status", "loaded");
+            }
+        });
+    }
+
+    function doSetNavPanelStyle() {
+        var $panel = $(".edit-nav-area");
+        var top = $("#divRegisterPanel").offset().top - $(document).scrollTop();
+        if (top < 10) {
+            top = 10;
+        }
+        $panel.css("top", top + "px");
+    }
+
+    function doLoadLLRegisterPart(data) {
+        $.ajax({
+            type: "POST",
+            url: "/Receipt/LoadRegisterPart",
+            data: data,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    alert(data.Message);
+                }
+                else {
+                    $("#divRegisterPanel").html(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doLoadAreaPartList(level, parentCode, callback) {
+        if (parentCode == null) {
+            parentCode = "";
+        }
+
+        $.ajax({
+            type: "POST",
+            global: false,
+            url: "/Receipt/LoadAreaPart",
+            data: { level: level, parentCode: parentCode },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    alert(data.Message);
+                }
+                else {
+                    callback(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText])));
+            }
+        });
+    }
+
+    function doBindAreaItemList(control, dataList) {
+        control.empty();
+        control.append("<option value=''>--请选择--</option>");
+        $.each(dataList, function (index, item) {
+            control.append("<option value='" + item.code + "'>" + item.name + "</option>");
+        });
+
+        var level = parseInt(control.attr("area"));
+        for (var i = level + 1;i<4;i++){
+            $("select[area='" + i + "']").empty();
+        }
+    }
+
+    function doSendRegisterCaptcha() {
+        var error = {};
+        hasError = false;
+        var Mobile = $("#Mobile").val();
+        if (Mobile.length == 0) {
+            hasError = true;
+            error["Mobile"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+        }
+        else if (!checkMobilePhone(Mobile)) {
+            hasError = true;
+            error["Mobile"] = translate.format("<hg:trans>手机号格式不正确</hg:trans>");
+        }
+        if (hasError == true) {
+            doShowRegisterError(error);
+            return false;
+        }
+
+        var platformType = $("#PlatformType").val();
+        var isEnterprise = $("#IsEnterprise").val();
+        $("#btnSendRegisterSMS").text(translate.format("<hg:trans>正在发送短信...</hg:trans>")).prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            url: "/Receipt/SendRegisterSMS",
+            data: { platform: platformType, mobile: Mobile, isEnterprise: isEnterprise },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    $("#btnSendRegisterSMS").text(translate.format("<hg:trans>发送短信验证码</hg:trans>")).prop("disabled", false);
+                    alert(data.Message);
+                }
+                else {
+                    $("#btnSendRegisterSMS").text(translate.format("<hg:trans>验证短信已发送（60秒）</hg:trans>"))
+                    countDownTimes = 60;
+                    setTimeout(doShowSMSCountDown, 1000);
+                }
+            },
+            error: function (xhr) {
+                $("#btnSendRegisterSMS").text(translate.format("<hg:trans>发送短信验证码</hg:trans>")).prop("disabled", false);
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    var countDownTimes = 0;
+    function doShowSMSCountDown() {
+        if (countDownTimes == 0) {
+            $("#btnSendRegisterSMS").text(translate.format("<hg:trans>发送短信验证码</hg:trans>")).prop("disabled", false);
+        }
+        else {
+            countDownTimes -= 1;
+            $("#btnSendRegisterSMS").text(translate.format("<hg:trans>验证短信已发送（" + countDownTimes + "秒）</hg:trans>"))
+            setTimeout(doShowSMSCountDown, 1000);
+        }
+    }
+
+    function doShowRegisterError(error) {
+        /// <summary>
+        /// 在页面中显示错误列表
+        /// </summary>
+        /// <param name="error">键值对的错误列表，键为元素的Id值，值为错误提示信息</param>
+
+        $.each(error, function (key, message) {
+            var $obj = $("#" + key);
+            $obj.tooltip({ title: message });
+            $obj.tooltip("show");
+            $obj.parent().addClass("has-error").attr("data-error", message);
+            $obj.change(function () {
+                $obj.tooltip("destroy");
+                $obj.parent().removeClass("has-error");
+            });
+        });
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min_3.js"></script>
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

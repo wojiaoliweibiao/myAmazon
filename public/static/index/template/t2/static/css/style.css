@@ -1,0 +1,49 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+h1, h2, h3, h4{
+    font-weight: normal;
+}
+ul, li{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.bc-deep-blue{
+    background: #2D89EF;
+}
+.bc-green{
+    background: #5cb85c;
+}
+.bc-deep-green{
+    background: #009999;
+}
+.bc-red{
+    background: #d9534f;
+}
+.bc-main{
+    background: #337ab7;
+}
+.bc-orange{
+    background: #f0ad4e;
+}
+.bc-blue{
+    background: #5bc0de;
+}
+.bc-deep-orange {
+    background: #d58512;
+}
+.c-white {
+    color: #ffffff;
+}
+.success-tag{
+    line-height: 30px;
+    background: #0daa69;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+}

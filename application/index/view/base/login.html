@@ -1,0 +1,158 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{block name="title"}远华嘉茂{/block}</title>
+    <link href="__STATIC__/index/css/public/bootstrap.min.css" rel="stylesheet">
+    <link href="__STATIC__/index/css/style.css" rel="stylesheet" />
+    <link href="__STATIC__/index/css/login.css" rel="stylesheet" />
+    <script src="__STATIC__/index/js/login/jquery.1.4.2.min.js"></script>
+    <script src="__STATIC__/index/js/198zone.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/hg.storage.js"></script>
+    <!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    <script language="javascript" type="text/javascript">
+        $("#txtPassword").ready(function () {
+            $("#txtPassword").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    doLogin();
+                }
+            });
+        });
+    </script>
+    <style>
+          </style>
+<script src="__STATIC__/index/js/jquery.min.js"></script>
+<script>
+$(function (){
+$('.FloatAd').animate({right:'10px'},1000);
+$('.FloatAd .close').click(function(){
+   $('.FloatAd').hide();
+});
+});
+</script>
+</head>
+
+<body style="voerflow-y:visible; overflow-x:hidden;">
+
+    <div class="headert" style="height:57px;padding-top:5px">
+        <div class="container">
+            <div class="headert_logo"><img src="__STATIC__/index/picture/back-logo-yhjm.png"></div>
+            
+        </div>
+    </div>
+    <div class="mainen">
+        <div class="container layout">
+            <div class="col-md-7 hidden-xs hidden-sm">
+                <div class="common">
+                    <ul>
+                        
+                        
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="regform1">
+                    <div class="regform_rt"><a>用户登录</a></div>
+                    <div class="inputses"  style="display: none;">
+                        <p class="res"><img src="__STATIC__/index/picture/res.png" /></p>
+                        <input id="txtEnterpriseCode" name="txtEnterpriseCode" value="yhjm" class="form-control" placeholder="请输入企业帐号" type="text">
+                    </div>
+                    <div class="regform_username">
+                        <p class="res"><img src="__STATIC__/index/picture/res1.png" style="margin-left:10px;" /></p>
+                        <input id="txtLoginName" name="txtLoginName" class="form-control" placeholder="请输入用户名" type="text">
+                    </div>
+                    <div class="regform_username">
+                        <p class="res"><img src="__STATIC__/index/picture/res2.png" style="margin-left:12px;" /></p>
+                        <input class="form-control" id="txtPassword" name="txtPassword" placeholder="请输入密码" type="password">
+                    </div>
+                    <div class="logse">
+                        <label style="cursor: pointer;font-weight:100;">
+                            <input id="checkboxSuccess" value="option1" checked="checked" type="checkbox">
+                            自动登录
+                        </label>
+                        <a href="/ResetPwd/Apply" target="_blank" style="float:right;margin-right:15px;color:#0477c0;"> 忘记密码？</a>
+                        <div class="dl">
+                            <a class="btn denglu" href="javascript:void(0);" onclick="javascript:doLogin();" id="btnSubmit">登录</a>                            
+                        </div>
+                    </div>
+                    <div id="divLoginMessagePanel" style="color:#F00;margin-left: 80px;margin-top: -5px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="f_l">
+            <div class="container footerte">
+                <p>Copyright © 2013-2018</p>
+                <p style="color: #ebe5e554;">- 深圳市红果软件有限公司 - 粤ICP备15017873号-2</p>
+            </div>
+        </div>
+        <script type="text/javascript" language="javascript">
+            function doLoadLink() {
+                try {
+                    //加载公告栏
+                    $.ajax({
+                        type: "POST",
+                        url: "../Login/GetLoadLinkList",
+                        data: {
+                            count: 9,
+                            typename: "LinkLogin"
+                        },
+                        datatype: "json",
+                        success: function (data) {
+                            var optionPanel = "";
+                            $.each(data.MapData.list, function (i, item) {
+                                optionPanel = '<li class="listbox mr20" style="margin-left:12px;">  <div class="listimg">';
+                                optionPanel += '<a href="' + item.href + '" target="_blank"><img src="' + item.picture + '" class="attachment-thumbnail wp-post-image eteatm" width="155" height="86"/></a>';
+                                optionPanel += '<div class="summary"> <div class="summarytxt"> <p>' + item.title + '</p></div></div> ';
+                                optionPanel += '</div></li>';
+                                $(".common ul").append(optionPanel);
+                            })
+                            loadHover();
+                        }
+                    });
+                }
+                catch (e) { }
+            }
+
+            function doLogin() {
+                $("#btnSubmit").text("正在登录...").attr("disabled", true);
+                // alert(1);
+                $.ajax({
+                    type: "POST",
+                    url: "../Common/dologin",
+                    data: { yhEnterpriseCode: $("#txtEnterpriseCode").val(), yhLoginName: $("#txtLoginName").val(), yhPassword: $("#txtPassword").val() },
+                    datatype: "json",
+                    success: function (data) {
+                        // alert(data.Message);    
+                        if (data.HasError) {
+                             // alert(data);
+                            $("#btnSubmit").text("登  录").attr("disabled", false);
+                            $("#divLoginMessagePanel").css("display", "").html(data.Message);
+                        }
+                        else {
+                            // alert(data.ResultObject);
+                            window.location.href = '';
+                        }
+                    },
+                    error: function (XMLHttpRequest) {
+                        $("#btnSubmit").text("登  录").attr("disabled", false);
+                        $("#divLoginMessagePanel").css("display", "").html("登陆出错：" + XMLHttpRequest.status + " - " + XMLHttpRequest.statusText);
+                    }
+                });
+            }
+            function loadHover()
+            {
+                $('.listimg').hover(function () { $(".summary", this).stop().animate({ top: '110px' }, { queue: false, duration: 180 }); }, function () { $(".summary", this).stop().animate({ top: '165px' }, { queue: false, duration: 180 }); });
+            }
+
+            eval(function (p, a, c, k, e, r) { e = function (c) { return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36)) }; if (!''.replace(/^/, String)) { while (c--) r[e(c)] = k[c] || e(c); k = [function (e) { return r[e] }]; e = function () { return '\\w+' }; c = 1 }; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p }('h G(a){5(a==7||a.3==0){8""}2 b=s.O(s.R()*J);2 c=""+b;w(2 i=0;i<a.3;i++){2 d=a.K(i)+b;2 e=d.N(F);5(e.3<4){e="H".r(0,4-e.3)+e}c+=e}8 c}h u(a){5(a==7||a.3==0){8""}2 b=v(a.r(0,1));2 c="";w(2 i=1;i<a.3;i+=4){2 d=v(a.r(i,4),F)-b;c+=T.P(d)}8 c}h Q(){2 a=x.y.I("z");5(a==7||a.3==0){8}B{a=u(a);2 b=$.L(a);2 c=b.k;2 d=b.m;2 f=b.j;2 g=b.l;5(c=="9"){$("#n").o("p",9);5(d!=7&&d.3>0)$("#A").6(d);5(f!=7&&f.3>0)$("#C").6(f);5(g!=7&&g.3>0)$("#D").6(g)}E 5(c=="q"){$("#n").o("p",q)}}t(e){}}h S(){B{2 a="";5($("#n").o("p")==9){a=\'{"k":"9","m":"\'+$("#A").6()+\'","j":"\'+$("#C").6()+\'","l":"\'+$("#D").6()+\'"}\'}E{a=\'{"k":"q","m":"","j":"","l":""}\'}x.y.M("z",G(a))}t(e){}}', 56, 56, '||var|length||if|val|null|return|true||||||||function||loginName|isRemember|password|enterpirseCode|ckbRemember|prop|checked|false|substr|Math|catch|decryptText|parseInt|for|redgle|storage|loginData|txtEnterpriseCode|try|txtLoginName|txtPassword|else|16|encryptText|0000|getItem|10|charCodeAt|parseJSON|setItem|toString|floor|fromCharCode|doLoadRemember|random|doSetRemember|String|'.split('|'), 0, {}))
+        </script>
+
+    </div>
+</body>
+</html>

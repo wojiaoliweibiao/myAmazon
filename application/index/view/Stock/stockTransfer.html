@@ -1,0 +1,374 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>库存调拨</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodest" style="float:right; margin-right:20px;">
+            <button type="button" class="btn btn-info btn-sm" onclick="p1372038143doEditData()"><i class="glyphicon glyphicon-plus"></i><hg:trans>新增调拨</hg:trans></button>
+            
+            <button type="button" class="btn btn-info btn-sm" onclick="p1372038143exportTransferIndex()"><i class="glyphicon glyphicon-log-out"></i><hg:trans>导出</hg:trans></button>
+        </div>
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/StockHandle/TransferIndex?Length=11" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1372038143divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>调出仓库</hg:trans></label>
+                    <div id="divOutStoreItems" class="input-group para-items">
+
+                            <span data-value="1">默认仓库（自有仓）</span>
+                        <input type="hidden" id="txtOutStoreId" name="txtOutStoreId" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>调入仓库</hg:trans></label>
+                    <div id="divInStoreItems" class="input-group para-items">
+                            <span data-value="1">默认仓库（自有仓）</span>
+                        <input type="hidden" id="txtInStoreId" name="txtInStoreId" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>状态</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span data-value="-1"><hg:trans>待出库</hg:trans></span>
+                        <span data-value="0"><hg:trans>待入库</hg:trans></span>
+                        <span data-value="1"><hg:trans>已完成</hg:trans></span>
+                        <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseType" class="input-group para-items">
+                        <span data-value="SKU" class="active"><hg:trans>SKU</hg:trans></span>
+                        <span data-value="1" ><hg:trans>调拨单号</hg:trans></span>
+                        <span data-value="-1"><hg:trans>调拨日期</hg:trans></span>
+                        <input type="hidden" id="txtSearchType" name="txtSearchType"  value="SKU"/>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" hgtrans="true" name="txtSearchKey" id="txtSearchKey" placeholder="调拨单号" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                            <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" />
+                            <input type="hidden" id="txtStoreType" name="txtStoreType" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group " style="display:none;margin-bottom: 16px" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span class="date">
+                            <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                        <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+</form>            <input type="hidden" value="" id="transferIds" />
+        </div>
+        
+        <div id="p1372038143divDataList">
+            <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/StockHandle/TransferIndex?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="">
+                <input type="checkbox" name="chk_list" id="chk_list" onclick="p1372038143doSetCheckBox(this)" />
+            </th>
+            <th><hg:trans>调拨单号</hg:trans></th>
+            <th><hg:trans>调拨日期</hg:trans></th>
+            <th><hg:trans>调出仓库</hg:trans></th>
+            <th><hg:trans>调入仓库</hg:trans></th>
+            <th><hg:trans>备注</hg:trans></th>
+            <th><hg:trans>状态</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1372038143divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/StockHandle/TransferIndex?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $('.date input').datepicker();
+        $(".para-items").find("span").click(function () {
+            var $this = $(this)
+            if ($this.attr("class") == "active") {
+                $this.prop("class", "")
+                $this.parent().find("input").prop("value", "")
+            } else {
+                $this.parent().find("span").prop("class", "")
+                $this.prop("class", "active")
+                $this.parent().find("input").prop("value", $this.attr("data-value"))
+            }
+        })
+
+        $("#divChooseType").find("span").click(function () {
+            var $this = $(this)
+            if ($this.attr("data-value") == "-1") {
+                $("#txtSearchKey").val("");
+                $("#Search").hide();
+                $("#Date").show();
+            } else {
+                $("#txtDateBegin").val("");
+                $("#txtDateEnd").val("")
+                $("#Search").show();
+                $("#Date").hide();
+            }
+            $("#txtSearchType").val($this.attr("data-value"));
+        });
+    })
+
+    //调拨导出
+    function p1372038143exportTransferIndex() {
+        var transferIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            transferIds += $(this).val() + ",";
+        });
+        $("#transferIds").val(transferIds)
+        var width = 950;
+        var height = 560;
+        var url = "/StockHandle/ExcelOutTemplate?viewName=" + "stockhandletransfer" + "&pagekey=" + "stockhandletransfer/Import";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>调拨数据导出</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+
+    }
+
+    //点击备注信息
+    function  p1372038143doEditRemarks(id, pageKey) {       
+        var url = "../StockHandle/EditTransferRemarks?id=" + id + "&pageKey=" + pageKey;
+        var selectOrderMemoModal = new redgle.modal({ type: "iframe", content: url, title: translate.trans("备注信息"), width: 500, height: 280 });
+        selectOrderMemoModal.show();
+    }
+
+    //重载页面
+    function doReturnRemarks(pageKey) {
+        redgle.showMessage("保存备注成功!");
+        eval(pageKey + "doReloadData()");//刷新页面
+    }
+
+    //导出操作
+    function OutExcleData(settingList) {
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/ExportStockhandletransferExcel",
+            data: {
+                viewName: "stockhandletransfer",
+                pageKey: "stockhandletransfer/Import",
+                txtInStoreId: $("#txtInStoreId").val(),
+                txtOutStoreId: $("#txtOutStoreId").val(),
+                txtStatusCode: $("#txtStatusCode").val(),
+                settingList: settingList,
+                txtSearchKey: $("#txtSearchKey").val(),
+                txtTransferId: $("#txtTransferId").val(),
+                txtTransferDatefrom: $("#txtTransferDatefrom").val(),
+                txtTransferDateto: $("#txtTransferDateto").val(),
+                txtDateBegin: $("#txtDateBegin").val(),
+                txtDateEnd: $("#txtDateEnd").val(),
+                txtTransferIds: $("#transferIds").val()
+            },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Temp/" + 1 + "/" + data.ResultObject, "_self");
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        $("#divInStoreItems>span,#divOutStoreItems>span , #divChooseItems > span").click(function () {
+            $("#searchForm").submit();
+        });
+
+    });
+    function p1372038143doShowMoreSearchPanel() {
+        $("#divMoreSearach").toggle("fast");
+    }
+    function p1372038143onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#searchForm").submit();
+    }
+
+    function p1372038143doClose() {
+        try {
+            redgle.tab.close("liTransferEdit");
+        }
+        catch (e)
+        { }
+    }
+    function p1372038143doEditData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/StockHandle/TransferEdit/" + id;
+        redgle.tab.create("liTransferEdit", url, translate.format("<hg:trans>编辑库存调拨</hg:trans>"));
+    }
+    function p1372038143ApproveTransfer(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/StockHandle/TransferEdit?id=" + id + "&approve=1";
+        redgle.tab.create("liTransferEdit", url, translate.format("<hg:trans>编辑库存调拨</hg:trans>"));
+    }
+    function p1372038143doDeleteData(id) {
+        if (!window.confirm(translate.format("<hg:trans>删除您该库存调拨信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/TransferDelete",
+            data: { TransferId: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p1372038143doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1372038143doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/TransferIndex",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1372038143divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    $(function () {
+        $('.date input').datepicker();
+    })
+
+    //复选框
+    function p1372038143doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/d5a297380f334a0987a006c1ca6768e6.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

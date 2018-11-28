@@ -1,0 +1,540 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="__STATIC__/index/js/b5fd31c8653449399b98d33819bf6bc8.js"></script>
+
+    <script src="__STATIC__/index/js/bc872c697d1146a99adc7d4c03414551.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->{:widget('Blog/left')}         
+
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+<script>
+function showSite(str)
+{
+
+    if (str=="")
+    {
+        document.getElementById("txtHint").innerHTML="";
+
+        return;
+    } 
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+    
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+          
+            document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+          
+        }
+    }
+    alert(str);
+    xmlhttp.open("post","/index.php/index/publish/prevview/id/54/name/"+str,true);
+    xmlhttp.send(str);
+}
+</script>
+</head>
+<body>
+ 
+<form>
+<select name="users" onchange="showSite(this.value)">
+<option value="">选择一个网站:</option>
+<option value="1">Google</option>
+<option value="2">淘宝</option>
+<option value="3">菜鸟教程</option>
+<option value="4">微博</option>
+<option value="5">Facebook</option>
+</select>
+</form>
+<br>
+<div id="txtHint"><b>网站信息显示在这里……</b></div>
+ 
+</body>
+</html>
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabProductOnline" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>亚马逊线上商品</hg:trans></a></li>
+    <li id="liTabSyncProdcutBySku"><a href="javascript:void(0);"><hg:trans>同步指定产品</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabProductOnline" role="tabpanel" class="tab-pane fade active in">
+        <div class="alert bg-info" style="padding:8px">
+            PS：<hg:trans>亚马逊物流配送的产品不支持库存修改。</hg:trans>
+        </div>
+        <div class="search-panel">
+<form action="/AmazonPublish?Length=13" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p478810689divDataList" id="searchForm" method="post">                <input type="hidden" id="checkStock" name="checkStock" value="False" />
+                <input type="hidden" id="hidProductStauts" name="hidProductStauts" value="DEFAULT" />
+                <div class="row bottom-line">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>亚马逊店铺</hg:trans></label>
+                    <div id="divAccountItems" class="search-item">
+                        <span userform="" apiuserid=""><hg:trans>全部</hg:trans></span>
+                            <span userform="Amazon" apiuserid="amazon814865874">11(us)</span>
+                        <input type="hidden" id="hidApiAccountItem" name="hidApiAccountItem" value="" />
+                    </div>
+                </div>
+                <div class="row bottom-line">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>所属商城</hg:trans></label>
+                    <div id="divCountryItems" class="search-item">
+                        <span itemid=""><hg:trans>全部</hg:trans></span>
+                        <span itemid="A1F83G8C2ARO7P">英国站</span>
+                        <span itemid="A13V1IB3VIYZZH">法国站</span>
+                        <span itemid="A1PA6795UKMFR9">德国站</span>
+                        <span itemid="APJ6JRA9NG5V4">意大利站</span>
+                        <span itemid="A1RKKUPIHCS9HS">西班牙站</span>
+                        <span itemid="ATVPDKIKX0DER">美国站</span>
+                        <span itemid="A2EUQ1WTGCTBG2">加拿大站</span>
+                        <span itemid="A1AM78C64UM0Y8">墨西哥站</span>
+                        <span itemid="A1VC38T7YXB528">日本站</span>
+                        <span itemid="A21TJRUUN4KGV">印度站</span>
+                        <input type="hidden" id="hidCountryItem" name="hidCountryItem" value="" />
+                    </div>
+                </div>
+                <div class="row bottom-line">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>销售状态</hg:trans></label>
+                    <div id="divSaleStatus" class="search-item">
+                        <span itemid=""><hg:trans>全部</hg:trans></span>
+                        <span itemid="onSelling">在售</span>
+                        <span itemid="offline">待售</span>
+                        <input type="hidden" id="hidSaleStatus" name="hidSaleStatus" value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="search-item">
+                        <span itemid="proSuk" hgtrans="true" title="请输入SKU值" class="active"><hg:trans>SKU</hg:trans></span>
+                        <span itemid="fnSuk" hgtrans="true" title="请输入FNSKU值"><hg:trans>FNSKU</hg:trans></span>
+                        <span itemid="proRelationId" hgtrans="true" title="请输入商品编号"><hg:trans>商品编号</hg:trans></span>
+                        <span itemid="proName" hgtrans="true" title="请输入产品名称"><hg:trans>产品名称</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="proSuk" />
+                    </div>
+                </div>
+                <div class="row  bottom-line" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;padding-top: 12px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:360px;">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" placeholder="请输入SKU值" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>排序方式</hg:trans></label>
+                    <div id="divSort" class="search-item">
+                        <span itemid="ASIN" sorttype="DESC" class="active"><hg:trans>默认排序</hg:trans><span id="ASINSortMark" class="glyphicon glyphicon-arrow-down"></span></span>
+                        <span itemid="ParentSKU" sorttype=""><hg:trans>SKU</hg:trans><span id="ParentSKUSortMark" class="glyphicon "></span></span>
+                        <span itemid="StockNum" sorttype=""><hg:trans>总库存</hg:trans><span id="StockNumSortMark" class="glyphicon "></span></span>
+                        <span itemid="DefectiveNum" sorttype=""><hg:trans>不良品</hg:trans><span id="DefectiveNumSortMark" class="glyphicon "></span></span>
+                        <input type="hidden" id="hidSort" name="hidSort" value="ASIN" />
+                        <input type="hidden" id="hidSortType" name="hidSortType" value="DESC" />
+                    </div>
+                </div>
+</form>        </div>
+        <div class="status-group">
+            <label itemid="DEFAULT" class="active"><a><hg:trans>卖家自定配送</hg:trans></a><span></span></label>
+            <label itemid="AMAZON_"><a><hg:trans>亚马逊物流配送</hg:trans></a><span></span></label>
+            
+        </div>
+        <div class="datalist" id="p478810689divDataList">
+            
+
+<div class="datalist-top">
+    <div class="button-area parents-nodes">
+        <button type="button" class="btn btn-success btn-sm" onclick="p478810689doShowEditSkuSalePricePanel();"><i class="glyphicon glyphicon-edit"></i>&nbsp;<hg:trans>批量编辑</hg:trans></button>
+
+        <button type="button" class="btn btn-success btn-sm" onclick="p478810689doBatchChangeToLocalProduct();"><i class="glyphicon glyphicon-retweet"></i>&nbsp;<hg:trans>批量转为本地产品</hg:trans></button>
+
+        <button type="button" class="btn btn-success btn-sm" onclick="p478810689doDeleteProduct();"><i class="glyphicon glyphicon-retweet"></i>&nbsp;<hg:trans>批量删除</hg:trans></button>
+        <div class="btn-group false">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-refresh"></i>&nbsp;<hg:trans>同步产品</hg:trans>&nbsp;<span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                <li><a href="javascript:void(0)" onclick="p478810689doReFlashProduct();"><hg:trans>同步指定的商品</hg:trans></a></li>
+                <li><a href="javascript:void(0)" onclick="doShowSMTProductSyncPanel();"><hg:trans>高级同步选项</hg:trans></a></li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-success btn-sm" onclick="doShopMoveHouse();"><i class="glyphicon glyphicon-transfer"></i>&nbsp;<hg:trans>商品搬家</hg:trans></button>
+
+    </div>
+    <label style="float:right">商品总数： </label>
+    <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p478810689divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/AmazonPublish?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right;padding-right:5px;"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 3 条数据</span></div><div style="clear:both"></div></div>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:13%;">
+                父产品信息
+            </th>
+            <th style="width:5%;">
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p478810689doSetCheckBox(this)" />
+            </th>
+            <th style="width:15%;"><hg:trans>商品编号</hg:trans><br /><hg:trans>[店铺]</hg:trans></th>
+            <th style="width:5%;"><hg:trans>商品图片</hg:trans></th>
+            <th style="width:12%;"><hg:trans>商品信息</hg:trans></th>
+            <th style="width:12%;"><hg:trans>价格</hg:trans></th>
+            <th style="width:5%;"><hg:trans>总存库</hg:trans></th>
+            <th style="width:5%;"><hg:trans>不良品</hg:trans></th>
+            <th style="width:15%;"><hg:trans>同步时间</hg:trans></th>
+            <th style="width:16%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+                <tr>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-xs">单品</button>
+                                <br />
+美国站                        </td>
+                    <td>
+                        <input type="checkbox" canedit="1" name="chk_list" sellersku="693099576013611" id="item_OnlineProductId" value="101004" />
+                    </td>
+                    <td>
+                        B07BTY7WZW <br /> [Amazon：11(us)]
+                    </td>
+                    <td>
+                        <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/519hch1+5el.jpg'  onmouseover='showPic(this)' onmouseout='hidePic(this)'/>
+                    </td>
+                    <td style='max-width:300px; text-align:left !important;'>
+                        <a href='https://www.amazon.com/gp/product/B07BTY7WZW' target='_blank' style='max-width:95%;' title='Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶'>Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶</a> <br />父SKU：693099576013611<br /><a href='javascript:void(0)' onclick= 'doSearchProductSaleDetail("amazon814865874","B07BTY7WZW","693099576013611","ATVPDKIKX0DER")'>[<hg:trans>销售情况</hg:trans>]</a><br />
+                    </td>
+                    
+                    <td style="text-align:left !important;">
+                        <div style="margin-left:10%;">
+                                    <div>
+            <span class="text-primary"><hg:trans>零售价</hg:trans></span><span style="margin-left:5px;margin-right:5px;">76.00 USD</span>
+        </div>
+        <div>
+            <span class="text-danger"><hg:trans>当前促销价</hg:trans></span><span style="margin-left:5px;margin-right:5px;">
+                76.00 USD            </span>
+        </div>
+
+                        </div>
+                    </td>
+                    <td>
+88888                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        2018/5/24 11:15:18
+                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p478810689doUpdateProduct(101004);"><hg:trans>查看</hg:trans></a>
+
+                        <a href="javascript:void(0)" onclick="ReturnDoShowTransfToLocal(101004);">转为本地产品</a>
+                        <a href="javascript:void(0)" onclick="p478810689doDeleteProduct(101004);"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-xs">单品</button>
+                                <br />
+美国站                        </td>
+                    <td>
+                        <input type="checkbox" canedit="1" name="chk_list" sellersku="15431313" id="item_OnlineProductId" value="100923" />
+                    </td>
+                    <td>
+                        B00QR7L3CO <br /> [Amazon：11(us)]
+                    </td>
+                    <td>
+                        <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/41wvcgcb+ol.jpg'  onmouseover='showPic(this)' onmouseout='hidePic(this)'/>
+                    </td>
+                    <td style='max-width:300px; text-align:left !important;'>
+                        <a href='https://www.amazon.com/gp/product/B00QR7L3CO' target='_blank' style='max-width:95%;' title='16&#x4EF6;&#x5957;&#x4E0D;&#x9508;&#x94A2;&#x897F;&#x9910;&#x5177; &#x9152;&#x5E97;4&#x4EBA;&#x4EFD;&#x5200;&#x53C9;&#x52FA; &#x793C;&#x76D2;&#x5957;&#x88C5;'>16&#x4EF6;&#x5957;&#x4E0D;&#x9508;&#x94A2;&#x897F;&#x9910;&#x5177; &#x9152;&#x5E97;4&#x4EBA;&#x4EFD;&#x5200;&#x53C9;&#x52FA; &#x793C;&#x76D2;&#x5957;&#x88C5;</a> <br />父SKU：15431313<br /><a href='javascript:void(0)' onclick= 'doSearchProductSaleDetail("amazon814865874","B00QR7L3CO","15431313","ATVPDKIKX0DER")'>[<hg:trans>销售情况</hg:trans>]</a><br />
+                    </td>
+                    
+                    <td style="text-align:left !important;">
+                        <div style="margin-left:10%;">
+                                    <div>
+            <span class="text-primary"><hg:trans>零售价</hg:trans></span><span style="margin-left:5px;margin-right:5px;">40.40 USD</span>
+        </div>
+        <div>
+            <span class="text-danger"><hg:trans>当前促销价</hg:trans></span><span style="margin-left:5px;margin-right:5px;">
+                40.40 USD            </span>
+        </div>
+
+                        </div>
+                    </td>
+                    <td>
+100                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        2018/5/24 11:44:59
+                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p478810689doUpdateProduct(100923);"><hg:trans>查看</hg:trans></a>
+
+                        <a href="javascript:void(0)" onclick="ReturnDoShowTransfToLocal(100923);">转为本地产品</a>
+                        <a href="javascript:void(0)" onclick="p478810689doDeleteProduct(100923);"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-xs">单品</button>
+                                <br />
+美国站                        </td>
+                    <td>
+                        <input type="checkbox" canedit="1" name="chk_list" sellersku="6930995760136" id="item_OnlineProductId" value="1" />
+                    </td>
+                    <td>
+                        B07BTY7WZW <br /> [Amazon：11(us)]
+                    </td>
+                    <td>
+                        <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/519hch1+5el.jpg'  onmouseover='showPic(this)' onmouseout='hidePic(this)'/>
+                    </td>
+                    <td style='max-width:300px; text-align:left !important;'>
+                        <a href='https://www.amazon.com/gp/product/B07BTY7WZW' target='_blank' style='max-width:95%;' title='Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶'>Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶</a> <br />父SKU：6930995760136<br />本地SKU：<a href='javascript:void(0)' onclick='doEditProductData(23)' style='max-width:95%;' title='6930995760136'>6930995760136</a> <br /><a href='javascript:void(0)' onclick= 'doSearchProductSaleDetail("amazon814865874","B07BTY7WZW","6930995760136","ATVPDKIKX0DER")'>[<hg:trans>销售情况</hg:trans>]</a><br />
+                    </td>
+                    
+                    <td style="text-align:left !important;">
+                        <div style="margin-left:10%;">
+                                    <div>
+            <span class="text-primary"><hg:trans>零售价</hg:trans></span><span style="margin-left:5px;margin-right:5px;">76.00 USD</span>
+        </div>
+        <div>
+            <span class="text-danger"><hg:trans>当前促销价</hg:trans></span><span style="margin-left:5px;margin-right:5px;">
+                             </span>
+        </div>
+
+                        </div>
+                    </td>
+                    <td>
+88888                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        2018/5/24 11:15:18
+                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p478810689doUpdateProduct(1);"><hg:trans>查看</hg:trans></a>
+
+                        <a href="javascript:void(0)" onclick="ReturnDoShowTransfToLocal(1);">转为本地产品</a>
+                        <a href="javascript:void(0)" onclick="p478810689doDeleteProduct(1);"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p478810689divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/AmazonPublish?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 3 条数据</span></div><div style="clear:both"></div></div>
+
+        </div>
+    </div>
+
+    <div id="tabContent_liTabSyncProdcutBySku" role="tabpanel" class="tab-pane fade in">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="UserId" class="col-sm-1 control-label"><hg:trans>所属店铺</hg:trans></label>
+                <div class="col-sm-9">
+                    <select id="ddlAccountSelect" class="chzn-select orm-control input-sm" style="width:200px">
+                            <option value="amazon814865874">11(us) ( Amazon )</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="UserId" class="col-sm-1 control-label"><hg:trans>SKU</hg:trans></label>
+                <div class="col-sm-9">
+                    <textarea name="txtSyncOrderNos" class="form-control input-sm" id="txtSyncOrderNos" placeholder="输入SKU，每条记录占一行" rows="10" hgtrans="true"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-offset-1">
+                <button class="btn btn-primary" id="btnStartSyncOrderByNo" type="button"><hg:trans>开始同步产品</hg:trans></button>
+            </div>
+        </div>
+        <div id="divOrderNoLogPanel" class="col-sm-offset-1 col-sm-9 search-panel hide"></div>
+    </div>
+</div>
+<!-- Modal 同步库存窗口-->
+<div class="modal fade" id="printProductModal" tabindex="-1" role="dialog" aria-labelledby="printProductModalLabel" aria-hidden="true" style="padding-top:50px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="printProductModalLabel"><hg:trans>批量打印商品标签</hg:trans></h4>
+                <input id="printProductType" type="hidden" value="100*25" />
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div id="divPrintTabContentPanel" class="tab-content">
+                        <div id="tabContentPrint_liTabProductManage" role="tabpanel" class="tab-pane fade active in">
+                            <table>
+                                <tr>
+                                    
+                                    
+                                    <th><hg:trans>可选参数</hg:trans>：</th>
+                                    <td width="180px">
+                                        <select class="form-control" id="optional">
+                                            <option value="sku" selected><hg:trans>卖家SKU</hg:trans></option>
+                                            <option value="productname"><hg:trans>产品名称</hg:trans></option>
+                                            <option value="skuAndChina"><hg:trans>卖家SKU&made in china</hg:trans></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <hg:trans>注：如果可选打印参数大于55个字符将会被截取</hg:trans>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <tr>
+                                    <th><hg:trans>打印模板</hg:trans>：</th>
+                                    <td>
+                                        <div class="row-fluid">
+                                            <div class="breadcrumbs">
+                                                <div class="row-fluid">
+                                                    <ul class="th-thumbnails">
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="CheckPrintModel(this,'100*25')">
+                                                                <img src="picture/100_25.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName" typevalue="100*50模板">
+                                                                            100*25模板
+                                                                            <i class="glyphicon glyphicon-ok"></i>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="CheckPrintModel(this, '50*30')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="50*30模板">
+                                                                            50*30模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="CheckPrintModel(this, '100*10')">
+                                                                <img src="picture/100_10.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="100*10模板">
+                                                                            100*10模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="divPrintDataList" class="clearboth" style="height:350px;overflow-y:auto">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                SKU
+                                            </th>
+                                            <th>
+                                                FNSKU
+                                            </th>
+                                            <th>
+                                                <hg:trans>标签个数</hg:trans>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnStartSyncStock" onclick="p478810689doOkPrintProductLables()"><hg:trans>提交打印</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<input id="printProductId" type="hidden" value="" />
+<a id="btnOpenWindow" href="#" class="btn btn-primary" style="display:none" target="_blank"><hg:trans>隐藏链接</hg:trans></a>
+
+<!-- Modal -->
+<!-- Modal 同步库存窗口-->
+<div class="modal fade" id="syncProductModal" tabindex="-1" role="dialog" aria-labelledby="syncProductModalLabel" aria-hidden="true" style="padding-top:100px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><hg:trans>商品搬家</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            1.<hg:trans>选择认领的平台账号。</hg:trans><br />
+                            2.<hg:trans>点击[确定]后商品将会被认领到待发布库。</hg:trans>
+                            3.<hg:trans>认领到[Wish刊登模板库]可以用于多店铺发布。</hg:trans>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                            <label for="txtUserForm" class="control-label col-sm-1" style="width:120px !important;margin-right:5px;">Amazon <hg:trans>店铺</hg:trans></label>
+                            <div id="divStoreItemsSync" class="input-group para-items">
+                                                                            <div class="input-group para-items" style="float:left">
+                                                <span userform="Amazon" apiuserid="amazon814865874">11(us) (Amazon)</span>
+                                            </div>
+                            </div>
+                        <!--认领到刊登模板库不需要权限-->
+                            <label for="txtUserForm" class="control-label col-sm-1" style="width:120px !important;margin-right:5px;">Wish<hg:trans>店铺</hg:trans></label>
+                            <div id="divStoreItemsSync" class="input-group para-items">
+                                <div class="input-group para-items" style="float:left">
+                                    <span userform="WishTemplate" apiuserid="0">Wish刊登模板库</span>
+                                </div>
+
+                            </div>
+                        <input type="hidden" id="hidUserId" value="" />
+                        <input type="hidden" id="hidProductIds" value="" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnStartSyncStock" onclick="p478810689MoveHouseProduct()"><hg:trans>确定</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+</body>
+</html>
+

@@ -1,0 +1,180 @@
+{:widget('Blog/header')}
+
+  
+
+
+<body>
+{:widget('Blog/left')}
+ 
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabSysSetting" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>多地址地址设置</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabSysSetting" role="tabpanel" class="tab-pane fade active in">
+        <input type="hidden" id="txtTableName" name="txtTableName" />
+        <p class="alert bg-info" style="padding: 8px;">
+            PS：<hg:trans>自定义地址可在物流渠道中选择，选择该地址后预报订单和打印面单都将使用该地址（打印面单只限系统模板）</hg:trans>
+        </p>
+        <div style="text-align:right; margin-right:20px;margin-top: 0px; margin-bottom:10px;">
+            <button type="button" class="btn btn-info btn-sm" onclick="p2110117024doCreateData()"><i class="glyphicon glyphicon-plus"></i><hg:trans>新增地址</hg:trans></button>
+        </div>
+        <div id="divDataList">
+            <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作人</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+    function p2110117024doCreateData() {
+        var url = "/Logistics/CreateCustomAddress";
+        redgle.tab.create("liCustomAddressEdit", url, translate.format("<hg:trans>编辑地址信息</hg:trans>"));
+    }
+
+    function p2110117024GetCustomAddress(addressName) {
+        var url = "/Logistics/CreateCustomAddress?addressName=" + addressName;
+        redgle.tab.create("liCustomAddressEdit", url, translate.format("<hg:trans>编辑地址信息</hg:trans>"));
+    }
+
+    function p2110117024isDeleteAddress(id) {
+        if (window.confirm("删除后将不能恢复，确定删除吗？")) {
+            $.ajax({
+                type: "post",
+                url: "/Logistics/DeleteAddress",
+                data: { id: id },
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(data.Message);
+                    }
+                    else {
+p2110117024doReloadData();
+                    }
+                },
+                error: function (e) {
+                    console.log(e)
+                    alert("操作失败")
+                }
+            })
+        }
+    }
+
+    function p2110117024doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/AddressSetIndex",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#divDataList").html(data);
+            },
+            error: function (msg) {
+                debugger
+                alert(translate.format("<hg:trans>重新加载数据失败！</hg:trans>"));
+            }
+        });
+    }
+</script>
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

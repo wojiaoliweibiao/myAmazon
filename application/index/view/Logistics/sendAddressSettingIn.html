@@ -1,0 +1,1894 @@
+{:widget('Blog/header')}
+
+  
+
+
+<body>
+{:widget('Blog/left')}
+ 
+
+
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabSysSetting" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>揽件地址设置</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabSysSetting" role="tabpanel" class="tab-pane fade active in">
+        <input type="hidden" id="txtTableName" name="txtTableName" />
+        <p class="alert bg-info" style="padding: 8px;">
+            PS：<hg:trans>默认取仓库地址，若未设置仓库地址则取系统配置地址。</hg:trans>
+        </p>
+        <div style="text-align:right; margin-right:20px;margin-top: 0px; margin-bottom:0px;">
+            <button type="button" id="p195710805btnSaveData" class="btn btn-info glyphicon glyphicon-floppy-save" onclick="p195710805doSaveData()"> <hg:trans>保存</hg:trans></button>
+        </div>
+        <ul class="nav nav-tabs" id="SetAddress">
+            <li role="presentation" class="active" id="recipientAddress"><a href="javascript:void()"><hg:trans>揽件地址</hg:trans></a></li>
+            <li role="presentation" id="sendAddress"><a href="javascript:void()"><hg:trans>寄件地址（中文）</hg:trans></a></li>
+            <li role="presentation" id="returnAddress"><a href="javascript:void()"><hg:trans>寄件地址(英文)</hg:trans></a></li>
+        </ul>
+        <div class="form-horizontal">
+            <div id="divrecipientAddress" divtype="childTabs">
+                <div class="form-group">
+                    <input type="hidden" value="89" id="hidforRecipientAddressId" />
+                    <label class="col-sm-2 control-label"><hg:trans>联系人</hg:trans><font color="red">*</font></label>
+                    <div class="col-sm-3">
+                        <input class="form-control" id="txtforRecipientContact" name="getAddressInfo.Contact" savetype="forRecipient" type="text" value="苗晓云" /><span></span>
+                    </div>
+                    <label class="col-sm-2 control-label"><hg:trans>移动电话</hg:trans><font color="red">*</font></label>
+                    <div class="col-sm-3">
+                        <input class="form-control" id="txtforRecipientMobilePhone" name="getAddressInfo.MobilePhone" type="text" value="18688999876" /><span></span>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>公司名称</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3"><input class="form-control" id="txtforRecipientCompany" name="getAddressInfo.Company" savetype="forRecipient" type="text" value="远华嘉贸" /></div>
+                        <label class="col-sm-2 control-label"><hg:trans>固定电话</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforRecipientTelePhone" name="getAddressInfo.TelePhone" type="text" value="33530818" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>邮箱地址</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforRecipientEmail" name="getAddressInfo.Email" savetype="forRecipient" type="text" value="cheerwsn@163.com" />
+                        </div>
+                        <label class="col-sm-2 control-label"><hg:trans>邮编</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforRecipientZipCode" name="getAddressInfo.ZipCode" savetype="forRecipient" type="text" value="5180000" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>所在地区</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-10 row">
+                            <div class="col-xs-2" style="width:15.5%">
+                                <select class="form-control" id="forRecipientArea" name="getAddressInfo.Country" savetype="forRecipient" sltType="sltForCountry"><option value="">--请选择--</option>
+<option value="AF">Afghanistan(阿富汗)</option>
+<option value="AL">Albania(阿尔巴尼亚)</option>
+<option value="DZ">Algeria(阿尔及利亚)</option>
+<option value="AS">American Samoa(美属萨摩亚)</option>
+<option value="AD">Andorra(安道尔)</option>
+<option value="AO">Angola(安哥拉)</option>
+<option value="AI">Anguilla(安圭拉)</option>
+<option value="AQ">Antarctica(南极洲)</option>
+<option value="AG">Antigua and Barbuda(安提瓜和巴布达)</option>
+<option value="AR">Argentina(阿根廷)</option>
+<option value="AM">Armenia(亚美尼亚)</option>
+<option value="AW">Aruba(阿鲁巴)</option>
+<option value="AU">Australia(澳大利亚)</option>
+<option value="AT">Austria(奥地利)</option>
+<option value="AZ">Azerbaijan(阿塞拜疆)</option>
+<option value="BS">Bahamas(巴哈马)</option>
+<option value="BH">Bahrain(巴林)</option>
+<option value="BD">Bangladesh(孟加拉国)</option>
+<option value="BB">Barbados(巴巴多斯)</option>
+<option value="BY">Belarus(白俄罗斯)</option>
+<option value="BE">Belgium(比利时)</option>
+<option value="BZ">Belize(伯利兹)</option>
+<option value="BJ">Benin(贝宁)</option>
+<option value="BM">Bermuda(百慕大)</option>
+<option value="BT">Bhutan(不丹)</option>
+<option value="BO">Bolivia(玻利维亚)</option>
+<option value="BA">Bosnia and Herzegovina(波斯尼亚和黑塞哥维那)</option>
+<option value="BW">Botswana(博茨瓦纳)</option>
+<option value="BV">Bouvet Island(布维岛)</option>
+<option value="BR">Brazil(巴西)</option>
+<option value="IO">British indian Ocean Ter-ritory(英属印度洋领土)</option>
+<option value="VG">British Virgin Islands(英属维尔京群岛)</option>
+<option value="BN">Brunei Darussalam(文莱)</option>
+<option value="BG">Bulgaria(保加利亚)</option>
+<option value="BF">Burkina Faso(布基纳法索)</option>
+<option value="BI">Burundi(布隆迪)</option>
+<option value="KH">Cambodia(柬埔寨)</option>
+<option value="CM">Cameroon(喀麦隆)</option>
+<option value="CA">Canada(加拿大)</option>
+<option value="CV">Cape Verde(佛得角)</option>
+<option value="XK">CAROLINE ISLANDS(加罗林群岛)</option>
+<option value="KY">Cayman Islands(开曼群岛)</option>
+<option value="CF">Central Africa(中非)</option>
+<option value="TD">Chad(乍得)</option>
+<option value="CL">Chile(智利)</option>
+<option selected="selected" value="CN">China(中国)</option>
+<option value="CS">Christmas Island(圣诞岛)</option>
+<option value="CC">Cocos Keeling Islands(科科斯(基林,0)群岛)</option>
+<option value="CO">Colombia(哥伦比亚)</option>
+<option value="KM">Comoros(科摩罗)</option>
+<option value="CD">Congo(刚果（金）)</option>
+<option value="CG">Congo(刚果（布）)</option>
+<option value="CK">Cook Islands(库克群岛)</option>
+<option value="CR">Costa Rica(哥斯达黎加)</option>
+<option value="CI">Cote d&#39;Ivoire(科特迪瓦)</option>
+<option value="HR">Croatia(克罗地亚)</option>
+<option value="CU">Cuba(古巴)</option>
+<option value="CY">Cyprus(塞浦路斯)</option>
+<option value="CZ">Czech Repoublic(捷克)</option>
+<option value="DK">Denmark(丹麦)</option>
+<option value="DJ">Djibouti(吉布提)</option>
+<option value="DM">Dominica(多米尼克)</option>
+<option value="DO">Dominican Republic(多米尼加)</option>
+<option value="TL">East Timor(东帝汶)</option>
+<option value="EC">Ecuador(厄瓜多尔)</option>
+<option value="EG">Egypt(埃及)</option>
+<option value="SV">El Salvador(萨尔瓦多)</option>
+<option value="GQ">Equatorial Guinea(赤道几内亚)</option>
+<option value="ER">Eritrea(厄立特里亚)</option>
+<option value="EE">Estonia(爱沙尼亚)</option>
+<option value="ET">Ethiopia(埃塞俄比亚)</option>
+<option value="FO">Faroe Islands(法罗群岛)</option>
+<option value="FJ">Fiji(斐济)</option>
+<option value="FI">Finland(芬兰)</option>
+<option value="FR">France(法国)</option>
+<option value="GF">French Guiana(法属圭亚那)</option>
+<option value="PF">French Polynesia(法属波利尼西亚)</option>
+<option value="TF">French Southern Territo-ries(法属南部领土)</option>
+<option value="GA">Gabon(加蓬)</option>
+<option value="GM">Gambia(冈比亚)</option>
+<option value="GE">Georgia(格鲁吉亚)</option>
+<option value="DE">Germany(德国)</option>
+<option value="GH">Ghana(加纳)</option>
+<option value="GI">Gibraltar(直布罗陀)</option>
+<option value="GR">Greece(希腊)</option>
+<option value="GL">Greenland(格陵兰)</option>
+<option value="GD">Grenada(格林纳达)</option>
+<option value="GP">Guadeloupe(瓜德罗普)</option>
+<option value="GU">Guam(关岛)</option>
+<option value="GT">Guatemala(危地马拉)</option>
+<option value="GN">Guinea(几内亚)</option>
+<option value="GW">Guine-bissau(几内亚比绍)</option>
+<option value="GY">Guyana(圭亚那)</option>
+<option value="HT">Haiti(海地)</option>
+<option value="HM">Heard islands and Mc Donald Islands(赫德岛和麦克唐纳岛)</option>
+<option value="HN">Honduras(洪都拉斯)</option>
+<option value="HK">Hong Kong(香港)</option>
+<option value="HU">Hungary(匈牙利)</option>
+<option value="IS">Iceland(冰岛)</option>
+<option value="IN">India(印度)</option>
+<option value="ID">Indonesia(印度尼西亚)</option>
+<option value="IR">Iran(伊朗)</option>
+<option value="IQ">Iraq(伊拉克)</option>
+<option value="IE">Ireland(爱尔兰)</option>
+<option value="IL">Israel(以色列)</option>
+<option value="IT">Italy(意大利)</option>
+<option value="JM">Jamaica(牙买加)</option>
+<option value="JP">Japan(日本)</option>
+<option value="JE">Jersey(泽西岛（英属）)</option>
+<option value="JO">Jordan(约旦)</option>
+<option value="KZ">Kazakhstan(哈萨克斯坦)</option>
+<option value="KE">Kenya(肯尼亚)</option>
+<option value="KI">Kiribati(基里巴斯)</option>
+<option value="KV">Kosovo(科索沃)</option>
+<option value="KW">Kuwait(科威特)</option>
+<option value="KG">Kyrgyzstan(吉尔吉斯斯坦)</option>
+<option value="LA">Lao(老挝)</option>
+<option value="LV">Latvia(拉脱维亚)</option>
+<option value="LB">Lebanon(黎巴嫩)</option>
+<option value="LS">Lesotho(莱索托)</option>
+<option value="LR">Liberia(利比里亚)</option>
+<option value="LY">Libya(利比亚)</option>
+<option value="LI">Liechtenstein(列支敦士登)</option>
+<option value="LT">Lithuania(立陶宛)</option>
+<option value="LU">Luxembourg(卢森堡)</option>
+<option value="MO">Macau(澳门)</option>
+<option value="MK">Macedonia(马其顿)</option>
+<option value="MG">Madagascar(马达加斯加)</option>
+<option value="MW">Malawi(马拉维)</option>
+<option value="MY">Malaysia(马来西亚)</option>
+<option value="MV">Maldives(马尔代夫)</option>
+<option value="ML">Mali(马里)</option>
+<option value="MT">Malta(马耳他)</option>
+<option value="FK">Malvinas islands (Falkland Islands,0)(马尔维纳斯群岛(福克兰群岛,0))</option>
+<option value="MH">Marshall Islands(马绍尔群岛)</option>
+<option value="MQ">Martinique(马提尼克)</option>
+<option value="MR">Mauritania(毛里塔尼亚)</option>
+<option value="MU">Mauritius(毛里求斯)</option>
+<option value="YT">Mayotte(马约特)</option>
+<option value="MX">Mexico(墨西哥)</option>
+<option value="FM">Micronesia(密克罗尼西亚)</option>
+<option value="MD">Moldova(摩尔多瓦)</option>
+<option value="MC">Monaco(摩纳哥)</option>
+<option value="MN">Mongolia(蒙古)</option>
+<option value="ME">Montenegro(黑山)</option>
+<option value="MS">Montserrat(蒙特塞拉特)</option>
+<option value="MA">Morocco(摩洛哥)</option>
+<option value="MZ">Mozambique(莫桑比克)</option>
+<option value="MM">Myanmar(缅甸)</option>
+<option value="NA">Namibia(纳米比亚)</option>
+<option value="NR">Nauru(瑙鲁)</option>
+<option value="NP">Nepal(尼泊尔)</option>
+<option value="NL">Netherlands(荷兰)</option>
+<option value="AN">Netherlands Antilles(荷属安的列斯)</option>
+<option value="NC">New Caledonia(新喀里多尼亚)</option>
+<option value="NZ">New Zealand(新西兰)</option>
+<option value="NI">Nicaragua(尼加拉瓜)</option>
+<option value="NE">Niger(尼日尔)</option>
+<option value="NG">Nigeria(尼日利亚)</option>
+<option value="NU">Niue(纽埃)</option>
+<option value="NF">Norfolk Island(诺福克岛)</option>
+<option value="KP">North Korea(朝鲜)</option>
+<option value="MP">Northern Marianas(北马里亚纳)</option>
+<option value="NO">Norway(挪威)</option>
+<option value="OM">Oman(阿曼)</option>
+<option value="PK">Pakistan(巴基斯坦)</option>
+<option value="PW">Palau(帕劳)</option>
+<option value="PS">Palestine(巴勒斯坦)</option>
+<option value="PA">Panama(巴拿马)</option>
+<option value="PG">Papua New Guinea(巴布亚新几内亚)</option>
+<option value="PY">Paraguay(巴拉圭)</option>
+<option value="PE">Peru(秘鲁)</option>
+<option value="PH">Philippines(菲律宾)</option>
+<option value="PN">Pitcairn Islands Group(皮特凯恩群岛)</option>
+<option value="PL">Poland(波兰)</option>
+<option value="PT">Portugal(葡萄牙)</option>
+<option value="PR">Puerto Rico(波多黎各)</option>
+<option value="QA">Qatar(卡塔尔)</option>
+<option value="RE">Reunion(留尼汪)</option>
+<option value="RO">Romania(罗马尼亚)</option>
+<option value="RU">Russia(俄罗斯)</option>
+<option value="RW">Rwanda(卢旺达)</option>
+<option value="Sh">Saint helena(圣赫勒拿)</option>
+<option value="KN">Saint Kitts and nevis(圣基茨和尼维斯)</option>
+<option value="LC">Saint lucia(圣卢西亚)</option>
+<option value="PM">Saint Pierre and Miquelon(圣皮埃尔和密克隆)</option>
+<option value="VC">Saint Vincent and the Grenadines(圣文森特和格林纳丁斯)</option>
+<option value="SM">San Marion(圣马力诺)</option>
+<option value="ST">Sao Tome and Principe(圣多美和普林西比)</option>
+<option value="SA">Saudi Arabia(沙特阿拉伯)</option>
+<option value="SN">Senegal(塞内加尔)</option>
+<option value="RS">Serbia(塞尔维亚)</option>
+<option value="SC">Seychells(塞舌尔)</option>
+<option value="SL">Sierra leone(塞拉利昂)</option>
+<option value="SG">Singapore(新加坡)</option>
+<option value="SK">Slovakia(斯洛伐克)</option>
+<option value="SI">Slovenia(斯洛文尼亚)</option>
+<option value="SB">Solomon Islands(所罗门群岛)</option>
+<option value="SO">Somalia(索马里)</option>
+<option value="ZA">South Africa(南非)</option>
+<option value="GS">South Georgia and South Sandwich Islands(南乔治亚岛和南桑德韦奇岛)</option>
+<option value="KR">South Korea(韩国)</option>
+<option value="SS">South Sudan(南苏丹)</option>
+<option value="ES">Spain(西班牙)</option>
+<option value="LK">Sri Lanka(斯里兰卡)</option>
+<option value="SD">Sudan(苏丹)</option>
+<option value="SR">Suriname(苏里南)</option>
+<option value="SJ">Svalbard and jan Mayen Islands(斯瓦尔巴群岛)</option>
+<option value="SZ">Swaziland(斯威士兰)</option>
+<option value="SE">Sweden(瑞典)</option>
+<option value="CH">Switzerland(瑞士)</option>
+<option value="SY">Syria(叙利亚)</option>
+<option value="TW">Taiwan,China(中国台湾)</option>
+<option value="TJ">Tajikistan(塔吉克斯坦)</option>
+<option value="TZ">Tanzania(坦桑尼亚)</option>
+<option value="TH">Thailand(泰国)</option>
+<option value="TG">Togo(多哥)</option>
+<option value="TK">Tokelau(托克劳)</option>
+<option value="TO">Tonga(汤加)</option>
+<option value="TT">Trinidad and Tobago(特立尼达和多巴哥)</option>
+<option value="TN">Tunisia(突尼斯)</option>
+<option value="TR">Turkey(土耳其)</option>
+<option value="TM">Turkmenistan(土库曼斯坦)</option>
+<option value="TC">Turks and Caicos Islands(特克斯科斯群岛)</option>
+<option value="TV">Tuvalu(图瓦卢)</option>
+<option value="UG">Uganda(乌干达)</option>
+<option value="UA">Ukraine(乌克兰)</option>
+<option value="AE">United Arab Emirates(阿联酋)</option>
+<option value="GB">United Kingdom(英国)</option>
+<option value="US">United States(美国)</option>
+<option value="UM">UNITED STATES MINOR OUTLYING ISLANDS(美国本土外小岛屿)</option>
+<option value="VI">United States Virgin Is-lands(美属维尔京群岛)</option>
+<option value="UY">Uruguay(乌拉圭)</option>
+<option value="UZ">Uzbekistan(乌兹别克斯坦)</option>
+<option value="VU">Vanuatu(瓦努阿图)</option>
+<option value="VA">Vatican(梵蒂冈)</option>
+<option value="VE">Venezuela(委内瑞拉)</option>
+<option value="VN">Viet Nam(越南)</option>
+<option value="WF">Wallis and Futuna Is-lands(瓦利斯和富图纳群岛)</option>
+<option value="EH">Western Sahara(西撒哈拉)</option>
+<option value="WS">Western Samoa(西萨摩亚)</option>
+<option value="YE">Yemen(也门)</option>
+<option value="YU">Yugoslavia(南斯拉夫)</option>
+<option value="ZR">Zaire(扎伊尔)</option>
+<option value="ZM">Zambia(赞比亚)</option>
+<option value="ZW">Zimbabwe(津巴布韦)</option>
+</select>
+                            </div>
+                            <span id="divforRecipientArea">
+                                <div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forRecipientArealevel1" name="FillLevel1_Value" type="sltAreaforRecipientArea"><option value="">--请选择--</option>
+<option value="北京">北京</option>
+<option value="江苏省">江苏省</option>
+<option value="浙江省">浙江省</option>
+<option value="安徽省">安徽省</option>
+<option value="福建省">福建省</option>
+<option value="江西省">江西省</option>
+<option value="山东省">山东省</option>
+<option value="河南省">河南省</option>
+<option value="湖北省">湖北省</option>
+<option value="湖南省">湖南省</option>
+<option selected="selected" value="广东省">广东省</option>
+<option value="天津">天津</option>
+<option value="广西壮族自治区">广西壮族自治区</option>
+<option value="海南省">海南省</option>
+<option value="重庆">重庆</option>
+<option value="四川省">四川省</option>
+<option value="贵州省">贵州省</option>
+<option value="云南省">云南省</option>
+<option value="西藏自治区">西藏自治区</option>
+<option value="陕西省">陕西省</option>
+<option value="甘肃省">甘肃省</option>
+<option value="青海省">青海省</option>
+<option value="河北省">河北省</option>
+<option value="宁夏回族自治区">宁夏回族自治区</option>
+<option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+<option value="香港特别行政区">香港特别行政区</option>
+<option value="澳门特别行政区">澳门特别行政区</option>
+<option value="台湾省">台湾省</option>
+<option value="山西省">山西省</option>
+<option value="内蒙古自治区">内蒙古自治区</option>
+<option value="辽宁省">辽宁省</option>
+<option value="吉林省">吉林省</option>
+<option value="黑龙江省">黑龙江省</option>
+<option value="上海">上海</option>
+</select>
+</div>
+<div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forRecipientArealevel2" name="FillLevel2_Value" type="sltAreaforRecipientArea"><option value="">--请选择--</option>
+<option value="广州市">广州市</option>
+<option value="韶关市">韶关市</option>
+<option selected="selected" value="深圳市">深圳市</option>
+<option value="珠海市">珠海市</option>
+<option value="汕头市">汕头市</option>
+<option value="佛山市">佛山市</option>
+<option value="江门市">江门市</option>
+<option value="湛江市">湛江市</option>
+<option value="茂名市">茂名市</option>
+<option value="肇庆市">肇庆市</option>
+<option value="惠州市">惠州市</option>
+<option value="梅州市">梅州市</option>
+<option value="汕尾市">汕尾市</option>
+<option value="河源市">河源市</option>
+<option value="阳江市">阳江市</option>
+<option value="清远市">清远市</option>
+<option value="东莞市">东莞市</option>
+<option value="中山市">中山市</option>
+<option value="潮州市">潮州市</option>
+<option value="揭阳市">揭阳市</option>
+<option value="云浮市">云浮市</option>
+</select>
+</div>
+<div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forRecipientArealevel3" name="FillLevel3_Value"><option value="">--请选择--</option>
+<option value="罗湖区">罗湖区</option>
+<option value="福田区">福田区</option>
+<option value="南山区">南山区</option>
+<option selected="selected" value="宝安区">宝安区</option>
+<option value="龙岗区">龙岗区</option>
+<option value="盐田区">盐田区</option>
+<option value="光明新区">光明新区</option>
+<option value="龙华新区">龙华新区</option>
+<option value="坪山新区">坪山新区</option>
+<option value="大鹏新区">大鹏新区</option>
+</select>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        var toBindName = "sltArea" + "forRecipientArea";
+        $("select[type='" + toBindName + "']").each(function () {
+            $(this).change(function () {
+                if ($(this).attr("id") == "forRecipientArea" + "level1" && $(this).val() == "") {
+                    $("#forRecipientArea" + "level2").empty();
+                    $("#forRecipientArea" + "level3").empty();
+                    $("#forRecipientArea" + "level2").append("<option value=''></option>");
+                    $("#forRecipientArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>")
+                    return;
+                }
+                else if ($(this).attr("id") == "forRecipientArea" + "level2" && $(this).val() == "") {
+                    $("#forRecipientArea" + "level3").empty();
+                    $("#forRecipientArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/LinkageSelect/SearchSelectList",
+                    data: {
+                        fillLevelId: $(this).attr("id"),
+                        value: $(this).val(),
+                        valueIsID:"False"
+                    },
+                    datatype: "json",
+                    success: function (data) {
+                        var toFillLevelNum = data.MapData.ToFillLevelNum;
+                        var sltColumn = $("#forRecipientArea" + "level" + toFillLevelNum).empty();
+
+                        //如果是给二级下拉装载，则说明是一级下拉变动，那么把第三级的清空掉，否则选项还是变动之前的数据
+                        if (toFillLevelNum == "2") {
+                            $("#forRecipientArea" + "level3").empty();
+                            $("#forRecipientArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                            //给二级下拉默认加载“请选择”选项
+                            $("#forRecipientArea" + "level" + toFillLevelNum).append("<option value=''><hg:trans>--请选择--</hg:trans></option>")
+                        }
+
+                        //给三级下拉框添加“请选择”选项
+                        if (toFillLevelNum == "3") {
+                            $("#forRecipientArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                        }
+                        for (var i = 0; i < data.MapData.ColumnList.length; i++) {
+                            var column = data.MapData.ColumnList[i];
+                            $("#forRecipientArea" + "level" + toFillLevelNum).append("<option value='" + column.Value + "'>" + column.Text + "</option>")
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            })
+        })
+    });
+</script>
+
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="divforRecipientAreaForOther" style="display:none">
+                        <label class="col-sm-2 control-label"><hg:trans>州/省</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforRecipientAreaProvinceForOther" name="getAddressInfo.Province" type="text" value="广东省" />
+                        </div>
+                        <label class="col-sm-2 control-label"><hg:trans>城市</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforRecipientAreaCityForOther" name="getAddressInfo.City" type="text" value="深圳市" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>详细地址</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <textarea class="form-control" cols="20" id="txtforRecipientAddress" name="getAddressInfo.Address" rows="2" savetype="forRecipient" style="height:80px">
+共和工业路48号</textarea>
+                        </div>
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+
+            </div>
+
+            <div id="divsendAddress" style="display:none" divtype="childTabs">
+                <div style="text-align:right; margin-right:20px;margin-top: 0px; margin-bottom:0px;">
+                    <button type="button" class="btn btn-info glyphicon glyphicon-copy" onclick="doCopyAecipientAddress()"> <hg:trans>拷贝揽件地址</hg:trans></button>
+                </div>
+                    <div class="form-group">
+                        <input type="hidden" value="90" id="hidforSendAddressId" />
+                        <label class="col-sm-2 control-label"><hg:trans>联系人</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforSendContact" name="sendAddressInfo.Contact" savetype="forSend" type="text" value="远华嘉贸" /><span></span>
+                        </div>
+                        <label class="col-sm-2 control-label"><hg:trans>移动电话</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforSendMobilePhone" name="sendAddressInfo.MobilePhone" type="text" value="18688999876" /><span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>公司名称</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3"><input class="form-control" id="txtforSendCompany" name="sendAddressInfo.Company" savetype="forSend" type="text" value="远华嘉贸" /></div>
+                        <label class="col-sm-2 control-label"><hg:trans>固定电话</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforSendTelePhone" name="sendAddressInfo.TelePhone" type="text" value="33530818" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>邮箱地址</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforSendEmail" name="sendAddressInfo.Email" savetype="forSend" type="text" value="cheerwsn@163.com" />
+                        </div>
+                        <label class="col-sm-2 control-label"><hg:trans>邮编</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforSendZipCode" name="sendAddressInfo.ZipCode" savetype="forSend" type="text" value="518000" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>所在地区</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-10 row">
+                            <div class="col-xs-2" style="width:15.5%">
+                                <select class="form-control" id="forSendArea" name="sendAddressInfo.Country" savetype="forSend" sltType="sltForCountry"><option value="">--请选择--</option>
+<option value="AF">Afghanistan(阿富汗)</option>
+<option value="AL">Albania(阿尔巴尼亚)</option>
+<option value="DZ">Algeria(阿尔及利亚)</option>
+<option value="AS">American Samoa(美属萨摩亚)</option>
+<option value="AD">Andorra(安道尔)</option>
+<option value="AO">Angola(安哥拉)</option>
+<option value="AI">Anguilla(安圭拉)</option>
+<option value="AQ">Antarctica(南极洲)</option>
+<option value="AG">Antigua and Barbuda(安提瓜和巴布达)</option>
+<option value="AR">Argentina(阿根廷)</option>
+<option value="AM">Armenia(亚美尼亚)</option>
+<option value="AW">Aruba(阿鲁巴)</option>
+<option value="AU">Australia(澳大利亚)</option>
+<option value="AT">Austria(奥地利)</option>
+<option value="AZ">Azerbaijan(阿塞拜疆)</option>
+<option value="BS">Bahamas(巴哈马)</option>
+<option value="BH">Bahrain(巴林)</option>
+<option value="BD">Bangladesh(孟加拉国)</option>
+<option value="BB">Barbados(巴巴多斯)</option>
+<option value="BY">Belarus(白俄罗斯)</option>
+<option value="BE">Belgium(比利时)</option>
+<option value="BZ">Belize(伯利兹)</option>
+<option value="BJ">Benin(贝宁)</option>
+<option value="BM">Bermuda(百慕大)</option>
+<option value="BT">Bhutan(不丹)</option>
+<option value="BO">Bolivia(玻利维亚)</option>
+<option value="BA">Bosnia and Herzegovina(波斯尼亚和黑塞哥维那)</option>
+<option value="BW">Botswana(博茨瓦纳)</option>
+<option value="BV">Bouvet Island(布维岛)</option>
+<option value="BR">Brazil(巴西)</option>
+<option value="IO">British indian Ocean Ter-ritory(英属印度洋领土)</option>
+<option value="VG">British Virgin Islands(英属维尔京群岛)</option>
+<option value="BN">Brunei Darussalam(文莱)</option>
+<option value="BG">Bulgaria(保加利亚)</option>
+<option value="BF">Burkina Faso(布基纳法索)</option>
+<option value="BI">Burundi(布隆迪)</option>
+<option value="KH">Cambodia(柬埔寨)</option>
+<option value="CM">Cameroon(喀麦隆)</option>
+<option value="CA">Canada(加拿大)</option>
+<option value="CV">Cape Verde(佛得角)</option>
+<option value="XK">CAROLINE ISLANDS(加罗林群岛)</option>
+<option value="KY">Cayman Islands(开曼群岛)</option>
+<option value="CF">Central Africa(中非)</option>
+<option value="TD">Chad(乍得)</option>
+<option value="CL">Chile(智利)</option>
+<option selected="selected" value="CN">China(中国)</option>
+<option value="CS">Christmas Island(圣诞岛)</option>
+<option value="CC">Cocos Keeling Islands(科科斯(基林,0)群岛)</option>
+<option value="CO">Colombia(哥伦比亚)</option>
+<option value="KM">Comoros(科摩罗)</option>
+<option value="CD">Congo(刚果（金）)</option>
+<option value="CG">Congo(刚果（布）)</option>
+<option value="CK">Cook Islands(库克群岛)</option>
+<option value="CR">Costa Rica(哥斯达黎加)</option>
+<option value="CI">Cote d&#39;Ivoire(科特迪瓦)</option>
+<option value="HR">Croatia(克罗地亚)</option>
+<option value="CU">Cuba(古巴)</option>
+<option value="CY">Cyprus(塞浦路斯)</option>
+<option value="CZ">Czech Repoublic(捷克)</option>
+<option value="DK">Denmark(丹麦)</option>
+<option value="DJ">Djibouti(吉布提)</option>
+<option value="DM">Dominica(多米尼克)</option>
+<option value="DO">Dominican Republic(多米尼加)</option>
+<option value="TL">East Timor(东帝汶)</option>
+<option value="EC">Ecuador(厄瓜多尔)</option>
+<option value="EG">Egypt(埃及)</option>
+<option value="SV">El Salvador(萨尔瓦多)</option>
+<option value="GQ">Equatorial Guinea(赤道几内亚)</option>
+<option value="ER">Eritrea(厄立特里亚)</option>
+<option value="EE">Estonia(爱沙尼亚)</option>
+<option value="ET">Ethiopia(埃塞俄比亚)</option>
+<option value="FO">Faroe Islands(法罗群岛)</option>
+<option value="FJ">Fiji(斐济)</option>
+<option value="FI">Finland(芬兰)</option>
+<option value="FR">France(法国)</option>
+<option value="GF">French Guiana(法属圭亚那)</option>
+<option value="PF">French Polynesia(法属波利尼西亚)</option>
+<option value="TF">French Southern Territo-ries(法属南部领土)</option>
+<option value="GA">Gabon(加蓬)</option>
+<option value="GM">Gambia(冈比亚)</option>
+<option value="GE">Georgia(格鲁吉亚)</option>
+<option value="DE">Germany(德国)</option>
+<option value="GH">Ghana(加纳)</option>
+<option value="GI">Gibraltar(直布罗陀)</option>
+<option value="GR">Greece(希腊)</option>
+<option value="GL">Greenland(格陵兰)</option>
+<option value="GD">Grenada(格林纳达)</option>
+<option value="GP">Guadeloupe(瓜德罗普)</option>
+<option value="GU">Guam(关岛)</option>
+<option value="GT">Guatemala(危地马拉)</option>
+<option value="GN">Guinea(几内亚)</option>
+<option value="GW">Guine-bissau(几内亚比绍)</option>
+<option value="GY">Guyana(圭亚那)</option>
+<option value="HT">Haiti(海地)</option>
+<option value="HM">Heard islands and Mc Donald Islands(赫德岛和麦克唐纳岛)</option>
+<option value="HN">Honduras(洪都拉斯)</option>
+<option value="HK">Hong Kong(香港)</option>
+<option value="HU">Hungary(匈牙利)</option>
+<option value="IS">Iceland(冰岛)</option>
+<option value="IN">India(印度)</option>
+<option value="ID">Indonesia(印度尼西亚)</option>
+<option value="IR">Iran(伊朗)</option>
+<option value="IQ">Iraq(伊拉克)</option>
+<option value="IE">Ireland(爱尔兰)</option>
+<option value="IL">Israel(以色列)</option>
+<option value="IT">Italy(意大利)</option>
+<option value="JM">Jamaica(牙买加)</option>
+<option value="JP">Japan(日本)</option>
+<option value="JE">Jersey(泽西岛（英属）)</option>
+<option value="JO">Jordan(约旦)</option>
+<option value="KZ">Kazakhstan(哈萨克斯坦)</option>
+<option value="KE">Kenya(肯尼亚)</option>
+<option value="KI">Kiribati(基里巴斯)</option>
+<option value="KV">Kosovo(科索沃)</option>
+<option value="KW">Kuwait(科威特)</option>
+<option value="KG">Kyrgyzstan(吉尔吉斯斯坦)</option>
+<option value="LA">Lao(老挝)</option>
+<option value="LV">Latvia(拉脱维亚)</option>
+<option value="LB">Lebanon(黎巴嫩)</option>
+<option value="LS">Lesotho(莱索托)</option>
+<option value="LR">Liberia(利比里亚)</option>
+<option value="LY">Libya(利比亚)</option>
+<option value="LI">Liechtenstein(列支敦士登)</option>
+<option value="LT">Lithuania(立陶宛)</option>
+<option value="LU">Luxembourg(卢森堡)</option>
+<option value="MO">Macau(澳门)</option>
+<option value="MK">Macedonia(马其顿)</option>
+<option value="MG">Madagascar(马达加斯加)</option>
+<option value="MW">Malawi(马拉维)</option>
+<option value="MY">Malaysia(马来西亚)</option>
+<option value="MV">Maldives(马尔代夫)</option>
+<option value="ML">Mali(马里)</option>
+<option value="MT">Malta(马耳他)</option>
+<option value="FK">Malvinas islands (Falkland Islands,0)(马尔维纳斯群岛(福克兰群岛,0))</option>
+<option value="MH">Marshall Islands(马绍尔群岛)</option>
+<option value="MQ">Martinique(马提尼克)</option>
+<option value="MR">Mauritania(毛里塔尼亚)</option>
+<option value="MU">Mauritius(毛里求斯)</option>
+<option value="YT">Mayotte(马约特)</option>
+<option value="MX">Mexico(墨西哥)</option>
+<option value="FM">Micronesia(密克罗尼西亚)</option>
+<option value="MD">Moldova(摩尔多瓦)</option>
+<option value="MC">Monaco(摩纳哥)</option>
+<option value="MN">Mongolia(蒙古)</option>
+<option value="ME">Montenegro(黑山)</option>
+<option value="MS">Montserrat(蒙特塞拉特)</option>
+<option value="MA">Morocco(摩洛哥)</option>
+<option value="MZ">Mozambique(莫桑比克)</option>
+<option value="MM">Myanmar(缅甸)</option>
+<option value="NA">Namibia(纳米比亚)</option>
+<option value="NR">Nauru(瑙鲁)</option>
+<option value="NP">Nepal(尼泊尔)</option>
+<option value="NL">Netherlands(荷兰)</option>
+<option value="AN">Netherlands Antilles(荷属安的列斯)</option>
+<option value="NC">New Caledonia(新喀里多尼亚)</option>
+<option value="NZ">New Zealand(新西兰)</option>
+<option value="NI">Nicaragua(尼加拉瓜)</option>
+<option value="NE">Niger(尼日尔)</option>
+<option value="NG">Nigeria(尼日利亚)</option>
+<option value="NU">Niue(纽埃)</option>
+<option value="NF">Norfolk Island(诺福克岛)</option>
+<option value="KP">North Korea(朝鲜)</option>
+<option value="MP">Northern Marianas(北马里亚纳)</option>
+<option value="NO">Norway(挪威)</option>
+<option value="OM">Oman(阿曼)</option>
+<option value="PK">Pakistan(巴基斯坦)</option>
+<option value="PW">Palau(帕劳)</option>
+<option value="PS">Palestine(巴勒斯坦)</option>
+<option value="PA">Panama(巴拿马)</option>
+<option value="PG">Papua New Guinea(巴布亚新几内亚)</option>
+<option value="PY">Paraguay(巴拉圭)</option>
+<option value="PE">Peru(秘鲁)</option>
+<option value="PH">Philippines(菲律宾)</option>
+<option value="PN">Pitcairn Islands Group(皮特凯恩群岛)</option>
+<option value="PL">Poland(波兰)</option>
+<option value="PT">Portugal(葡萄牙)</option>
+<option value="PR">Puerto Rico(波多黎各)</option>
+<option value="QA">Qatar(卡塔尔)</option>
+<option value="RE">Reunion(留尼汪)</option>
+<option value="RO">Romania(罗马尼亚)</option>
+<option value="RU">Russia(俄罗斯)</option>
+<option value="RW">Rwanda(卢旺达)</option>
+<option value="Sh">Saint helena(圣赫勒拿)</option>
+<option value="KN">Saint Kitts and nevis(圣基茨和尼维斯)</option>
+<option value="LC">Saint lucia(圣卢西亚)</option>
+<option value="PM">Saint Pierre and Miquelon(圣皮埃尔和密克隆)</option>
+<option value="VC">Saint Vincent and the Grenadines(圣文森特和格林纳丁斯)</option>
+<option value="SM">San Marion(圣马力诺)</option>
+<option value="ST">Sao Tome and Principe(圣多美和普林西比)</option>
+<option value="SA">Saudi Arabia(沙特阿拉伯)</option>
+<option value="SN">Senegal(塞内加尔)</option>
+<option value="RS">Serbia(塞尔维亚)</option>
+<option value="SC">Seychells(塞舌尔)</option>
+<option value="SL">Sierra leone(塞拉利昂)</option>
+<option value="SG">Singapore(新加坡)</option>
+<option value="SK">Slovakia(斯洛伐克)</option>
+<option value="SI">Slovenia(斯洛文尼亚)</option>
+<option value="SB">Solomon Islands(所罗门群岛)</option>
+<option value="SO">Somalia(索马里)</option>
+<option value="ZA">South Africa(南非)</option>
+<option value="GS">South Georgia and South Sandwich Islands(南乔治亚岛和南桑德韦奇岛)</option>
+<option value="KR">South Korea(韩国)</option>
+<option value="SS">South Sudan(南苏丹)</option>
+<option value="ES">Spain(西班牙)</option>
+<option value="LK">Sri Lanka(斯里兰卡)</option>
+<option value="SD">Sudan(苏丹)</option>
+<option value="SR">Suriname(苏里南)</option>
+<option value="SJ">Svalbard and jan Mayen Islands(斯瓦尔巴群岛)</option>
+<option value="SZ">Swaziland(斯威士兰)</option>
+<option value="SE">Sweden(瑞典)</option>
+<option value="CH">Switzerland(瑞士)</option>
+<option value="SY">Syria(叙利亚)</option>
+<option value="TW">Taiwan,China(中国台湾)</option>
+<option value="TJ">Tajikistan(塔吉克斯坦)</option>
+<option value="TZ">Tanzania(坦桑尼亚)</option>
+<option value="TH">Thailand(泰国)</option>
+<option value="TG">Togo(多哥)</option>
+<option value="TK">Tokelau(托克劳)</option>
+<option value="TO">Tonga(汤加)</option>
+<option value="TT">Trinidad and Tobago(特立尼达和多巴哥)</option>
+<option value="TN">Tunisia(突尼斯)</option>
+<option value="TR">Turkey(土耳其)</option>
+<option value="TM">Turkmenistan(土库曼斯坦)</option>
+<option value="TC">Turks and Caicos Islands(特克斯科斯群岛)</option>
+<option value="TV">Tuvalu(图瓦卢)</option>
+<option value="UG">Uganda(乌干达)</option>
+<option value="UA">Ukraine(乌克兰)</option>
+<option value="AE">United Arab Emirates(阿联酋)</option>
+<option value="GB">United Kingdom(英国)</option>
+<option value="US">United States(美国)</option>
+<option value="UM">UNITED STATES MINOR OUTLYING ISLANDS(美国本土外小岛屿)</option>
+<option value="VI">United States Virgin Is-lands(美属维尔京群岛)</option>
+<option value="UY">Uruguay(乌拉圭)</option>
+<option value="UZ">Uzbekistan(乌兹别克斯坦)</option>
+<option value="VU">Vanuatu(瓦努阿图)</option>
+<option value="VA">Vatican(梵蒂冈)</option>
+<option value="VE">Venezuela(委内瑞拉)</option>
+<option value="VN">Viet Nam(越南)</option>
+<option value="WF">Wallis and Futuna Is-lands(瓦利斯和富图纳群岛)</option>
+<option value="EH">Western Sahara(西撒哈拉)</option>
+<option value="WS">Western Samoa(西萨摩亚)</option>
+<option value="YE">Yemen(也门)</option>
+<option value="YU">Yugoslavia(南斯拉夫)</option>
+<option value="ZR">Zaire(扎伊尔)</option>
+<option value="ZM">Zambia(赞比亚)</option>
+<option value="ZW">Zimbabwe(津巴布韦)</option>
+</select>
+                            </div>
+                            <span id="divforSendArea">
+                                <div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forSendArealevel1" name="FillLevel1_Value" type="sltAreaforSendArea"><option value="">--请选择--</option>
+<option value="北京">北京</option>
+<option value="江苏省">江苏省</option>
+<option value="浙江省">浙江省</option>
+<option value="安徽省">安徽省</option>
+<option value="福建省">福建省</option>
+<option value="江西省">江西省</option>
+<option value="山东省">山东省</option>
+<option value="河南省">河南省</option>
+<option value="湖北省">湖北省</option>
+<option value="湖南省">湖南省</option>
+<option selected="selected" value="广东省">广东省</option>
+<option value="天津">天津</option>
+<option value="广西壮族自治区">广西壮族自治区</option>
+<option value="海南省">海南省</option>
+<option value="重庆">重庆</option>
+<option value="四川省">四川省</option>
+<option value="贵州省">贵州省</option>
+<option value="云南省">云南省</option>
+<option value="西藏自治区">西藏自治区</option>
+<option value="陕西省">陕西省</option>
+<option value="甘肃省">甘肃省</option>
+<option value="青海省">青海省</option>
+<option value="河北省">河北省</option>
+<option value="宁夏回族自治区">宁夏回族自治区</option>
+<option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+<option value="香港特别行政区">香港特别行政区</option>
+<option value="澳门特别行政区">澳门特别行政区</option>
+<option value="台湾省">台湾省</option>
+<option value="山西省">山西省</option>
+<option value="内蒙古自治区">内蒙古自治区</option>
+<option value="辽宁省">辽宁省</option>
+<option value="吉林省">吉林省</option>
+<option value="黑龙江省">黑龙江省</option>
+<option value="上海">上海</option>
+</select>
+</div>
+<div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forSendArealevel2" name="FillLevel2_Value" type="sltAreaforSendArea"><option value="">--请选择--</option>
+<option value="广州市">广州市</option>
+<option value="韶关市">韶关市</option>
+<option selected="selected" value="深圳市">深圳市</option>
+<option value="珠海市">珠海市</option>
+<option value="汕头市">汕头市</option>
+<option value="佛山市">佛山市</option>
+<option value="江门市">江门市</option>
+<option value="湛江市">湛江市</option>
+<option value="茂名市">茂名市</option>
+<option value="肇庆市">肇庆市</option>
+<option value="惠州市">惠州市</option>
+<option value="梅州市">梅州市</option>
+<option value="汕尾市">汕尾市</option>
+<option value="河源市">河源市</option>
+<option value="阳江市">阳江市</option>
+<option value="清远市">清远市</option>
+<option value="东莞市">东莞市</option>
+<option value="中山市">中山市</option>
+<option value="潮州市">潮州市</option>
+<option value="揭阳市">揭阳市</option>
+<option value="云浮市">云浮市</option>
+</select>
+</div>
+<div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forSendArealevel3" name="FillLevel3_Value"><option value="">--请选择--</option>
+<option value="罗湖区">罗湖区</option>
+<option value="福田区">福田区</option>
+<option value="南山区">南山区</option>
+<option selected="selected" value="宝安区">宝安区</option>
+<option value="龙岗区">龙岗区</option>
+<option value="盐田区">盐田区</option>
+<option value="光明新区">光明新区</option>
+<option value="龙华新区">龙华新区</option>
+<option value="坪山新区">坪山新区</option>
+<option value="大鹏新区">大鹏新区</option>
+</select>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        var toBindName = "sltArea" + "forSendArea";
+        $("select[type='" + toBindName + "']").each(function () {
+            $(this).change(function () {
+                if ($(this).attr("id") == "forSendArea" + "level1" && $(this).val() == "") {
+                    $("#forSendArea" + "level2").empty();
+                    $("#forSendArea" + "level3").empty();
+                    $("#forSendArea" + "level2").append("<option value=''></option>");
+                    $("#forSendArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>")
+                    return;
+                }
+                else if ($(this).attr("id") == "forSendArea" + "level2" && $(this).val() == "") {
+                    $("#forSendArea" + "level3").empty();
+                    $("#forSendArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/LinkageSelect/SearchSelectList",
+                    data: {
+                        fillLevelId: $(this).attr("id"),
+                        value: $(this).val(),
+                        valueIsID:"False"
+                    },
+                    datatype: "json",
+                    success: function (data) {
+                        var toFillLevelNum = data.MapData.ToFillLevelNum;
+                        var sltColumn = $("#forSendArea" + "level" + toFillLevelNum).empty();
+
+                        //如果是给二级下拉装载，则说明是一级下拉变动，那么把第三级的清空掉，否则选项还是变动之前的数据
+                        if (toFillLevelNum == "2") {
+                            $("#forSendArea" + "level3").empty();
+                            $("#forSendArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                            //给二级下拉默认加载“请选择”选项
+                            $("#forSendArea" + "level" + toFillLevelNum).append("<option value=''><hg:trans>--请选择--</hg:trans></option>")
+                        }
+
+                        //给三级下拉框添加“请选择”选项
+                        if (toFillLevelNum == "3") {
+                            $("#forSendArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                        }
+                        for (var i = 0; i < data.MapData.ColumnList.length; i++) {
+                            var column = data.MapData.ColumnList[i];
+                            $("#forSendArea" + "level" + toFillLevelNum).append("<option value='" + column.Value + "'>" + column.Text + "</option>")
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            })
+        })
+    });
+</script>
+
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="divforSendAreaForOther" style="display:none">
+                        <label class="col-sm-2 control-label"><hg:trans>州/省</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforSendAreaProvinceForOther" name="sendAddressInfo.Province" type="text" value="广东省" />
+                        </div>
+                        <label class="col-sm-2 control-label"><hg:trans>城市</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforSendAreaCityForOther" name="sendAddressInfo.City" type="text" value="深圳市" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>详细地址</hg:trans><font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <textarea class="form-control" cols="20" id="txtforSendAddress" name="sendAddressInfo.Address" rows="2" savetype="forSend" style="height:80px">
+共和工业路</textarea>
+                        </div>
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+
+            </div>
+            <div id="divreturnAddress" style="display:none" divtype="childTabs">
+                <div style="text-align:right; margin-right:20px;margin-top: 0px; margin-bottom:0px;">
+                    <button type="button" class="btn btn-info glyphicon glyphicon-copy" onclick="doCopySendAddress()"> <hg:trans>拷贝寄件地址</hg:trans></button>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" value="91" id="hidforReturnAddressId" />
+                    <label class="col-sm-2 control-label">Contact<font color="red">*</font></label>
+                    <div class="col-sm-3">
+                        <input class="form-control" id="txtforReturnContact" name="returnAddressInfo.Contact" savetype="forReturn" type="text" value="yhjm" /><span></span>
+                    </div>
+                    <label class="col-sm-2 control-label">MobilePhone<font color="red">*</font></label>
+                    <div class="col-sm-3">
+                        <input class="form-control" id="txtforReturnMobilePhone" name="returnAddressInfo.MobilePhone" type="text" value="18688999876" /><span></span>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Company<font color="red">*</font></label>
+                        <div class="col-sm-3"><input class="form-control" id="txtforReturnCompany" name="returnAddressInfo.Company" savetype="forReturn" type="text" value="yhjm" /></div>
+                        <label class="col-sm-2 control-label">TelePhone<font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforReturnTelePhone" name="returnAddressInfo.TelePhone" type="text" value="33530818" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email<font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforReturnEmail" name="returnAddressInfo.Email" savetype="forReturn" type="text" value="cheerwsn@163.com" />
+                        </div>
+                        <label class="col-sm-2 control-label">ZipCode<font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforReturnZipCode" name="returnAddressInfo.ZipCode" savetype="forReturn" type="text" value="518000" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Location<font color="red">*</font></label>
+                        <div class="col-sm-10 row">
+                            <div class="col-xs-2" style="width:15.5%">
+                                <select class="form-control" id="forReturnArea" name="returnAddressInfo.Country" savetype="forReturn" sltType="sltForCountry"><option value="">--请选择--</option>
+<option value="AF">Afghanistan(阿富汗)</option>
+<option value="AL">Albania(阿尔巴尼亚)</option>
+<option value="DZ">Algeria(阿尔及利亚)</option>
+<option value="AS">American Samoa(美属萨摩亚)</option>
+<option value="AD">Andorra(安道尔)</option>
+<option value="AO">Angola(安哥拉)</option>
+<option value="AI">Anguilla(安圭拉)</option>
+<option value="AQ">Antarctica(南极洲)</option>
+<option value="AG">Antigua and Barbuda(安提瓜和巴布达)</option>
+<option value="AR">Argentina(阿根廷)</option>
+<option value="AM">Armenia(亚美尼亚)</option>
+<option value="AW">Aruba(阿鲁巴)</option>
+<option value="AU">Australia(澳大利亚)</option>
+<option value="AT">Austria(奥地利)</option>
+<option value="AZ">Azerbaijan(阿塞拜疆)</option>
+<option value="BS">Bahamas(巴哈马)</option>
+<option value="BH">Bahrain(巴林)</option>
+<option value="BD">Bangladesh(孟加拉国)</option>
+<option value="BB">Barbados(巴巴多斯)</option>
+<option value="BY">Belarus(白俄罗斯)</option>
+<option value="BE">Belgium(比利时)</option>
+<option value="BZ">Belize(伯利兹)</option>
+<option value="BJ">Benin(贝宁)</option>
+<option value="BM">Bermuda(百慕大)</option>
+<option value="BT">Bhutan(不丹)</option>
+<option value="BO">Bolivia(玻利维亚)</option>
+<option value="BA">Bosnia and Herzegovina(波斯尼亚和黑塞哥维那)</option>
+<option value="BW">Botswana(博茨瓦纳)</option>
+<option value="BV">Bouvet Island(布维岛)</option>
+<option value="BR">Brazil(巴西)</option>
+<option value="IO">British indian Ocean Ter-ritory(英属印度洋领土)</option>
+<option value="VG">British Virgin Islands(英属维尔京群岛)</option>
+<option value="BN">Brunei Darussalam(文莱)</option>
+<option value="BG">Bulgaria(保加利亚)</option>
+<option value="BF">Burkina Faso(布基纳法索)</option>
+<option value="BI">Burundi(布隆迪)</option>
+<option value="KH">Cambodia(柬埔寨)</option>
+<option value="CM">Cameroon(喀麦隆)</option>
+<option value="CA">Canada(加拿大)</option>
+<option value="CV">Cape Verde(佛得角)</option>
+<option value="XK">CAROLINE ISLANDS(加罗林群岛)</option>
+<option value="KY">Cayman Islands(开曼群岛)</option>
+<option value="CF">Central Africa(中非)</option>
+<option value="TD">Chad(乍得)</option>
+<option value="CL">Chile(智利)</option>
+<option selected="selected" value="CN">China(中国)</option>
+<option value="CS">Christmas Island(圣诞岛)</option>
+<option value="CC">Cocos Keeling Islands(科科斯(基林,0)群岛)</option>
+<option value="CO">Colombia(哥伦比亚)</option>
+<option value="KM">Comoros(科摩罗)</option>
+<option value="CD">Congo(刚果（金）)</option>
+<option value="CG">Congo(刚果（布）)</option>
+<option value="CK">Cook Islands(库克群岛)</option>
+<option value="CR">Costa Rica(哥斯达黎加)</option>
+<option value="CI">Cote d&#39;Ivoire(科特迪瓦)</option>
+<option value="HR">Croatia(克罗地亚)</option>
+<option value="CU">Cuba(古巴)</option>
+<option value="CY">Cyprus(塞浦路斯)</option>
+<option value="CZ">Czech Repoublic(捷克)</option>
+<option value="DK">Denmark(丹麦)</option>
+<option value="DJ">Djibouti(吉布提)</option>
+<option value="DM">Dominica(多米尼克)</option>
+<option value="DO">Dominican Republic(多米尼加)</option>
+<option value="TL">East Timor(东帝汶)</option>
+<option value="EC">Ecuador(厄瓜多尔)</option>
+<option value="EG">Egypt(埃及)</option>
+<option value="SV">El Salvador(萨尔瓦多)</option>
+<option value="GQ">Equatorial Guinea(赤道几内亚)</option>
+<option value="ER">Eritrea(厄立特里亚)</option>
+<option value="EE">Estonia(爱沙尼亚)</option>
+<option value="ET">Ethiopia(埃塞俄比亚)</option>
+<option value="FO">Faroe Islands(法罗群岛)</option>
+<option value="FJ">Fiji(斐济)</option>
+<option value="FI">Finland(芬兰)</option>
+<option value="FR">France(法国)</option>
+<option value="GF">French Guiana(法属圭亚那)</option>
+<option value="PF">French Polynesia(法属波利尼西亚)</option>
+<option value="TF">French Southern Territo-ries(法属南部领土)</option>
+<option value="GA">Gabon(加蓬)</option>
+<option value="GM">Gambia(冈比亚)</option>
+<option value="GE">Georgia(格鲁吉亚)</option>
+<option value="DE">Germany(德国)</option>
+<option value="GH">Ghana(加纳)</option>
+<option value="GI">Gibraltar(直布罗陀)</option>
+<option value="GR">Greece(希腊)</option>
+<option value="GL">Greenland(格陵兰)</option>
+<option value="GD">Grenada(格林纳达)</option>
+<option value="GP">Guadeloupe(瓜德罗普)</option>
+<option value="GU">Guam(关岛)</option>
+<option value="GT">Guatemala(危地马拉)</option>
+<option value="GN">Guinea(几内亚)</option>
+<option value="GW">Guine-bissau(几内亚比绍)</option>
+<option value="GY">Guyana(圭亚那)</option>
+<option value="HT">Haiti(海地)</option>
+<option value="HM">Heard islands and Mc Donald Islands(赫德岛和麦克唐纳岛)</option>
+<option value="HN">Honduras(洪都拉斯)</option>
+<option value="HK">Hong Kong(香港)</option>
+<option value="HU">Hungary(匈牙利)</option>
+<option value="IS">Iceland(冰岛)</option>
+<option value="IN">India(印度)</option>
+<option value="ID">Indonesia(印度尼西亚)</option>
+<option value="IR">Iran(伊朗)</option>
+<option value="IQ">Iraq(伊拉克)</option>
+<option value="IE">Ireland(爱尔兰)</option>
+<option value="IL">Israel(以色列)</option>
+<option value="IT">Italy(意大利)</option>
+<option value="JM">Jamaica(牙买加)</option>
+<option value="JP">Japan(日本)</option>
+<option value="JE">Jersey(泽西岛（英属）)</option>
+<option value="JO">Jordan(约旦)</option>
+<option value="KZ">Kazakhstan(哈萨克斯坦)</option>
+<option value="KE">Kenya(肯尼亚)</option>
+<option value="KI">Kiribati(基里巴斯)</option>
+<option value="KV">Kosovo(科索沃)</option>
+<option value="KW">Kuwait(科威特)</option>
+<option value="KG">Kyrgyzstan(吉尔吉斯斯坦)</option>
+<option value="LA">Lao(老挝)</option>
+<option value="LV">Latvia(拉脱维亚)</option>
+<option value="LB">Lebanon(黎巴嫩)</option>
+<option value="LS">Lesotho(莱索托)</option>
+<option value="LR">Liberia(利比里亚)</option>
+<option value="LY">Libya(利比亚)</option>
+<option value="LI">Liechtenstein(列支敦士登)</option>
+<option value="LT">Lithuania(立陶宛)</option>
+<option value="LU">Luxembourg(卢森堡)</option>
+<option value="MO">Macau(澳门)</option>
+<option value="MK">Macedonia(马其顿)</option>
+<option value="MG">Madagascar(马达加斯加)</option>
+<option value="MW">Malawi(马拉维)</option>
+<option value="MY">Malaysia(马来西亚)</option>
+<option value="MV">Maldives(马尔代夫)</option>
+<option value="ML">Mali(马里)</option>
+<option value="MT">Malta(马耳他)</option>
+<option value="FK">Malvinas islands (Falkland Islands,0)(马尔维纳斯群岛(福克兰群岛,0))</option>
+<option value="MH">Marshall Islands(马绍尔群岛)</option>
+<option value="MQ">Martinique(马提尼克)</option>
+<option value="MR">Mauritania(毛里塔尼亚)</option>
+<option value="MU">Mauritius(毛里求斯)</option>
+<option value="YT">Mayotte(马约特)</option>
+<option value="MX">Mexico(墨西哥)</option>
+<option value="FM">Micronesia(密克罗尼西亚)</option>
+<option value="MD">Moldova(摩尔多瓦)</option>
+<option value="MC">Monaco(摩纳哥)</option>
+<option value="MN">Mongolia(蒙古)</option>
+<option value="ME">Montenegro(黑山)</option>
+<option value="MS">Montserrat(蒙特塞拉特)</option>
+<option value="MA">Morocco(摩洛哥)</option>
+<option value="MZ">Mozambique(莫桑比克)</option>
+<option value="MM">Myanmar(缅甸)</option>
+<option value="NA">Namibia(纳米比亚)</option>
+<option value="NR">Nauru(瑙鲁)</option>
+<option value="NP">Nepal(尼泊尔)</option>
+<option value="NL">Netherlands(荷兰)</option>
+<option value="AN">Netherlands Antilles(荷属安的列斯)</option>
+<option value="NC">New Caledonia(新喀里多尼亚)</option>
+<option value="NZ">New Zealand(新西兰)</option>
+<option value="NI">Nicaragua(尼加拉瓜)</option>
+<option value="NE">Niger(尼日尔)</option>
+<option value="NG">Nigeria(尼日利亚)</option>
+<option value="NU">Niue(纽埃)</option>
+<option value="NF">Norfolk Island(诺福克岛)</option>
+<option value="KP">North Korea(朝鲜)</option>
+<option value="MP">Northern Marianas(北马里亚纳)</option>
+<option value="NO">Norway(挪威)</option>
+<option value="OM">Oman(阿曼)</option>
+<option value="PK">Pakistan(巴基斯坦)</option>
+<option value="PW">Palau(帕劳)</option>
+<option value="PS">Palestine(巴勒斯坦)</option>
+<option value="PA">Panama(巴拿马)</option>
+<option value="PG">Papua New Guinea(巴布亚新几内亚)</option>
+<option value="PY">Paraguay(巴拉圭)</option>
+<option value="PE">Peru(秘鲁)</option>
+<option value="PH">Philippines(菲律宾)</option>
+<option value="PN">Pitcairn Islands Group(皮特凯恩群岛)</option>
+<option value="PL">Poland(波兰)</option>
+<option value="PT">Portugal(葡萄牙)</option>
+<option value="PR">Puerto Rico(波多黎各)</option>
+<option value="QA">Qatar(卡塔尔)</option>
+<option value="RE">Reunion(留尼汪)</option>
+<option value="RO">Romania(罗马尼亚)</option>
+<option value="RU">Russia(俄罗斯)</option>
+<option value="RW">Rwanda(卢旺达)</option>
+<option value="Sh">Saint helena(圣赫勒拿)</option>
+<option value="KN">Saint Kitts and nevis(圣基茨和尼维斯)</option>
+<option value="LC">Saint lucia(圣卢西亚)</option>
+<option value="PM">Saint Pierre and Miquelon(圣皮埃尔和密克隆)</option>
+<option value="VC">Saint Vincent and the Grenadines(圣文森特和格林纳丁斯)</option>
+<option value="SM">San Marion(圣马力诺)</option>
+<option value="ST">Sao Tome and Principe(圣多美和普林西比)</option>
+<option value="SA">Saudi Arabia(沙特阿拉伯)</option>
+<option value="SN">Senegal(塞内加尔)</option>
+<option value="RS">Serbia(塞尔维亚)</option>
+<option value="SC">Seychells(塞舌尔)</option>
+<option value="SL">Sierra leone(塞拉利昂)</option>
+<option value="SG">Singapore(新加坡)</option>
+<option value="SK">Slovakia(斯洛伐克)</option>
+<option value="SI">Slovenia(斯洛文尼亚)</option>
+<option value="SB">Solomon Islands(所罗门群岛)</option>
+<option value="SO">Somalia(索马里)</option>
+<option value="ZA">South Africa(南非)</option>
+<option value="GS">South Georgia and South Sandwich Islands(南乔治亚岛和南桑德韦奇岛)</option>
+<option value="KR">South Korea(韩国)</option>
+<option value="SS">South Sudan(南苏丹)</option>
+<option value="ES">Spain(西班牙)</option>
+<option value="LK">Sri Lanka(斯里兰卡)</option>
+<option value="SD">Sudan(苏丹)</option>
+<option value="SR">Suriname(苏里南)</option>
+<option value="SJ">Svalbard and jan Mayen Islands(斯瓦尔巴群岛)</option>
+<option value="SZ">Swaziland(斯威士兰)</option>
+<option value="SE">Sweden(瑞典)</option>
+<option value="CH">Switzerland(瑞士)</option>
+<option value="SY">Syria(叙利亚)</option>
+<option value="TW">Taiwan,China(中国台湾)</option>
+<option value="TJ">Tajikistan(塔吉克斯坦)</option>
+<option value="TZ">Tanzania(坦桑尼亚)</option>
+<option value="TH">Thailand(泰国)</option>
+<option value="TG">Togo(多哥)</option>
+<option value="TK">Tokelau(托克劳)</option>
+<option value="TO">Tonga(汤加)</option>
+<option value="TT">Trinidad and Tobago(特立尼达和多巴哥)</option>
+<option value="TN">Tunisia(突尼斯)</option>
+<option value="TR">Turkey(土耳其)</option>
+<option value="TM">Turkmenistan(土库曼斯坦)</option>
+<option value="TC">Turks and Caicos Islands(特克斯科斯群岛)</option>
+<option value="TV">Tuvalu(图瓦卢)</option>
+<option value="UG">Uganda(乌干达)</option>
+<option value="UA">Ukraine(乌克兰)</option>
+<option value="AE">United Arab Emirates(阿联酋)</option>
+<option value="GB">United Kingdom(英国)</option>
+<option value="US">United States(美国)</option>
+<option value="UM">UNITED STATES MINOR OUTLYING ISLANDS(美国本土外小岛屿)</option>
+<option value="VI">United States Virgin Is-lands(美属维尔京群岛)</option>
+<option value="UY">Uruguay(乌拉圭)</option>
+<option value="UZ">Uzbekistan(乌兹别克斯坦)</option>
+<option value="VU">Vanuatu(瓦努阿图)</option>
+<option value="VA">Vatican(梵蒂冈)</option>
+<option value="VE">Venezuela(委内瑞拉)</option>
+<option value="VN">Viet Nam(越南)</option>
+<option value="WF">Wallis and Futuna Is-lands(瓦利斯和富图纳群岛)</option>
+<option value="EH">Western Sahara(西撒哈拉)</option>
+<option value="WS">Western Samoa(西萨摩亚)</option>
+<option value="YE">Yemen(也门)</option>
+<option value="YU">Yugoslavia(南斯拉夫)</option>
+<option value="ZR">Zaire(扎伊尔)</option>
+<option value="ZM">Zambia(赞比亚)</option>
+<option value="ZW">Zimbabwe(津巴布韦)</option>
+</select>
+                            </div>
+                            <span id="divforReturnArea">
+                                <div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forReturnArealevel1" name="FillLevel1_Value" type="sltAreaforReturnArea"><option value="">--请选择--</option>
+<option value="北京">北京</option>
+<option value="江苏省">江苏省</option>
+<option value="浙江省">浙江省</option>
+<option value="安徽省">安徽省</option>
+<option value="福建省">福建省</option>
+<option value="江西省">江西省</option>
+<option value="山东省">山东省</option>
+<option value="河南省">河南省</option>
+<option value="湖北省">湖北省</option>
+<option value="湖南省">湖南省</option>
+<option selected="selected" value="广东省">广东省</option>
+<option value="天津">天津</option>
+<option value="广西壮族自治区">广西壮族自治区</option>
+<option value="海南省">海南省</option>
+<option value="重庆">重庆</option>
+<option value="四川省">四川省</option>
+<option value="贵州省">贵州省</option>
+<option value="云南省">云南省</option>
+<option value="西藏自治区">西藏自治区</option>
+<option value="陕西省">陕西省</option>
+<option value="甘肃省">甘肃省</option>
+<option value="青海省">青海省</option>
+<option value="河北省">河北省</option>
+<option value="宁夏回族自治区">宁夏回族自治区</option>
+<option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+<option value="香港特别行政区">香港特别行政区</option>
+<option value="澳门特别行政区">澳门特别行政区</option>
+<option value="台湾省">台湾省</option>
+<option value="山西省">山西省</option>
+<option value="内蒙古自治区">内蒙古自治区</option>
+<option value="辽宁省">辽宁省</option>
+<option value="吉林省">吉林省</option>
+<option value="黑龙江省">黑龙江省</option>
+<option value="上海">上海</option>
+</select>
+</div>
+<div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forReturnArealevel2" name="FillLevel2_Value" type="sltAreaforReturnArea"><option value="">--请选择--</option>
+<option value="广州市">广州市</option>
+<option value="韶关市">韶关市</option>
+<option selected="selected" value="深圳市">深圳市</option>
+<option value="珠海市">珠海市</option>
+<option value="汕头市">汕头市</option>
+<option value="佛山市">佛山市</option>
+<option value="江门市">江门市</option>
+<option value="湛江市">湛江市</option>
+<option value="茂名市">茂名市</option>
+<option value="肇庆市">肇庆市</option>
+<option value="惠州市">惠州市</option>
+<option value="梅州市">梅州市</option>
+<option value="汕尾市">汕尾市</option>
+<option value="河源市">河源市</option>
+<option value="阳江市">阳江市</option>
+<option value="清远市">清远市</option>
+<option value="东莞市">东莞市</option>
+<option value="中山市">中山市</option>
+<option value="潮州市">潮州市</option>
+<option value="揭阳市">揭阳市</option>
+<option value="云浮市">云浮市</option>
+</select>
+</div>
+<div class="col-xs-2" style="width:15.5%">
+    <select class="form-control input-sm" id="forReturnArealevel3" name="FillLevel3_Value"><option value="">--请选择--</option>
+<option value="罗湖区">罗湖区</option>
+<option value="福田区">福田区</option>
+<option value="南山区">南山区</option>
+<option selected="selected" value="宝安区">宝安区</option>
+<option value="龙岗区">龙岗区</option>
+<option value="盐田区">盐田区</option>
+<option value="光明新区">光明新区</option>
+<option value="龙华新区">龙华新区</option>
+<option value="坪山新区">坪山新区</option>
+<option value="大鹏新区">大鹏新区</option>
+</select>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        var toBindName = "sltArea" + "forReturnArea";
+        $("select[type='" + toBindName + "']").each(function () {
+            $(this).change(function () {
+                if ($(this).attr("id") == "forReturnArea" + "level1" && $(this).val() == "") {
+                    $("#forReturnArea" + "level2").empty();
+                    $("#forReturnArea" + "level3").empty();
+                    $("#forReturnArea" + "level2").append("<option value=''></option>");
+                    $("#forReturnArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>")
+                    return;
+                }
+                else if ($(this).attr("id") == "forReturnArea" + "level2" && $(this).val() == "") {
+                    $("#forReturnArea" + "level3").empty();
+                    $("#forReturnArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/LinkageSelect/SearchSelectList",
+                    data: {
+                        fillLevelId: $(this).attr("id"),
+                        value: $(this).val(),
+                        valueIsID:"False"
+                    },
+                    datatype: "json",
+                    success: function (data) {
+                        var toFillLevelNum = data.MapData.ToFillLevelNum;
+                        var sltColumn = $("#forReturnArea" + "level" + toFillLevelNum).empty();
+
+                        //如果是给二级下拉装载，则说明是一级下拉变动，那么把第三级的清空掉，否则选项还是变动之前的数据
+                        if (toFillLevelNum == "2") {
+                            $("#forReturnArea" + "level3").empty();
+                            $("#forReturnArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                            //给二级下拉默认加载“请选择”选项
+                            $("#forReturnArea" + "level" + toFillLevelNum).append("<option value=''><hg:trans>--请选择--</hg:trans></option>")
+                        }
+
+                        //给三级下拉框添加“请选择”选项
+                        if (toFillLevelNum == "3") {
+                            $("#forReturnArea" + "level3").append("<option value=''><hg:trans>--请选择--</hg:trans></option>");
+                        }
+                        for (var i = 0; i < data.MapData.ColumnList.length; i++) {
+                            var column = data.MapData.ColumnList[i];
+                            $("#forReturnArea" + "level" + toFillLevelNum).append("<option value='" + column.Value + "'>" + column.Text + "</option>")
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            })
+        })
+    });
+</script>
+
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="divforReturnAreaForOther" style="display:none">
+                        <label class="col-sm-2 control-label">State / Province<font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforReturnAreaProvinceForOther" name="returnAddressInfo.Province" type="text" value="广东省" />
+                        </div>
+                        <label class="col-sm-2 control-label">City<font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <input class="form-control" id="txtforReturnAreaCityForOther" name="returnAddressInfo.City" type="text" value="深圳市" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Address<font color="red">*</font></label>
+                        <div class="col-sm-3">
+                            <textarea class="form-control" cols="20" id="txtforReturnAddress" name="returnAddressInfo.Address" rows="2" savetype="forReturn" style="height:80px">
+gonghegongyelu </textarea>
+                        </div>
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        $("#SetAddress li").click(function () {
+            $("#SetAddress li").removeClass();
+            $("div[divtype='childTabs']").css("display", "none");
+            $(this).addClass("active");
+            $("#div" + $(this).attr("id")).css("display", "");
+        })
+
+        $("select[sltType='sltForCountry']").each(function () {
+            //省市区的层ID为“div+下拉框id”
+            var id = $(this).attr("id");
+            if ($(this).val() != "CN") {
+                $("#div" + id).css("display", "none");
+                $("#hidforRecipientAddressId").val() == 0 ? $("#div" + id + "ForOther").css("display", "none") : $("#div" + id + "ForOther").css("display", "");
+            }
+            else {
+                $("#div" + id).css("display", "");
+                $("#div" + id + "ForOther").css("display", "none");
+            }
+
+            $(this).change(function () {
+                //地区不为中国则将选项值清空掉，否则已经选择了省市区在更改为他国会都保存
+                if ($(this).val() != "CN") {
+                    $("#div" + id).css("display", "none");
+                    $("#div" + id + "ForOther").css("display", "");
+                    $("#" + id + "level1").val("");
+                    $("#" + id + "level2").empty().append("<option value=''>--请选择--</option>");
+                    $("#" + id + "level3").empty().append("<option value=''>--请选择--</option>");
+                    $("#" + id + "ProvinceForOther").val("");
+                    $("#" + id + "CityForOther").val("");
+                } else {
+                    $("#div" + id).css("display", "");
+                    $("#div" + id + "ForOther").css("display", "none");
+                }
+            })
+        })
+
+    })
+    function doCopyAecipientAddress() {
+        $("#txtforSendContact").val($("#txtforRecipientContact").val());
+        $("#txtforSendMobilePhone").val($("#txtforRecipientMobilePhone").val());
+        $("#txtforSendCompany").val($("#txtforRecipientCompany").val());
+        $("#txtforSendTelePhone").val($("#txtforRecipientTelePhone").val());
+        $("#txtforSendEmail").val($("#txtforRecipientEmail").val());
+        $("#txtforSendZipCode").val($("#txtforRecipientZipCode").val());
+        $("#forSendArea").val($("#forRecipientArea").val());
+        if ($("#divforRecipientArea").css("display") == 'none') {
+            $('#divforSendArea').css('display', 'none');
+            $("#divforSendAreaForOther").css("display", "");
+            $("#txtforSendAreaProvinceForOther").val($("#txtforRecipientAreaProvinceForOther").val());
+            $("#txtforSendAreaCityForOther").val($("#txtforRecipientAreaCityForOther").val());
+        } else {
+            $('#divforSendArea').css('display', '');
+            $("#divforSendAreaForOther").css("display", "none");
+            $("#forSendArealevel1").val($("#forRecipientArealevel1").val());
+            $("#forSendArealevel1").trigger("change");
+            //$("#forSendArealevel2").val($("#forRecipientArealevel2").val());
+            //$("#forSendArealevel3").val($("#forRecipientArealevel3").val());
+        }
+        $("#txtforSendAddress").val($("#txtforRecipientAddress").val());
+    }
+    function doCopySendAddress() {
+        $("#txtforReturnContact").val($("#txtforSendContact").val());
+        $("#txtforReturnMobilePhone").val($("#txtforSendMobilePhone").val());
+        $("#txtforReturnCompany").val($("#txtforSendCompany").val());
+        $("#txtforReturnTelePhone").val($("#txtforSendTelePhone").val());
+        $("#txtforReturnEmail").val($("#txtforSendEmail").val());
+        $("#txtforReturnZipCode").val($("#txtforSendZipCode").val());
+        $("#forReturnArea").val($("#forSendArea").val());
+        if ($("#divforSendArea").css("display") == 'none') {
+            $('#divforReturnArea').css('display', 'none');
+            $("#divforReturnAreaForOther").css("display", "");
+            $("#txtforReturnAreaProvinceForOther").val($("#txtforSendAreaProvinceForOther").val());
+            $("#txtforReturnAreaCityForOther").val($("#txtforSendAreaCityForOther").val());
+        } else {
+            $('#divforReturnArea').css('display', '');
+            $("#divforReturnAreaForOther").css("display", "none");
+            $("#forReturnArealevel1").val($("#forSendArealevel1").val());
+            $("#forReturnArealevel1").trigger("change");
+            //$("#forReturnArealevel2").val($("#forSendArealevel2").val());
+            //$("#forReturnArealevel3").val($("#forSendArealevel3").val());
+        }
+        $("#txtforReturnAddress").val($("#txtforSendAddress").val());
+    }
+    function doCheckAddress() {
+        var error = {};
+        var forRecipientError = false;
+        var forSendError = false;
+        var forReturnError = false;
+        var hasError = false;
+        $("input[savetype = 'forRecipient'],select[savetype = 'forRecipient'],textarea[savetype = 'forRecipient']").each(function () {
+            var value = $(this).val();
+            var id = $(this).attr("id");
+            if (value.length == 0) {
+                hasError = true;
+                forRecipientError = true;
+                error[id] = translate.format("<hg:trans>不允许为空</hg:trans>");
+            }
+            if (id == "forRecipientArea") {
+                if (value == "CN") {
+                    if ($("#" + id + "level1").val().length == 0) {
+                        hasError = true; forRecipientError = true;
+                        error[id + "level1"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                    if ($("#" + id + "level2").val().length == 0) {
+                        hasError = true; forRecipientError = true;
+                        error[id + "level2"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                    if ($("#" + id + "level3").val().length == 0) {
+                        hasError = true; forRecipientError = true;
+                        error[id + "level3"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                }
+                else {
+                    if ($("#txt" + id + "ProvinceForOther").val().length == 0) {
+                        hasError = true; forRecipientError = true;
+                        error["txt" + id + "ProvinceForOther"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+                    }
+                    if ($("#txt" + id + "CityForOther").val().length == 0) {
+                        hasError = true; forRecipientError = true;
+                        error["txt" + id + "CityForOther"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+                    }
+                }
+            }
+        })
+        //手机和固话必须有一项不为空
+        var forRecipientMobilePhone = $("#txtforRecipientMobilePhone").val();
+        var forRecipientTelePhone = $("#txtforRecipientTelePhone").val();
+        if (forRecipientMobilePhone.length == 0) {
+            hasError = true; forRecipientError = true;
+            error["txtforRecipientMobilePhone"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+        }
+        if (forRecipientTelePhone.length == 0) {
+            hasError = true; forRecipientError = true;
+            error["txtforRecipientTelePhone"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+        }
+        //else {
+        //    if (forRecipientMobilePhone.length > 0)
+        //    {
+        //        if (!checkMobilePhone(forRecipientMobilePhone)) {
+        //            hasError = true; forRecipientError = true;
+        //            error["txtforRecipientMobilePhone"] = "号码格式不正确";
+        //        }
+        //    }
+        //}
+
+        $("input[savetype = 'forSend'],select[savetype = 'forSend'],textarea[savetype = 'forSend']").each(function () {
+            var value = $(this).val();
+            var id = $(this).attr("id");
+            if (value.length == 0) {
+                hasError = true; forSendError = true;
+                error[id] = translate.format("<hg:trans>不允许为空</hg:trans>");
+            }
+            if (id == "forSendArea") {
+                if (value == "CN") {
+                    if ($("#" + id + "level1").val().length == 0) {
+                        hasError = true; forSendError = true;
+                        error[id + "level1"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                    if ($("#" + id + "level2").val().length == 0) {
+                        hasError = true; forSendError = true;
+                        error[id + "level2"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                    if ($("#" + id + "level3").val().length == 0) {
+                        hasError = true; forSendError = true;
+                        error[id + "level3"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                } else {
+                    if ($("#txt" + id + "ProvinceForOther").val().length == 0) {
+                        hasError = true; forSendError = true;
+                        error["txt" + id + "ProvinceForOther"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+                    }
+                    if ($("#txt" + id + "CityForOther").val().length == 0) {
+                        hasError = true; forSendError = true;
+                        error["txt" + id + "CityForOther"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+                    }
+                }
+            }
+        })
+        //手机和固话必须有一项不为空
+        var forSendMobilePhone = $("#txtforSendMobilePhone").val();
+        var forSendTelePhone = $("#txtforSendTelePhone").val();
+        if (forSendMobilePhone.length == 0) {
+            hasError = true; forSendError = true;
+            error["txtforSendMobilePhone"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+        }
+        if (forSendTelePhone.length == 0) {
+            hasError = true; forSendError = true;
+            error["txtforSendTelePhone"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+        }
+        //else {
+        //    if (forRecipientMobilePhone.length > 0) {
+        //        if (!checkMobilePhone(forRecipientMobilePhone)) {
+        //            hasError = true; forSendError = true;
+        //            error["txtforSendMobilePhone"] = "号码格式不正确";
+        //        }
+        //    }
+        //}
+        $("input[savetype = 'forReturn'],select[savetype = 'forReturn'],textarea[savetype = 'forReturn']").each(function () {
+            var value = $(this).val();
+            var id = $(this).attr("id");
+            if (value.length == 0) {
+                hasError = true; forReturnError = true;
+                error[id] = translate.format("<hg:trans>不允许为空</hg:trans>");
+            }
+            if (id == "forReturnArea") {
+                if (value == "CN") {
+                    if ($("#" + id + "level1").val().length == 0) {
+                        hasError = true; forReturnError = true;
+                        error[id + "level1"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                    if ($("#" + id + "level2").val().length == 0) {
+                        hasError = true; forReturnError = true;
+                        error[id + "level2"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                    if ($("#" + id + "level3").val().length == 0) {
+                        hasError = true; forReturnError = true;
+                        error[id + "level3"] = translate.format("<hg:trans>请选择</hg:trans>");
+                    }
+                } else {
+                    if ($("#txt" + id + "ProvinceForOther").val().length == 0) {
+                        hasError = true; forReturnError = true;
+                        error["txt" + id + "ProvinceForOther"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+                    }
+                    if ($("#txt" + id + "CityForOther").val().length == 0) {
+                        hasError = true; forReturnError = true;
+                        error["txt" + id + "CityForOther"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+                    }
+                }
+            } else {
+                if (checkChinese(value)) {
+                    hasError = true; forReturnError = true;
+                    error[id] = translate.format("<hg:trans>不能包含中文和中文符号</hg:trans>");
+                }
+            }
+        })
+        //手机和固话必须有一项不为空
+        var forReturnMobilePhone = $("#txtforReturnMobilePhone").val();
+        var forReturnTelePhone = $("#txtforReturnTelePhone").val();
+        if (forReturnMobilePhone.length == 0) {
+            hasError = true; forReturnError = true;
+            error["txtforReturnMobilePhone"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+        }
+        if (forReturnTelePhone.length == 0) {
+            hasError = true; forReturnError = true;
+            error["txtforReturnTelePhone"] = translate.format("<hg:trans>不允许为空</hg:trans>");
+        }
+        //else {
+        //    if (forRecipientMobilePhone.length > 0) {
+        //        if (!checkMobilePhone(forRecipientMobilePhone)) {
+        //            hasError = true; forReturnError = true;
+        //            error["txtforReturnMobilePhone"] = "号码格式不正确";
+        //        }
+        //    }
+        //}
+        if (hasError) {
+            $("#SetAddress li").each(function () {
+                $(this).removeClass();
+                var id = $(this).attr("id");
+                $("#div" + id).css("display", "none");
+            });
+            if (forRecipientError) {
+                $("#recipientAddress").addClass("active");
+                $("#divrecipientAddress").css("display", "");
+            } else {
+                if (forSendError) {
+                    $("#sendAddress").addClass("active");
+                    $("#divsendAddress").css("display", "");
+                }
+                if (forSendError && forReturnError) {
+                    $("#sendAddress").addClass("active");
+                    $("#divsendAddress").css("display", "");
+                }
+                if (!forSendError && forReturnError) {
+                    $("#returnAddress").addClass("active");
+                    $("#divreturnAddress").css("display", "");
+                }
+            }
+
+p195710805doShowError(error);
+            return true;
+        } else { return false; }
+    }
+    function p195710805doSaveData() {
+        if (doCheckAddress())
+        { return false; }
+        else
+        {
+            //处理地址信息
+            var RecipientFullAddress = "";
+            var recipientCountry = $("#forRecipientArea option:selected").text();
+            //var recipientCountryEN = recipientCountry.substring(recipientCountry.lastIndexOf("　") + 1);//截取下拉框文本后面国家英文名称
+            //var recipientCountryCN = recipientCountry.substring(0, recipientCountry.indexOf("　")); //截取下拉框文本前面国家中文名称
+            var recipientCountryEN = recipientCountry.substring(0, recipientCountry.indexOf("("));
+            var recipientCountryCN = recipientCountry.substring(recipientCountry.indexOf("(") + 1);
+            recipientCountryCN = recipientCountryCN.substring(0, recipientCountryCN.length - 1);
+            var recipientProvince = "";
+            var recipientCity = "";
+            var recipientArea = "";
+            if ($("#forRecipientArea").val() == "CN") {
+                recipientProvince = $("#forRecipientArealevel1").val();
+                recipientCity = $("#forRecipientArealevel2").val();
+                recipientArea = $("#forRecipientArealevel3").val();
+                RecipientFullAddress = recipientCountryCN + recipientProvince + recipientCity + recipientArea + $("#txtforRecipientAddress").val();
+            } else {
+                recipientProvince = $("#txtforRecipientAreaProvinceForOther").val() + " ";
+                recipientCity = $("#txtforRecipientAreaCityForOther").val() + " ";
+                RecipientFullAddress = $("#txtforRecipientAddress").val() + recipientArea + recipientCity + recipientProvince + recipientCountryEN;
+            }
+            var recipientInfo = {
+                AddressId: $("#hidforRecipientAddressId").val(),
+                Contact: $("#txtforRecipientContact").val(),
+                MobilePhone: $("#txtforRecipientMobilePhone").val(),
+                TelePhone: $("#txtforRecipientTelePhone").val(),
+                ZipCode: $("#txtforRecipientZipCode").val(),
+                Country: $("#forRecipientArea").val(),
+                Address: $("#txtforRecipientAddress").val(),
+                Company: $("#txtforRecipientCompany").val(),
+                Email: $("#txtforRecipientEmail").val(),
+                Province: recipientProvince,
+                City: recipientCity,
+                Area: recipientArea,
+                FullAddress: RecipientFullAddress,
+                CountryName: recipientCountryCN,
+                CountryNameEN: recipientCountryEN
+            };
+            RecipientInfo = JSON.stringify(recipientInfo);
+
+
+            //处理地址信息
+            var SendFullAddress = "";
+            var sendCountry = $("#forSendArea option:selected").text();
+            var sendCountryEN = sendCountry.substring(sendCountry.lastIndexOf("　") + 1);
+            var sendCountryCN = sendCountry.substring(0, sendCountry.indexOf("　"));
+            var sendProvince = "";
+            var sendCity = "";
+            var sendArea = "";
+            if ($("#forSendArea").val() == "CN") {
+                sendProvince = $("#forSendArealevel1").val();
+                sendCity = $("#forSendArealevel2").val();
+                sendArea = $("#forSendArealevel3").val();
+                SendFullAddress = sendCountryCN + sendProvince + sendCity + sendArea + $("#txtforSendAddress").val();
+            } else {
+                sendProvince = $("#txtforSendAreaProvinceForOther").val() + " ";
+                sendCity = $("#txtforSendAreaCityForOther").val() + " ";
+                SendFullAddress = $("#txtforSendAddress").val() + sendArea + sendCity + sendProvince + sendCountryEN;
+            }
+
+            var sendInfo = {
+                AddressId: $("#hidforSendAddressId").val(),
+                Contact: $("#txtforSendContact").val(),
+                MobilePhone: $("#txtforSendMobilePhone").val(),
+                TelePhone: $("#txtforSendTelePhone").val(),
+                ZipCode: $("#txtforSendZipCode").val(),
+                Country: $("#forSendArea").val(),
+                Address: $("#txtforSendAddress").val(),
+                Company: $("#txtforSendCompany").val(),
+                Email: $("#txtforSendEmail").val(),
+                Province: sendProvince,
+                City: sendCity,
+                Area: sendArea,
+                FullAddress: SendFullAddress,
+                CountryName: recipientCountryCN,
+                CountryNameEN: recipientCountryEN
+            };
+            SendInfo = JSON.stringify(sendInfo);
+
+            //处理地址信息
+            var ReturnFullAddress = "";
+            var returnCountry = $("#forReturnArea option:selected").text();
+            var returnCountryEN = returnCountry.substring(returnCountry.lastIndexOf("　") + 1);
+            var returnCountryCN = returnCountry.substring(0, returnCountry.indexOf("　"));
+            var returnProvince = "";
+            var returnCity = "";
+            var returnArea = "";
+            if ($("#forReturnArea").val() == "CN") {
+                returnProvince = $("#forReturnArealevel1").val();
+                returnCity = $("#forReturnArealevel2").val();
+                returnArea = $("#forReturnArealevel3").val();
+                ReturnFullAddress = returnCountryCN + returnProvince + returnCity + returnArea + $("#txtforReturnAddress").val();
+            } else {
+                returnProvince = $("#txtforReturnAreaProvinceForOther").val() + " ";
+                returnCity = $("#txtforReturnAreaCityForOther").val() + " ";
+                ReturnFullAddress = $("#txtforReturnAddress").val() + returnArea + returnCity + returnProvince + returnCountryEN;
+            }
+
+            var returnInfo = {
+                AddressId: $("#hidforReturnAddressId").val(),
+                Contact: $("#txtforReturnContact").val(),
+                MobilePhone: $("#txtforReturnMobilePhone").val(),
+                TelePhone: $("#txtforReturnTelePhone").val(),
+                ZipCode: $("#txtforReturnZipCode").val(),
+                Country: $("#forReturnArea").val(),
+                Address: $("#txtforReturnAddress").val(),
+                Company: $("#txtforReturnCompany").val(),
+                Email: $("#txtforReturnEmail").val(),
+                Province: returnProvince,
+                City: returnCity,
+                Area: returnArea,
+                FullAddress: ReturnFullAddress,
+                CountryName: recipientCountryCN,
+                CountryNameEN: recipientCountryEN
+            };
+            ReturnInfo = JSON.stringify(returnInfo);
+            $.ajax({
+                type: "POST",
+                url: "/Logistics/SendAddressSettingEdit",
+                data: {
+                    RecipientInfo: RecipientInfo,
+                    SendInfo: SendInfo,
+                    ReturnInfo: ReturnInfo
+                },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    }
+                    else {
+                        window.location.reload();
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+
+    function p195710805doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).parent().addClass("has-error");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).parent().removeClass("has-error");
+            });
+        });
+    }
+</script>
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

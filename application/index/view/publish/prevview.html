@@ -1,0 +1,1269 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="__STATIC__/index/js/b5fd31c8653449399b98d33819bf6bc8.js"></script>
+
+    <script src="__STATIC__/index/js/bc872c697d1146a99adc7d4c03414551.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->{:widget('Blog/left')}           
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabProductPreview" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>待发布库</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabProductPreview" role="tabpanel" class="tab-pane fade active in">
+        <div class="search-panel">
+<form action="/AmazonPublish/Preview?Length=11" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p920590857divDataList" id="searchForm" method="post">                <input type="hidden" id="hidProductStauts" name="hidProductStauts" value="4" />
+                <div class="row bottom-line"  style="margin-top:5px;">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>亚马逊店铺</hg:trans></label>
+                    <div id="divAccountItems" class="search-item">
+                        <span userform="" apiuserid=""><hg:trans>全部</hg:trans></span>
+                            <span userform="Amazon" apiuserid="7">11(us)</span>
+                        <input type="hidden" id="hidApiAccountItem" name="hidApiAccountItem" value="" />
+                    </div>
+                </div>
+                <div class="row  bottom-line"  style="margin-top:5px;">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>商品标记</hg:trans></label>
+                    <div id="divProductMark" class="input-group para-items">
+                        <input type="hidden" id="hidProductMark" name="hidProductMark" value="" />
+                    </div>
+                </div>
+                <div class="row"  style="margin-top:5px;">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="search-item">
+                        <span itemid="proSuk" title="请输入SKU值" class="active">SKU</span>
+                        <span itemid="proName" title="请输入产品名称"><hg:trans>产品名称</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="proSuk" />
+                    </div>
+                </div>
+                <div class="row  bottom-line" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;padding-top: 12px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:360px;">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" placeholder="请输入SKU值" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;margin-top:5px;"><hg:trans>排序方式</hg:trans></label>
+                    <div id="divSort" class="search-item">
+                        <span itemid="PreviewProductId" sorttype="DESC" class="active"><hg:trans>默认排序</hg:trans><span id="PreviewProductIdSortMark" class="glyphicon glyphicon-arrow-down"></span></span>
+                        <span itemid="ParentSKU" sorttype="">SKU<span id="ParentSKUSortMark" class="glyphicon "></span></span>
+                        <span itemid="CreateTime" sorttype="DESC"><hg:trans>录入时间</hg:trans><span id="CreateTimeSortMark" class="glyphicon"></span></span>
+                        <input type="hidden" id="hidSort" name="hidSort" value="PreviewProductId" />
+                        <input type="hidden" id="hidSortType" name="hidSortType" value="DESC" />
+                    </div>
+                </div>
+                <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" value="" />
+</form>        </div>
+        <div id="divProductSearch">
+            
+<div id="f474divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f474divCatalogContentPanel" class="tree" contentgroup="#divProductSearch #f474divCatalogContentPanel" navigategroup="#divProductSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divProductSearch #f474divCatalogContentPanel" navigategroup="#divProductSearch .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f474treeObject = new redgle.tree({
+            contentPanelExpr:"#divProductSearch #f474divCatalogContentPanel"
+            , navigatePanelExpr:"#divProductSearch .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f474treeObject.convertCatalogToData(data);
+f474treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f474treeObject.convertDataToCatalog(data);
+                if(typeof(p920590857onCatalogSelected) == "function") p920590857onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"Crawl"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f474treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f474treeObject.addItemsToNavigate(data);
+f474treeObject.AddElementItem(data[0]);
+                }
+                else {
+f474treeObject.addItemsToNavigate([data]);
+f474treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                // alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f474divSelect").hover(
+            function () {
+                $("#f474divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f474divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div class="status-group parents-nodes">
+            <label itemid=""><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="4" class="active"><a><hg:trans>草稿</hg:trans></a><span></span></label>
+            <label itemid="0"><a><hg:trans>待发布</hg:trans></a><span></span></label>
+            <label itemid="3"><a><hg:trans>发布中</hg:trans></a><span></span></label>
+            <label itemid="2"><a><hg:trans>发布失败</hg:trans></a><span></span></label>
+            <label itemid="1"><a><hg:trans>已发布</hg:trans></a><span></span></label>
+        </div>
+        <div class="datalist" id="p920590857divDataList">
+            
+
+<div class="datalist-top">
+    <div class="button-area parents-nodes">
+            <div class="btn-group false">
+                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-plus"></i> <hg:trans>新增商品</hg:trans>&nbsp;<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                    <li><a href="javascript:void(0)" onclick="p920590857doEditData()"><hg:trans>新增</hg:trans></a></li>
+                    <li><a href="javascript:void(0)" onclick="p920590857doSelectProduct()"><hg:trans>从本地产品选择</hg:trans></a></li>
+                </ul>
+            </div>
+
+                <div class="btn-group false">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-edit"></i> <hg:trans>批量操作</hg:trans>&nbsp;<span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                <li><a href="javascript:void(0)" onclick="p920590857doMoveToCatalog()"><hg:trans>移动到目录</hg:trans></a></li>
+                <li><a href="javascript:void(0)" onclick="p920590857doBatchDeleteData()"><hg:trans>批量删除</hg:trans></a></li>
+            </ul>
+        </div>
+        <div class="btn-group false">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-tag"></i>&nbsp;<hg:trans>标记商品</hg:trans>&nbsp;<span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" style="min-width:93px">
+
+                <li class="divider"></li>
+                <li><a href="http://yhjm.sumool.com/Mark/MarkSetting/PreviewProduct" target="_blank"><hg:trans>标记管理</hg:trans></a></li>
+            </ul>
+        </div>
+
+        <button type="button" class="btn btn-success btn-sm" onclick="p920590857doViewSearchAmazonOnlineProduct();"><i class="glyphicon glyphicon-tower"></i>&nbsp;<hg:trans>创建跟卖</hg:trans></button>
+        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" onclick="p920590857doTimingCarry()"><i class="glyphicon glyphicon-time"></i>&nbsp;<hg:trans>定时刊登</hg:trans></button>
+    </div>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:3%;">
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p920590857doSetCheckBox(this)" />
+            </th>
+            <th style="width:7%;"><hg:trans>商品标记</hg:trans></th>
+            <th style="width:7%;"><hg:trans>商品图片</hg:trans></th>
+            <th style="width:10%;"><hg:trans>所属店铺</hg:trans><br />[<hg:trans>来源</hg:trans>]</th>
+            <th style="width:30%;"><hg:trans>商品名称</hg:trans></th>
+            <th style="width:7%;"><hg:trans>国家</hg:trans></th>
+            <th style="width:15%;"><hg:trans>状态</hg:trans></th>
+            <th style="width:15%;"><hg:trans>商品变参</hg:trans></th>
+            <th style="width:10%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="742" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/8770684664_730580308.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 1688 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="https://detail.1688.com/offer/562534886213.html?spm=b26110380.sw1688.mof001.161.57d3201aAhC46Y" target="_blank" class="text-overflow" style="max-width:95%; float:left;" title="北欧简约原木木质LED吸顶灯卧室客厅书房圆形木艺灯原木灯具家具">北欧简约原木木质LED吸顶灯卧室客厅书房圆形木艺灯原木灯具家具</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：jj0009</span><br />
+                        <span><hg:trans>价格</hg:trans>：146.52 CNY</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(742)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(742)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(742)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="741" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/4693927693_1222730380.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 1688 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="https://detail.1688.com/offer/558764831184.html?spm=b26110380.sw1688.mof001.166.13c57680fKi9yZ" target="_blank" class="text-overflow" style="max-width:95%; float:left;" title="时尚热销韩版洗漱包休闲多功能旅行化妆包定制户外女士帆布收纳包">时尚热销韩版洗漱包休闲多功能旅行化妆包定制户外女士帆布收纳包</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：hz0004</span><br />
+                        <span><hg:trans>价格</hg:trans>：9.30 CNY</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(741)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(741)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(741)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="720" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/4402428896_1798973395.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 本地产品 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="javascript:void(0)" class="text-overflow" style="max-width:95%; float:left;" title="吉仔仔 防晒帽子G字狗帽 旅游太阳帽 外出遮阳网透气 宠物棒球帽">吉仔仔 防晒帽子G字狗帽 旅游太阳帽 外出遮阳网透气 宠物棒球帽</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：xiexue0017</span><br />
+                        <span><hg:trans>价格</hg:trans>：2.34 USD</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(720)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(720)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(720)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="717" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/8872585340_432938387.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 1688 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="https://detail.1688.com/offer/568619825801.html?spm=b26110380.sw1688.mof001.101.58512eb77CntZO&amp;tracelog=p4p&amp;clickid=651ebe49bd0a4b6b8ae1dcad95d619c3&amp;sessionid=510e62c1abac7d727c120a5e98afe840" target="_blank" class="text-overflow" style="max-width:95%; float:left;" title="厂家直销体脂称智能电子称APP蓝牙智能秤体重秤脂肪测试一件代发">厂家直销体脂称智能电子称APP蓝牙智能秤体重秤脂肪测试一件代发</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：yd0014</span><br />
+                        <span><hg:trans>价格</hg:trans>：32.00 CNY</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(717)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(717)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(717)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="716" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/41uuuwmguil._sr,0_.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 亚马逊 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="https://www.amazon.com/Profile-Special-Cotton-Cap-Black-W40S62B/dp/B000PQJW12/ref=br_asw_pdt-2?pf_rd_m=ATVPDKIKX0DER&amp;pf_rd_s=&amp;pf_rd_r=9N4SESBEXC3M85F1NA7K&amp;pf_rd_t=36701&amp;pf_rd_p=8a40d565-0feb-44c7-950b-69dbd16d4e81&amp;pf_rd_i=desktop" target="_blank" class="text-overflow" style="max-width:95%; float:left;" title="Low Profile Special Cotton Mesh Cap-Black W40S62B">Low Profile Special Cotton Mesh Cap-Black W40S62B</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：pei0024</span><br />
+                        <span><hg:trans>价格</hg:trans>：9.99 USD</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(716)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(716)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(716)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="715" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/8738833238_1771010617.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 本地产品 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="javascript:void(0)" class="text-overflow" style="max-width:95%; float:left;" title="凯瑞新款星空笔记本  学生手帐记事本文具厂家直销批发笔记本定制">凯瑞新款星空笔记本  学生手帐记事本文具厂家直销批发笔记本定制</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：men0099</span><br />
+                        <span><hg:trans>价格</hg:trans>：0.53 USD</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(715)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(715)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(715)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="704" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/tb15hw.jiyybunksnfoxxcwgvxa_!!0-item_pic.jpg_q90.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 本地产品 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="javascript:void(0)" class="text-overflow" style="max-width:95%; float:left;" title="布先生 雕花男士短袖t恤 夏季新款圆领纯棉半袖体恤衫简约上衣t桖">布先生 雕花男士短袖t恤 夏季新款圆领纯棉半袖体恤衫简约上衣t桖</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：</span><br />
+                        <span><hg:trans>价格</hg:trans>：277.20 USD</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(704)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(704)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(704)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="703" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/tb15hw.jiyybunksnfoxxcwgvxa_!!0-item_pic.jpg_q90.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 本地产品 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="javascript:void(0)" class="text-overflow" style="max-width:95%; float:left;" title="布先生 雕花男士短袖t恤 夏季新款圆领纯棉半袖体恤衫简约上衣t桖">布先生 雕花男士短袖t恤 夏季新款圆领纯棉半袖体恤衫简约上衣t桖</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：</span><br />
+                        <span><hg:trans>价格</hg:trans>：277.20 USD</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(703)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(703)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(703)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="702" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/tb15hw.jiyybunksnfoxxcwgvxa_!!0-item_pic.jpg_q90.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 本地产品 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="javascript:void(0)" class="text-overflow" style="max-width:95%; float:left;" title="布先生 雕花男士短袖t恤 夏季新款圆领纯棉半袖体恤衫简约上衣t桖">布先生 雕花男士短袖t恤 夏季新款圆领纯棉半袖体恤衫简约上衣t桖</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：</span><br />
+                        <span><hg:trans>价格</hg:trans>：277.20 USD</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(702)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(702)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(702)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="701" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/tb24ggokcyybunksnfoxxcwgvxa_!!1731734254.jpg_q90.jpg' />
+                </td>
+                <td>
+                    11(us)
+                        <br /> <span>[ 本地产品 ]</span>
+
+                </td>
+                <td style='max-width:300px; text-align:left !important;'>
+                        <a href="javascript:void(0)" class="text-overflow" style="max-width:95%; float:left;" title="宠百思 竹炭狗狗尿垫加厚100片除臭狗狗尿片尿不湿狗尿布宠物用品">宠百思 竹炭狗狗尿垫加厚100片除臭狗狗尿片尿不湿狗尿布宠物用品</a> <br />
+                    <span><hg:trans>父SKU</hg:trans>：pet0006</span><br />
+                        <span><hg:trans>价格</hg:trans>：29.59 USD</span> <br />
+                                    </td>
+                <td>
+                    
+                </td>
+                <td>
+                        <span class="text-success">草稿</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                                <a href="javascript:void(0)" onclick="javascript:p920590857doEditData(701)"><hg:trans>编辑</hg:trans></a>
+                            <a href="javascript:void(0)" style="display:none" onclick="javascript:p920590857doEditData(701)"><hg:trans>修改分类</hg:trans></a>
+                                            <a href="javascript:void(0)" onclick="javascript:p920590857doDeleteData(701)"><hg:trans>删除</hg:trans></a>
+
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p920590857divDataList" data-maxpages="56" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/AmazonPublish/Preview?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/AmazonPublish/Preview?pageIndex=2&amp;pagesize=10">2</a>  <a data-pageindex="3" href="/AmazonPublish/Preview?pageIndex=3&amp;pagesize=10">3</a>  <a data-pageindex="4" href="/AmazonPublish/Preview?pageIndex=4&amp;pagesize=10">4</a>  <a data-pageindex="5" href="/AmazonPublish/Preview?pageIndex=5&amp;pagesize=10">5</a>  <a data-pageindex="6" href="/AmazonPublish/Preview?pageIndex=6&amp;pagesize=10">6</a>  <a data-pageindex="7" href="/AmazonPublish/Preview?pageIndex=7&amp;pagesize=10">7</a>  <a data-pageindex="8" href="/AmazonPublish/Preview?pageIndex=8&amp;pagesize=10">8</a>  <a data-pageindex="9" href="/AmazonPublish/Preview?pageIndex=9&amp;pagesize=10">9</a>  <a data-pageindex="10" href="/AmazonPublish/Preview?pageIndex=10&amp;pagesize=10">10</a>  <a data-pageindex="11" href="/AmazonPublish/Preview?pageIndex=11&amp;pagesize=10">...</a>  <a data-pageindex="2" href="/AmazonPublish/Preview?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="56" href="/AmazonPublish/Preview?pageIndex=56&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 560 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="syncProductModal" tabindex="-1" role="dialog" aria-labelledby="syncProductModalLabel" aria-hidden="true" style="padding-top:100px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><hg:trans>认领本地产品</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            1.<hg:trans>选择认领的平台账号。</hg:trans><br />
+                            2.<hg:trans>点击[确定]后商品将会被认领到待发布库。</hg:trans>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtUserForm" class="control-label col-sm-1" style="width:120px !important;margin-right:5px;"><hg:trans>Amazon店铺</hg:trans></label>
+                        <div id="divConvertToAccount" class="input-group para-items">
+                                    <span userform="Amazon" apiuserid="7">11(us) (Amazon)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnStartSyncStock" onclick="doConvertLocalProduct()"><hg:trans>确定</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 移动目录窗口-->
+<div class="modal fade" id="syncProductModalCatalog" tabindex="-1" role="dialog" aria-labelledby="syncProductModalCatalog" aria-hidden="true" style="padding-top:100px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><hg:trans>移动目录</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            <hg:trans>选择需要移动到的目标目录，点击【确定】即可。</hg:trans><br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" style="width:120px !important;margin-right:5px;"><hg:trans>目标目录</hg:trans>:</label>
+                        <div class="input-group para-items">
+                            <select class="form-control" id="ddlProductCatalog" name="ddlProductCatalog"><option value="110">商品分类</option>
+<option value="111">|--家居</option>
+</select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="p920590857doMoveToCatalogOk()"><hg:trans>确定</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal 设置模板的窗口-->
+<div class="modal fade" id="setPreviewProductModal" tabindex="-1" role="dialog" aria-labelledby="setPreviewProductModal" aria-hidden="true" style="padding-top:100px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><hg:trans>移动目录</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            <hg:trans>填写好模板名称后，点击【确定】即可。</hg:trans><br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" style="width:120px !important;margin-right:5px;"><hg:trans>模板名称</hg:trans>:</label>
+                        <div class="input-group para-items">
+                            <input class="form-control"id="modelTitle" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="p920590857doSetPreviewModelOk()"><hg:trans>确定</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    var currentPreviewModelId = 0;
+    //打开添加模板名称的窗口
+    function p920590857doOpenSetPreviewModel(PreviewModelId)
+    {
+        currentPreviewModelId = PreviewModelId;
+        $("#setPreviewProductModal").modal("show")
+    }
+    //确定添加模板
+    function p920590857doSetPreviewModelOk()
+    {
+        $.ajax({
+            type: "post",
+            url: "/AmazonPublish/SetPreviewProductToModel",
+            data:{previewProductId:currentPreviewModelId, title: $("#modelTitle").val(), type:1},
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.Message);
+                } else {
+                    $("#setPreviewProductModal").modal("hide")
+                    redgle.showMessage("设置成功");
+p920590857doReloadData();
+                }
+            },
+        error: function (xhr) {
+            alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+        }
+    })
+    }
+
+    //打开设置自动监测页面
+    function p920590857doOpenAutoFlushPublishStatus()
+    {
+        var url = "/ServiceSetting/MonitorPublishSet";
+        redgle.tab.create("liMonitorPublishSetEdit", url, "自动监测设置");
+    }
+    //更新产品发布状态
+    function p920590857doReferPublishStatus() {
+        $.ajax({
+            type: "post",
+            url: "/AmazonPublish/ReferPublishStatus",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.Message);
+                } else {
+                    redgle.showMessage(data.Message);
+p920590857doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+    }
+    function p920590857doSetCheckBox(event) {
+        $("input[name='chk_list']").prop("checked", $(event).prop("checked"));
+    };
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+
+        //选择项绑定事件
+        $("#divChooseItems>span").each(function () {
+            $(this).click(function () {
+                $("#divChooseItems>span").removeClass("active");
+                $(this).addClass("active");
+
+                $("#hidChoose").val($(this).attr("itemid"));
+                $("#txtSearchKey").attr("placeholder", $(this).attr("title"));
+            });
+        });
+
+        //排序事件
+        $("#divSort > span").each(function () {
+            $(this).click(function () {
+                var selectedItems = "";
+                var sortType = "";
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divSort > span").removeClass("active");
+                    $("#divSort > span").attr("sorttype", "");
+                    $(this).addClass("active");
+                    $("#divSort > span > span").removeClass();
+                }
+                selectedItems = $(this).attr("itemid");
+                sortType = $(this).attr("sorttype");
+                if (sortType == "" || sortType == "DESC") {
+                    $(this).attr("sorttype", "ASC");
+                    $("#hidSortType").val("ASC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-up");
+                }
+                else {
+                    $(this).attr("sorttype", "DESC");
+                    $("#hidSortType").val("DESC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-down");
+                }
+                $("#hidSort").val(selectedItems);
+                $("#searchForm").submit();
+            });
+        });
+
+        //店铺绑定事件
+        $("#divAccountItems>span").each(function () {
+            $(this).click(function () {
+                var apiUserId = $(this).attr("apiuserid");
+                $("#hidApiAccountItem").val(apiUserId);
+                $("#divAccountItems>span").removeClass("active");
+                $("#divAccountItems>span[apiuserid='" + apiUserId + "']").addClass("active");
+                $("#searchForm").submit();
+            });
+        });
+        $("#divConvertToAccount>span").each(function () {
+            $(this).click(function () {
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                }
+                else {
+                    $(this).addClass("active");
+                }
+            });
+        });
+
+        //分组类型绑定事件
+        $(".status-group>label").each(function () {
+            $(this).click(function () {
+                var itemid = $(this).attr("itemid");
+                $("#hidProductStauts").val(itemid);
+
+                $(".status-group>label").removeClass("active");
+                $(".status-group>label[itemid='" + itemid + "']").addClass("active");
+
+                $("#searchForm").submit();
+            });
+        });
+    });
+
+    //重新加载订单列表
+    function p920590857doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        //把查询条件传递给本页面
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/AmazonPublish/Preview",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p920590857divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //批量发布
+    function p920590857doBatchPublish() {
+        var strIds = $("input[name='chk_list']:checked").map(function () {
+            return $(this).val();
+        }).get().join(",")
+        if (strIds) {
+            $.ajax({
+                type: "POST",
+                url: "/AmazonPublish/BathPreviewPublish",
+                data: { ids: strIds },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [data.Message]));
+p920590857doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    } else {
+            redgle.showMessage(translate.format("<hg:trans>请选择需要发布的产品</hg:trans>"));
+    }
+    }
+
+
+    
+    //选择产品分类
+    function p920590857doEditData(id) {
+        if (id == null || id == "0") {
+            id = "0";
+        }
+        var url = "/AmazonPublish/ChooseAmazonCatalog?id=" + id;
+        var title = translate.format("<hg:trans>选择产品分类</hg:trans>");
+        var messageModal = new redgle.modal({ type: "iframe", title: title, content: url, isShowMessage: true });
+        messageModal.show();
+    }
+    //选择好分类后回传
+    function ReturnDoChooseCataLog(previewId, CatalogId, categoryType, userId, marketplaceId) {
+        var url = "/AmazonPublish/PreviewEdit?previewId=" + previewId + "&catalogId=" + CatalogId + "&categoryType=" + categoryType + "&userId=" + userId + "&marketplaceId=" + marketplaceId;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品编辑</hg:trans>"));
+    }
+    var selectedLocalProductId = "";
+    function p920590857doSelectProduct() {
+        var url = "/Product/SelectProduct?productType=normal";
+        var selectOrderModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择产品</hg:trans>"), width: 950, height: 560 });
+        selectOrderModal.show();
+    }
+
+    function doConvertLocalProduct() {
+        var postData = { productId: selectedLocalProductId };
+        var arrAccount = [];
+        $("#divConvertToAccount>span").each(function () {
+            if ($(this).hasClass("active")) {
+                arrAccount.push($(this).attr("apiuserid"));
+            }
+        });
+        if (arrAccount.length == 0) {
+            alert(translate.format("<hg:trans>请选择认领的店铺再进行此操作</hg:trans>"));
+            return;
+        }
+
+        $("#syncProductModal").modal('hide');
+        postData["accountIds"] = arrAccount.join(',');
+        $.ajax({
+            type: "POST",
+            url: "/SMTPublish/ConvertLocalProduct",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+p920590857doReloadData();
+
+                if (data.HasError) {
+                    var msg = translate.format("<hg:trans>已成功认领【{0}】个商品，但是出现以下错误：</hg:trans>", [data.ResultObject]);
+                    if (data.Message != null && data.Message.length > 0)
+                        msg += data.Message;
+                    $.each(data.DataMap, function (index, item) {
+                        msg += "<br />" + index + "：" + item;
+                    });
+                    redgle.showMessage(msg, translate.format("<hg:trans>错误提示</hg:trans>"));
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doGetSelectedProduct(products) {
+        var product = products[0];
+        selectedLocalProductId = "";
+        for (var i = 0; i < products.length; i++)
+        {
+            selectedLocalProductId += product.ProductId + ",";
+        }
+        $("#syncProductModal").modal('show');
+    }
+
+    function p920590857doDeleteData(id) {
+        if (id == null || id == "")
+            return;
+
+        if (!window.confirm(translate.format("<hg:trans>待发布产品删除之后将不可恢复，您确认要删除指定的产品吗？</hg:trans>"))) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/SMTPublish/PreviewDelete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p920590857doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //移动到草稿箱
+    function p920590857doBatchmoveData() {
+        var idList = [];
+        $("input[name='chk_list']:checked").each(function () {
+            idList.push($(this).val());
+        });
+        var strIds = idList.join(',');
+
+        if (strIds.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请选中需要移动的待发布产品之后再进行此操作</hg:trans>", translate.format("<hg:trans>提示</hg:trans>")));
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/AmazonPublish/PreviewBatchmove",
+            data: { IdList: strIds },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>移动失败：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p920590857doReloadData();
+                };
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p920590857doBatchDeleteData() {
+        var idList = [];
+        $("input[name='chk_list']:checked").each(function () {
+            idList.push($(this).val());
+        });
+        var strIds = idList.join(',');
+
+        if (strIds.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请选中需要删除的待发布产品之后再进行此操作</hg:trans>"));
+            return;
+        }
+        if (!window.confirm(translate.format("<hg:trans>待发布产品删除之后将不可恢复，您确认要删除指定的产品吗？</hg:trans>"))) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/SMTPublish/PreviewBatchDelete",
+            data: { idList: strIds },
+            datatype: "json",
+            success: function (data) {
+p920590857doReloadData();
+                if (data.HasError) {
+                    //var msg = translate.format("<hg:trans>已成功删除</hg:trans>") + "【" + data.ResultObject + "】" + translate.format("<hg:trans>个商品，但是出现以下错误：</hg:trans>");
+                    var msg = translate.format("<hg:trans>已成功删除【{0}】个商品，但是出现以下错误：</hg:trans>", [data.ResultObject]);
+                    if (data.Message != null && data.Message.length > 0)
+                        msg += data.Message;
+                    $.each(data.DataMap, function (index, item) {
+                        msg += "<br />" + index + "：" + item;
+                    });
+                    redgle.showMessage(msg, translate.format("<hg:trans>错误提示</hg:trans>"));
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //单纯查看页面
+    function  p920590857doViewEditData(previewId) {
+        var url = "/AmazonPublish/PreviewEdit?previewId=" + previewId;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品编辑</hg:trans>"));
+    }
+
+    //查看跟卖产品信息
+    function  p920590857doViewFllowEditData(previewId) {
+        var url = "/AmazonPublish/FollowSale?previewId=" + previewId;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品编辑</hg:trans>"));
+    }
+
+    function  p920590857doViewSearchAmazonOnlineProduct() {
+        var url = "/AmazonPublish/SearchAmazonOnlineProduct";
+        redgle.tab.create("liSearchAmazonOnlineProduct", url, translate.format("<hg:trans>创建跟卖</hg:trans>"));
+    }
+
+    //移动到目录
+    function p920590857doMoveToCatalog() {
+        var ids = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).val();
+        }).get().join(',');
+        if (!ids) {
+            redgle.showMessage(translate.format("<hg:trans>请先选择需要移动的产品</hg:trans>"), translate.format("<hg:trans>提示</hg:trans>"));
+            return;
+        }
+        $("#syncProductModalCatalog").modal("show")
+    }
+    //确定移动
+    function  p920590857doMoveToCatalogOk() {
+        var ids = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).val();
+        }).get().join(',');
+        if (!ids) {
+            redgle.showMessage(translate.format("<hg:trans>请先选择需要移动的产品</hg:trans>"), translate.format("<hg:trans>提示</hg:trans>"));
+            return;
+        }
+        $.ajax({
+            url: "/AmazonPublish/MoveToCatalog",
+            type: "post",
+            data: { procuctIds: ids, cataLogId: $("#ddlProductCatalog").val() },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>成功修改{0}条商品目录</hg:trans>", [data.ResultObject]));
+p920590857doReloadData();
+                    $("#syncProductModalCatalog").modal("hide")
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+    }
+    //目录选择的改变事件
+    function p920590857onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#searchForm").submit();
+    }
+
+    //=====标记管理====begin//
+    //筛选条件的商品标记
+    $("#divProductMark > span").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divProductMark > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+                $("#hidProductMark").val("");
+            }
+            var selectedItems = "";
+            $("#divProductMark > span").each(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) != "undefined" && cls.indexOf("active") >= 0) {
+                    var selectedItems = $(this).attr("MarkId");
+                    $("#hidProductMark").val(selectedItems);
+                }
+            });
+            $("#searchForm").submit();//提交筛选条件
+        });
+    });
+    //产品标记
+    function doMarkProduct(parentPageKey, markIds) {
+        var productIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            productIds += $(this).val() + ",";
+        });
+        if (productIds.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请选择产品！</hg:trans>"));
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/AmazonPublish/MarkPreviewProduct",
+            data: {
+                productIds: productIds, markIds: markIds
+            },
+            datatype: "text",
+            success: function (data) {
+                if (!data.HasError) {
+                    eval(parentPageKey + "doReloadData()");
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //取消订单标记
+    function doDeleteProductMark(parentPageKey, markRelationId) {
+        $.ajax({
+            type: "POST",
+            url: "/AmazonPublish/DeletePreviewProductMark",
+            data: {
+                markRelationId: markRelationId
+            },
+            datatype: "text",
+            success: function (data) {
+                if (!data.HasError) {
+                    eval(parentPageKey + "doReloadData()");
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //复制到草稿
+    function p920590857CopyToCaoGao() {
+        var productIds = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).val();
+        }).get().join(",")
+        if (!productIds || productIds.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请先选择产品！</hg:trans>"));
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/AmazonPublish/DoCopyProductPreviewToDraft",
+            data: {
+                previewProductIds: productIds
+            },
+            datatype: "text",
+            success: function (data) {
+                redgle.showMessage(translate.format("<hg:trans>操作完成：{0}</hg:trans>", [data.Message]));
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //定时刊登
+    function p920590857doTimingCarry() {
+        var url = "/Crawl/TimingCarry";
+        redgle.tab.create("liTimingCarry", url, translate.format("<hg:trans>定时刊登</hg:trans>"));
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/2e2d7373103c4311bd3fceee297c0e33.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

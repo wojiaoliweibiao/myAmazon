@@ -1,0 +1,365 @@
+{:widget('Blog/header')}
+
+
+
+
+    <script src="__STATIC__/index/js/99ceb706dfe446e4b01dcb2c6c39b327.js"></script>
+
+    <script src="__STATIC__/index/js/86301531ce674dd9add7e9eb961e6576.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabRoleManage" role="presentation" class="active"><a href="javascript:void(0);">角色管理</a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabRoleManage" role="tabpanel" class="tab-pane fade active in">
+        <div>
+<form action="/Role?Length=4" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1122382480divDataList" id="searchForm" method="post">                <div class="parents-nodes">
+                    <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" />
+                    <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" placeholder="角色名称" class="form-control" />
+                    <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary btn-sm" />
+                </div>
+</form>        </div>
+        <div id="divDeptSearch">
+            <div class="button_panel">
+                <button type="button" class="btn btn-info btn-sm" onclick="p1122382480doEditData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加角色</hg:trans></button>
+            </div>
+            
+<div id="f497divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f497divCatalogContentPanel" class="tree" contentgroup="#divDeptSearch #f497divCatalogContentPanel" navigategroup="#divDeptSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divDeptSearch #f497divCatalogContentPanel" navigategroup="#divDeptSearch .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f497treeObject = new redgle.tree({
+            contentPanelExpr:"#divDeptSearch #f497divCatalogContentPanel"
+            , navigatePanelExpr:"#divDeptSearch .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f497treeObject.convertCatalogToData(data);
+f497treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f497treeObject.convertDataToCatalog(data);
+                if(typeof(p1122382480onCatalogSelected) == "function") p1122382480onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"role"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f497treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f497treeObject.addItemsToNavigate(data);
+f497treeObject.AddElementItem(data[0]);
+                }
+                else {
+f497treeObject.addItemsToNavigate([data]);
+f497treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f497divSelect").hover(
+            function () {
+                $("#f497divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f497divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="p1122382480divDataList">
+            <hr />
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Role?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 4 条数据</span></div><div style="clear:both"></div></div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                <hg:trans>角色名称</hg:trans>
+            </th>
+            <th>
+                <hg:trans>所在分类</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建时间</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建者</hg:trans>
+            </th>
+            <th>
+                <hg:trans>操作</hg:trans>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr ondblclick="p1122382480doEditData('6')">
+                <td>
+                    vip
+                </td>
+                <td>
+                    vip
+                </td>
+                <td>
+                    2018/5/28 21:37:52
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                <a href="javascript:void(0)" onclick="p1122382480doEditData('6')" hgtrans="true" class="glyphicon glyphicon-edit" title="编辑"></a>&nbsp;<a href="javascript:void(0)" onclick="p1122382480doRolePermission('6')" hgtrans="true" class="glyphicon glyphicon-wrench" title="权限"></a>
+                    <a href="javascript:void(0)" onclick="p1122382480doDeleteData('6')" hgtrans="true" class="glyphicon glyphicon-remove" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p1122382480doEditData('5')">
+                <td>
+                    管理员（加盟商）
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    2018/5/22 0:16:29
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                <a href="javascript:void(0)" onclick="p1122382480doEditData('5')" hgtrans="true" class="glyphicon glyphicon-edit" title="编辑"></a>&nbsp;<a href="javascript:void(0)" onclick="p1122382480doRolePermission('5')" hgtrans="true" class="glyphicon glyphicon-wrench" title="权限"></a>
+                    <a href="javascript:void(0)" onclick="p1122382480doDeleteData('5')" hgtrans="true" class="glyphicon glyphicon-remove" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p1122382480doEditData('4')">
+                <td>
+                    客服
+                </td>
+                <td>
+                    客服
+                </td>
+                <td>
+                    2018/5/15 11:20:44
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                <a href="javascript:void(0)" onclick="p1122382480doEditData('4')" hgtrans="true" class="glyphicon glyphicon-edit" title="编辑"></a>&nbsp;<a href="javascript:void(0)" onclick="p1122382480doRolePermission('4')" hgtrans="true" class="glyphicon glyphicon-wrench" title="权限"></a>
+                    <a href="javascript:void(0)" onclick="p1122382480doDeleteData('4')" hgtrans="true" class="glyphicon glyphicon-remove" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p1122382480doEditData('3')">
+                <td>
+                    物流
+                </td>
+                <td>
+                    物流
+                </td>
+                <td>
+                    2018/5/15 10:15:38
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                <a href="javascript:void(0)" onclick="p1122382480doEditData('3')" hgtrans="true" class="glyphicon glyphicon-edit" title="编辑"></a>&nbsp;<a href="javascript:void(0)" onclick="p1122382480doRolePermission('3')" hgtrans="true" class="glyphicon glyphicon-wrench" title="权限"></a>
+                    <a href="javascript:void(0)" onclick="p1122382480doDeleteData('3')" hgtrans="true" class="glyphicon glyphicon-remove" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1122382480divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Role?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 4 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    function p1122382480onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#searchForm").submit();
+    }
+    function p1122382480doEditData(roleId) {
+        if (roleId == null || roleId == "")
+            roleId = "";
+
+        var url = "/Role/Edit/" + roleId;
+        redgle.tab.create("liRoleEdit", url, translate.format("<hg:trans>角色编辑</hg:trans>"));
+    }
+    function p1122382480doDeleteData(roleId) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/Role/Delete",
+            data: { roleId: roleId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p1122382480doReloadData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1122382480doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/Role",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1122382480divDataList").html(data);
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1122382480doRolePermission(roleId) {
+        if (roleId == null || roleId == "")
+            return;
+
+        var url = "/Role/SetPermission/" + roleId;
+        redgle.tab.create("liSetPermission", url, translate.format("<hg:trans>设置角色权限</hg:trans>"));
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min_4.js"></script>
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/44d3097f99274e5fa57bf02659b80c75.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

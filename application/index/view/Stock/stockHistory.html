@@ -1,0 +1,1077 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabInventoryHistory" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>库存流水</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabInventoryHistory" role="tabpanel" class="tab-pane fade active in">
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/StockHandle/InventoryHistory?Length=11" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p939292252divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                    <div id="divStoreItems" class="input-group para-items-sm">
+                            <span itemid="1" style="margin-bottom:10px">默认仓库（自有仓）</span>
+                        <input type="hidden" id="hidStoreId" name="hidStoreId" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>操作类型</hg:trans></label>
+                    <div id="divInventoryHistoryClassItems" class="input-group para-items-sm">
+                        <span itemid="1"><hg:trans>入库</hg:trans></span>
+                        <span itemid="2"><hg:trans>出库</hg:trans></span>
+                        <span itemid="3"><hg:trans>增加锁定</hg:trans></span>
+                        <span itemid="4"><hg:trans>释放锁定</hg:trans></span>
+                        <span itemid="5"><hg:trans>增加采购</hg:trans></span>
+                        <span itemid="6"><hg:trans>释放采购</hg:trans></span>
+                        <input type="hidden" id="hidInventoryHistoryClass" name="hidInventoryHistoryClass" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>出库类型</hg:trans></label>
+                    <div id="divOutStoreType" class="input-group para-items-sm">
+                        <span itemid="1"><hg:trans>采购下单</hg:trans></span>
+                        <span itemid="2"><hg:trans>采购到货</hg:trans></span>
+                        <span itemid="3"><hg:trans>手动入库</hg:trans></span>
+                        <span itemid="4"><hg:trans>调拨入库</hg:trans></span>
+                        <span itemid="5"><hg:trans>盘盈入库</hg:trans></span>
+                        <span itemid="20"><hg:trans>销售出库</hg:trans></span>
+                        <span itemid="21"><hg:trans>调拨出库</hg:trans></span>
+                        <span itemid="22"><hg:trans>盘亏出库</hg:trans></span>
+                        <span itemid="23"><hg:trans>手动出库</hg:trans></span>
+                        <span itemid="6"><hg:trans>采购单作废</hg:trans></span>
+                        <span itemid="24"><hg:trans>配货</hg:trans></span>
+                        <span itemid="25"><hg:trans>释放库存</hg:trans></span>
+                        <span itemid="26"><hg:trans>入库单删除</hg:trans></span>
+                        <span itemid="30"><hg:trans>驳回采购入库</hg:trans></span>
+                        <span itemid="other"><hg:trans>其它出库</hg:trans></span>
+                        <input type="hidden" id="hidOutStoreType" name="hidOutStoreType" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items-sm">
+                        <span itemid="SKU" chooseid="Search"><hg:trans>SKU</hg:trans></span>
+                        <span itemid="CreateTime" chooseid="Date"><hg:trans>操作时间</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="" />
+                    </div>
+                </div>
+                <div class="form-group " style="display:none;margin-bottom: 16px" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span class="date">
+                            <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">TO</span>
+                        <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:550px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <label class="input-group-addon">
+                            <input id="isckbFuzzySearch" name="isckbFuzzySearch" value="true" type="checkbox"> 模糊搜索
+                        </label>
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+</form>        </div>
+        <div class="datalist-top">
+            <div class="parents-nodest" style="float:right;">
+                <button type="button" class="btn btn-info btn-sm" onclick="p939292252doExportData()"><i class="glyphicon glyphicon-log-out"></i> 导出Excel</button>
+            </div>
+        </div>
+        <div id="p939292252divDataList">
+            <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="13" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/StockHandle/InventoryHistory?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/StockHandle/InventoryHistory?pageIndex=2&amp;pagesize=20">2</a>  <a data-pageindex="3" href="/StockHandle/InventoryHistory?pageIndex=3&amp;pagesize=20">3</a>  <a data-pageindex="4" href="/StockHandle/InventoryHistory?pageIndex=4&amp;pagesize=20">4</a>  <a data-pageindex="5" href="/StockHandle/InventoryHistory?pageIndex=5&amp;pagesize=20">5</a>  <a data-pageindex="6" href="/StockHandle/InventoryHistory?pageIndex=6&amp;pagesize=20">6</a>  <a data-pageindex="7" href="/StockHandle/InventoryHistory?pageIndex=7&amp;pagesize=20">7</a>  <a data-pageindex="8" href="/StockHandle/InventoryHistory?pageIndex=8&amp;pagesize=20">8</a>  <a data-pageindex="9" href="/StockHandle/InventoryHistory?pageIndex=9&amp;pagesize=20">9</a>  <a data-pageindex="10" href="/StockHandle/InventoryHistory?pageIndex=10&amp;pagesize=20">10</a>  <a data-pageindex="11" href="/StockHandle/InventoryHistory?pageIndex=11&amp;pagesize=20">...</a>  <a data-pageindex="2" href="/StockHandle/InventoryHistory?pageIndex=2&amp;pagesize=20">下一页</a>  <a data-pageindex="13" href="/StockHandle/InventoryHistory?pageIndex=13&amp;pagesize=20">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 241 条数据</span></div><div style="clear:both"></div></div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="">
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p939292252doSetCheckBox(this)" />
+            </th>
+            <th><hg:trans>操作类型</hg:trans></th>
+            <th><hg:trans>仓库</hg:trans></th>
+            <th><hg:trans>SKU</hg:trans></th>
+            <th><hg:trans>入库</hg:trans></th>
+            <th><hg:trans>出库</hg:trans></th>
+            <th><hg:trans>可用库存(结余)</hg:trans></th> 
+            <th><hg:trans>锁定(+)</hg:trans></th>
+            <th><hg:trans>锁定(-)</hg:trans></th>
+            <th><hg:trans>锁定库存</hg:trans></th>
+            <th><hg:trans>采购(+)</hg:trans></th>
+            <th><hg:trans>采购(-)</hg:trans></th>
+            <th><hg:trans>采购中</hg:trans></th>           
+            <th><hg:trans>不良品变更/库存</hg:trans></th>
+            <th><hg:trans>流水类型</hg:trans></th>
+            <th><hg:trans>备注</hg:trans></th>
+            <th><hg:trans>操作时间</hg:trans></th>
+            <th><hg:trans>操作人</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="241" />
+                </td>
+                <td>增加采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">ry-000045-uk</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="采购(+)">+1</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+ <span style="font-size:large; color:#43C0CF;" title="采购中">1</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购下单</td>
+                <td style="width:200px;text-align:left !important">采购下单新增采购中数：1，采购单号：PO-201808280002。</td>
+                <td>2018/8/28 10:03:09</td>
+                <td>赵敏</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="240" />
+                </td>
+                <td>增加采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">jx-000001-fr</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="采购(+)">+1</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+ <span style="font-size:large; color:#43C0CF;" title="采购中">1</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购下单</td>
+                <td style="width:200px;text-align:left !important">采购下单新增采购中数：1，采购单号：PO-201808280001。</td>
+                <td>2018/8/28 10:00:05</td>
+                <td>刘阳</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="239" />
+                </td>
+                <td>增加采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">box-001011-Black</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="采购(+)">+1</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+ <span style="font-size:large; color:#43C0CF;" title="采购中">1</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购下单</td>
+                <td style="width:200px;text-align:left !important">采购下单新增采购中数：1，采购单号：PO-201808270002。</td>
+                <td>2018/8/27 10:11:44</td>
+                <td>王乾</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="238" />
+                </td>
+                <td>增加采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">ph-001226-uk</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="采购(+)">+1</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+ <span style="font-size:large; color:#43C0CF;" title="采购中">1</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购下单</td>
+                <td style="width:200px;text-align:left !important">采购下单新增采购中数：1，采购单号：PO-201808270001。</td>
+                <td>2018/8/27 9:54:05</td>
+                <td>赵敏</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="237" />
+                </td>
+                <td>增加采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">ph-000426-de</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="可用库存(结余)">1</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="采购(+)">+1</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+ <span style="font-size:large; color:#43C0CF;" title="采购中">1</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购下单</td>
+                <td style="width:200px;text-align:left !important">采购下单新增采购中数：1，采购单号：PO-201808240002。</td>
+                <td>2018/8/24 11:34:25</td>
+                <td>赵敏</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="236" />
+                </td>
+                <td>入库</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">box-000030-Black</span></td>
+                <td>
+ <span class="text-success" style="font-size:large" title="入库">+2</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="可用库存(结余)">2</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>手动入库</td>
+                <td style="width:200px;text-align:left !important">入库减少待入库数：0，采购单号：PO-201808030002，入库单号：IS-201808240003。</td>
+                <td>2018/8/24 11:22:48</td>
+                <td>王乾</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="235" />
+                </td>
+                <td>释放采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">box-000030-Black</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="采购(-)">-2</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购到货</td>
+                <td style="width:200px;text-align:left !important">“采购到货”释放“采购中”数量：2，采购单号：PO-201808030002。</td>
+                <td>2018/8/24 11:22:48</td>
+                <td>王乾</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="234" />
+                </td>
+                <td>入库</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">yd-001616-Beige-de</span></td>
+                <td>
+ <span class="text-success" style="font-size:large" title="入库">+1</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="可用库存(结余)">1</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>手动入库</td>
+                <td style="width:200px;text-align:left !important">入库减少待入库数：0，采购单号：PO-201808210001，入库单号：IS-201808240002。</td>
+                <td>2018/8/24 1:17:33</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="233" />
+                </td>
+                <td>释放采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">yd-001616-Beige-de</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="采购(-)">-1</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购到货</td>
+                <td style="width:200px;text-align:left !important">“采购到货”释放“采购中”数量：1，采购单号：PO-201808210001。</td>
+                <td>2018/8/24 1:17:33</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="232" />
+                </td>
+                <td>入库</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">ph000265-de</span></td>
+                <td>
+ <span class="text-success" style="font-size:large" title="入库">+1</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="可用库存(结余)">1</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>手动入库</td>
+                <td style="width:200px;text-align:left !important">入库减少待入库数：0，采购单号：PO-201808210002，入库单号：IS-201808240001。</td>
+                <td>2018/8/24 1:16:56</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="231" />
+                </td>
+                <td>释放采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">ph000265-de</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="采购(-)">-1</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购到货</td>
+                <td style="width:200px;text-align:left !important">“采购到货”释放“采购中”数量：1，采购单号：PO-201808210002。</td>
+                <td>2018/8/24 1:16:55</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="230" />
+                </td>
+                <td>入库</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">GHL-013-Brown-M-uk</span></td>
+                <td>
+ <span class="text-success" style="font-size:large" title="入库">+1</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="可用库存(结余)">1</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>手动入库</td>
+                <td style="width:200px;text-align:left !important">入库减少待入库数：1，采购单号：PO-201808180001，入库单号：IS-201808230001。</td>
+                <td>2018/8/23 13:34:43</td>
+                <td>高海龙</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="229" />
+                </td>
+                <td>释放采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">GHL-013-Brown-M-uk</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="采购(-)">-1</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购到货</td>
+                <td style="width:200px;text-align:left !important">“采购到货”释放“采购中”数量：1，采购单号：PO-201808180001。</td>
+                <td>2018/8/23 13:34:42</td>
+                <td>高海龙</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="228" />
+                </td>
+                <td>增加采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">ph000265-de</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="采购(+)">+1</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+ <span style="font-size:large; color:#43C0CF;" title="采购中">1</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购下单</td>
+                <td style="width:200px;text-align:left !important">采购下单新增采购中数：1，采购单号：PO-201808210002。</td>
+                <td>2018/8/21 10:03:01</td>
+                <td>赵敏</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="227" />
+                </td>
+                <td>增加采购</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">yd-001616-Beige-de</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="采购(+)">+1</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+ <span style="font-size:large; color:#43C0CF;" title="采购中">1</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>采购下单</td>
+                <td style="width:200px;text-align:left !important">采购下单新增采购中数：1，采购单号：PO-201808210001。</td>
+                <td>2018/8/21 9:59:39</td>
+                <td>刘阳</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="226" />
+                </td>
+                <td>出库</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">yd0133-green</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="出库">-1</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>销售出库</td>
+                <td style="width:200px;text-align:left !important">销售出库，订单号：026-2355068-9150754，出库单号：OS-201808200002。</td>
+                <td>2018/8/20 8:53:41</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="225" />
+                </td>
+                <td>释放锁定</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">yd0133-green</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="锁定(-)">-1</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>销售出库</td>
+                <td style="width:200px;text-align:left !important">销售出库释放锁定库存数量：1，订单号：026-2355068-9150754，出库单号：OS-201808200002。</td>
+                <td>2018/8/20 8:53:41</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="224" />
+                </td>
+                <td>增加锁定</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">yd0133-green</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+ <span class="text-success" style="font-size:large" title="锁定(+)">+1</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+<span style="font-size:large; color:#F09A3C" title="锁定库存">1</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>配货</td>
+                <td style="width:200px;text-align:left !important">配货锁定库存数：1，订单号：026-2355068-9150754。</td>
+                <td>2018/8/20 8:53:41</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="223" />
+                </td>
+                <td>出库</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">mu0027-purple</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="出库">-1</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+<span title="锁定(-)">-</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>销售出库</td>
+                <td style="width:200px;text-align:left !important">销售出库，订单号：407-6085075-7052323，出库单号：OS-201808200001。</td>
+                <td>2018/8/20 8:53:40</td>
+                <td>管理员</td>
+            </tr>
+            <tr style="height:40px;">
+                <td>
+                    <input type="checkbox" name="chk_list" value="222" />
+                </td>
+                <td>释放锁定</td>
+                <td>默认仓库</td>
+                <td style="text-align:left !important"><span style="font-size:14px;">mu0027-purple</span></td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span>-</span>                </td>
+                <td>
+<span title="可用库存(结余)">-</span>                </td>
+                <td>
+<span title="锁定(+)">-</span>                </td>
+                <td>
+ <span class="text-danger" style="font-size:large" title="锁定(-)">-1</span>                </td>
+                <td>
+ <span title="锁定库存">-</span>                </td>
+                <td>
+<span title="采购(+)">-</span>                </td>
+                <td>
+<span title="采购(-)">-</span>                </td>
+                <td>
+<span title="采购中">-</span>                </td>         
+         
+                <td>
+<span title="不良品变更/库存">-</span> /
+<span title="不良品变更/库存">-</span>                </td>
+                <td>销售出库</td>
+                <td style="width:200px;text-align:left !important">销售出库释放锁定库存数量：1，订单号：407-6085075-7052323，出库单号：OS-201808200001。</td>
+                <td>2018/8/20 8:53:40</td>
+                <td>管理员</td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p939292252divDataList" data-maxpages="13" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/StockHandle/InventoryHistory?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/StockHandle/InventoryHistory?pageIndex=2&amp;pagesize=20">2</a>  <a data-pageindex="3" href="/StockHandle/InventoryHistory?pageIndex=3&amp;pagesize=20">3</a>  <a data-pageindex="4" href="/StockHandle/InventoryHistory?pageIndex=4&amp;pagesize=20">4</a>  <a data-pageindex="5" href="/StockHandle/InventoryHistory?pageIndex=5&amp;pagesize=20">5</a>  <a data-pageindex="6" href="/StockHandle/InventoryHistory?pageIndex=6&amp;pagesize=20">6</a>  <a data-pageindex="7" href="/StockHandle/InventoryHistory?pageIndex=7&amp;pagesize=20">7</a>  <a data-pageindex="8" href="/StockHandle/InventoryHistory?pageIndex=8&amp;pagesize=20">8</a>  <a data-pageindex="9" href="/StockHandle/InventoryHistory?pageIndex=9&amp;pagesize=20">9</a>  <a data-pageindex="10" href="/StockHandle/InventoryHistory?pageIndex=10&amp;pagesize=20">10</a>  <a data-pageindex="11" href="/StockHandle/InventoryHistory?pageIndex=11&amp;pagesize=20">...</a>  <a data-pageindex="2" href="/StockHandle/InventoryHistory?pageIndex=2&amp;pagesize=20">下一页</a>  <a data-pageindex="13" href="/StockHandle/InventoryHistory?pageIndex=13&amp;pagesize=20">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 241 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#divChooseItems > span").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divChooseItems > span").removeClass("active");
+                //清空搜索内容
+                $("#txtSearchKey").val("");
+                if ($("#txtDateBegin").length > 0)
+                    $("#txtDateBegin").val("");
+                if ($("#txtDateEnd").length > 0)
+                    $("#txtDateEnd").val("");
+                $(this).addClass("active");
+
+            }
+            else {
+                $(this).removeClass("active");
+            }
+            var selectedItems = $(this).attr("itemid");
+            var chooseItems = $(this).attr("chooseid")
+            if (chooseItems == "Date") {
+                $("#Date").css("display", "");
+                $("#Search").css("display", "none");
+            } else if (chooseItems == "Search") {
+                $("#Date").css("display", "none");
+                $("#Search").css("display", "");
+            }
+            //获取
+            $("#txtSearchKey").attr({ placeholder: $(this).attr("name") });
+            $("#hidChoose").val(selectedItems);
+        });
+    });
+    $("#divStoreItems > span").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divStoreItems > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+            }
+
+            var selectedItems = "";
+            $("#divStoreItems > span").each(function () {
+                var tt = $(this).attr("class");
+                if (typeof (tt) != "undefined" && tt.indexOf("active") >= 0) {
+                    selectedItems += $(this).attr("itemid") + ",";
+                }
+            });
+            if (selectedItems.length > 0) {
+                selectedItems = selectedItems.substr(0, selectedItems.length - 1);
+            }
+            $("#hidStoreId").val(selectedItems);
+            $("#searchForm").submit();
+        });
+    });
+    //操作类型
+    $("#divInventoryHistoryClassItems > span").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divInventoryHistoryClassItems > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+            }
+
+            var selectedItems = "";
+            $("#divInventoryHistoryClassItems > span").each(function () {
+                var tt = $(this).attr("class");
+                if (typeof (tt) != "undefined" && tt.indexOf("active") >= 0) {
+                    selectedItems += $(this).attr("itemid") + ",";
+                }
+            });
+            if (selectedItems.length > 0) {
+                selectedItems = selectedItems.substr(0, selectedItems.length - 1);
+            }
+            $("#hidInventoryHistoryClass").val(selectedItems);
+            $("#searchForm").submit();
+        });
+    });
+    //出库类型
+    $("#divOutStoreType > span").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divOutStoreType > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+            }
+
+            var selectedItems = "";
+            $("#divOutStoreType > span").each(function () {
+                var tt = $(this).attr("class");
+                if (typeof (tt) != "undefined" && tt.indexOf("active") >= 0) {
+                    selectedItems += $(this).attr("itemid") + ",";
+                }
+            });
+            if (selectedItems.length > 0) {
+                selectedItems = selectedItems.substr(0, selectedItems.length - 1);
+            }
+            $("#hidOutStoreType").val(selectedItems);
+            $("#searchForm").submit();
+        });
+    });
+    //页面初始化
+    jQuery(function () {
+        $('.date input').datepicker();
+        $("#divChooseItems > span").each(function () {
+            if ($(this).attr("itemid") == "SKU") {
+                $(this).addClass("active");
+                var selectedItems = $(this).attr("itemid");
+                $("#txtSearchKey").attr({ placeholder: translate.format("<hg:trans>请输入搜索内容</hg:trans>") });
+                $("#hidChoose").val(selectedItems);
+            }
+        });
+    });
+    function p939292252doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/InventoryHistory",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p939292252divDataList").html(data);
+            },
+            error: function () {
+                alert(translate.format("<hg:trans>重新加载数据失败！</hg:trans>"));
+            }
+        });
+    }
+
+    function p939292252doExportData() {
+        var ExportOption = $("input[name=chk_list]:checked").map(function () {
+            return $(this).val();
+        }).get().join(",");
+        if (ExportOption.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+        }
+        if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择数据导出，将导出符合当前搜索条件的数据，数据较多，请耐心等候！</hg:trans>")))
+            return;
+        var postData = redgle.request.getFormData("searchForm");
+        postData["codeList"] = ExportOption;
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/ExportInventoryHistory",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Tem/1//" + data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function  p939292252doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/7baf97a6ad76424f85a3e6da716670e6.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

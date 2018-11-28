@@ -1,0 +1,374 @@
+
+
+
+{:widget('Blog/header')}
+
+<script src="__STATIC__/index/js/public/jquery.unobtrusive-ajax.min.js"></script> 
+<script src="__STATIC__/index/js/public/hgpager.js"></script> 
+<body>
+{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>运费规则</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <p class="alert bg-info" style="padding: 8px;line-height:25px">
+            PS：<hg:trans>此用于设置物流渠道的运费计算规则</hg:trans>
+        </p>
+        <div class="search-panel">
+<form action="/LogisticFee?Length=11" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p125950226divDataList" id="searchForm" method="post">                <input type="hidden" id="hidSort" name="hidSort" value="FeeId" />
+                <input type="hidden" id="hidSortType" name="hidSortType" value="DESC" />
+                <div class="row" style="margin-top:5px;">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="search-item">
+                        <span itemid="name" class="active" hgtrans="true" title="输入规则名称"><hg:trans>规则名称</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="name" />
+                    </div>
+                </div>
+                <div class="row" id="Search" style="margin-top:5px;margin-bottom:5px;">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;padding-top: 12px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:360px;">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" placeholder="输入规则名称" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+</form>        </div>
+        <div class="list-order-panel">
+            <div class="order-title"><hg:trans>排序条件</hg:trans></div>
+            <div id="divSort" class="order-content">
+                <span itemid="FeeId" sorttype="DESC" class="active"><hg:trans>默认排序</hg:trans><span id="FeeIdSortMark" class="glyphicon glyphicon-arrow-down"></span></span>
+                <span itemid="FeeName" sorttype=""><hg:trans>模块名称</hg:trans><span id="FeeNameSortMark" class="glyphicon "></span></span>
+            </div>
+        </div>
+        <div class="datalist-top">
+            <div class="button-area parents-nodes">
+                <button type="button" class="btn btn-success btn-sm" onclick="doCreateLogisticFee()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加</hg:trans></button>
+            </div>
+        </div>
+        <div id="p125950226divDataList">
+            
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:3%;">
+                <input type="checkbox" name="chk_all" id="chk_all"/>
+            </th>
+            <th style="width:20%;"><hg:trans>规则名称</hg:trans></th>
+            <th style="width:8%;"><hg:trans>类型</hg:trans></th>
+            <th style="width:5%;"><hg:trans>关联</hg:trans></th>
+            <th style="width:8%;"><hg:trans>状态</hg:trans></th>
+            <th style="width:15%;"><hg:trans>创建时间</hg:trans></th>
+            <th style="width:10%;"><hg:trans>创建者</hg:trans></th>
+            <th style="width:15%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" value="1" />
+                </td>
+                <td>
+                    远华嘉贸物流费用----三泰
+                </td>
+                <td>
+                            <span>挂号</span>
+                </td>
+                <td>
+                        <span> - </span>
+                </td>
+                <td>
+                    启用
+                </td>
+                <td>
+                    2018/6/11 12:25:47
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                        <a href="javascript:void(0);" onclick="javascript:doDisableLogisticFee(1)"><hg:trans>禁用</hg:trans></a>
+                    <a href="javascript:void(0);" onclick="javascript:doCreateLogisticFee(1)"><hg:trans>编辑</hg:trans></a>
+                    <a href="javascript:void(0);" onclick="javascript:doShowLogisticFeeDetail(1)"><hg:trans>区域设置</hg:trans></a>
+                    <a href="javascript:void(0);" onclick="javascript:doShowLogisticCondition(1)"><hg:trans>条件限制</hg:trans></a>
+                    <a href="javascript:void(0);" onclick="javascript:doDeleteLogisticFee(1)"><hg:trans>删除</hg:trans></a>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p125950226divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/LogisticFee?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 1 条数据</span></div><div style="clear:both"></div></div>
+<script language="javascript" type="text/javascript">
+    $("#chk_all").click(function () {
+        $("input[name='chk_list']").prop("checked", $(this).prop("checked"));
+    });
+</script>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+        //选择项绑定事件
+        $("#divChooseItems>span").each(function () {
+            $(this).click(function () {
+                $("#divChooseItems>span").removeClass("active");
+                $(this).addClass("active");
+
+                $("#hidChoose").val($(this).attr("itemid"));
+                $("#txtSearchKey").attr("placeholder", $(this).attr("title"));
+            });
+        });
+
+        //排序事件
+        $("#divSort > span").each(function () {
+            $(this).click(function () {
+                var selectedItems = "";
+                var sortType = "";
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divSort > span").removeClass("active");
+                    $("#divSort > span").attr("sorttype", "");
+                    $(this).addClass("active");
+                    $("#divSort > span > span").removeClass();
+                }
+                selectedItems = $(this).attr("itemid");
+                sortType = $(this).attr("sorttype");
+                if (sortType == "" || sortType == "DESC") {
+                    $(this).attr("sorttype", "ASC");
+                    $("#hidSortType").val("ASC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-up");
+                }
+                else {
+                    $(this).attr("sorttype", "DESC");
+                    $("#hidSortType").val("DESC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-down");
+                }
+                $("#hidSort").val(selectedItems);
+                $("#searchForm").submit();
+            });
+        });
+    });
+
+    function doCreateLogisticFee(feeId) {
+        if (feeId == null || feeId.length == 0) {
+            feeId = "0";
+        }
+        var url = "/LogisticFee/Edit?feeId=" + feeId;
+        var createLogisticFee = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>编辑运费规则</hg:trans>"), width: 560, height: 360 });
+        createLogisticFee.show();
+    }
+
+    function doActiveLogisticFee(feeId) {
+        if (feeId == null || feeId.length == 0) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/LogisticFee/Active",
+            data: { feeId: feeId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    alert(data.Message);
+                }
+                else {
+                    doReloadLogisticFeeData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doDisableLogisticFee(feeId) {
+        if (feeId == null || feeId.length == 0) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/LogisticFee/Disable",
+            data: { feeId: feeId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    alert(data.Message);
+                }
+                else {
+                    doReloadLogisticFeeData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doDeleteLogisticFee(feeId) {
+        if (feeId == null || feeId.length == 0) {
+            return;
+        }
+
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>"))) {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/LogisticFee/Delete",
+            data: { feeId: feeId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    alert(data.Message);
+                }
+                else {
+                    doReloadLogisticFeeData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doShowLogisticFeeDetail(feeId) {
+        if (feeId == null || feeId.length == 0) {
+            return;
+        }
+
+        var url = "/LogisticFee/FeeArea?feeId=" + feeId;
+        redgle.tab.create("liLogisticFeeArea", url, translate.format("<hg:trans>运费规则区域设置</hg:trans>"));
+    }
+
+    function doViewLogisticFeeRelation(feeId) {
+        if (feeId == null || feeId.length == 0) {
+            return;
+        }
+
+        var url = "/LogisticFee/FeeAreaRelation?feeId=" + feeId;
+        redgle.tab.create("liLogisticFeeRelation", url, translate.format("<hg:trans>关联渠道</hg:trans>"));
+    }
+
+    function doReloadLogisticFeeData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/LogisticFee/Index",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p125950226divDataList").html(data);
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doShowLogisticCondition(feeId) {
+        if (feeId == null || feeId.length == 0) {
+            feeId = "0";
+        }
+        var url = "/LogisticFee/ConditionEdit?feeId=" + feeId;
+        var createLogisticFee = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>编辑运费规则</hg:trans>"), width: 560, height: 360 });
+        createLogisticFee.show();
+    }
+
+</script>
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+   
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1331 @@
+
+<style>
+    /*浮动在右上角*/
+    .float_right_div {
+        color: red;
+        position: absolute;
+        top: -6px;
+        right: 0;
+        z-index: 99;
+        font-size: 5px;
+    }
+
+    /*色彩*/
+    .checkboxSpanCss {
+        border: 1px solid #ddd;
+        padding: 7px 25px;
+    }
+
+    .red {
+        background-color: red;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .yellow {
+        background-color: yellow;
+        color: #000;
+    }
+
+    .fRed {
+        color: red;
+    }
+
+    .fBlue {
+        color: #00c;
+    }
+
+    .fWhite {
+        color: #fff;
+    }
+
+    .fYellow {
+        color: yellow;
+    }
+
+    .fGreen {
+        color: green;
+    }
+
+    .fBlack {
+        color: #000;
+    }
+
+    .bgWhite {
+        background-color: white;
+    }
+
+    .bgRed {
+        background-color: red;
+    }
+
+    .bgBlue {
+        background-color: blue;
+    }
+
+    .bgGreen {
+        background-color: green;
+    }
+
+    .bgYellow {
+        background-color: yellow;
+        color: #000;
+    }
+
+    .fRedBlod {
+        color: red;
+        font-weight: 700;
+    }
+</style>
+
+
+<div id="divFailedMessagePanel" class="hide">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" hgtrans="true" aria-label="关闭"><span aria-hidden="true">×</span></button>
+        <h4><hg:trans>产品数据异常</hg:trans></h4>
+        <p></p>
+    </div>
+</div>
+<div class="alert bg-success" style="padding:8px">
+    PS：<br />
+    1、<hg:trans>所有的售价都填</hg:trans> <span style="font-size:14px; color:red;"><hg:trans>人民币</hg:trans></span> <hg:trans>，刊登时会根据所选站点依据系统汇率转为相应币种价格</hg:trans>
+</div>
+<script language="javascript" type="text/javascript" src="__STATIC__/index/js/xhr/Sortable.min.js"></script>
+<script src="__STATIC__/index/js/xhr/publish.amazonstore.js"></script>
+
+<script src="__STATIC__/index/js/xhr/select2.js"></script>
+
+<link href="__STATIC__/index/css/xhr/select2.css" rel="stylesheet"/>
+
+<form action="/AmazonPublish/PreviewEdit?Length=11" class="form-horizontal" data-ajax="true" id="ProductEditForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="zxZ3V5lxX_bNVSQ9HoOb15khzYqmJMasJxhBtVZG48SNlNklh20eFsLBenatFHi-HbHcb50fCOvT5IBiUlymjW6v_3aFi0v1YqTJpJblKRv1oIsiADW5MozDo0hjMZGQYCyJt7VzoBU6QAKJ5h7kMTpYgaSfBaugZirfoEEvP201" /><input data-val="true" data-val-number="字段 PreviewProductId 必须是一个数字。" data-val-required="PreviewProductId 字段是必需的。" id="PreviewProductId" name="PreviewProductId" type="hidden" value="218432" /><input id="RelationType" name="RelationType" type="hidden" value="AmazonProductStore" /><input id="RelationId" name="RelationId" type="hidden" value="" /><input id="PriceCurrency" name="PriceCurrency" type="hidden" value="CNY" /><input data-val="true" data-val-required="IsFailed 字段是必需的。" id="IsFailed" name="IsFailed" type="hidden" value="False" /><input id="FailedString" name="FailedString" type="hidden" value="" /><input id="ReduceStrategy" name="ReduceStrategy" type="hidden" value="payment" /><input id="PromiseTemplate" name="PromiseTemplate" type="hidden" value="" /><input id="KeyWord1" name="KeyWord1" type="hidden" value="" /><input id="SourceUrl" name="SourceUrl" type="hidden" value="https://detail.1688.com/offer/565924989763.html?spm=a2615.7691456.newlist.86.27ac6796BEyXHo" /><input data-val="true" data-val-required="StatusCode 字段是必需的。" id="StatusCode" name="StatusCode" type="hidden" value="草稿" /><input data-val="true" data-val-number="字段 PublishUserId 必须是一个数字。" data-val-required="PublishUserId 字段是必需的。" id="PublishUserId" name="PublishUserId" type="hidden" value="161" /><input id="FreightTemplate" name="FreightTemplate" type="hidden" value="" /><input data-val="true" data-val-number="字段 SourceId 必须是一个数字。" data-val-required="SourceId 字段是必需的。" id="SourceId" name="SourceId" type="hidden" value="25089" /><input id="ProductName" name="ProductName" type="hidden" value="床上用品爆款3d外贸速卖通亚马逊三件套热销家纺捕梦网四件套被套" /><input id="UserId" name="UserId" type="hidden" value="-1" /><input id="ConditionType" name="ConditionType" type="hidden" value="New" /><input id="ConditionValue" name="ConditionValue" type="hidden" value="New" /><input id="StandardProductIdType" name="StandardProductIdType" type="hidden" value="UPC" /><input id="Brand" name="Brand" type="hidden" value="YHJM" /><input data-val="true" data-val-number="字段 StockNum 必须是一个数字。" data-val-required="StockNum 字段是必需的。" id="StockNum" name="StockNum" type="hidden" value="100" /><input id="Manufacturer" name="Manufacturer" type="hidden" value="YHJM" />    <div class="bg-info" style="line-height: 30px;padding: 0 10px;margin-bottom:10px;"><strong><hg:trans>产品基本信息</hg:trans></strong></div>
+    <div class="form-group" fieldpermiss="SKU">
+        <label class="col-sm-1 control-label"><hg:trans>父SKU编码</hg:trans><font color="red">*</font></label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input type="hidden" value="0" id="localCatalogId" />
+                <input class="form-control input-sm" id="ParentSKU" name="ParentSKU" placeholder="例子：HSC0424PP" type="text" value="hom-000001129" />
+                <a class="input-group-addon" href="javascript:void(0)" onclick="doShowCreateProductSku()"><hg:trans>自动生成SKU</hg:trans></a>
+            </div>
+            <span class="help-block"><hg:trans>自动生成SKU</hg:trans>，<hg:trans>会跟据</hg:trans><a href="/Common/SysSetting/ErpSKUModule" target="_blank"><hg:trans>SKU规则设置</hg:trans></a> <hg:trans>自动生成SKU</hg:trans>。</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label"><hg:trans>品牌</hg:trans></label>
+        <div class="col-sm-9">
+            <input class="form-control input-sm" id="Brand" name="Brand" type="text" value="YHJM" />
+        </div>
+    </div>
+    <div id="divNoSkuPanel">
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><hg:trans>零售价</hg:trans><font color="red">*</font></label>
+            <div class="col-sm-9">
+                <input class="form-control input-sm" data-val="true" data-val-number="字段 ProductPrice 必须是一个数字。" data-val-required="ProductPrice 字段是必需的。" id="ProductPrice" name="ProductPrice" type="text" value="133.50" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><hg:trans>促销价</hg:trans></label>
+            <div class="col-sm-9">
+                <input class="form-control input-sm" data-val="true" data-val-number="字段 PromotionsPrice 必须是一个数字。" id="PromotionsPrice" name="PromotionsPrice" type="text" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label"><hg:trans>产品名称</hg:trans></label>
+        <div class="col-sm-9">
+            <div class="input-group input-group-sm" style="width:100%">
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active" data_language="zh-CN"><a href="#ProductCnName" aria-controls="ProductCnName" role="tab" data-toggle="tab">中文</a></li>
+                        <li role="presentation" data_language="en"><a href="#ProductEnName" aria-controls="ProductEnName" role="tab" data-toggle="tab">英文</a></li>
+                        <li role="presentation" data_language="fr"><a href="#ProductFrName" aria-controls="ProductFrName" role="tab" data-toggle="tab">法文</a></li>
+                        <li role="presentation" data_language="de"><a href="#ProductDeName" aria-controls="ProductDeName" role="tab" data-toggle="tab">德文</a></li>
+                        <li role="presentation" data_language="es"><a href="#ProductEsName" aria-controls="ProductEsName" role="tab" data-toggle="tab">西班牙文</a></li>
+                        <li role="presentation" data_language="it"><a href="#ProductItName" aria-controls="ProductItName" role="tab" data-toggle="tab">意大利文</a></li>
+                        <li role="presentation" data_language="ja"><a href="#ProductJpName" aria-controls="ProductJpName" role="tab" data-toggle="tab">日文</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="ProductCnName">
+                            <input class="form-control input-sm" id="ProductCnName" name="ProductCnName" placeholder="例子：男士连衣裙休闲衬衫海军" type="text" value="床上用品爆款3d外贸速卖通亚马逊三件套热销家纺捕梦网四件套被套" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ProductEnName">
+                            <input class="form-control input-sm" id="ProductEnName" name="ProductEnName" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" type="text" value="" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ProductFrName">
+                            <input class="form-control input-sm" id="ProductFrName" name="ProductFrName" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" type="text" value="" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ProductDeName">
+                            <input class="form-control input-sm" id="ProductDeName" name="ProductDeName" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" type="text" value="" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ProductEsName">
+                            <input class="form-control input-sm" id="ProductEsName" name="ProductEsName" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" type="text" value="" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ProductItName">
+                            <input class="form-control input-sm" id="ProductItName" name="ProductItName" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" type="text" value="" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ProductJpName">
+                            <input class="form-control input-sm" id="ProductJpName" name="ProductJpName" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" type="text" value="" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <span class="help-block"><a href="javascript:void(0)" onclick="DoTranslation(this)">从中文翻译</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:void(0)" onclick="firstBiger()">首字母大写</a></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label"><hg:trans>产品特点</hg:trans></label>
+        <div class="col-sm-9">
+            <div class="input-group input-group-sm" style="width:100%">
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active" data_language="zh-CN"><a href="#CnFeatures" aria-controls="CnFeatures" role="tab" data-toggle="tab">中文</a></li>
+                        <li role="presentation" data_language="en"><a href="#EnFeatures" aria-controls="EnFeatures" role="tab" data-toggle="tab">英文</a></li>
+                        <li role="presentation" data_language="fr"><a href="#FrFeatures" aria-controls="FrFeatures" role="tab" data-toggle="tab">法文</a></li>
+                        <li role="presentation" data_language="de"><a href="#DeFeatures" aria-controls="DeFeatures" role="tab" data-toggle="tab">德文</a></li>
+                        <li role="presentation" data_language="es"><a href="#EsFeatures" aria-controls="EsFeatures" role="tab" data-toggle="tab">西班牙文</a></li>
+                        <li role="presentation" data_language="it"><a href="#ItFeatures" aria-controls="ItFeatures" role="tab" data-toggle="tab">意大利文</a></li>
+                        <li role="presentation" data_language="ja"><a href="#JpFeatures" aria-controls="JpFeatures" role="tab" data-toggle="tab">日文</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="CnFeatures">
+                            <textarea class="form-control input-sm" cols="20" id="CnFeatures" name="CnFeatures" placeholder="每一行代表一个特点：连衣裙" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="EnFeatures">
+                            <textarea class="form-control input-sm" cols="20" id="EnFeatures" name="EnFeatures" placeholder="每一行代表一个特点：Men&#39;s Dress Casual Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="FrFeatures">
+                            <textarea class="form-control input-sm" cols="20" id="FrFeatures" name="FrFeatures" placeholder="每一行代表一个特点：Men&#39;s Dress Casual Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="DeFeatures">
+                            <textarea class="form-control input-sm" cols="20" id="DeFeatures" name="DeFeatures" placeholder="每一行代表一个特点：Men&#39;s Dress Casual Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="EsFeatures">
+                            <textarea class="form-control input-sm" cols="20" id="EsFeatures" name="EsFeatures" placeholder="每一行代表一个特点：Men&#39;s Dress Casual Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ItFeatures">
+                            <textarea class="form-control input-sm" cols="20" id="ItFeatures" name="ItFeatures" placeholder="每一行代表一个特点：Men&#39;s Dress Casual Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="JpFeatures">
+                            <textarea class="form-control input-sm" cols="20" id="JpFeatures" name="JpFeatures" placeholder="每一行代表一个特点：Men&#39;s Dress Casual Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <span class="help-block"><a href="javascript:void(0)" onclick="DoTranslation(this)">从中文翻译</a></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label"><hg:trans>关键字</hg:trans></label>
+        <div class="col-sm-9">
+            <div class="input-group input-group-sm" style="width:100%">
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active" data_language="zh-CN"><a href=" #CnKeywords" aria-controls="CnKeywords" role="tab" data-toggle="tab">中文</a></li>
+                        <li role="presentation" data_language="en"><a href="#EnKeywords" aria-controls="EnKeywords" role="tab" data-toggle="tab">英文</a></li>
+                        <li role="presentation" data_language="fr"><a href="#FrKeywords" aria-controls="FrKeywords" role="tab" data-toggle="tab">法文</a></li>
+                        <li role="presentation" data_language="de"><a href="#DeKeywords" aria-controls="DeKeywords" role="tab" data-toggle="tab">德文</a></li>
+                        <li role="presentation" data_language="es"><a href="#EsKeywords" aria-controls="EsKeywords" role="tab" data-toggle="tab">西班牙文</a></li>
+                        <li role="presentation" data_language="it"><a href="#ItKeywords" aria-controls="ItKeywords" role="tab" data-toggle="tab">意大利文</a></li>
+                        <li role="presentation" data_language="ja"><a href="#JpKeywords" aria-controls="JpKeywords" role="tab" data-toggle="tab">日文</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="CnKeywords">
+                            <textarea class="form-control input-sm" cols="20" id="CnKeywords" name="CnKeywords" placeholder="每一行代表一个关键字：海军衬衫" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="EnKeywords">
+                            <textarea class="form-control input-sm" cols="20" id="EnKeywords" name="EnKeywords" placeholder="每一行代表一个关键字：Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="FrKeywords">
+                            <textarea class="form-control input-sm" cols="20" id="FrKeywords" name="FrKeywords" placeholder="每一行代表一个关键字：Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="DeKeywords">
+                            <textarea class="form-control input-sm" cols="20" id="DeKeywords" name="DeKeywords" placeholder="每一行代表一个关键字：Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="EsKeywords">
+                            <textarea class="form-control input-sm" cols="20" id="EsKeywords" name="EsKeywords" placeholder="每一行代表一个关键字：Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ItKeywords">
+                            <textarea class="form-control input-sm" cols="20" id="ItKeywords" name="ItKeywords" placeholder="每一行代表一个关键字：Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="JpKeywords">
+                            <textarea class="form-control input-sm" cols="20" id="JpKeywords" name="JpKeywords" placeholder="每一行代表一个关键字：Shirt Navy" rows="5">
+</textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <span class="help-block"><a href="javascript:void(0)" onclick="DoTranslation(this)">从中文翻译</a></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label"><hg:trans>产品描述</hg:trans></label>
+        <div class="col-sm-9">
+            <div class="input-group input-group-sm" style="width:100%">
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active" data_language="zh-CN"><a href="#CnDesc" aria-controls="CnDesc" role="tab" data-toggle="tab">中文</a></li>
+                        <li role="presentation" data_language="en"><a href="#Endesc" aria-controls="Endesc" role="tab" data-toggle="tab">英文</a></li>
+                        <li role="presentation" data_language="fr"><a href="#Frdesc" aria-controls="Frdesc" role="tab" data-toggle="tab">法文</a></li>
+                        <li role="presentation" data_language="de"><a href="#Dedesc" aria-controls="Dedesc" role="tab" data-toggle="tab">德文</a></li>
+                        <li role="presentation" data_language="es"><a href="#Esdesc" aria-controls="Esdesc" role="tab" data-toggle="tab">西班牙文</a></li>
+                        <li role="presentation" data_language="it"><a href="#Itdesc" aria-controls="Itdesc" role="tab" data-toggle="tab">意大利文</a></li>
+                        <li role="presentation" data_language="ja"><a href="#Jpdesc" aria-controls="Jpdesc" role="tab" data-toggle="tab">日文</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="CnDesc">
+                            <textarea class="form-control input-sm" cols="20" id="CnDesc" name="CnDesc" placeholder="例子：男士连衣裙休闲衬衫海军" rows="8">
+名 称 床上用品爆款3d外贸速卖通亚马逊ebay热销家纺捕梦网四件套被套             卖点 拉链简易包装，可以定做尺寸，也可贴牌加工尺 寸 Twin:被套1*Duvet Cover 173cmx218cm枕套2*Pillow shams 51 cmx 66cm Full:被套1*Duvet Cover 203cmx228cm枕套2*Pillow shams 51 cmx 66cm Queen:被套1*Duvet Cover 228cm x 228cm枕套2*Pillow shams 51 cmx 91cm King:被套1*Duvet Cover 264cm x 228cm枕套2*Pillow shams 51 cmx 91cm AUS:被套1*Duvet Cover 140cmx210cm枕套2*Pillow shams 50 cmx 75cm AUD:被套1*Duvet Cover 180cmx210cm枕套2*Pillow shams50 cmx 75cm AUQ:被套1*Duvet Cover 210cmx210cm枕套2*Pillow shams50 cmx 75cm AUK:被套1*Duvet Cover 220cmx240cm枕套2*Pillow shams50 cmx 75cm</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Endesc">
+                            <textarea class="form-control input-sm" cols="20" id="Endesc" name="Endesc" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" rows="8">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Frdesc">
+                            <textarea class="form-control input-sm" cols="20" id="Frdesc" name="Frdesc" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" rows="8">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Dedesc">
+                            <textarea class="form-control input-sm" cols="20" id="Dedesc" name="Dedesc" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" rows="8">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Esdesc">
+                            <textarea class="form-control input-sm" cols="20" id="Esdesc" name="Esdesc" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" rows="8">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Itdesc">
+                            <textarea class="form-control input-sm" cols="20" id="Itdesc" name="Itdesc" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" rows="8">
+</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Jpdesc">
+                            <textarea class="form-control input-sm" cols="20" id="Jpdesc" name="Jpdesc" placeholder="例子：Men&#39;s Dress Casual Shirt Navy" rows="8">
+</textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <span class="help-block"><a href="javascript:void(0)" onclick="DoTranslation(this)">从中文翻译</a></span>
+        </div>
+    </div>
+    <div class="bg-info" style="line-height: 30px;padding: 0 10px;margin-bottom:10px;"><strong><hg:trans>产品图片</hg:trans></strong></div>
+    <div class="form-group" fieldpermiss="ImageUrl">
+        <label class="col-sm-1 control-label"><hg:trans>产品图片</hg:trans><font color="red">*</font></label>
+        <div class="col-sm-9" style="border: 1px solid #ccc;">
+            <div style="border-bottom:1px dotted #888;padding-bottom: 5px;padding-top: 5px;text-align: right;">
+                <span id="spanProductPhotoMessage"></span>
+                <button type="button" class="btn btn-info btn-sm" onclick="javascript: doUploadPruductPhoto('&isfresh=false&isGetData=true', '从本地选择图片')"><hg:trans>从本地选择</hg:trans></button>
+                <button type="button" class="btn btn-info btn-sm" onclick="javascript: doUploadPruductPhoto('&isfresh=false&type=net&isGetData=true', '使用网络图片')"><hg:trans>使用网络图片</hg:trans></button>
+                <button type="button" class="btn btn-info btn-sm" onclick="javascript: doSelectProductPhoto()"><hg:trans>系统图片银行</hg:trans></button>
+            </div>
+            <div class="row" style="width:100%">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <span><hg:trans>备选图片</hg:trans></span>
+                                <span style="float:right;margin-top: -3px;">
+                                    <input type="button" style="margin-left:10px" onclick="OneKeyMoveToPublish()" value="一键移入发布区" />
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="photo-list" id="divAlternativePhotoPanel">
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><span><hg:trans>发布图片</hg:trans></span></h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="photo-list" id="divMainPhotoPanel">
+                <div photoid="1976658" status="loaded" itemid="451693" type="速猫图片银行" draggable="false" style="position:relative;height: 148px;">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/308/676/8597676803_1889333993.jpg" draggable="false" onmouseover="showPic(this)" onmouseout="hidePic(this)">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a class="label  label-primary arrowed-in " istrue="true" onclick="doSetMaiPhoto(1976658,this)" draggable="false"><i class="glyphicon glyphicon-ok"></i></a>
+                            <a href="javascript:void(0)" class="label  label-warning arrowed-in" onclick="doMoveOutPublishPhoto(this)" draggable="false"><hg:trans>移出</hg:trans></a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976659" status="loaded" itemid="451697" type="速猫图片银行" draggable="false" style="position:relative;height: 148px;">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/107/292/8632292701_1889333993.jpg" draggable="false" onmouseover="showPic(this)" onmouseout="hidePic(this)">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a class="label  label-primary arrowed-in " istrue="false" onclick="doSetMaiPhoto(1976659,this)" draggable="false"><hg:trans>设置主图</hg:trans></a>
+                            <a href="javascript:void(0)" class="label  label-warning arrowed-in" onclick="doMoveOutPublishPhoto(this)" draggable="false"><hg:trans>移出</hg:trans></a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976660" status="loaded" itemid="451696" type="速猫图片银行" draggable="false" style="position:relative;height: 148px;">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/081/343/8632343180_1889333993.jpg" draggable="false" onmouseover="showPic(this)" onmouseout="hidePic(this)">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a class="label  label-primary arrowed-in " istrue="false" onclick="doSetMaiPhoto(1976660,this)" draggable="false"><hg:trans>设置主图</hg:trans></a>
+                            <a href="javascript:void(0)" class="label  label-warning arrowed-in" onclick="doMoveOutPublishPhoto(this)" draggable="false"><hg:trans>移出</hg:trans></a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976661" status="loaded" itemid="451695" type="速猫图片银行" draggable="false" style="position:relative;height: 148px;">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/291/302/8618203192_1889333993.jpg" draggable="false" onmouseover="showPic(this)" onmouseout="hidePic(this)">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a class="label  label-primary arrowed-in " istrue="false" onclick="doSetMaiPhoto(1976661,this)" draggable="false"><hg:trans>设置主图</hg:trans></a>
+                            <a href="javascript:void(0)" class="label  label-warning arrowed-in" onclick="doMoveOutPublishPhoto(this)" draggable="false"><hg:trans>移出</hg:trans></a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976662" status="loaded" itemid="451694" type="速猫图片银行" draggable="false" style="position:relative;height: 148px;">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/734/496/8597694437_1889333993.jpg" draggable="false" onmouseover="showPic(this)" onmouseout="hidePic(this)">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a class="label  label-primary arrowed-in " istrue="false" onclick="doSetMaiPhoto(1976662,this)" draggable="false"><hg:trans>设置主图</hg:trans></a>
+                            <a href="javascript:void(0)" class="label  label-warning arrowed-in" onclick="doMoveOutPublishPhoto(this)" draggable="false"><hg:trans>移出</hg:trans></a>
+                        </span>
+                    </div>
+                </div>
+              <!--   /Content/img/nopic.jpg
+/Content/img/nopic.jpg
+/Content/img/nopic.jpg -->
+        <div photoid="0" style="height: 148px;" status="unload"><img src="" /></div>
+        <div photoid="0" style="height: 148px;" status="unload"><img src="" /></div>
+        <div photoid="0" style="height: 148px;" status="unload"><img src="" /></div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="bg-info" style="line-height: 30px;padding: 0 10px;margin-bottom:10px;" fieldpermiss="Variable"><strong><hg:trans>变参信息</hg:trans></strong></div>
+    <!--初始化颜色-->
+    <div id="divProductSkuPanel" fieldpermiss="Variable">
+        <div class="form-group" orderno="1" itemid="14" attrname="颜色" attrnameen="Color" customname="true" customphoto="true">
+            <label class="col-sm-1 control-label"><hg:trans>颜色</hg:trans>：</label>
+            <div class="col-sm-10">
+                <div class="checkbox" id="colorDiv">
+                    <label style="width: 180px;margin-right: 10px;">
+                        <input type="checkbox" valueid="1" valuename="Beige" valuenameen="Beige" onchange="doSKUAttrValueChange(event)" />
+                        <span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Beige"></span>Beige(米色)
+                    </label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="2" valuename="Black" valuenameen="Black" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Black"></span>黑色(Black)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="3" valuename="Blue" valuenameen="Blue" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Blue"></span>蓝色(Blue)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="4" valuename="Brown" valuenameen="Brown" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Brown"></span>棕色(Brown)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="5" valuename="Gold" valuenameen="Gold" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Gold"></span>金色(Gold)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="6" valuename="Gray" valuenameen="Gray" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Gray"></span>灰色(Gray)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="7" valuename="Green" valuenameen="Green" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Green"></span>绿色(Green)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="8" valuename="Ivory" valuenameen="Ivory" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Ivory"></span>象牙白(Ivory)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="9" valuename="Khaki" valuenameen="Khaki" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Khaki"></span>黄褐色(Khaki)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="10" valuename="Orange" valuenameen="Orange" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Orange"></span>橙色(Orange)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="11" valuename="Pink" valuenameen="Pink" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Pink"></span>粉色(Pink)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="12" valuename="Purple" valuenameen="Purple" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Purple"></span>紫色(Purple)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="13" valuename="Red" valuenameen="Red" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Red"></span>红色(Red)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="14" valuename="Silver" valuenameen="Silver" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Silver"></span>银色(Silver)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="15" valuename="White" valuenameen="White" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:White"></span>白色(White)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="16" valuename="Yellow" valuenameen="Yellow" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Yellow"></span>黄色(Yellow)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="17" valuename="Multicolor" valuenameen="Multicolor" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Multi"></span>彩色(Multicoloured)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="18" valuename="Transparent" valuenameen="Transparent" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Transparent"></span>透明色(Transparent)</label>
+                    <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="18" valuename="Tan" valuenameen="Tan" onchange="doSKUAttrValueChange(event)" /><span style="border:1px solid #eee;display:inline-block;position:relative;top:2px;width:14px;height:14px;background-color:Tan"></span>褐色(Tan)</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><hg:trans>其他颜色</hg:trans>：</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input class="form-control input-sm" id="mycolor" />
+                    <span class="input-group-addon"><a href="javascript:void(0)" onclick="AddMyseftColor()"><hg:trans>添加</hg:trans></a></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><hg:trans>尺码类型</hg:trans>：</label>
+            <div class="input-group para-items">
+                <div class="input-group para-items" id="sizeTypeDiv" style="float:left;padding-left:10px">
+                            <span itemid="1">男士服装</span>
+                            <span itemid="2">女士服装</span>
+                            <span itemid="3">婴儿/儿童</span>
+                            <span itemid="4">婴儿/儿童 鞋</span>
+                            <span itemid="5">其他服装</span>
+                            <span itemid="6">数值尺寸</span>
+                            <span itemid="7">文胸</span>
+                            <span itemid="8">男士鞋子</span>
+                            <span itemid="9">女士鞋子</span>
+                            <span itemid="10">其他鞋子</span>
+                            <span itemid="11">苹果笔记本</span>
+                            <span itemid="12">智能手机/平板电脑</span>
+                            <span itemid="13">游戏</span>
+                            <span itemid="14">耳机</span>
+                            <span itemid="15">床上用品</span>
+                            <span itemid="16">存储容量</span>
+                            <span itemid="17">面积</span>
+                            <span itemid="18">长度</span>
+                            <span itemid="19">体积</span>
+                            <span itemid="20">电压</span>
+                            <span itemid="21">功率</span>
+                            <span itemid="22">重量</span>
+                            <span itemid="23">形状</span>
+                            <span itemid="24">其他</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" orderno="2" itemid="5" hgtrans="true" attrname="尺寸" attrnameen="Size" customname="false" customphoto="false">
+            <label class="col-sm-1 control-label"></label>
+            <div class="col-sm-10">
+                <div class="checkbox" id="SizeAttr">
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><hg:trans>其他尺寸</hg:trans>：</label>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input class="form-control input-sm" id="mySize" />
+                    <span class="input-group-addon"><a href="javascript:void(0)" onclick="AddMyseftSize()"><hg:trans>添加</hg:trans></a></span>
+                </div>
+            </div>
+        </div>
+        <div id="divSkuSettingPanel" class="col-sm-offset-1 col-sm-10" fieldpermiss="Variable">
+        </div>
+            <script>
+                var skuBatchSettingPanel = $("<div></div>").attr({ "id": "divSkuBatchSettingPanel", "class": "form-inline" }).prependTo("#divSkuSettingPanel");
+                skuBatchSettingPanel.append("<div class=\"form-group input-group\" style=\"margin-left: 0px; margin-right: 15px;\"><input type=\"text\" id=\"txtBatchPrice\" class=\"form-control input-sm\" hgtrans=\"true\"  placeholder=\"输入产品的零售价\"><span class=\"input-group-btn\"><button type=\"button\" id=\"btnSetBatchPrice\" class=\"btn btn-info btn-sm\"><hg:trans>批量设置</hg:trans></button></span></div>");
+                skuBatchSettingPanel.append("<div class=\"form-group input-group\" style=\"margin-left: 0px; margin-right: 15px;\"><input type=\"text\" id=\"txtBatchMsPrice\" class=\"form-control input-sm\" hgtrans=\"true\" placeholder=\"输入产品的促销价\" value=\"\"><span class=\"input-group-btn\"><button type=\"button\" id=\"btnSetBatchMsPrice\" class=\"btn btn-info btn-sm\"><hg:trans>批量设置</hg:trans></button></span></div>");
+                $("#divSkuBatchSettingPanel").find("#btnSetBatchPrice").click(function () {
+                    var price = $.trim($("#txtBatchPrice").val());
+                    if (!checkDecimal(price)) {
+                        doShowError({ "txtBatchPrice": translate.format("<hg:trans>请输入正确的价格</hg:trans>") });
+                        return false;
+                    }
+                    $("#divSkuSettingPanel>table #txtSpecPrice").each(function () {
+                        $(this).val(price);
+                    });
+                });
+
+                $("#divSkuBatchSettingPanel").find("#btnSetBatchMsPrice").click(function () {
+                    var BatchMsPrice = $.trim($("#txtBatchMsPrice").val());
+                    if (!checkDecimal(BatchMsPrice)) {
+                        doShowError({ "txtBatchMsPrice": "请输入正确的价格，只允许输入数字" });
+                        return false;
+                    }
+                    $("#divSkuSettingPanel>table #txtMsrPrice").each(function () {
+                        $(this).val(BatchMsPrice);
+                    });
+                });
+
+            </script>
+
+    </div>
+    <div class="form-group">
+    </div>
+    <div style="border-bottom:1px solid #ccc;"></div>
+    <div class="col-sm-offset-1 parents-nodest">
+        <button id="btnSubmitData" onclick="Save(0)" type="button" class="btn btn-primary"><hg:trans>保存</hg:trans></button>
+        <button type="button" class="btn btn-default" onclick="doClosePreviewEdit();"><hg:trans>取消</hg:trans></button>
+    </div>
+    <!--数据sku窗口-->
+    <div class="modal fade" id="ImportParentSkuModal" tabindex="-1" role="dialog" aria-labelledby="ImportInstoreDetailModalLabel" aria-hidden="true" style="padding-top:150px;">
+        <div class="modal-dialog" style="width:550px">
+            <div class="modal-content">
+                <div class="modal-header" style="cursor:move;background:#438EB9 none repeat scroll 0% 0%;color:white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ImportInstoreDetailModalLabel"><hg:trans>输入本地父SKU值</hg:trans></h4>
+                </div>
+                <div class="modal-body" style="height:150px;overflow:auto">
+                    <div class="form-group" style="max-width:450px;" id="Search">
+                        <label for="txtSearchContent" class="control-label col-sm-1" style="width:105px !important;margin-right:10px;text-align:center;"><hg:trans>父SKU编码</hg:trans><font color="red">*</font></label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="OldParentSKU" name="OldParentSKU" class="form-control" value="">
+                            <span class="input-group-btn">
+                                <input id="btnSaveSku" type="button" hgtrans="true" value="确定(O)" accesskey="S" class="btn btn-primary">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--子sku选择本地产品图片-->
+    <div class="modal fade" id="ChoosePicModal" tabindex="-1" role="dialog" aria-labelledby="ChoosePicModalLabel" aria-hidden="true" style="padding-top:150px;">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content" style="height:50%">
+                <div class="modal-header" style="cursor:move;background:#438EB9 none repeat scroll 0% 0%;color:white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ChoosePicModalLabel"><hg:trans>选择本产品图片</hg:trans></h4>
+                </div>
+                <div class="modal-body photo-list" style="overflow:auto;height:600px">
+                <div photoid="1976658" status="loaded" itemid="451693" type="速猫图片银行" draggable="false">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/308/676/8597676803_1889333993.jpg" draggable="false" title="1976658" onclick="Check(this)" id="1976658">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a href="javascript:void(0)" class="label  label-primary arrowed-in " src="https://cbu01.alicdn.com/img/ibank/2018/308/676/8597676803_1889333993.jpg" istrue="false" onclick="Check(this)" draggable="false" id="1976658"><i></i>选择</a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976659" status="loaded" itemid="451697" type="速猫图片银行" draggable="false">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/107/292/8632292701_1889333993.jpg" draggable="false" title="1976659" onclick="Check(this)" id="1976659">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a href="javascript:void(0)" class="label  label-primary arrowed-in " src="https://cbu01.alicdn.com/img/ibank/2018/107/292/8632292701_1889333993.jpg" istrue="false" onclick="Check(this)" draggable="false" id="1976659"><i></i>选择</a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976660" status="loaded" itemid="451696" type="速猫图片银行" draggable="false">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/081/343/8632343180_1889333993.jpg" draggable="false" title="1976660" onclick="Check(this)" id="1976660">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a href="javascript:void(0)" class="label  label-primary arrowed-in " src="https://cbu01.alicdn.com/img/ibank/2018/081/343/8632343180_1889333993.jpg" istrue="false" onclick="Check(this)" draggable="false" id="1976660"><i></i>选择</a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976661" status="loaded" itemid="451695" type="速猫图片银行" draggable="false">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/291/302/8618203192_1889333993.jpg" draggable="false" title="1976661" onclick="Check(this)" id="1976661">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a href="javascript:void(0)" class="label  label-primary arrowed-in " src="https://cbu01.alicdn.com/img/ibank/2018/291/302/8618203192_1889333993.jpg" istrue="false" onclick="Check(this)" draggable="false" id="1976661"><i></i>选择</a>
+                        </span>
+                    </div>
+                </div>
+                <div photoid="1976662" status="loaded" itemid="451694" type="速猫图片银行" draggable="false">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/734/496/8597694437_1889333993.jpg" draggable="false" title="1976662" onclick="Check(this)" id="1976662">
+                    <div class="tags">
+                        <span class="label-holder">
+                            <a href="javascript:void(0)" class="label  label-primary arrowed-in " src="https://cbu01.alicdn.com/img/ibank/2018/734/496/8597694437_1889333993.jpg" istrue="false" onclick="Check(this)" draggable="false" id="1976662"><i></i>选择</a>
+                        </span>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form><!--加载时处理已经选择的属性-->
+<div class="waitting" id="divAjaxLoadingPanel1" style="height: 3699px; display: none;" tabindex="-1">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<script type="text/javascript" src="__STATIC__/index/js/xhr/jquery.zclip.js"></script>
+<link href="__STATIC__/index/css/xhr/smartMenu.css" rel="stylesheet"/>
+
+<script src="__STATIC__/index/js/xhr/jquery-smartMenu.js"></script>
+
+<script language="javascript" type="text/javascript">
+    //首字母大写
+    function firstBiger() {
+        $("input[name='ProductEnName']").val(titleFirstCase($("input[name='ProductEnName']").val()))
+        $("input[name='ProductFrName']").val(titleFirstCase($("input[name='ProductFrName']").val()))
+        $("input[name='ProductDeName']").val(titleFirstCase($("input[name='ProductDeName']").val()))
+        $("input[name='ProductEsName']").val(titleFirstCase($("input[name='ProductEsName']").val()))
+        $("input[name='ProductItName']").val(titleFirstCase($("input[name='ProductItName']").val()))
+    }
+    function titleFirstCase(str) {
+        return str.replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
+    }
+    //===begin翻译相关===//
+    $(function () {
+        $("li[role ='presentation']").click(function () {
+            var $this = $(this)
+            if ($this.class != "active") {
+                var $parentDiv = $this.closest(".form-group")
+                $parentDiv.find("span[class='help-block']>a:first").html("从" + $this.find("a").html() + "翻译");
+            }
+        })
+        if ($("input[name='ProductEnName']").val().length > 0)
+        {
+            $("li[data_language='en']>a").click();
+        }
+    })
+    function DoTranslation(event) {
+        var $this = $(event)
+        var $thisParentDiv = $this.closest(".form-group");
+        var $fromUl = $thisParentDiv.find("li[role='presentation'][class='active']");
+        var fromInputId = $fromUl.find("a").attr("aria-controls")
+        var from = $fromUl.attr("data_language")
+        var fromText = $("[name='" + fromInputId + "']").val();
+        if (fromText.length > 0) {
+            $("#divAjaxLoadingPanel1").css("height", $(document).height() + "px").css("display", "");
+            $thisParentDiv.find("li[role='presentation']").not($fromUl).each(function () {
+                var $thisrole = $(this)
+                var to = $thisrole.attr("data_language")
+                var inputId = $thisrole.find("a").attr("aria-controls")
+                var translateResult = GoogleTranslateText(fromText, from, to);
+                $("[name='" + inputId + "']").val(translateResult);
+                if (translateResult.length>0)
+                    $("#divAjaxLoadingPanel1").css("height", $(document).height() + "px").css("display", "none");
+            })
+
+        }
+    }
+
+
+    //====end翻译相关====//
+
+
+
+
+
+    //图片右键菜单
+    var selectSumoolImg = null;
+    var imageMenuData = [
+    [{
+        text: "美图",
+        func: function () {
+            selectSumoolImg = $(this);
+            var src = selectSumoolImg.attr("src");
+            var url = "../Meitu/Index?imgUrl=" + src + "&callbackFuction=p1825173403meiTuCallBack";
+            window.open(url);
+        }
+    }],
+        [{
+            text: "打开图片",
+            func: function () {
+                var $this = $(this);
+                var src = $this.attr("src");
+                window.open(src);
+            }
+        }]
+    ];
+
+    $(function () {
+        //图片美图
+        $.smartMenu.remove()
+        $("#tabContent_liProductEdit img").smartMenu(imageMenuData, {
+            name: "meituimage"
+        });
+        $("#tabContent_liProductEdit img").bind('dblclick', function () {
+            var $this = $(this);
+            var src = $this.attr("src");
+            window.open(src);
+        });
+
+    })
+
+
+
+
+    //图片美图完了回掉
+    function p1825173403meiTuCallBack(imgsrc) {
+        var itemSrc=selectSumoolImg.attr("src")
+        $("img[src='"+itemSrc+"']").attr("src", imgsrc);
+    }
+    function p1825173403onCatalogSelected(catalog) {
+        var catalogId = catalog.CatalogId;
+        $("#HgCatalogId").val(catalogId);
+    }
+    //处理属性选择
+    function setProductAttr(jsonArray, colorDiv, sizeDiv) {
+        //处理颜色
+        var colorInputs = $("#" + colorDiv).find("input");
+        $.each(jsonArray, function (index, value) {
+            var hasColorAttr = false;
+            colorInputs.each(function () {
+                var $this = $(this)
+                if ($this.attr("valuename") == value.SpecValue1) {
+                    $this.attr("checked", true)
+                    hasColorAttr = true;
+                }
+            })
+            if (!hasColorAttr && value.SpecValue1 != "" && value.SpecValue1 != null) {
+                var num = $("#" + colorDiv).find("input").length;
+                if ($("#" + colorDiv).find("input[valuename='" + value.SpecValue1 + "']").length == 0) {
+                    $("#" + colorDiv).append(' <label style="width: 180px;margin-right: 10px;"><input type="checkbox" valueid="' + num + '" valuename="' + value.SpecValue1 + '" valuenameen="' + value.SpecValue1 + '" checked onchange="doSKUAttrValueChange(event)" />' + value.SpecValue1 + '</label>')
+                }
+            }
+
+        })
+    }
+
+    function setProductSizeAttr(jsonArray, sizeDiv) {
+        //处理尺码
+        var sizeInputs = $("#" + sizeDiv).find("input");
+        $.each(jsonArray, function (index, value) {
+            var hasSizeAttr = false;
+            sizeInputs.each(function () {
+                var $this = $(this)
+                if ($this.attr("valuename") == value.SpecValue2) {
+                    $this.attr("checked", true)
+                    hasSizeAttr = true;
+                }
+            })
+            if (!hasSizeAttr && value.SpecValue2 != "" && value.SpecValue2 != null) {
+                if ($("#" + sizeDiv).find("input[valuename='" + value.SpecValue2 + "']").length == 0) {
+                    $("#" + sizeDiv).append('<label style="min-width: 120px;margin-right: 10px;"><input type="checkbox" valuename="' + value.SpecValue2 + '" valuenameen="' + value.SpecValue2 + '" checked onchange="doSKUAttrValueChange(event)">' + value.SpecValue2 + '</label>')
+                }
+            }
+        })
+    }
+
+    //航运时间选择
+    function dochooseShiptime() {
+        $("#dochooseShiptime").toggle();
+    }
+    $("#sel_menu2").select2({
+        tags: true,
+        tokenSeparators: [','] //按哪个键添加
+    });
+
+    //添加航运时间
+    function AddShippingTime() {
+        var shippBegin = $("#shippBegin").val()
+        var shippEnd = $("#shippEnd").val()
+        var hasError = false;
+        if (shippBegin.leng = 0 || !checkInt(shippBegin)) {
+            hasError = true;
+            doShowError({ "shippBegin": translate.format("<hg:trans>请先输入最小天数</hg:trans>") });
+        }
+        if (shippEnd.leng = 0 || !checkInt(shippEnd)) {
+            hasError = true;
+            doShowError({ "shippEnd": translate.format("<hg:trans>请先输入最小天数</hg:trans>") });
+        }
+        if (!hasError && parseInt(shippBegin) > parseInt(shippEnd)) {
+            hasError = true;
+            doShowError({ "shippBegin": translate.format("<hg:trans>最小天数不能大于最大天数</hg:trans>") });
+        }
+        if (!hasError) {
+            var endvalue = shippBegin + "-" + shippEnd;
+            $("#ShippingTime").val(endvalue);
+            $("#ShippingTime").change();
+            //$("#checkShippingTime>label:last").after("<label style='min-width: 120px;margin-right: 10px;'><input type='radio' name='checkShippingTime' value=\"" + endvalue + "\" onchange='doCheckShippingTime(this)' />" + endvalue + "</label>");
+            $("#dochooseShiptime").toggle();
+        }
+    }
+    //选择航运时间
+    doCheckShippingTime = function () {
+        $("#ShippingTime").val($("input[name='checkShippingTime']:checked").val())
+        $("#dochooseShiptime").toggle();
+        $("#ShippingTime").change();
+    }
+    //添加自定义尺寸
+    AddMyseftSize = function () {
+
+        var $mysize = $("#mySize")
+        if ($mysize.val().trim() == "") {
+            alert(translate.format("<hg:trans>请填写尺寸值</hg:trans>"));
+            return;
+        }
+        var $SizeAttr = $("#SizeAttr");
+        if ($SizeAttr.find("input[valuename='" + $mysize.val() + "']").length == 0) {
+            $SizeAttr.append("<label style='width: 250px;margin-right: 10px;'><input type='checkbox' valuename='" + $mysize.val().trim() + "' valuenameen='" + $mysize.val().trim() + "' onchange='doSKUAttrValueChange(event)' />" + $mysize.val().trim() + "</label>");
+        }
+        var columnOptionSize = {
+            TableName: "ErpProduct",
+            ColumnName: $("#sizeTypeDiv span.active").text(),
+            OptionValue: $mysize.val().trim(),
+            TableTitle: "产品尺寸",
+            ColumnTitle: "尺寸类型",
+            OptionTitle: $mysize.val().trim(),
+            ParentValue: "",
+            AllowEdit: true,
+            OptionColumn1: null
+        };
+        var columnOptionList = [];
+        columnOptionList.push(columnOptionSize);
+        doSaveSpecSkuValue(columnOptionList);
+    }
+
+    //添加自定义颜色
+    AddMyseftColor = function () {
+
+        var $mycolor = $("#mycolor")
+        if ($mycolor.val().trim() == "") {
+            alert(translate.format("<hg:trans>请填写颜色英文名</hg:trans>"));
+            return;
+        }
+        var count = $("#colorDiv").find("input").length;
+        if ($("#colorDiv").find("input[valuename='" + $mycolor.val().trim() + "']").length > 0) {
+            alert(translate.format("<hg:trans>" + $mycolor.val().trim() + "已存在</hg:trans>"));
+            return;
+        }
+        $("#colorDiv").append('<label style="min-width: 120px;margin-right: 10px;"><input type="checkbox" valueid="' + count + '" valuename="' + $mycolor.val().trim() + '"  valuenameen="' + $mycolor.val().trim() + '" onchange="doSKUAttrValueChange(event)" />' + $mycolor.val().trim() + '</label>');
+        var columnOptionColor = {
+            TableName: "ErpProduct",
+            ColumnName: "Color",
+            OptionValue: $mycolor.val().trim(),
+            TableTitle: "产品颜色",
+            ColumnTitle: "颜色",
+            OptionTitle: $mycolor.val().trim(),
+            ParentValue: "",
+            AllowEdit: true,
+            OptionColumn1: ""
+        };
+        var columnOptionList = [];
+        columnOptionList.push(columnOptionColor);
+        doSaveSpecSkuValue(columnOptionList);
+    }
+
+    function doSaveSpecSkuValue(columnOptionList) {
+        var strOptionList = JSON.stringify(columnOptionList);
+        $.ajax({
+            url: "/Product/AddSpecSkuShort",
+            data: { strOptionList: strOptionList },
+            type: "post",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    //redgle.showMessage(translate.format("<hg:trans>您所做的修改已保存成功</hg:trans>！"));
+                }
+            }
+        });
+    }
+
+
+    jQuery(function () {
+        if ($("#KeyWord1").val() != "") {
+            var arr = $("#KeyWord1").val().split(',');
+            var htmlOption = "";
+            var selection = "";
+            for (var i = 0; i < arr.length; i++) {
+                htmlOption += "<option value='" + arr[i] + "' data-select2-tag='true' selected='selected'>" + arr[i] + "</option>";
+                selection += '<li class="select2-selection__choice" title=' + arr[i] + '>' +
+                 '<span class="select2-selection__choice__remove" role="presentation">' +
+                   '&times;' +
+                 '</span>' + arr[i] +
+               '</li>';
+            }
+            $("#sel_menu2").append(htmlOption);
+            $(".select2-selection__rendered li").before(selection);
+            $("#clipNum").html(arr.length + "/" + 10);
+        } else {
+            $("#clipNum").html(0 + "/" + 10);
+        }
+
+        //附加事件
+        $("#sizeTypeDiv span").click(function () {
+            var $this = $(this)
+            $("#sizeTypeDiv>span").removeClass();
+            $this.addClass("active");
+            var $SizeAttr = $("#SizeAttr");
+            $SizeAttr.next().remove();
+            //加载尺寸列表
+            if ($this.text() == "面积") {
+                $SizeAttr.empty();
+                $SizeAttr.after('<span style="font-weight:bold;"><hg:trans>面积可添加其他尺寸,例子</hg:trans>:1.4m x 1.4m, 10.5" * 10.5", 10cm by 10cm by 10cm</span>');
+            } else if ($this.text() == "长度") {
+                $SizeAttr.empty();
+                $SizeAttr.after('<span style="font-weight:bold;"><hg:trans>长度可添加其他尺寸,例子</hg:trans>:6\' 5\", 10m, 5\", 11.5cm, 6ft 5in</span>');
+            } else if ($this.text() == "体积") {
+                $SizeAttr.empty();
+                $SizeAttr.after('<span style="font-weight:bold;"><hg:trans>体积可添加其他尺寸,例子</hg:trans>:100mL, 200L, 40 fl. oz., 10.5pt</span>');
+            } else if ($this.text() == "电压") {
+                $SizeAttr.empty();
+                $SizeAttr.after('<span style="font-weight:bold;"><hg:trans>电压可添加其他尺寸,例子</hg:trans>:100V, 50v</span>');
+            } else if ($this.text() == "功率") {
+                $SizeAttr.empty();
+                $SizeAttr.after('<span style="font-weight:bold;"><hg:trans>功率可添加其他尺寸,例子</hg:trans>:10W, 30W, 100W</span>');
+            } else if ($this.text() == "重量") {
+                $SizeAttr.empty();
+                $SizeAttr.after('<span style="font-weight:bold;"><hg:trans>重量可添加其他尺寸,例子</hg:trans>:100kg, 11.5lb, 3.14g</span>');
+            } else {
+                LoadWishSizeAttr($this.attr("itemid"));
+            }
+            $("#FreightTemplate").val($this.attr("itemid"));//存尺寸类别的
+
+
+        })
+
+        //产品名称的长度
+        $("#ProductName").keyup(function () {
+            var left = 300 - $(this).val().length;
+            $(this).next("span").html("<hg:trans>剩余字数</hg:trans>：<font color='red'>" + left + "</font> / 300");
+        });
+        $("#ProductName").keyup();
+
+        //产品图片排序
+        var list = document.getElementById("divMainPhotoPanel");
+        try {
+            new Sortable(list);
+            $("div[id='divSkuPhoto']").each(function () {
+                new Sortable(this);
+            })
+        } catch (e) {
+            console.log(e)
+        }
+        //自定义重量
+        $("#rdIsPackSell").click(function () {
+            if ($(this).is(":checked")) {
+                $("#divPackSellPanel").removeClass("hide");
+            }
+            else {
+                $("#divPackSellPanel").addClass("hide");
+            }
+        });
+
+
+        if ($("#IsFailed").val() == "True" && $("#FailedString").val().length > 0) {
+            var data = JSON.parse($("#FailedString").val());
+            $.each(data, function (index, item) {
+                var msg = "<div class='row'><div class='col-sm-2' style='text-align: right;'><strong>" + index + "：</strong></div><div class='col-sm-9'>" + item + "</div></div>";
+                $("#divFailedMessagePanel p").append(msg);
+            });
+            $("#divFailedMessagePanel").removeClass("hide");
+        }
+
+
+        //初始化尺码及颜色
+        if ($("#FreightTemplate").val() != "") {
+            var sizeSpan = $("#sizeTypeDiv").find("span[itemid='" + $("#FreightTemplate").val() + "']");
+            if (sizeSpan.length > 0) {
+                sizeSpan.click();
+            } else {
+                $("#sizeTypeDiv span:first").click();
+            }
+        } else {
+            $("#sizeTypeDiv span:first").click();
+        }
+        var hideErpPreviewProductSpecJson = $("#hideErpPreviewProductSpecJson").val();
+        if (hideErpPreviewProductSpecJson) {
+            var jsonArray = eval("(" + hideErpPreviewProductSpecJson + ")");
+            setProductAttr(jsonArray, "colorDiv", "SizeAttr")
+            if ($("#sizeTypeDiv span").length == 0) {
+                setProductSizeAttr(jsonArray, "SizeAttr");
+            }
+        }
+
+        //$("#btnclip").zclip({
+        //    path: "/Scripts/jquery.zclib/ZeroClipboard.swf",
+        //    copy: function () {
+        //        return $("#KeyWord1").val();
+        //    },
+        //    afterCopy: function () {/* 复制成功后的操作 */
+        //        alert("复制成功！");
+        //    }
+        //});
+        //$("#zclip-ZeroClipboardMovie_1").css({ "margin-left": "-50px", "left": "97%" })
+        //$("#zclip-ZeroClipboardMovie_1").css("height", "50px");
+        //$("#ZeroClipboardMovie_1").css("height", "50px");
+
+        $("#lnkAutoCreateSku").click(function () {
+            var parentSku = $.trim($("#ParentSKU").val());
+            if (parentSku.length == 0) {
+                alert("请先填写父SKU值，再进行此操作");
+                return;
+            };
+            var skuList = [];
+            $("#divSkuSettingPanel>table>tbody>tr").each(function () {
+                var trPanel = $(this);
+                var newSpecSKU=parentSku;
+                $(trPanel).children("td[valueid]").each(function () {
+                    if ($(this).attr("data-type") == "颜色") {
+                        if ($(this).find("#txtSpecValueInput").length > 0)
+                        {                            
+                            newSpecSKU+="-"+ $(this).find("#txtSpecValueInput").val() ;                           
+                        }
+                        else {
+                            newSpecSKU+="-"+  $(this).text();
+                        }
+                    }
+                    if ($(this).attr("data-type") == "尺寸") {
+                        if ($(this).find("#txtSpecValueInput").length > 0)
+                        {
+                            newSpecSKU+="-"+ $(this).find("#txtSpecValueInput").val() ;    
+                        }
+                        else {
+                            newSpecSKU+="-"+  $(this).text();
+                        }
+                    }
+                });
+                trPanel.find("#txtSpecSku").attr("title", newSpecSKU.replace(/amp;/g, "")).val(newSpecSKU.replace(/amp;/g, ""));
+            });
+        });
+    });
+
+    //关闭本页面
+    function doClosePreviewEdit() {
+        try {
+            redgle.tab.close("liProductEdit");
+p549266631doReloadData();
+        }
+        catch (e)
+        { }
+    }
+
+    //关闭本页面
+    function doCloseOpenSkuMapp() {
+        try {
+            //跳转到sku映射
+            var url = "/SKUMapping/Index";
+            //redgle.tab.create("liSKUMapping", url, translate.format("<hg:trans>SKU映射</hg:trans>"));
+            window.open(url, "_blank");
+        }
+        catch (e)
+        { }
+    }
+
+
+    var thispopover;
+    var thisColorInput;
+    function DoGetWishColors(event) {
+        var $button = $(event);
+        var $this = $button.parent().parent().find("input")
+        var value = $this.val();
+        if ($this.next() && $this.next().attr("class") && $this.next().attr("class").indexOf("popover") >= 0) {
+            $this.popover('show')
+            return;
+        }
+        thisColorInput = $this;
+        var offsettop = $this.offset().top + $this.height();
+        var offsetleft = $this.offset().left;
+        $.ajax({
+            url: "/WishPublish/DoGetWishColors",
+            data: { str: value },
+            type: "post",
+            success: function (data) {
+                if (data.HasError) {
+                } else {
+                    var htmlStart = ' <div id="divSaleStatues"><div class="form-group" style="width:430px;max-height:350px;overflow:auto">';
+                    htmlStart += '    <div class="col-sm-12" style="margin-top:0px;">';
+                    htmlStart += '        <div class="checkbox" salegroup="WishColor">';
+
+
+                    var htmlEnd = '</div>';
+                    htmlEnd += '    </div>';
+                    htmlEnd += '</div><div name="selectedColor"></div></div>';
+                    var htmlCenter = '';
+                    $.each(data.ResultObject, function (index, value) {
+                        htmlCenter += '<label style="width:150px" data-value="' + value.Value + '"><input name="saleStatuesCheck" type="checkbox" onclick="DoColorOnclick()" value="' + value.Value + '" thisText="' + value.Value + '" />' + value.Value + '</label>';
+                    });
+                    $this.popover({ content: htmlStart + htmlCenter + htmlEnd, html: true, title: '　<div style="float:right;"><input  placeholder="搜索多色请以&隔开"/><button type="button" class="btn btn-default btn-xs" style="color:#337ab7;" onclick="searchColor(this)" title="搜索">搜索</button> <button type="button" class="btn btn-default btn-xs" style="color:#337ab7;" onclick="doClearSaleStatues();DoColorOnclick()" title="清空">清空</button> <button type="button" class="btn btn-default btn-xs" style="color:#337ab7;" onclick="doSearchOk(this);doCloseSaleStatues();" title="确认" style="margin-left:5px">确认</button></div>' });
+                    thispopover = $this;
+                    $this.popover("show");
+                }
+            }
+        })
+    }
+    //颜色弹出框选择
+    function DoColorOnclick() {
+        var endColors = "";
+        $("div[salegroup='WishColor']:visible").find("label").each(function () {
+            var $lable = $(this)
+            if ($lable.find("input").is(":checked")) {
+                if (endColors == "") {
+                    endColors = $lable.attr("data-value");
+                } else {
+                    endColors += "&" + $lable.attr("data-value");
+                }
+            }
+        })
+        $("div[name='selectedColor']:visible").html("已选颜色：" + endColors)
+    }
+
+    //展示出来的提供搜索功能
+    function searchColor(event) {
+        var $this = $(event)
+        var value = $this.prev().val();
+        var p = $this.parent().parent().parent().parent();
+        var WishColorDiv = p.find("div[salegroup='WishColor']");
+        var selectValueArray = value.split('&');
+        var labels = WishColorDiv.find("label");
+        labels.each(function () {
+            var $lable = $(this)
+            var isShow = false;
+            var isSame = false;
+            var lableValue = $lable.attr("data-value").toUpperCase()
+            if (selectValueArray.length > 0) {
+                $.each(selectValueArray, function (index, item) {
+                    if (lableValue.indexOf(item.toUpperCase()) >= 0) {
+                        isShow = true;
+                        if (lableValue == item.toUpperCase()) {
+                            isSame = true;
+                        }
+                    }
+                })
+            } else {
+                isShow = true;
+            }
+            if (isShow) {
+                $lable.show()
+            } else {
+                $lable.hide()
+            }
+            if (isSame) {
+                $lable.css("color", "blue")
+            } else {
+                $lable.css("color", "")
+            }
+        })
+    }
+
+
+    //关闭
+    function doCloseSaleStatues() {
+        thispopover.next().css("display", "none")
+    }
+    //清除平台状态
+    function doClearSaleStatues() {
+        $("input[name='saleStatuesCheck']:checked").each(function () {
+            $(this).attr("checked", false);
+        })
+    }
+
+    //确认选择
+    function doSearchOk(event) {
+        var $this = $(event)
+        var value = $this.prev().val();
+        var p = $this.parent().parent().parent().parent();
+        var WishColorDiv = p.find("div[salegroup='WishColor']");
+        var labels = WishColorDiv.find("label");
+        var endColors = "";
+        labels.each(function () {
+            var $lable = $(this)
+            if ($lable.find("input").is(":checked")) {
+                if (endColors == "") {
+                    endColors = $lable.attr("data-value");
+                } else {
+                    endColors += "&" + $lable.attr("data-value");
+                }
+            }
+        })
+        if (endColors != "") {
+            thisColorInput.val(endColors);
+            thisColorInput.attr("title", endColors)
+            if (thisColorInput.attr("id") == "mycolor") {
+                AddMyseftColor();
+            }
+        }
+    }
+
+    //将SKU变参行置顶
+    function SetToTop(event) {
+        var $this = $(event);
+        var $tr = $this.closest("tr");
+        var $tbody = $this.closest("tbody");
+        $tr.find("input").each(function (index, item) {
+            $(this).attr("value", $(this).val())
+        })
+        $this.remove();
+        $tbody.find("tr:first").find("td:last").append('<a href="javascript:void(0)" class="btn btn-default btn-lg" role="button" onclick="SetToTop(this)"><hg:trans>置顶</hg:trans></a>')
+        $tbody.prepend($tr[0].outerHTML)
+        $tr.remove();
+    }
+    //复制标签
+    function DoCopyTag() {
+        $("#KeyWord1").css("display", "block")
+        var copyInput = document.getElementById("KeyWord1")
+        copyInput.select();
+        document.execCommand("copy")
+        $("#KeyWord1").css("display", "none")
+        alert("复制成功")
+    }
+
+    //设为主标题
+    function SetMainProductName(obj) {
+        var $this = $(obj)
+        var $input = $this.prev("input");
+        var ProductName = $("#ProductName").val();
+        $("#ProductName").val($input.val());
+        $input.val(ProductName);
+        $("#ProductName").keyup();
+
+    }
+    //设为主描述
+    function SetMainContent(obj) {
+        var $this = $(obj)
+        var $input = $this.prev("textarea");
+        var Content = $("#Content").val();
+        $("#Content").val($input.val());
+        $input.val(Content);
+        $("#Content").keyup();
+
+    }
+    //移入发布区
+    function doMoveToPublishPhoto(event) {
+        var mainPhotoCount = $("#divMainPhotoPanel>div[status='loaded']").length;
+        if (mainPhotoCount >8) {
+            alert("最多添加8张发布图片")
+            return;
+        }
+        var $this = $(event);
+
+        var nexta = $this.next();
+        $this.attr("onclick", "doSetMaiPhoto(" + $this.parent().parent().parent().attr("photoid") + ",this)")
+        $this.html("设置主图");
+        nexta.attr("onclick", "doMoveOutPublishPhoto(this)")
+        nexta.html("移出");
+        var $parentDiv = $this.parent().parent().parent();
+        var appendHtml = $parentDiv[0].outerHTML
+        $parentDiv.remove();
+        $("#divMainPhotoPanel>div[status='unload']:first")[0].outerHTML = appendHtml
+        //$("#divMainPhotoPanel").append(appendHtml);
+
+    }
+
+    //移出发布区
+    function doMoveOutPublishPhoto(event) {
+        var $src = $(event);
+        var photoPanel = $src.parent().parent().parent();
+        var $cachPhotoPhotoDiv = $(photoPanel[0].outerHTML);
+        photoPanel.css("height", "148px")
+        photoPanel.empty().html("<img src=\"/Content/img/nopic.jpg\" />").attr("status", "unload");
+        $cachPhotoPhotoDiv.find("a:first").attr("onclick", "doMoveToPublishPhoto(this)").html("移入发布区")
+        $cachPhotoPhotoDiv.find("a:last").attr("onclick", "doRemoveSKUPhoto(this)").html("删除")
+        $("#divAlternativePhotoPanel").append($cachPhotoPhotoDiv[0].outerHTML);
+        if ($("#divMainPhotoPanel>div").length > 8) {
+            photoPanel.remove();
+        }
+        else {
+            photoPanel.attr("photoid", "0").appendTo($("#divMainPhotoPanel"));
+        }
+
+    }
+    //一键移入发布区
+    function OneKeyMoveToPublish() {
+        $("#divAlternativePhotoPanel").find("div[status='loaded']").each(function () {
+            var $this = $(this);
+            if ($("#divMainPhotoPanel>div[status='unload']").length > 0) {
+                var $a = $this.find("a:first");
+                var nexta = $this.find("a:last");
+                $a.attr("onclick", "doSetMaiPhoto(" + $this.attr("photoid") + ",this)")
+                $a.html("设置主图");
+                nexta.attr("onclick", "doMoveOutPublishPhoto(this)")
+                nexta.html("移出");
+                var appendHtml = $this[0].outerHTML
+                $this.remove();
+                $("#divMainPhotoPanel>div[status='unload']:first")[0].outerHTML = appendHtml
+            }
+        })
+
+    }
+
+    function p1825173403doShowFeeReckonByEdit() {
+        var url = "/LogisticFee/FeeReckon";
+        redgle.tab.create("liFeeReckon", url, translate.format("<hg:trans>运费试算</hg:trans>"));
+    }
+</script>

@@ -1,0 +1,376 @@
+{:widget('Blog/header')}
+   
+
+    <script src="__STATIC__/index/js/a6ebffc3b6504e51bcae37b98f976409.js"></script>
+
+    <script src="__STATIC__/index/js/40cf7b22a4964fb99dd7aeefa8072132.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+{:widget('Blog/left')}       
+<script src="js/147e622904a24320b70f7228845d480c.js"></script>
+
+<link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>产品退换货统计</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/RMA/RMAReport?Length=3" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1010551100divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                    <div id="divStoreItems" class="input-group para-items">
+
+                            <span data-value="1">默认仓库（自有仓）</span>
+                        <input type="hidden" id="txtStoreId" name="txtStoreId" value="" />
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台</hg:trans></label>
+                    <div class="input-group para-items">
+                        <div id="txtShopFrom" class="input-group para-items" style="float:left">
+
+                            <div id="divapifromitemsall" class="input-group para-items" divapifromitems style="float:left">
+                                <span userform="All" class="active"><hg:trans>全部</hg:trans></span>
+                            </div>
+                                <div id="divapifromitemsAmazon" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Amazon">Amazon</span>
+                                </div>
+                                <div id="divapifromitemsOffline" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Offline">Offline</span>
+                                </div>
+                            <input type="hidden" id="hidApiForms" name="hidApiForms" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台账号</hg:trans></label>
+
+                                    <div id="divUserFormAndApiUserItemsAmazon5310935598329333161" divuserformandapiuseritems class="input-group para-items" style="float:left">
+                                        <span userform="Amazon" apiuserid="5310935598329333161">11(us) (Amazon)</span>
+                                        <input type="hidden" id="hidUserFormsAmazon" name="hidUserFormsAmazon" value="" />
+                                        <input type="hidden" id="hidApiAccountItems5310935598329333161" name="hidApiAccountItems5310935598329333161" value="" />
+                                    </div>
+                    <input type="hidden" id="hidUserForms" name="hidUserForms" value="Amazon," />
+                    <input type="hidden" id="hidApiAccountItems" name="hidApiAccountItems" value="5310935598329333161," />
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span data-value="ProductSKU" chooseid="Search" class="active"><hg:trans>SKU</hg:trans></span>
+                        <span data-value="ProductName" chooseid="Search"><hg:trans>产品名称</hg:trans></span>
+                        <span data-value="PaymentDate" chooseid="Data"><hg:trans>付款时间</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="ProductSKU" />
+                    </div>
+                </div>
+                <div class="form-group " style="width:70%; margin-bottom: 16px;display:none;" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span class="date">
+                            <input type="text" class="form-control input-sm" hgtrans="true"  id="txtDateBegin" name="txtDateBegin" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                        <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" hgtrans="true" id="txtSearchKey" placeholder="请输入搜索内容,多个单号用逗号隔开" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+</form>        </div>
+        <div id="p1010551100divDataList">
+            <div class="datalist-top">
+    <div class="button-area parents-nodes">
+        <button type="button" class="btn btn-info btn-sm" onclick="p1010551100doExportData();" title="导出Excel"><hg:trans>导出Excel</hg:trans></button>
+    </div>
+    <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1010551100divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/RMA/RMAReport?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+</div>
+<table class="table table-bordered table-hover" id="rmaTable">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p1010551100doSetCheckBox(this)" />
+            </th>
+            <th><hg:trans>SKU</hg:trans></th>
+            <th><hg:trans>产品名称</hg:trans></th>
+            <th><hg:trans>退款金额</hg:trans>(￥)</th>
+            <th><hg:trans>未收到货总数量</hg:trans></th>
+            <th><hg:trans>商品质量有问题总数量</hg:trans></th>
+            <th><hg:trans>商品与描述不符总数量</hg:trans></th>
+            <th><hg:trans>少件/漏发总数量</hg:trans></th>
+            <th><hg:trans>补发总数量</hg:trans></th>
+            <th><hg:trans>退货总数量</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1010551100divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/RMA/RMAReport?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        $('.date input').datepicker();
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    //仓库
+    $("#divStoreItems>span").click(function () {
+        var $this = $(this);
+        if ($this.attr("class") == "active") {
+            $("#txtStoreId").val("");
+            $this.removeClass();
+        } else {
+            $("#txtStoreId").val($this.attr("data-value"));
+            $("#divStoreItems>span").removeClass();
+            $this.addClass("active");
+        };
+        $("#searchForm").submit();
+    });
+    //搜索类型筛选
+    $("#divChooseItems>span").click(function () {
+        var $this = $(this);
+        $("#divChooseItems>span").removeClass();
+        $this.addClass("active");
+        $("#hidChoose").val($this.attr("data-value"))
+        if ($this.attr("chooseid") == "Search") {
+            $("#Date").css("display", "none");
+            $("#Search").css("display", "");
+        } else {
+            $("#Date").css("display", "");
+
+            $("#Search").css("display", "none");
+        }
+    });
+
+    //支持多平台
+    $("[divapifromitems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = $(this).attr("userform");
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0 && selectedItem != "All") {
+                $("#divapifromitemsall > span").removeClass("active");
+                $(this).addClass("active");
+            } else if (selectedItem == "All") {
+                $("[divapifromitems] > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+                $("#divapifromitemsall > span").removeClass("active");
+            }
+            var selectValue = $("[divapifromitems] > span[class='active']").map(function () {
+                var thisValue = $(this).attr("userform");
+                return thisValue;
+            }).get().join(",");
+            $("#divUserFormAndApiUserItems > span").each(function () {
+                $(this).removeClass("active");
+                if (selectValue.indexOf($(this).attr("userform")) < 0) {
+                    if ($(this).attr("apiuserid") != "All")
+                        $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            })
+            if (selectValue == "All" || selectValue == "") {
+                selectValue = "";
+                $("#divapifromitemsall > span").addClass("active");
+                $("#divUserFormAndApiUserItems span").css("display", "")
+                $("#hidApiForms").val("");
+            }
+            $(this).parent().parent().find("#hidApiForms").val(selectValue);
+            $("#searchForm").submit();
+        });
+    });
+
+    //支持多选选择平台账号
+    $("[divUserFormAndApiUserItems] > span").each(function () {
+
+        $(this).click(function () {
+            var selectedItem = "";
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                selectedItem = $(this).attr("userform")
+                apiuserid = $(this).attr("apiuserid")
+                $("#hidUserForms" + selectedItem + "").val(selectedItem);
+                $("#hidApiAccountItems" + apiuserid + "").val(apiuserid);
+
+                $("#divUserFormAndApiUserItems" + selectedItem + apiuserid + " > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                selectedItem = $(this).attr("userform")
+                apiuserid = $(this).attr("apiuserid")
+                $("#hidUserForms" + selectedItem + "").val("");
+                $("#hidApiAccountItems" + apiuserid + "").val("");
+
+                $(this).removeClass("active");
+                $("#divUserFormAndApiUserItems" + selectedItem + apiuserid + " > span").removeClass("active");
+            }
+            $("#searchForm").submit();
+        });
+    });
+    //导出选择数据列
+    function p1010551100doExportData() {       
+        var exportmode = "";
+        var width = 950;
+        var height = 560;
+        var url = "../Order/Export?viewName=ReportExport&pagekey=RMA/ReportExport&exportmode=" + exportmode + "&functionName=p1010551100doExport";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+    //导出
+    function p1010551100doExport(fieldName) {
+
+        var productsSku = "";
+        $(' input[name=chk_list]:checked').each(function () {
+            productsSku += $(this).val() + ",";
+        });
+        var postData = {};
+        if (productsSku.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择退换货统计导出，将导出符合当前搜索条件的退换货统计，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");
+        }
+        if (productsSku.length > 0) {
+            productsSku = productsSku.substr(0, productsSku.length - 1);
+        }
+        postData["viewName"] = "ReportExport";
+        postData["pageKey"] = "RMA/ReportExport";
+        postData["productsSku"] = productsSku;
+        postData["fieldName"] = fieldName;
+        $.ajax({
+            type: "POST",
+            url: "/RMA/ExportRMAReprot",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //复选框
+    function p1010551100doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/e06f24f2bbba45bfb0dd65362e3add49.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

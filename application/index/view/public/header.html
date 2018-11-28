@@ -1,0 +1,127 @@
+
+
+
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title>远华嘉茂</title> 
+  <link href="__STATIC__/index/css/public/bootstrap.min.css" rel="stylesheet" /> 
+  <link href="__STATIC__/index/css/header/common.css" rel="stylesheet" /> 
+  <link href="__STATIC__/index/css/header/jquery.fancybox.css" rel="stylesheet" /> 
+ 
+
+
+  <script src="__STATIC__/index/js/header/87b782516c524ce4954ed2df22483f59.js"></script> 
+  <script src="__STATIC__/index/js/header/jquery.fancybox.js"></script> 
+  <script src="__STATIC__/index/js/header/hg.common.js"></script> 
+
+
+ </head> 
+ <body> 
+  <span style="background-color:#f0ad4e"></span> 
+  <nav class="top_panel navbar nav_bottom"> 
+   <div class="navbar-header"> 
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> 
+   </div> 
+   <div id="navbar" class="navbar-collapse collapse"> 
+    <ul class="nav navbar-nav navbar-right"> 
+     <li id="lnkTopUserMenu" style="border-left:1px solid #121320">
+      <a href="{:url('Home/test')}" class="dropdown-toggle" role="button" style="color:white"><span class="glyphicon glyphicon-home"></span>
+    
+      </a> 
+    
+    </li> 
+    </ul> 
+    <ul class="nav navbar-nav navbar-right" id="ulTopMenu"> 
+
+
+
+    {volist name="$classify"  id="classify"}
+
+     <li> 
+      <a href="{:url('index/'.$classify.url,'id='.$classify.classify_id,'')}"> {$classify.classify_name} </a> 
+      {notempty name="classify.list"}
+      <div class="childmenu"> 
+
+       
+       <div style="padding:10px;"> 
+        {volist  name="classify.list" id="class"}
+        <div style="padding:5px 0px;">
+         <strong>{$class.classify_name} </strong>
+        </div> 
+          <div> 
+          {notempty name="class.list"}
+            {volist name="class.list"  id="cla"}
+             <a href="{:url($cla.url,'id='.$cla.classify_id)}">{$cla.classify_name}</a> 
+            {/volist}
+          {/notempty}
+          </div> 
+        {/volist}
+       
+
+
+       </div>
+
+      </div>
+      {/notempty}
+       </li> 
+     <li>
+    {/volist}
+    </ul> 
+    
+   </div> 
+  </nav> 
+  <script language="javascript" type="text/javascript">
+    $("#lnkTopUserMenu").hover(
+        function () {
+            $(this).children("ul").show();
+            $(this).addClass("active");
+        },
+        function () {
+            $(this).children("ul").hide();
+            $(this).removeClass("active");
+        }
+    );
+    function doUserSetting() {
+        var userSettingModal = new redgle.modal({ type: "iframe", content: "/Account/UserSetting", title: translate.format("<hg:trans>帐号设置</hg:trans>") });
+        userSettingModal.show();
+    }
+    function doSetMulitLanage() {
+        var changePasswordModal = new redgle.modal({ width: 400, height: 300, type: "iframe", content: "/Account/Lanage", title: translate.format("<hg:trans>设置多语言</hg:trans>") });
+        changePasswordModal.show();
+    }
+    function doChangePassword() {
+        var changePasswordModal = new redgle.modal({ width: 500, height: 400, type: "iframe", content: "/Account/ChangePwd", title: translate.format("<hg:trans>修改密码</hg:trans>") });
+        changePasswordModal.show();
+    }
+    function doOpenCustomerServiceCenter() {
+        var customerServiceModal = new redgle.modal({ width: 750, height: 500, type: "iframe", content: "/Account/CustomerServiceCenter", title: translate.format("<hg:trans><font style='font-size:15px;font-weight:700'>客服中心</font><font style='font-size:13px;'>（点击按钮可通过QQ进行沟通，请确认已启动QQ）</font></hg:trans>") });
+        customerServiceModal.show();
+    }
+</script> 
+  <script language="javascript" type="text/javascript">
+    $("#ulTopMenu > li").each(function () {
+        $(this).hover(
+            function () {
+                $(this).children("div").show();
+                $(this).addClass("active");
+            },
+            function () {
+                $(this).children("div").hide();
+                $(this).removeClass("active");
+            }
+        );
+    });
+</script> 
+  <!--  --> 
+  
+  <div class="home-log"> 
+     <link href="__STATIC__/index/css/home.css" rel="stylesheet" /> 
+   <a href="javascript:void(0)" STYLE="color:white;font-size:30px;line-height:40px"><!--  <img src="__STATIC__/index/picture/enterprise-logo-yhjm.png" />  -->
+      <span style="color:#0000FA;margin-left:20px">P</span>lanet  <span style="color:#FF0000">D</span>inosaur
+
+
+   </a> 
+  </div> 

@@ -1,0 +1,496 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabStockReturnManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>退换货单</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabStockReturnManage" role="tabpanel" class="tab-pane fade active in">
+<form action="/StockReturn?Length=11" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1691654899divDataList" id="searchForm" method="post" style="margin-bottom:12px">            <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+
+                <div class="form-group parents-nodest">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                    <div id="divStoreItems" class="input-group para-items">
+
+                            <span data-value="1">默认仓库（自有仓）</span>
+                        <input type="hidden" id="txtStoreId" name="txtStoreId" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtReturnType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>退换货类型</hg:trans></label>
+                    <div id="divChooseReturnType" class="input-group para-items">
+                        <span data-value="" class="active"><hg:trans>全部</hg:trans></span>
+                        <span data-value="0"><hg:trans>退货</hg:trans></span>
+                        <span data-value="1"><hg:trans>换货</hg:trans></span>
+                        <input type="hidden" id="isExchange" name="isExchange" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span data-value="StockReturnNo" chooseid="Search" class="active"><hg:trans>退换货单号</hg:trans></span>
+                        <span data-value="Sku" chooseid="Search"><hg:trans>SKU</hg:trans></span>
+                        <span data-value="InStoreNo" chooseid="Search"><hg:trans>关联单号</hg:trans></span>
+                        <span data-value="BeginTime" chooseid="Data"><hg:trans>退换货时间</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="StockReturnNo" />
+                    </div>
+                </div>
+                <div class="form-group " style="width:70%; margin-bottom: 16px;display:none;" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span class="date">
+                            <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                        <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" hgtrans="true" id="txtSearchKey" placeholder="请输入搜索内容" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <input type="hidden" id="hidStatus" name="hidStatus" value="" />
+
+            </div>
+            <div class="status-group" id="divStatus">
+                <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+                <label itemid="0"><a><hg:trans>待提交</hg:trans></a><span></span></label>
+                <label itemid="1"><a><hg:trans>待出库</hg:trans></a><span></span></label>
+                <label itemid="3"><a><hg:trans>待退款</hg:trans></a><span></span></label>
+                <label itemid="2"><a><hg:trans>待入库</hg:trans></a><span></span></label>
+                <label itemid="4"><a><hg:trans>已完成</hg:trans></a><span></span></label>
+            </div>
+</form>        <div id="p1691654899divDataList">
+            <div class="datalist-top">
+    <div class="button-area parents-nodes">
+        <button type="button" class="btn btn-success btn-sm" onclick="p1691654899doCreate()"> <i class="glyphicon glyphicon-plus"></i> 新增退换货单</button>
+        <button type="button" class="btn btn-success btn-sm" onclick="p1691654899doConfirmExportReturn()"> <i class="glyphicon glyphicon-log-out"></i> 导出退换货单</button>
+    </div>
+</div>
+<table class="table table-bordered table-hover" id="StockReturnTable">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p1691654899doSetCheckBox(this)" />
+            </th>
+            <th><hg:trans>退换货单号</hg:trans></th>
+            <th><hg:trans>退换货仓库</hg:trans></th>
+            <th><hg:trans>供应商</hg:trans></th>
+            <th><hg:trans>退换货时间</hg:trans></th>
+            <th><hg:trans>运单号</hg:trans></th>
+            <th><hg:trans>创建人</hg:trans></th>
+            <th><hg:trans>状态</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1691654899divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/StockReturn?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="StockReturnMoney" tabindex="-1" role="dialog" aria-labelledby="StockReturnMoneyLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:600px">
+        <div class="modal-content">
+            <div class="modal-header" style="cursor:move;background:#438EB9 none repeat scroll 0% 0%;color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="StockReturnMoneyLabel"><hg:trans>填写退款金额</hg:trans></h4>
+            </div>
+            <div class="modal-body" style="height:250px;overflow:auto">
+                <div class="form-group" style="max-width:450px;padding-top:20px;" id="Search">
+                    <label for="txtReturnMoney" class="control-label col-sm-1" style="width:120px;padding-top:5px"><hg:trans>退款金额</hg:trans>:</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtReturnMoney" id="txtReturnMoney" hgtrans="true" placeholder="请输入退款金额" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="button" value="确定" hgtrans="true" accesskey="S" onclick="p1691654899doReturnMoney()" class="btn btn-primary" />
+                        </span>
+                    </div>
+                    <input type="hidden" id="stockReturnMoneyStockReturnId" value="0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+<script type="text/javascript">
+    jQuery(function () {
+        $('.date input').datepicker();
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    $("#divChooseItems>span").click(function () {
+        var $this = $(this);
+        $("#divChooseItems>span").removeClass();
+        $this.addClass("active");
+        $("#hidChoose").val($this.attr("data-value"))
+        if ($this.attr("chooseid") == "Search") {
+            $("#Date").css("display", "none");
+            $("#Search").css("display", "");
+        } else {
+            $("#Date").css("display", "");
+            $("#Search").css("display", "none");
+        }
+    });
+    $("#divChooseReturnType>span").click(function () {
+        var $this = $(this);
+        $("#divChooseReturnType>span").removeClass();
+        $this.addClass("active");
+        $("#isExchange").val($this.attr("data-value"));
+        $("#searchForm").submit();
+    });
+    //仓库
+    $("#divStoreItems>span").click(function () {
+        var $this = $(this);
+        if ($this.attr("class") == "active") {
+            $("#txtStoreId").val("");
+            $this.removeClass();
+        } else {
+            $("#txtStoreId").val($this.attr("data-value"));
+            $("#divStoreItems>span").removeClass();
+            $this.addClass("active");
+        };
+        $("#searchForm").submit();
+    });
+
+    //详情
+    function p1691654899doViewData(id) {
+        if (id == null || id == "")
+            id = "0";
+        var url = "/StockReturn/Edit/" + id + "?view=true";
+        redgle.tab.create("liStockReturnEdit", url, translate.format("<hg:trans>查看退换货单</hg:trans>"));
+    }
+    function p1691654899doOutStore(id) {
+        if (id == null || id == "")
+            id = "0";
+        var url = "/StockReturn/Edit/" + id;
+        redgle.tab.create("liStockReturnEdit", url, translate.format("<hg:trans>退换货出库</hg:trans>"));
+    }
+    function p1691654899doInStore(id) {
+        if (id == null || id == "")
+            id = "0";
+        var url = "/StockReturn/Edit/" + id;
+        redgle.tab.create("liStockReturnEdit", url, translate.format("<hg:trans>退换货入库</hg:trans>"));
+    }
+    //编辑
+    function p1691654899doEditData(id) {
+        if (id == undefined)
+            id = "";
+        var url = "/StockReturn/Edit?id=" + id + "";
+        redgle.tab.create("liStockReturnEdit", url, translate.format("<hg:trans>编辑退换货单</hg:trans>"));
+    }
+    //创建
+    function p1691654899doCreate(orderId) {
+        var url = "/StockReturn/Edit/0";
+        redgle.tab.create("liStockReturnEdit", url, translate.format("<hg:trans>创建退换货单</hg:trans>"));
+    }
+    //选择售后单状态
+    $("#divStatus >label").click(function () {
+        var cls = $(this).attr("class");
+        if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+            $("#divStatus > label").removeClass("active");
+            $(this).addClass("active");
+        }
+        else {
+            $(this).removeClass("active");
+        }
+        var selectedSatut = $(this).attr("itemid");
+        $("#hidStatus").val(selectedSatut);
+        if ($("#divStatus").find(".active").length == 0) {
+            $("#hidStatus").val("");
+        }
+        $("#searchForm").submit();
+    });
+    //复选框选中
+    function  p1691654899doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+
+    function p1691654899doDeleteData(id) {
+        debugger
+        if (!window.confirm(translate.format("<hg:trans>删除您该库存调拨信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+        $.ajax({
+            type: "POST",
+            url: "/StockReturn/Delete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p1691654899doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function p1691654899doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/StockReturn/Index",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1691654899divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1691654899ShowReturnMoeny(id) {
+        $("#stockReturnMoneyStockReturnId").val(id);
+        $("#StockReturnMoney").modal('show');
+    }
+    function p1691654899doReturnMoney() {
+        var error = {};
+        var id = $("#stockReturnMoneyStockReturnId").val();
+        var returnMoney = $("#txtReturnMoney").val();
+        var hasError = false;
+        if (returnMoney.trim() != "" && (!checkInteger(returnMoney) || returnMoney < 0)) {
+            hasError = true;
+            error["txtReturnMoney"] = translate.format("<hg:trans>退款金额必须是大于0的整数</hg:trans>");
+        }
+        if (hasError) {
+p1691654899doShowError(error);
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/StockReturn/DoReturnMoeny",
+            data: { stockReturnId: id, returnMoeny: returnMoney },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    $("#stockReturnMoneyStockReturnId").val("");
+                    $("#txtReturnMoney").val("");
+                    $("#StockReturnMoney").modal('hide');
+p1691654899doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //显示错误
+    function p1691654899doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).parent().addClass("has-error");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).parent().removeClass("has-error");
+            });
+        });
+    }
+    function doSelectExpressOrderList(relationId, stockReutrnNo) {
+        var width = 600;
+        var height = 450;
+        var url = "/StockReturn/ExpressOrderList?relationId=" + relationId + "&relationType=StockReturn";
+        var selectProductModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>退换货单[{0}]运单号</hg:trans>", [stockReutrnNo]), width: width, height: height });
+        selectProductModal.show();
+    }
+
+
+    //添加运单回传后重新加载
+    function ExpressReturndoReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/StockReturn/Index",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1691654899divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //导出入库明细
+    function p1691654899doConfirmExportReturn(id) {
+        var exportOption = $("input[name=chk_list]:checked").map(function () {
+            return $(this).val();
+        }).get().join(",");
+        
+        if (exportOption == null || exportOption.length == 0) {
+            alert(translate.format("<hg:trans>请选择需要导出的数据</hg:trans>"));
+            return;
+        }
+
+        var width = 950;
+        var height = 560;
+        var url = "/StockHandle/ExcelOutTemplate?viewName=StockReturnExport&pagekey=StockReturnExport/Export";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择需要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+
+    //excel导出
+    function OutExcleData(fieldNames) {
+        if (fieldNames == "") {
+            redgle.showMessage(translate.format("<hg:trans>请选择导出项！</hg:trans>"));
+            return;
+        }
+        var postData = {};
+        var stockReturnIds = $("input[name=chk_list]:checked").map(function () {
+            return $(this).val();
+        }).get().join(",");
+        if (stockReturnIds == null || stockReturnIds.length == 0) {
+            alert(translate.format("<hg:trans>请选择需要导出的数据</hg:trans>"));
+            return;
+        }
+
+        postData["stockReturnIds"] = stockReturnIds;
+        postData["viewName"] = "StockReturnExport";
+        postData["pageKey"] = "StockReturnExport/Export";
+        postData["fieldNames"] = fieldNames;
+        $.ajax({
+            type: "POST",
+            url: "/StockReturn/ExportToExcel",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Temp/" + 1 + "/" + data.ResultObject, "_self");
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/eb940efdb2f543e18f128d571a65dec6.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

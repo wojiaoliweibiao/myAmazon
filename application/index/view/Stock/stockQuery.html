@@ -1,0 +1,2341 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabProductManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>仓库清单</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabProductManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="alert bg-info" style="padding:8px">
+            PS：<hg:trans>缺货数量=缺货订单产品数-采购中的数量，如果采购中的数量大于缺货订单产品数则缺货数量为0</hg:trans>。
+        </div>
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/StockHandle/IndexStockQuery?Length=11" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p149138515divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" value="" />
+                <div class="form-group parents-nodest">
+                    <label for="txtUserForm" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                    <div id="divStoreItems" class="input-group para-items-sm">
+                                <span data-value="1">默认仓库（自有仓）</span>
+                        <input type="hidden" id="txtStoreId" name="txtStoreId" value="" />
+                    </div>
+                </div>
+                <div class="form-group parents-nodest" id="divShelfPositions" style="display:none">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>货架位</hg:trans></label>
+                    <div class="col-sm-2" style="margin-left:-18px">
+                        <select class="chzn-select" data-no_results_text="Not Match" data-placeholder="选择货架位" id="txtShelfPosition" name="txtShelfPosition"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtUserForm" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>库存情况</hg:trans></label>
+                    <div id="divExitsStockItems" class="input-group para-items-sm">
+                        <span data-value="1"><hg:trans>有库存</hg:trans></span>
+                        <span data-value="0"><hg:trans>无库存</hg:trans></span>
+                        <span data-value="3"><hg:trans>有库存无库存平均价</hg:trans></span>
+                        <span data-value="4"><hg:trans>未关联本地产品</hg:trans></span>
+                        <input type="hidden" id="exitsStock" name="exitsStock" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <div id="divChooseItems" class="input-group para-items-sm">
+                            <span itemid="SKU" chooseid="Search" class="active"><hg:trans>SKU</hg:trans></span>
+                            <span itemid="ProductStyle" chooseid="Search"><hg:trans>父SKU</hg:trans></span>
+                            <span itemid="ProductName" chooseid="Search"><hg:trans>产品名称</hg:trans></span>
+                            <span itemid="ThirdProductTitle" chooseid="Search"><hg:trans>第三方产品名称</hg:trans></span>
+                            <span itemid="Describe" chooseid="Search"><hg:trans>中文配货名</hg:trans></span>
+                            <input type="hidden" id="hidChoose" name="hidChoose" value="SKU" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" hgtrans="true" id="txtSearchKey" placeholder="" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" onclick="javascript:Verification();" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" id="Search" style="margin-bottom:15px">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;padding-top:12px"><hg:trans>排序方式</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <div id="divSort" class="input-group para-items-sm">
+                            
+                            <span itemid="SKU" sorttype=""><hg:trans>本地SKU</hg:trans><span id="SKUSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="ThirdProductSKU" sorttype=""><hg:trans>第三方SKU</hg:trans><span id="ThirdProductSKUSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="TotalNum" sorttype=""><hg:trans>库存</hg:trans><span id="TotalNumSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="TotalDefectiveNum" sorttype="">不良品库存 <span id="DefectiveNumSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="SafetyStockTo" sorttype=""><hg:trans>库存预警</hg:trans><span id="SafetyStockToSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="ToBeOutNum" sorttype=""><hg:trans>锁定库存</hg:trans><span id="ToBeOutNumSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="ShelfPosition" sorttype=""><hg:trans>货架位</hg:trans><span id="ShelfPositionSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <input type="hidden" id="hidSort" name="hidSort" value="" />
+                            <input type="hidden" id="hidSortType" name="hidSortType" value="" />
+                        </div>
+                    </div>
+                </div>
+</form>        </div>
+        <div id="divProductSearch">
+            <div style="float:right; margin-right:5px">
+                                <div class="btn-group ">
+                    <button type="button" class="btn btn-info btn-sm "><hg:trans>导入</hg:trans></button>
+                    <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu " role="menu">
+                        <li><a href="javascript:;" onclick="p149138515doImportSkuData()"><hg:trans>导入映射</hg:trans></a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;" onclick="p149138515doImportShelfPosition()"><hg:trans>导入货架位</hg:trans></a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;" onclick="p149138515doImportStockAvgPrice(2)"><hg:trans>海外仓导入库存平均价</hg:trans></a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;" onclick="p149138515doImportStockAvgPrice(1)"><hg:trans>本地仓导入库存平均价</hg:trans></a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;" data-toggle="modal" data-target="#oneKeyAddProductToStoreModals"><hg:trans>一键导入本地产品</hg:trans></a></li>
+                    </ul>
+                </div>
+                <button type="button" hgtrans="true" title="有勾选导出勾选，无则导出全部" class="btn btn-info btn-sm " onclick="p149138515doExportData()"><hg:trans>导出仓库清单</hg:trans></button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm" onclick="p149138515doImportData()"><hg:trans>库存预警</hg:trans></button>
+                    <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu " role="menu">
+                        <li><a href="javascript:;" onclick="p149138515doSetSafeValues()"><hg:trans>设置库存预警</hg:trans></a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;" onclick="p149138515doImportData()"><hg:trans>导入库存预警</hg:trans></a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-info btn-sm " onclick="p149138515doDeleteDatas()"><hg:trans>删除</hg:trans></button>
+                <button type="button" class="btn btn-info btn-sm " onclick="p149138515doUpdataDatas()"><hg:trans>批量修改货架位</hg:trans></button>
+            </div>
+            
+<div id="f813divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f813divCatalogContentPanel" class="tree" contentgroup="#divProductSearch #f813divCatalogContentPanel" navigategroup="#divProductSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divProductSearch #f813divCatalogContentPanel" navigategroup="#divProductSearch .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f813treeObject = new redgle.tree({
+            contentPanelExpr:"#divProductSearch #f813divCatalogContentPanel"
+            , navigatePanelExpr:"#divProductSearch .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f813treeObject.convertCatalogToData(data);
+f813treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f813treeObject.convertDataToCatalog(data);
+                if(typeof(p149138515onCatalogSelected) == "function") p149138515onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"product"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f813treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f813treeObject.addItemsToNavigate(data);
+f813treeObject.AddElementItem(data[0]);
+                }
+                else {
+f813treeObject.addItemsToNavigate([data]);
+f813treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f813divSelect").hover(
+            function () {
+                $("#f813divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f813divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="p149138515divDataList">
+            <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="10" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/StockHandle/IndexStockQuery?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/StockHandle/IndexStockQuery?pageIndex=2&amp;pagesize=10">2</a>  <a data-pageindex="3" href="/StockHandle/IndexStockQuery?pageIndex=3&amp;pagesize=10">3</a>  <a data-pageindex="4" href="/StockHandle/IndexStockQuery?pageIndex=4&amp;pagesize=10">4</a>  <a data-pageindex="5" href="/StockHandle/IndexStockQuery?pageIndex=5&amp;pagesize=10">5</a>  <a data-pageindex="6" href="/StockHandle/IndexStockQuery?pageIndex=6&amp;pagesize=10">6</a>  <a data-pageindex="7" href="/StockHandle/IndexStockQuery?pageIndex=7&amp;pagesize=10">7</a>  <a data-pageindex="8" href="/StockHandle/IndexStockQuery?pageIndex=8&amp;pagesize=10">8</a>  <a data-pageindex="9" href="/StockHandle/IndexStockQuery?pageIndex=9&amp;pagesize=10">9</a>  <a data-pageindex="10" href="/StockHandle/IndexStockQuery?pageIndex=10&amp;pagesize=10">10</a>  <a data-pageindex="2" href="/StockHandle/IndexStockQuery?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="10" href="/StockHandle/IndexStockQuery?pageIndex=10&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 99 条数据</span></div><div style="clear:both"></div></div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width:30px;"><input type="checkbox" name="chk_all" id="chk_all" onclick="doSetCheckBox(this)" /></th>
+            <th><hg:trans>本地产品信息</hg:trans></th>
+            <th><hg:trans>第三方产品信息</hg:trans></th>
+            <th><hg:trans>仓库</hg:trans></th>
+            <th><hg:trans>货架位</hg:trans></th>
+            <th><hg:trans>当前库存</hg:trans></th>
+
+                <th><hg:trans>库存平均价</hg:trans></th>
+                        <th><hg:trans>锁定库存</hg:trans></th>
+            <th><hg:trans>缺货数量</hg:trans></th>
+            <th>
+                <hg:trans>可用库存(结余)</hg:trans>
+            </th>
+            <th><hg:trans>采购中</hg:trans></th>
+            <th><hg:trans>待入库</hg:trans></th>
+            <th><hg:trans>库存预警</hg:trans></th>
+            <th><hg:trans>不良品</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="box-000000093" data-value="100" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/8886243723_1014079326.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(17071)" class="text-overflow" style="max-width:180px;" title="公狼睡袋户外纯棉午休室内露营成人春秋冬季信封加厚保暖双人睡袋">
+                                                公狼睡袋户外纯棉午休室内露营成人春秋冬季信封加厚保暖双人睡袋                                            </a><br>
+                                            <span style="font-size:medium">box-000000093</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span>-</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+<span style="font-size:large;color:#43C0CF">1</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('box-000000093','默认仓库', '', '0', '0', '0','100','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('100','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="toy-087569125-ca" data-value="99" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/8584714687_1072389455.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(17483)" class="text-overflow" style="max-width:180px;" title="折叠便携五件套一居室儿童帐篷 二合一隧道儿童帐篷游戏屋套装">
+                                                折叠便携五件套一居室儿童帐篷 二合一隧道儿童帐篷游戏屋套装                                            </a><br>
+                                            <span style="font-size:medium">toy-087569125-ca</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span>-</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+<span style="font-size:large;color:#43C0CF">1</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('toy-087569125-ca','默认仓库', '', '0', '0', '0','99','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('99','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="ry-000045-uk" data-value="98" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/4650019166_484364225.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(17555)" class="text-overflow" style="max-width:180px;" title="Do-it-yourself 手动背部剃毛器 长手柄全身剃毛器 背部剃须刀">
+                                                Do-it-yourself 手动背部剃毛器 长手柄全身剃毛器 背部剃须刀                                            </a><br>
+                                            <span style="font-size:medium">ry-000045-uk</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span>-</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+<span style="font-size:large;color:#43C0CF">1</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('ry-000045-uk','默认仓库', '', '0', '0', '0','98','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('98','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="jx-000001-fr" data-value="97" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/9011232150_120272527.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(17532)" class="text-overflow" style="max-width:180px;" title="跨境专供 LP USB接口便携式电动充抽超轻户外游泳池气垫床充气泵">
+                                                跨境专供 LP USB接口便携式电动充抽超轻户外游泳池气垫床充气泵                                            </a><br>
+                                            <span style="font-size:medium">jx-000001-fr</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span>-</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+<span style="font-size:large;color:#43C0CF">1</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('jx-000001-fr','默认仓库', '', '0', '0', '0','97','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('97','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="box-001011-Black" data-value="96" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/8853331632_796319945.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(16925)" class="text-overflow" style="max-width:180px;" title="新款休闲轻奢男士胸包户外骑行单肩包USB充电斜挎包背包一件代发">
+                                                新款休闲轻奢男士胸包户外骑行单肩包USB充电斜挎包背包一件代发                                            </a><br>
+                                            <span style="font-size:medium">box-001011-Black</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span>-</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+<span style="font-size:large;color:#43C0CF">1</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('box-001011-Black','默认仓库', '', '0', '0', '0','96','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('96','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="ph-001226-uk" data-value="95" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/8597890900_1586550809.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(16942)" class="text-overflow" style="max-width:180px;" title="厂家直销新款直发神器卷直两用直发器夹板五档控温直发棒礼盒包装">
+                                                厂家直销新款直发神器卷直两用直发器夹板五档控温直发棒礼盒包装                                            </a><br>
+                                            <span style="font-size:medium">ph-001226-uk</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span>-</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+<span style="font-size:large;color:#43C0CF">1</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('ph-001226-uk','默认仓库', '', '0', '0', '0','95','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('95','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="ph000265-de" data-value="94" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/8957657158_914293031.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(12853)" class="text-overflow" style="max-width:180px;" title="厂家直销家用电吹风 冷热风大功率吹风机 发廊美发吹风筒一件代发">
+                                                厂家直销家用电吹风 冷热风大功率吹风机 发廊美发吹风筒一件代发                                            </a><br>
+                                            <span style="font-size:medium">ph000265-de</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+<span style="font-size:large;">1</span>
+                    </td>
+                        <td>
+                                        <span style="font-size:large;">75.00</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <span style="font-size:large;color:#4E9872">1</span>
+                                            </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('ph000265-de','默认仓库', '', '0', '0', '0','94','1','1','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('94','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="yd-001616-Beige-de" data-value="93" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/4240468381_318874960.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(12845)" class="text-overflow" style="max-width:180px;" title="登山包双肩男户外背包女轻50L旅游旅行徒步休闲大容量防水">
+                                                登山包双肩男户外背包女轻50L旅游旅行徒步休闲大容量防水                                            </a><br>
+                                            <span style="font-size:medium">yd-001616-Beige-de</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+<span style="font-size:large;">1</span>
+                    </td>
+                        <td>
+                                        <span style="font-size:large;">98.00</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <span style="font-size:large;color:#4E9872">1</span>
+                                            </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('yd-001616-Beige-de','默认仓库', '', '0', '0', '0','93','1','1','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('93','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="mu0027-purple" data-value="92" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/514wsxtrddl._sl75_.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(12159)" class="text-overflow" style="max-width:180px;" title="Children&#39;s Tricycle Children&#39;s Bicycle Baby Trolleys Baby Tricycle (Red, Blue, Purple)(purple)">
+                                                Children&#39;s Tricycle Children&#39;s Bicycle Baby Trolleys Baby Tricycle (Red, Blue, Purple)(purple)                                            </a><br>
+                                            <span style="font-size:medium">mu0027-purple</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span style="font-size:large;">149.00</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('mu0027-purple','默认仓库', '', '0', '0', '0','92','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('92','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="chk_list" data-SKU="mu640001-XL" data-value="91" data-storetype="自有仓" data-storeid="1" data-thirdproductsku="" data-shelfpositionid="0"></td>
+                    <td>
+                            <table style="border:none;width:250px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border:none; width:60px;">
+                                            <img onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="static/picture/4155145484_786576823.jpg">
+                                        </td>
+                                        <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:190px;line-height:20px">
+                                            <a href="javascript:void(0);" onclick="doProductViewUrl(12107)" class="text-overflow" style="max-width:180px;" title="产前托腹带 透气保胎带 孕妇专用子宫托腹 防寒保暖托腹带">
+                                                产前托腹带 透气保胎带 孕妇专用子宫托腹 防寒保暖托腹带                                            </a><br>
+                                            <span style="font-size:medium">mu640001-XL</span><br>
+                                                                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                    <td>
+                    </td>
+                    <td>默认仓库</td>
+                    <td>
+未分配货架位                    </td>
+                    <td>
+ <span>-</span>
+                    </td>
+                        <td>
+                                        <span>-</span>
+
+                        </td>
+                                        <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+ <span>-</span>                                            </td>
+                    <td>
+<span style="font-size:large;color:#43C0CF">1</span>                    </td>
+                    <td>                        
+ <span>-</span>                    </td>
+                    <td>
+                        <div>
+                                <span><hg:trans>未设置</hg:trans></span>
+
+                        </div>
+                    </td>
+                    <td>
+ <span>-</span>                    </td>
+                    <td>
+                            <a href="javascript:void(0)" onclick="p149138515editProduct('mu640001-XL','默认仓库', '', '0', '0', '0','91','1','0','0','normal','','','',2,'','','','自有仓')"><hg:trans>设置</hg:trans></a>
+                            <a href="javascript:void(0)" onclick="p149138515DeleteStock('91','0')"><hg:trans>删除</hg:trans></a>
+                    </td>
+                </tr>
+
+
+        <tr style="background-color: #f7e8a0;">
+            <td colspan="5">汇总：</td>
+            <td>2</td>
+                    <td>322.00</td>
+                        <td>0</td>
+            <td>0</td>
+            <td>2</td>
+            <td>7</td>
+            <td>0</td>
+            <td></td>
+            <td>0</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p149138515divDataList" data-maxpages="10" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/StockHandle/IndexStockQuery?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/StockHandle/IndexStockQuery?pageIndex=2&amp;pagesize=10">2</a>  <a data-pageindex="3" href="/StockHandle/IndexStockQuery?pageIndex=3&amp;pagesize=10">3</a>  <a data-pageindex="4" href="/StockHandle/IndexStockQuery?pageIndex=4&amp;pagesize=10">4</a>  <a data-pageindex="5" href="/StockHandle/IndexStockQuery?pageIndex=5&amp;pagesize=10">5</a>  <a data-pageindex="6" href="/StockHandle/IndexStockQuery?pageIndex=6&amp;pagesize=10">6</a>  <a data-pageindex="7" href="/StockHandle/IndexStockQuery?pageIndex=7&amp;pagesize=10">7</a>  <a data-pageindex="8" href="/StockHandle/IndexStockQuery?pageIndex=8&amp;pagesize=10">8</a>  <a data-pageindex="9" href="/StockHandle/IndexStockQuery?pageIndex=9&amp;pagesize=10">9</a>  <a data-pageindex="10" href="/StockHandle/IndexStockQuery?pageIndex=10&amp;pagesize=10">10</a>  <a data-pageindex="2" href="/StockHandle/IndexStockQuery?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="10" href="/StockHandle/IndexStockQuery?pageIndex=10&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 99 条数据</span></div><div style="clear:both"></div></div>
+<script>
+</script>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:340px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><hg:trans>设置库存预警</hg:trans></h4>
+            </div>
+
+            
+
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>最小库存</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input id="txtAlertMinStock" name="txtAlertMinStock" class="form-control" style="margin-left:15px;width:113px" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>库存安全天数</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input id="txtAlertSecurityDays" name="txtAlertSecurityDays" class="form-control" style="margin-left:15px;width:113px" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>备货频率</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input id="txtAlertStockFrequency" name="txtAlertStockFrequency" class="form-control" style="margin-left:15px;width:113px" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>头程交期</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input type="radio" name="alertShippingType" value="1" checked style="margin-left:15px;" />空运交期
+                                <input id="txtAlertAirDeliveryDays" class="form-control" style="width:50px;float:none;" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans></hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input type="radio" name="alertShippingType" value="2" style="margin-left:15px;" />海运交期
+                                <input id="txtAlertShippingDeliveryDays" name="txtAlertShippingDeliveryDays" class="form-control" style="width:50px;float:none;" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="p149138515saveSafetyThresholds()"><hg:trans>保存</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="productModalLabel"><hg:trans>添加商品</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="txtUserForm" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                        <div id="divSaveProductStoreItems" class="input-group para-items">
+                                    <span data-value="1">默认仓库（自有仓）</span>
+                        </div>
+                    </div>
+                    <div id="p149138515divProductDataList" style="max-height:450px;overflow:auto">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <hg:trans>产品图片</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>产品名称</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>SKU</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>仓库：货架位</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>操作</hg:trans>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="p149138515SaveProduct()"><hg:trans>保存</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal 设置库存产品信息-->
+<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editProductModalLabel"><hg:trans>设置库存产品信息</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label" id="editlableSku"><hg:trans>商品SKU</hg:trans></label>
+                            <div class="col-sm-6">
+                                <span id=" editproductsku">
+                                </span>
+                                <input id="editStockId" style="display:none">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>仓库</hg:trans></label>
+                            <div class="col-sm-6">
+                                <span id="editProductStore"></span>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divShelf">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>货架位</hg:trans></label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="editProductShelf"></select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divTotalNum" style="display:none">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>库存总量</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input id="txtStockTotalNum" class="form-control" disabled style="margin-left:15px;width:180px" />
+                                <span class="input-group-addon" id="lockNum"></span>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group" id="divSafety">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>最小库存</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input id="txtMinStock" name="txtMinStock" class="form-control" style="margin-left:15px;width:113px" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divSafety">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>库存安全天数</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input id="txtSecurityDays" name="txtSecurityDays" class="form-control" style="margin-left:15px;width:113px" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divSafety">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>备货频率</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input id="txtStockFrequency" name="txtStockFrequency" class="form-control" style="margin-left:15px;width:113px" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divSafety">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>头程交期</hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input type="radio" name="shippingType" value="1" checked style="margin-left:15px;" />空运交期
+                                <input id="txtAirDeliveryDays" class="form-control" style="width:50px;float:none;" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divSafety">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans></hg:trans></label>
+                            <div class="input-group col-sm-5">
+                                <input type="radio" name="shippingType" value="2" style="margin-left:15px;" />海运交期
+                                <input id="txtShippingDeliveryDays" name="txtShippingDeliveryDays" class="form-control" style="width:50px;float:none;" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="p149138515SaveEditProduct()"><hg:trans>保存</hg:trans></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 批量修改货架位-->
+<div class="modal fade" id="editProductModals" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editProductModalLabel"><hg:trans>设置库存产品信息</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <input id="editStockIds" style="display:none">
+                        <div class="form-group" id="divShelfs">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>货架位</hg:trans></label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="editProductShelfs"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="p149138515SaveEditProducts()"><hg:trans>保存</hg:trans></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal 同步库存窗口-->
+<div class="modal fade" id="syncProductModal" tabindex="-1" role="dialog" aria-labelledby="syncProductModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="syncProductModalLabel"><hg:trans>更新库存</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info" id="initPsdiv">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            <hg:trans>1.初始化库存成本系统会生成一条入库记录，初始化完成后请移步入库管理填写初始化库存产品成本完成入库</hg:trans>。<br />
+                            <hg:trans>2.未进行本地产品关联的库存产品不能被初始化成本，所以初始化库存成本之前请完成库存产品的关联本地产品操作</hg:trans>。<br />
+                            <hg:trans>3.每个海外仓只有一次初始化库存成本的机会，请认真核对好数据后再进行初始化操作（如果误初请联系客服处理）</hg:trans>。<br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtUserForm" class="control-label col-sm-1" style="width:60px !important;margin-right:5px;"><hg:trans>仓库</hg:trans></label>
+                        <div id="divStoreItemsSync" class="input-group para-items">
+                            <span data-value="">全部</span>
+                        </div>
+                    </div>
+                    <div style="margin-left:20px; margin-bottom:20px;max-height:450px;overflow:auto">
+                        <div id="divSyncMessage" class="bg-info" style="padding: 15px; "></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnInitStockPrice" onclick="p149138515doInitStockPrice()"><hg:trans>初始化</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnStartSyncStock" onclick="p149138515doSyncProduct()"><hg:trans>更新</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal 一键将产品添加到仓库-->
+<div class="modal fade" id="oneKeyAddProductToStoreModals" tabindex="-1" role="dialog" aria-labelledby="oneKeyAddProductToStoreModals" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="oneKeyAddProductToStoreModals"><hg:trans>一键添加产品到仓库</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info" id="initPsdiv">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            <hg:trans>点击确定后会将所有本地在售产品信息添加到选择的仓库</hg:trans>。<br />
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label"><hg:trans>仓库</hg:trans></label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="oneKeyAddProductToStore">
+                                            <option value="1">默认仓库（自有仓）</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="p149138515doOneKeAddProducts()"><hg:trans>确定添加</hg:trans></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="static/css/chosen.css" />
+<script src="static/js/chosen.jquery.js"></script>
+<script type="text/javascript">
+
+    //一键添加本地产品到仓库
+    function p149138515doOneKeAddProducts() {
+        var storeId = $("#oneKeyAddProductToStore").val();
+        if (!storeId) {
+            redgle.showMessage(translate.format("<hg:trans>请先选择需要设置的仓库</hg:trans>"));
+            return;
+        }
+        $.ajax({                                  //获取采购计算方式
+            type: "post",
+            url: "/StockHandle/OneKeyAddProductsToLocalSrore",
+            data: { storeId: storeId },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [data.Message]));
+p149138515doReloadData();
+                }
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+    }
+    //搜索类型筛选
+    $("#divChooseItems>span").click(function () {
+        var $this = $(this);
+        $("#divChooseItems>span").removeClass();
+        $this.addClass("active");
+        $("#hidChoose").val($this.attr("itemid"))
+        if ($this.attr("chooseid") == "Search") {
+            $("#Date").css("display", "none");
+            $("#Search").css("display", "");
+        } else {
+            $("#Date").css("display", "");
+            $("#Search").css("display", "none");
+        }
+    });
+
+    var purOrderCalculation = "safeDays";//采购计算方式
+    var storeType = "自有仓";
+    //批量设置库存阈值
+    function p149138515doSetSafeValues() {
+        var ids = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-value");
+        }).get().join(',');//获取选择的ids
+        if (ids == "" || ids == null) {
+            redgle.showMessage(translate.format("<hg:trans>请选择需要设置的数据</hg:trans>"));
+            return;
+        }
+        var storeTypeStr = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-storetype");
+        }).get().join(',');//获取仓库类型
+        if (storeTypeStr.indexOf("FBA仓") > -1 && storeTypeStr.indexOf("自有仓") > -1) {
+            redgle.showMessage(translate.format("<hg:trans>不能同时选择自有仓与FBA仓设置库存预警，请重新选择</hg:trans>"));
+            return;
+        }
+        if (storeTypeStr.indexOf("自有仓") > -1) storeType = "自有仓";
+        else if (storeTypeStr.indexOf("FBA仓") > -1) storeType = "FBA仓";
+        $("#txtAlertMinStock").parent().removeClass("has-error");//最小库存
+        $("#txtAlertMinStock").next().remove();
+        $("#txtAlertMinStock").val("");
+        $("#txtAlertSecurityDays").parent().removeClass("has-error");//库存安全天数
+        $("#txtAlertSecurityDays").next().remove();
+        $("#txtAlertSecurityDays").val("");
+        $("#txtAlertStockFrequency").parent().removeClass("has-error");//备货频率
+        $("#txtAlertStockFrequency").next().remove();
+        $("#txtAlertStockFrequency").val("");
+        $("#txtAlertAirDeliveryDays").parent().removeClass("has-error");//空运交期
+        $("#txtAlertAirDeliveryDays").next().remove();
+        $("#txtAlertAirDeliveryDays").val("");
+        $("#txtAlertShippingDeliveryDays").parent().removeClass("has-error");//海运交期
+        $("#txtAlertShippingDeliveryDays").next().remove();
+        $("#txtAlertShippingDeliveryDays").val("");
+        $.ajax({                                  //获取采购计算方式
+            type: "post",
+            url: "/StockHandle/GetPurOrderCalculation",
+            success: function (data) {
+                purOrderCalculation = data.ResultObject;
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+        $("#myModal").modal('show');
+    }
+    /*批量保存安全库存阈值*/
+    function p149138515saveSafetyThresholds() {
+        var ids = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-value");
+        }).get().join(',');
+        //debugger;
+        if (ids == "" || ids == null) {
+            redgle.showMessage(translate.format("<hg:trans>请选择需要设置的数据</hg:trans>"));
+            return;
+        }
+        //var txtsetSafetyThreshold = $("#txtsetSafetyThreshold").val();
+        //if (txtsetSafetyThreshold == "" || !checkInteger(txtsetSafetyThreshold)) {
+        //    alert(translate.format("<hg:trans>产品安全库存最低值不能为空且必须是整数</hg:trans>"));
+        //    return;
+        //}
+        //var txtsetSafetyThresholdEnd = $("#txtsetSafetyThresholdEnd").val();
+        //if (txtsetSafetyThresholdEnd == "" || !checkInteger(txtsetSafetyThresholdEnd)) {
+        //    alert(translate.format("<hg:trans>产品安全库存最高值不能为空且必须是整数</hg:trans>"));
+        //    return;
+        //}
+        var haveError = false;
+        var error = {};
+        var txtMinStock = $("#txtAlertMinStock").val();//最小库存
+        if (purOrderCalculation == "minStock") //采购计算方式为简单模式（minStock）时，才必填
+        {
+            if (txtMinStock.length > 0 && !checkInteger(txtMinStock)) {
+                haveError = true;
+                error["txtAlertMinStock"] = translate.format("<hg:trans>最小库存不能为空且必须是大于0的整数</hg:trans>");
+            }
+        }
+        var txtSecurityDays = $("#txtAlertSecurityDays").val();//库存安全天数
+        var txtStockFrequency = $("#txtAlertStockFrequency").val();//备货频率
+        if (purOrderCalculation == "safeDays") {
+            if (txtMinStock.length > 0 && !checkInteger(txtStockFrequency)) {
+                haveError = true;
+                error["txtAlertStockFrequency"] = translate.format("<hg:trans>备货频率不能为空且必须是大于0的整数</hg:trans>");
+            }
+        }
+        var txtStockFrequency = $("#txtAlertStockFrequency").val();//备货频率
+        if (purOrderCalculation == "safeDays") {
+            if (txtStockFrequency == "" || !checkInteger(txtStockFrequency) || parseInt(txtStockFrequency) <= 0) {
+                haveError = true;
+                error["txtAlertStockFrequency"] = translate.format("<hg:trans>备货频率不能为空且必须是大于0的整数</hg:trans>");
+            }
+        }
+        var shippingType = $("input[name='alertShippingType']:checked").val();//选择的空运还是海运
+        var isAirDelivery = false, isShippingDelivery = false;
+        var txtAirDeliveryDays = 0, txtShippingDeliveryDays = 0;
+        if (storeType == "FBA仓") {
+            if (shippingType == 1) { //空运
+                isAirDelivery = true;
+                txtAirDeliveryDays = $("#txtAlertAirDeliveryDays").val();//空运交期
+                if (txtAirDeliveryDays == "" || !checkInteger(txtAirDeliveryDays) || parseInt(txtAirDeliveryDays) <= 0) {
+                    haveError = true;
+                    error["txtAlertAirDeliveryDays"] = translate.format("<hg:trans>空运交期不能为空且必须是大于0的整数</hg:trans>");
+                } else {
+                    var errorDiv = $("#txtAlertAirDeliveryDays").next(); //.find("div[class='tooltip fade top']");
+                    if (errorDiv.length > 0) {
+                        if (errorDiv.attr("class") == "tooltip fade top") errorDiv.remove();
+                    }
+                }
+
+            } else if (shippingType == 2) { //海运
+                isShippingDelivery = true;
+                txtShippingDeliveryDays = $("#txtAlertShippingDeliveryDays").val();//海运交期
+                if (txtShippingDeliveryDays == "" || !checkInteger(txtShippingDeliveryDays) || parseInt(txtShippingDeliveryDays) <= 0) {
+                    haveError = true;
+                    error["txtAlertShippingDeliveryDays"] = translate.format("<hg:trans>海运交期不能为空且必须是大于0的整数</hg:trans>");
+                } else {
+                    var errorDiv = $("#txtAlertShippingDeliveryDays").next(); //.find("div[class='tooltip fade top']");
+                    if (errorDiv.length > 0) {
+                        if (errorDiv.attr("class") == "tooltip fade top") errorDiv.remove();
+                    }
+                }
+            }
+        }
+        if (haveError) {
+p149138515doShowError(error);
+            return;
+        }
+        $.ajax({
+            url: "/StockHandle/SetSafetyThresholds",
+            type: "post",
+            data: {
+                stockIds: ids,
+                //safetyThreshold: 0,
+                safetyThresholdEnd: 0,
+                minStock: txtMinStock,//最小库存
+                securityDays: txtSecurityDays,
+                stockFrequency: txtStockFrequency,
+                isAirDelivery: isAirDelivery,
+                airDeliveryDays: txtAirDeliveryDays,
+                isShippingDelivery: isShippingDelivery,
+                shippingDeliveryDays: txtShippingDeliveryDays
+            },
+            //data: { stockIds: ids, safetyThreshold: txtsetSafetyThreshold, safetyThresholdEnd: txtsetSafetyThresholdEnd },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    $("#myModal").modal('hide');
+p149138515doReloadData();
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr)
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+    }
+    //导入SKU映射
+    function p149138515doImportSkuData() {
+        var url = "/StockHandle/ImportStockSku";
+        redgle.tab.create("liStockSkuImport", url, translate.format("<hg:trans>导入映射</hg:trans>"));
+    }
+
+    //导入货架位
+    function p149138515doImportShelfPosition() {
+        var url = "/StockHandle/ImportShelfPosition";
+        redgle.tab.create("liShelfPositionImport", url, translate.format("<hg:trans>导入货架位</hg:trans>"));
+    }
+    //导入库存平均价
+    function p149138515doImportStockAvgPrice(storeType) {
+        var url = "/StockHandle/ImportStockAvgPrice?storeType=" + storeType;
+        redgle.tab.create("liStockAvgPriceImport", url, translate.format("<hg:trans>导入库存平均价</hg:trans>"));
+    }
+
+    //选择排序
+    $("#divSort > span").each(function () {
+        $(this).click(function () {
+            var selectedItems = "";
+            var sortType = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divSort > span").removeClass("active");
+                $("#divSort > span").attr("sorttype", "");
+                $(this).addClass("active");
+                $("#divSort > span > span").removeClass().addClass("glyphicon glyphicon-resize-vertical");
+            }
+            selectedItems = $(this).attr("itemid");
+            sortType = $(this).attr("sorttype");
+            if (sortType == "" || sortType == "DESC") {
+                $(this).attr("sorttype", "ASC");
+                $("#hidSortType").val("ASC");
+                $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-menu-up");
+            }
+            else {
+                $(this).attr("sorttype", "DESC");
+                $("#hidSortType").val("DESC");
+                $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-menu-down");
+            }
+            $("#hidSort").val(selectedItems);
+            $("#searchForm").submit();
+        });
+    });
+
+    /*处理同步库存 begin*/
+
+    function  p149138515openSyncProductWindow() {
+        $("#syncProductModal").modal('show');
+        $("#btnInitStockPrice").hide();
+        $("#btnStartSyncStock").show();
+        $("#initPsdiv").hide();
+        $('#divSyncMessage').html("");
+        $('#syncProductModalLabel').html("<hg:trans>更新库存</hg:trans>");
+    }
+    function p149138515doSyncProduct() {
+        $('#divSyncMessage').html("");
+        $('<p><hg:trans>开始更新库存</hg:trans>.</p>').appendTo("#divSyncMessage");
+        var storeList = $("#divStoreItemsSync").find(".active");
+        var index = 0;
+        if (storeList.length == 0) {
+            $('<p><hg:trans>未选择更新仓库</hg:trans></p>').appendTo("#divSyncMessage");
+            return;
+        }
+        $("#btnStartSyncStock").text(translate.format("<hg:trans>正在更新库存...</hg:trans>")).attr("disabled", true);
+        doLoadSyncProduct(index, storeList.length);
+    }
+    function doLoadSyncProduct(index, totalIndex) {
+        var $this = $("#divStoreItemsSync").find(".active:eq(" + index + ")")
+        if ($this.attr("data-value") == "") {
+            index++;
+            $this = $("#divStoreItemsSync").find(".active:eq(" + index + ")")
+        }
+        $('<p>' + translate.format("<hg:trans>开始更新{0}库存...</hg:trans>", [$this.html()]) + '</p>').appendTo("#divSyncMessage");
+        if ($this) {
+            $.ajax({
+                type: "post",
+                url: "/StockHandle/RefFBAProducts",
+                data: { StoreId: $this.attr("data-value") },
+                success: function (data) {
+                    if (data.HasError) {
+                        $('<p>' + translate.format("<hg:trans>更新{0}库存出现错误，{1}</hg:trans>", [$this.html(), data.Message]) + '</p>').appendTo("#divSyncMessage");
+                    } else {
+                        $('<p>' + translate.format("<hg:trans>更新{0}库存完成，{1}</hg:trans>", [$this.html(), data.Message]) + '</p>').appendTo("#divSyncMessage");
+                    }
+                },
+                error: function (e) {
+                    console.log(e)
+                    $('<p>' + translate.format("<hg:trans>更新{0}库存出现错误</hg:trans>", [$this.html()]) + ':</p>').appendTo("#divSyncMessage");
+                },
+                complete: function () {
+                    index++;
+                    if (index >= totalIndex) {
+                        $("#btnStartSyncStock").text(translate.format("<hg:trans>更新</hg:trans>")).attr("disabled", false);
+                        $('<p><hg:trans>更新库存完成</hg:trans></p>').appendTo("#divSyncMessage");
+p149138515doReloadData();
+                    } else
+                        doLoadSyncProduct(index, totalIndex);
+                }
+            })
+        }
+
+    }
+    /*处理同步库存 end*/
+
+    var selectProductType = 0;
+
+    function p149138515doEditData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/Product/ProductInfo/" + id;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品详情</hg:trans>"));
+    }
+    var thisStockId = 0;
+    var thisOlProductSpecId = 0;
+    function p149138515doSelectProducts(stockId, OlProductSpecId) {
+        selectProductType = 1;
+        var url = "/Product/SelectProductByOrder?functionName=doGetSelectedProduct";
+        var selectOrderModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择产品</hg:trans>"), width: 950, height: 560 });
+        selectOrderModal.show();
+        thisStockId = stockId;
+    }
+
+    function doGetSelectedProduct(products) {
+        if (selectProductType == 1) {
+            relationProduct(products);
+        } else {
+            doSaveProducts(products);
+        }
+    }
+
+    function relationProduct(products) {
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/RelationStockProduct",
+            data: { stockId: thisStockId, ProductId: products[0].ProductId, productSpecId: products[0].ProductSpecId, sku: products[0].ProductStyle, },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的修改已保存成功</hg:trans>！"))
+                    try { p149138515doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    
+
+    //编辑库存产品
+    function p149138515editProduct(
+        sku,
+        store,
+        shelf,
+        shelfId,
+        threshol,//最小库存
+        thresholdEnd,
+        stockId,
+        storeId,
+        totalNum,
+        lockNum,
+        productType,
+        thirdSku,
+        securityDays,
+        stockFrequency,
+        isAirDelivery,
+        airDeliveryDays,
+        isShippingDelivery,
+        shippingDeliveryDays,
+        edStoreType) {
+        if (productType == "combined") {
+            $("#divSafety").css("display", "none")
+        } else {
+            $("#divSafety").css("display", "")
+        }
+        //if (thirdSku != "") {
+        //    $("#txtStockTotalNum").prop("disabled", true)
+        //} else {
+        //    $("#txtStockTotalNum").prop("disabled", false)
+        //}
+
+        //if (shelfId == 0) {
+        //    $("#divShelf").css("display", "")
+        //} else {
+        //    $("#divShelf").css("display", "none")
+        //}
+        storeType = edStoreType;
+        $("#txtMinStock").parent().removeClass("has-error");//最小库存
+        $("#txtMinStock").next().remove();
+        $("#txtMinStock").val("");
+        $("#txtSecurityDays").parent().removeClass("has-error");//安全天数
+        $("#txtSecurityDays").next().remove();
+        $("#txtSecurityDays").val("");
+        $("#txtStockFrequency").parent().removeClass("has-error");//备货频率
+        $("#txtStockFrequency").next().remove();
+        $("#txtStockFrequency").val("");
+        $("#txtAirDeliveryDays").parent().removeClass("has-error");//空运交期
+        $("#txtAirDeliveryDays").next().remove();
+        $("#txtAirDeliveryDays").val("");
+        $("#txtShippingDeliveryDays").parent().removeClass("has-error");//海运交期
+        $("#txtShippingDeliveryDays").next().remove();
+        $("#txtShippingDeliveryDays").val("");
+
+        //$("#txtsetSafetyThresholdEdit").val(threshol);
+        //$("#txtsetSafetyThresholdEndEdit").val(thresholdEnd);
+        var currentSku = sku;
+        $("#editlableSku").html("<hg:trans>本地产品SKU</hg:trans>")
+        if (currentSku == "") {
+            currentSku = thirdSku;
+            $("#editlableSku").html("<hg:trans>第三方产品SKU</hg:trans>")
+        }
+        $("#editProductSku").html(currentSku);
+        $("#editProductStore").html(store);
+        $("#editStockId").val(stockId);
+        $("#txtStockTotalNum").val(totalNum);
+        $("#lockNum").html(lockNum);
+        $("#txtMinStock").val(threshol);//最小库存
+        $("#txtSecurityDays").val(securityDays);
+        $("#txtStockFrequency").val(stockFrequency);
+        if (isAirDelivery == "1") {
+            $("input[name='shippingType'][value='1']").get(0).checked = true;;
+            $("input[name='shippingType'][value='2']").removeAttr("checked");
+        } else {
+            $("input[name='shippingType'][value='1']").removeAttr("checked");
+            $("input[name='shippingType'][value='2']").get(0).checked = true;
+        }
+        if (airDeliveryDays > 0) $("#txtAirDeliveryDays").val(airDeliveryDays);
+        if (shippingDeliveryDays > 0) $("#txtShippingDeliveryDays").val(shippingDeliveryDays);
+        $.ajax({
+            type: "post",
+            url: "/StockHandle/GetPurOrderCalculation",
+            success: function (data) {
+                purOrderCalculation = data.ResultObject;//获取采购计算方式
+                $.ajax({
+                    type: "post",
+                    url: "/InStore/ShellPositionToSelectItemList",
+                    data: { StoreId: storeId },
+                    success: function (data) {
+                        $("#editProductModal").modal('show');
+                        var $this = $("#editProductShelf");
+                        $this.empty();
+                        if (shelfId == "0") {
+                            $this.append("<option value='0'><hg:trans>请选择货架位</hg:trans></option>");
+                        }
+                        //$this.append("<option value='0'>请选择货架位</option>");
+                        $.each(data, function (index, value) {
+                            if (shelfId == value) {
+                                $this.append("<option value='" + value.Value + "' selected >" + value.Text + "</option>");
+                            } else {
+                                $this.append("<option value='" + value.Value + "'>" + value.Text + "</option>");
+                            }
+                        });
+                        if (shelfId != "0") {
+                            $("#editProductShelf").val(shelfId);
+                        } else {
+                            $("#editProductShelf").val("0");
+                        }
+                        $("#editProductShelf").chosen();
+                        $(".chosen-container").css("width", "218px")
+                        $(".chosen-container .chosen-single").css("height", "30px")
+                        $("#editProductShelf").trigger("chosen:updated");
+                    },
+                    error: function (e) {
+                        console.log(e)
+                    }
+                })
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        })
+    }
+    //删除
+    function p149138515DeleteStock(StockId, lockNum) {
+        if (lockNum != "0") {
+            redgle.showMessage(translate.format("<hg:trans>锁定库存不为O，不允许删除</hg:trans>"))
+            return;
+        }
+        if (window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>"))) {
+            $.ajax({
+                type: "post",
+                url: "/StockHandle/DeleteStock",
+                data: { stockId: StockId },
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    } else {
+p149138515doReloadData();
+                    }
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            })
+        }
+    }
+
+    //批量保存
+    function p149138515SaveEditProducts() {
+        $.ajax({
+            type: "post",
+            url: "/StockHandle/UpdateStockProducts",
+            data: {
+                stockId: $("#editStockIds").val(),
+                shefId: $("#editProductShelfs").val()
+            },
+            success: function (data) {
+                $("#editProductModals").modal('hide');
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的操作已保存成功</hg:trans>！"));
+p149138515doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+    }
+
+
+    function p149138515SaveEditProduct() {
+        //debugger;
+        var haveError = false;
+        var error = {};
+        //var txtsetSafetyThreshold = $("#txtsetSafetyThresholdEdit").val();
+        //if (txtsetSafetyThreshold == "" || !checkInteger(txtsetSafetyThreshold)) {
+        //    haveError = true;
+        //    error["txtsetSafetyThresholdEdit"] = translate.format("<hg:trans>产品安全库存最低值不能为空且必须是整数</hg:trans>");
+        //}
+        var txtMinStock = $("#txtMinStock").val();//最小库存
+        if (purOrderCalculation == "minStock") //采购计算方式为简单模式（minStock）时，才必填
+        {
+            if (txtMinStock.length > 0 && !checkInt(txtMinStock)) {
+                haveError = true;
+                error["txtMinStock"] = translate.format("<hg:trans>最小库存必须是大于0的整数</hg:trans>");
+            }
+        }
+        var txtSecurityDays = $("#txtSecurityDays").val();
+        var txtStockFrequency = $("#txtStockFrequency").val();
+        if (purOrderCalculation == "safeDays") //采购计算方式为日均销量模式（safeDays）时，才必填
+        {
+            if (txtSecurityDays.length > 0 && !checkInt(txtSecurityDays)) {
+                haveError = true;
+                error["txtSecurityDays"] = translate.format("<hg:trans>库存安全天数必须是大于0的整数</hg:trans>");
+            }
+
+            if (txtStockFrequency.length > 0 && !checkInt(txtStockFrequency)) {
+                haveError = true;
+                error["txtStockFrequency"] = translate.format("<hg:trans>备货频率必须是大于0的整数</hg:trans>");
+            }
+        }
+
+        var shippingType = $("input[name='shippingType']:checked").val();
+        var isAirDelivery = false, isShippingDelivery = false;
+        var txtAirDeliveryDays = 0, txtShippingDeliveryDays = 0;
+        if (storeType == "FBA仓") {
+            if (shippingType == 1) {//空运
+                isAirDelivery = true;
+                txtAirDeliveryDays = $("#txtAirDeliveryDays").val();
+                if (txtAirDeliveryDays.length > 0 && !checkInt(txtAirDeliveryDays)) {
+                    haveError = true;
+                    error["txtAirDeliveryDays"] = translate.format("<hg:trans>空运交期必须是大于0的整数</hg:trans>");
+                } else {
+                    var errorDiv = $("#txtAirDeliveryDays").next();//.find("div[class='tooltip fade top']");
+                    if (errorDiv.length > 0) {
+                        if (errorDiv.attr("class") == "tooltip fade top") errorDiv.remove();
+                    }
+                }
+
+            }
+            else if (shippingType == 2) {//海运
+                isShippingDelivery = true;
+                txtShippingDeliveryDays = $("#txtShippingDeliveryDays").val();
+                if (txtShippingDeliveryDays.length > 0 && !checkInt(txtShippingDeliveryDays)) {
+                    haveError = true;
+                    error["txtShippingDeliveryDays"] = translate.format("<hg:trans>海运交期必须是大于0的整数</hg:trans>");
+                } else {
+                    var errorDiv = $("#txtShippingDeliveryDays").next();//.find("div[class='tooltip fade top']");
+                    if (errorDiv.length > 0) {
+                        if (errorDiv.attr("class") == "tooltip fade top") errorDiv.remove();
+                    }
+                }
+            }
+        }
+
+        var txtStockTotalNum = $("#txtStockTotalNum").val();
+        var lockNum = $("#lockNum").html();
+        if (txtStockTotalNum == "" || !checkInteger(txtStockTotalNum)) {
+            haveError = true;
+            error["txtStockTotalNum"] = translate.format("<hg:trans>库存总量不能为空且必须是整数</hg:trans>");
+        } else if (parseInt(txtStockTotalNum) < parseInt(lockNum)) {
+            haveError = true;
+            error["txtStockTotalNum"] = translate.format("<hg:trans>库存总量不能小于锁定库存</hg:trans>");
+        }
+        if (haveError) {
+p149138515doShowError(error);
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/StockHandle/UpdateStockProduct",
+            data: {
+                stockId: $("#editStockId").val(),
+                safetyThresholdEnd: 0,
+                minStock: txtMinStock,//最小库存
+                shefId: $("#editProductShelf").val(),
+                totalNum: txtStockTotalNum,
+                securityDays: txtSecurityDays,
+                stockFrequency: txtStockFrequency,
+                isAirDelivery: isAirDelivery,
+                airDeliveryDays: txtAirDeliveryDays,
+                isShippingDelivery: isShippingDelivery,
+                shippingDeliveryDays: txtShippingDeliveryDays
+            },
+            success: function (data) {
+                $("#editProductModal").modal('hide');
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的操作已保存成功</hg:trans>！"));
+p149138515doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+    }
+
+    function p149138515doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).parent().addClass("has-error");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).parent().removeClass("has-error");
+            });
+        });
+    }
+
+    function  p149138515doHiddenError(key) {
+        $("#" + key).tooltip("destroy");
+        $("#" + key).parent().removeClass("has-error");
+    }
+
+    //加载货架位
+    function LoadShelfPosition(storeId) {
+        $.ajax({
+            type: "post",
+            url: "/InStore/ShellPositionToSelectItemList",
+            data: { StoreId: storeId },
+            success: function (data) {
+                $("#p149138515divProductDataList tbody > tr").each(function () {
+                    var $this = $(this).find("#item_ShelfPositionId" + storeId);
+                    $this.empty();
+                    if (data.length != 1) {
+                        $this.append("<option value=''><hg:trans>请选择货架位</hg:trans></option>");
+                    }
+                    $.each(data, function (index, value) {
+                        $this.append("<option value='" + value.Value + "'>" + value.Text + "</option>");
+                    })
+                });
+            },
+            error: function () {
+                console.log("error")
+            }
+        })
+    }
+
+    //选择批量修改的SUK
+    function p149138515doUpdataDatas() {
+        var ids = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-value");
+        }).get().join(',');
+        var storeId = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-storeId");
+        }).get().join(',');
+        var SKU = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-SKU");
+        }).get().join(',');
+        var ThirdProductSKU = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-ThirdProductSKU");
+        }).get().join(',');
+        var shelfId = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-ShelfPositionId");
+        }).get().join(',');
+        if (storeId == "" || storeId == null) {
+            alert("请选择需要修改的数据");
+            return;
+        }
+
+
+        var re = storeId.split(',');//把批量要修改数据分割
+        storeId = re[0];//取分割的第一个
+        storeIds = re[re.length - 1]//取分割的最后一个
+        if (storeId != storeIds) {
+            alert("只能选择仓库相同的货架位进行修改");
+            return;
+        }
+
+        var rd = shelfId.split(","); //把批量要修改数据分割
+        shelfId = rd[0];  //取分割的第一个
+        $.ajax({
+            type: "post",
+            url: "/InStore/ShellPositionToSelectItemList",
+            data: { StoreId: storeId },
+            success: function (data) {
+                $("#editProductModals").modal('show');
+                var $this = $("#editProductShelfs");
+                $this.empty();
+                $("#editStockIds").val(ids);
+                if (shelfId == "0") {
+                    $this.append("<option value='0'><hg:trans>请选择货架位</hg:trans></option>");
+                }
+                $.each(data, function (index, value) {
+                    if (shelfId == value) {
+                        $this.append("<option value='" + value.Value + "' selected >" + value.Text + "</option>");
+                    } else {
+                        $this.append("<option value='" + value.Value + "'>" + value.Text + "</option>");
+                    }
+                });
+                if (shelfId != "0") {
+                    $("#editProductShelfs").val(shelfId);
+                } else {
+                    $("#editProductShelfs").val("0");
+                }
+                $("#editProductShelfs").chosen();
+                $(".chosen-container").css("width", "218px")
+                $(".chosen-container .chosen-single").css("height", "30px")
+                $("#editProductShelfs").trigger("chosen:updated");
+
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        })
+    }
+
+    //批量删除
+    function p149138515doDeleteDatas() {
+        var ids = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-value");
+        }).get().join(',');
+        if (ids == "" || ids == null) {
+            alert("请选择需要删除的数据");
+            return;
+        }
+        if (window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，确定删除该库存信息吗？</hg:trans>"))) {
+            $.ajax({
+                type: "post",
+                url: "/StockHandle/DeleteStocks",
+                data: { stockIds: ids },
+                success: function (data) {
+                    var count = "0";
+                    if (data.ResultObject != null) {
+                        count = data.ResultObject;
+                    }
+                    if (data.Message != null && data.Message.length > 0) {
+                        redgle.showMessage(translate.format("<hg:trans>已成功删除【{0}】条记录，但出现以下错误：{1}</hg:trans><br/>", [count, data.Message]));
+                    }
+                    else {
+                        redgle.showMessage(translate.format("<hg:trans>操作成功，已成功删除【{0}】条记录</hg:trans>", [count]));
+                    }
+p149138515doReloadData();
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            })
+        }
+    }
+
+
+
+
+    //保存SKU
+    function p149138515SaveProduct() {
+        var stockList = new Array();
+        $("#divSaveProductStoreItems").find(".active").each(function () {
+            var $thisStore = $(this)
+            var storeId = $thisStore.attr("data-value");
+            var sheName = "item_ShelfPositionId" + storeId;
+            $("#p149138515divProductDataList tbody > tr").each(function () {
+                //遍历填写内容
+                var $this = $(this);
+                var stock = {
+                    ProductId: $this.find("#item_ProductId").val(),
+                    TotalNum: 0,
+                    DefectiveNum: 0,
+                    StockAvgPrice: 0,
+                    StoreId: storeId,
+                    ProductSpecId: $this.find("#item_ProductSpecId").val(),
+                    SKU: $this.find("#item_Sku").val(),
+                    ShelfPositionId: $this.find("#" + sheName).val() == "" ? "0" : $this.find("#" + sheName).val(),
+                    LockNum: 0,
+                    UpdateTime: "2018/8/31 14:39:52",
+                    PurInNum: 0,
+                    IsPurIn: true
+                }
+                stockList.push(stock);
+            });
+        })
+        $("#productModal").modal('hide');
+        if (stockList.length == 0) {
+            return;
+        }
+        stockList = JSON.stringify(stockList);
+        $.ajax({
+            url: "/StockHandle/ChooseProductInstore",
+            type: "post",
+            data: { stockList: stockList },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+p149138515doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+    }
+
+
+    function doRemoveInStoreDetailItem(event) {
+        var src = event.target || window.event.srcElement;
+        var panel = $(src).parentsUntil("tbody");
+        panel.remove();
+        doSetAmount(null);
+    }
+    function p149138515doSelectProduct() {
+        selectProductType = 0;
+        var url = "/Product/SelectProduct?productType=change";
+        var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择产品</hg:trans>") });
+        selectManageModal.show();
+    }
+
+    function doSaveProducts(products) {
+        $("#p149138515divProductDataList tbody").html("")
+        var yy = $("#divSaveProductStoreItems").find("span[data-value='" + $("#txtStoreId").val() + "']")
+        if (yy.length == 0) {
+            yy = $("#divSaveProductStoreItems>span:eq(0)");
+        }
+        yy.prop("class", "active");
+        $("#productModal").modal('show');
+        $(products).each(function (i, product) {
+            var optionPanel = $("<tr></tr>").appendTo("#p149138515divProductDataList tbody");
+            optionPanel.append('<td  style="width:80px"><input id="item_Sku" type="hidden" value="' + product.ProductStyle + '"/><input id="item_ProductId" name="item.ProductId" type="hidden" value="' + product.ProductId + '"/><img class="img-thumbnail" style="width:30px; height:30px;" src="' + product.MainPic + '" /></td>');
+            optionPanel.append('<td><span title="' + product.ProductName + '" class="text-overflow">' + product.ProductName + '</span><input id="item_ProductSpecId" name="item.ProductSpecId" type="hidden" value="' + product.ProductSpecId + '"/></td>');
+            optionPanel.append('<td>' + product.ProductStyle + '</td>');
+            optionPanel.append('<td  id="item_ShelfPositiontd" style="text-align:left !important;" class="form-inline"><div id="item_store' + yy.attr("data-value") + '">' + yy.html() + ':<select id="item_ShelfPositionId' + yy.attr("data-value") + '"  style="width:120px"  class="form-control input-sm" name="item.ShelfPositionId' + yy.attr("data-value") + '"><option></option></select></div></td>');
+            optionPanel.append('<td  style="width:80px"><input id="item_shelves" name="item.shelves" type="hidden" value="' + product.Shelves + '"/>  <input id="item_ProductSpecId" name="item.ProductSpecId" type="hidden" value="' + product.ProductSpecId + '"/><a href="javascript:void(0)" hgtrans="true" class="glyphicon glyphicon-remove" onclick="doRemoveInStoreDetailItem(event)" title="移除"></a></td>');
+        })
+        LoadShelfPosition(yy.attr("data-value"));
+    }
+
+    function Verification() {
+
+    }
+
+    $(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+        $(".para-items").not("#divStoreItems,#divSaveProductStoreItems,#divStoreItemsSync,#divExitsStockItems,#divSort").find("span").click(function () {
+            var $this = $(this)
+            if ($this.attr("class") == "active") {
+                $this.prop("class", "")
+                $this.parent().find("input").prop("value", "")
+            } else {
+                $this.parent().find("span").prop("class", "")
+                $this.prop("class", "active")
+                $this.parent().find("input").prop("value", $this.attr("data-value"))
+            }
+        })
+        $("#divStoreItems>span").click(function () {
+            var $this = $(this)
+            var selectStoreIds = "";
+            if ($this.attr("class") == "active") {
+                $this.prop("class", "")  
+            } else {
+                $this.prop("class", "active")
+            }
+            selectStoreIds = $("#divStoreItems>span[class='active']").map(function () { return $(this).attr("data-value"); }).get().join(",");
+            $this.parent().find("input").prop("value", selectStoreIds)
+            if ($("#divStoreItems>span[class='active']").length ==1) {
+                //异步加载货架位
+                var storeId = $this.attr("data-value")
+                $.ajax({
+                    type: "post",
+                    url: "/StockHandle/GetShelfPositionsSelectList",
+                    data: { storeId: storeId },
+                success: function (data) {
+                    if (data.HasError) {
+                        $("#divShelfPositions").hide();
+                        $("#txtShelfPosition").val("");
+                    } else {
+                        var list = data.ResultObject;
+                        if (list.length <= 2 || list.length > 2000) {//大于2000个货架位或者小于等于1个的就不加载货架位筛选了
+                            $("#divShelfPositions").hide();
+                            $("#txtShelfPosition").val("");
+                        } else {
+                            $("#divShelfPositions").show();
+                            $("#txtShelfPosition").empty();
+                            $.each(list, function (index, s) {
+                                $("#txtShelfPosition").append("<option value='" + s.Value + "'>" + s.Text + "</option>")
+
+                            })
+                            $(".chzn-select").trigger("chosen:updated");
+                            $(".chzn-select").chosen();
+                        }
+                    }
+                },
+                error: function (e) {
+                    $("#divShelfPositions").hide();
+                    $("#txtShelfPosition").val("");
+
+                }
+            })
+            } else {
+                $("#divShelfPositions").hide();
+        $("#txtShelfPosition").val("");              
+    }
+            $("#searchForm").submit();
+    })
+
+        //选择货架位
+        $('#txtShelfPosition').bind('change', function () {
+            $("#searchForm").submit();
+        });
+        $("#divExitsStockItems>span").click(function () {
+            var $this = $(this)
+            if ($this.attr("class") == "active") {
+                $this.prop("class", "")
+                $this.parent().find("input").prop("value", "")
+            } else {
+                $this.parent().find("span").prop("class", "")
+                $this.prop("class", "active")
+                $this.parent().find("input").prop("value", $this.attr("data-value"))
+            }
+            $("#searchForm").submit();
+        })
+
+
+        $("#divSaveProductStoreItems>span").click(function () {
+            var $this = $(this)
+            if ($this.attr("class") == "active") {
+                if ($("#divSaveProductStoreItems").find(".active").length == 1) {
+                    alert(translate.format("<hg:trans>至少选择一个仓库</hg:trans>"))
+                } else {
+                    $this.prop("class", "")
+                    $("#p149138515divProductDataList tbody tr").each(function () {
+                        var $this1 = $(this)
+                        $this1.find("#item_store" + $this.attr("data-value")).remove()
+                    })
+                }
+            } else {
+                $this.prop("class", "active")
+                $("#p149138515divProductDataList tbody tr").each(function () {
+                    var $this1 = $(this)
+                    var std = $this1.find("#item_ShelfPositiontd")
+                    std.html(std.html() + "<div id='item_store" + $this.attr("data-value") + "'>" + $this.html() + ":<select id='item_ShelfPositionId" + $this.attr("data-value") + "'  class='form-control input-sm' name='item.ShelfPositionId" + $this.attr("data-value") + "' style='width:120px'><option></option></select></div>");
+                })
+                LoadShelfPosition($this.attr("data-value"));
+            }
+        });
+        $("#divStoreItemsSync>span").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                if ($this.attr("data-value") == "") {
+                    $("#divStoreItemsSync>span").removeClass("active")
+                } else {
+                    $("#divStoreItemsSync>span[data-value='']").removeClass("active")
+                    $this.removeClass();
+                }
+
+            } else {
+                if ($this.attr("data-value") == "") {
+                    $("#divStoreItemsSync>span").removeClass("active")
+                    $("#divStoreItemsSync>span").addClass("active")
+                } else {
+                    $this.addClass("active");
+                }
+            };
+        });
+        //$("#divStoreItems>span:eq(0)").click();
+
+        ShippingTypeRadioCheck("shippingType", "txtShippingDeliveryDays", "txtAirDeliveryDays");
+        ShippingTypeRadioCheck("alertShippingType", "txtAlertShippingDeliveryDays", "txtAlertAirDeliveryDays");
+    });
+
+    function ShippingTypeRadioCheck(rdName, txt1, txt2) {
+        $("input[name='" + rdName + "']").change(function () {
+            var shippingType = $(this).val();
+            if (shippingType == 1) {//空运
+                $("#" + txt1 + "").val("");
+p149138515doHiddenError("" + txt1 + "");
+            } else if (shippingType == 2) {//海运
+                $("#" + txt2 + "").val("");
+p149138515doHiddenError("" + txt2 + "");
+            }
+        });
+    }
+
+    function p149138515doShowMoreSearchPanel() {
+        $("#divMoreSearach").toggle("fast");
+    }
+    function p149138515onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#searchForm").submit();
+    }
+    //复选框
+    function doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+    /* 导出操作 */
+    function p149138515doExportData() {
+        var ids = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).attr("data-value");
+        }).get().join(',');
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["viewName"] = "IndexStockQuery";
+        postData["pageKey"] = "IndexStockQuery/Import";
+        postData["ids"] = ids;
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/ExportStoreProExcel",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Tem/1//" + data.ResultObject, "_blank")
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function p149138515doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/StockHandle/IndexStockQuery",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p149138515divDataList").html(data);
+            },
+            error: function () {
+                alert(translate.format("<hg:trans>重新加载数据失败！</hg:trans>"));
+            }
+        });
+    }
+    function doProductViewUrl(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/Product/ProductInfo/" + id;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品编辑</hg:trans>"));
+    }
+    /*End2015-5-6*/
+
+    //导入库存预警
+    function p149138515doImportData() {
+        var url = "/StockHandle/SafeValuesImport";
+        redgle.tab.create("liSafeValuesImport", url, translate.format("<hg:trans>导入库存预警</hg:trans>"));
+    }
+    //======初始化库存成本操作 begin======//
+    //打开初始化库存成本的窗口
+    function  p149138515openInitStockPriceWindow() {
+        $("#syncProductModal").modal('show');
+        $("#btnInitStockPrice").show();
+        $("#btnStartSyncStock").hide();
+        $("#initPsdiv").show();
+        $('#divSyncMessage').html("");
+        $('#syncProductModalLabel').html("<hg:trans>初始化库存成本</hg:trans>");
+    }
+    function p149138515doInitStockPrice() {
+        $('#divSyncMessage').html("");
+        $('<p><hg:trans>开始初始化</hg:trans>.</p>').appendTo("#divSyncMessage");
+        var storeList = $("#divStoreItemsSync").find(".active");
+        var index = 0;
+        if (storeList.length == 0) {
+            $('<p><hg:trans>未选择初始化仓库</hg:trans></p>').appendTo("#divSyncMessage");
+            return;
+        }
+        $("#btnInitStockPrice").text(translate.format("<hg:trans>正在初始化...</hg:trans>")).attr("disabled", true);
+        doBeginInitStockPrice(index, storeList.length);
+    }
+    function doBeginInitStockPrice(index, totalIndex) {
+        var $this = $("#divStoreItemsSync").find(".active:eq(" + index + ")")
+        if ($this.attr("data-value") == "") {
+            index++;
+            $this = $("#divStoreItemsSync").find(".active:eq(" + index + ")")
+        }
+        $('<p>' + translate.format("<hg:trans>开始初始化{0}库存...</hg:trans>", [$this.html()]) + '</p>').appendTo("#divSyncMessage");
+        if ($this) {
+            $.ajax({
+                type: "post",
+                url: "/StockHandle/InitStockPrice",
+                data: { StoreId: $this.attr("data-value") },
+                success: function (data) {
+                    if (data.HasError) {
+                        $('<p>' + translate.format("<hg:trans>初始化{0}库存成本出现错误，{1}</hg:trans>", [$this.html(), data.Message]) + '</p>').appendTo("#divSyncMessage");
+                    } else {
+                        $('<p>' + translate.format("<hg:trans>初始化{0}库存成本完成，{1}</hg:trans>", [$this.html(), data.Message]) + '</p>').appendTo("#divSyncMessage");
+                    }
+                },
+                error: function (e) {
+                    console.log(e)
+                    $('<p>' + translate.format("<hg:trans>初始化{0}库存成本出现错误</hg:trans>", [$this.html()]) + ':</p>').appendTo("#divSyncMessage");
+                },
+                complete: function () {
+                    index++;
+                    if (index >= totalIndex) {
+                        $("#btnInitStockPrice").text(translate.format("<hg:trans>初始化</hg:trans>")).attr("disabled", false);
+                        $('<p><hg:trans>初始化库存成本完成</hg:trans></p>').appendTo("#divSyncMessage");
+p149138515doReloadData();
+                    } else
+                        doBeginInitStockPrice(index, totalIndex);
+                }
+            })
+        }
+
+    }
+
+    //锁定库存订单
+    function p149138515doSearchOrder(stockId) {
+        if (stockId == null || stockId == "" || stockId == 0) return;
+        var url = "../Order/Index?pageSize=1000&stockId=" + stockId;
+        redgle.tab.create("liOrderManage", url, translate.format("<hg:trans>锁定库存订单</hg:trans>"));
+    }
+    //显示线上订单详情
+    function doViewOnlineOrder(orderId) {
+        scollTop = $(document).scrollTop();
+        var url = "../Order/ViewOnlineOrder/" + orderId;
+        redgle.tab.create("liOrderDetail", url, translate.trans("详情"));
+    }
+    //处理货架位下拉控件
+
+    $(function () {
+        $(".chzn-select").chosen();
+        $(".chosen-container").css("width", "250px");
+    })
+
+    //======初始化库存成本操作 end======//
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/7f36b18caf96418c8421c23801a82bfc.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+
+  {:widget('Blog/header')}
+<div class="home-log"> 
+     <link href="__STATIC__/index/css/home.css" rel="stylesheet" /> 
+   <a href="javascript:void(0)" STYLE="color:white;font-size:30px;line-height:40px"><!--  <img src="__STATIC__/index/picture/enterprise-logo-yhjm.png" />  -->
+      <span style="color:#0000FA;margin-left:20px">P</span>lanet  <span style="color:#FF0000">D</span>inosaur
+
+
+   </a> 
+  </div> 
+ 
+    <div class="container" id="divFailedMessagePanel" style="max-width: 1000px;"></div>
+    <div class="head-top">
+        <div class="nav_tapy">
+            <div class="allbtn"><a href="{:url('order/index','')}"><span id="approve_num">...</span><i class="c_1ab177"><hg:trans>单</hg:trans></i></a></div>
+            <a href="/Order/OrderApprove"><hg:trans>审核订单</hg:trans></a>
+        </div>
+        <div class="nav_tapy" style="margin-left:11px;">
+            <div class="allbtn"><a href="/Order/OrderAccording"><span id="according_num">...</span><i class="c_1ab177"><hg:trans>单</hg:trans></i></a></div>
+            <a href="/Order/OrderAccording"><hg:trans>仓库配货</hg:trans></a>
+        </div>
+        <div class="nav_tapy1">
+            <div class="allbtn"><a href="/Order/OrderPicking"><span id="noprint_num">...</span><i class="c_1ab177"><hg:trans>单</hg:trans></i></a></div>
+            <a href="/Order/OrderPicking"><hg:trans>打印面单</hg:trans></a>
+        </div>
+        <div class="nav_tapy2">
+            <div class="allbtn"><a href="/Order/OrderPrint"><span id="shipping_num">...</span><i class="c_1ab177"><hg:trans>单</hg:trans></i></a></div>
+            <a href="/Order/OrderPrint"><hg:trans>发货回传</hg:trans></a>
+        </div>
+        <div class="nav_tapy4">
+            <div class="allbtn"><a href="/Order/OrderPostBacked"><span id="postbackedfailed_num">...</span><i class="c_1ab177"><hg:trans>单</hg:trans></i></a></div>
+            <a href="/Order/OrderPostBacked"><hg:trans>回传异常</hg:trans></a>
+        </div>
+    </div>
+    <div class="nsvideo" style="width:500px">
+        <div class="ns-money" style="width:458px">
+            <h3><hg:trans>未读消息</hg:trans></h3>
+            <ul>
+                <li><a href="/OrderMessage/Index"><hg:trans>AliExpress站内信</hg:trans><i class="c_1ab188"><span id="smtsitemessage_num">...</span></i></a></li>
+                <li><a href="/OrderMessage/OrderMes"><hg:trans>AliExpress订单留言</hg:trans><i class="c_1ab188"><span id="smtordermessage_num">...</span></i></a></li>
+                <li><a href="/OrderMessage/EbayOrderMessageIndex"><hg:trans>eBay站内信</hg:trans><i class="c_1ab188"><span id="ebaysitemessage_num">...</span></i></a></li>
+                <li><a href="/OrderMessage/EbaySiteMessageIndex"><hg:trans>eBay客服消息</hg:trans><i class="c_1ab188"><span id="ebaysalesitemessage_num">...</span></i></a></li>
+                <li><a href="/OrderMessage/AmazonEmail"><hg:trans>Amazon未读邮件</hg:trans><i class="c_1ab188"><span id="amazonemail_num">...</span></a></li>
+            </ul>
+        </div>
+        <div class="ns-money" style="margin-left:22px;display:none">
+            <h3><hg:trans>系统公告</hg:trans><span><a href="http://www.sumool.com/sumool/hot" target="_blank"><hg:trans>查看更多</hg:trans></a></span></h3>
+            <div id="divTopNewsPanel">
+                <span style="float: left; margin-left: 20px; margin-top: 10px;"><hg:trans>正在加载中...</hg:trans></span>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    <div class="footer" style="margin-top:100px">
+        <div class="footer_bottom"><p>© Copyright 2018 . </p></div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            //加载待办事项
+            $.ajax({
+                type: "POST",
+                url: "/Home/TaskCount",
+                data: {},
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError === false) {
+                        $("#approve_num").text(data.MapData.OrderApprove);
+                        $("#according_num").text(data.MapData.OrderAccording);
+                        $("#noprint_num").text(data.MapData.OrderNotPrint);
+                        $("#shipping_num").text(data.MapData.OrderPrint);
+                        //$("#virtualshipping_num").text(data.MapData.OrderVirtual);
+                        $("#postbackedfailed_num").text(data.MapData.PostBackedFailed);
+                        $("#smtsitemessage_num").text(data.MapData.SMTSiteMessage);
+                        $("#smtordermessage_num").text(data.MapData.SMTOrderMessage);
+                        $("#ebaysalesitemessage_num").text(data.MapData.eBaySaleSiteMessage);
+                        $("#ebaysitemessage_num").text(data.MapData.eBaySiteMessage);
+                        $("#amazonemail_num").text(data.MapData.AmazonEmail);
+                    }
+                }
+            });
+            $.getJSON("http://www.sumool.com/ApiNews/GetNewsList?count=5&catalogCode=SystemNotice&showContent=true&callback=?", function (data) {
+                if (data.HasError === false) {
+                    var list = data.ResultObject;
+                    $("#divTopNewsPanel").html("");
+                    var content = "<ul>";
+                    $.each(list, function (i, news) {
+                        var newsTag = "";
+                        var newsTitle = news.Title;
+
+                        try {
+                            var currentTime = new Date();
+                            var dateTime = new Date(news.ReleaseDate);
+                            dateTime.setDate(dateTime.getDate() + 7);
+                            if (dateTime > currentTime) {
+                                newsTag = " <span class=\"glyphicon glyphicon-fire\" style=\"color:red;\"></span>";
+                            }
+                        }
+                        catch (e) {
+                        }
+
+                        if (news.Title.length > 18) {
+                            newsTitle = news.Title.substring(0, 18) + "...";
+                        }
+                        content += "<li><span style=\"color:#7a838a;font-size:12px;\">●</span><a href=\"javascript:void(0);\" title=\"" + news.Title + "\" onclick=\"GetSystemNoticeAndOpen(" + news.NewId + ")\" >" + newsTitle + newsTag + "</a><span style=\"float:Right;margin-right:10px;\"><a style=\"font-size:12px;margin-top:-2px;margin-left:15px;color:#c3c3c3;\">" + news.ReleaseDate + "</a></span></li>";
+                    });
+                    content += "</ul>";
+                    $("#divTopNewsPanel").html(content);
+                    openNewsNotRead(list);
+                }
+            });
+            $.getJSON("http://www.sumool.com/ApiNews/GetNewsList?count=5&catalogCode=WantToAsk&callback=?", function (data) {
+                if (data.HasError === false) {
+                    var list = data.ResultObject;
+                    $("#divTopAnswer").html("");
+                    var content = "<ul>";
+                    $.each(list, function (i, news) {
+                        content += "<li><span style=\"color:#7a838a;font-size:12px;\">●</span><a href=\"http://www.sumool.com/sumool/wanttoaskview?id=" + news.NewId + "\" target=\"_blank\" title=\"" + news.Title + "\">" + news.Title.substring(0, 20) + "</a><span style=\"float:Right;margin-right:10px;\"><a style=\"font-size:12px;margin-top:-2px;margin-left:15px;color:#c3c3c3;\">" + news.ReleaseDate + "</a></span></li>";
+                    });
+                    content += "</ul>";
+                    $("#divTopAnswer").html(content);
+
+                }
+            });
+            $.getJSON("http://www.sumool.com/ApiNews/GetNewsList?count=3&catalogCode=TopFunction&callback=?", function (data) {
+                if (data.HasError === false) {
+                    var list = data.ResultObject;
+                    $("#divTopFunction").html("");
+                    var content = "<div class=\"yScrollList\"><div class=\"yScrollListIn\"><div class=\"yScrollListInList\"><ul>";
+                    $.each(list, function (i, news) {
+                        content += "<li><a href=\"http://www.sumool.com/sumool/recommendview?id=" + news.NewId + "\" target=\"_blank\" title=\"" + news.Title + "\"><img src=picture/fe0e312066664b288c50249b6bd07939.gif"http://www.sumool.com/FileData/news/" + news.NewPath + "/attach/" + news.NewImg + "\"></a></li>";
+                    });
+                    content += "</ul></div></div></div>";
+                    $("#divTopFunction").html(content);
+
+                }
+            });
+            //加载警告信息
+            $.ajax({
+                type: "POST",
+                url: "/ApiUser/FailedUser",
+                data: {},
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError === false) {
+                        $("#divFailedMessagePanel").append(data.ResultObject);
+                    }
+                }
+            });
+            //加载线上商品库存警告
+            $.ajax({
+                type: "POST",
+                url: "/OnlineProduct/CheckStockNum",
+                data: {},
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError === false) {
+                        $("#divFailedMessagePanel").append(data.ResultObject);
+                    }
+                }
+            });
+        });
+        function doOpenCustomerServiceCenter() {
+            var customerServiceModal = new redgle.modal({ width: 750, height: 500, type: "iframe", content: "/Account/CustomerServiceCenter", title: "<font style='font-size:15px;font-weight:700'><hg:trans>客服中心</hg:trans></font><font style='font-size:13px;'><hg:trans>（点击按钮可通过QQ进行沟通，请确认已启动QQ）</hg:trans></font>" });
+            customerServiceModal.show();
+        }
+        function doConfirmTabEdition() {
+            redgle.showConfirm(translate.format("<hg:trans>确认要切换使用流程更精简的Mini版？<br/>Mini版不包含库存功能，请确认处理完配货流程的订单再操作。</hg:trans>"), "doTabEdtion()", "", translate.format("<hg:trans>切换版本提示</hg:trans>"));
+        }
+        function doTabEdtion() {
+            redgle.showMessage(translate.format("<hg:trans>系统正在切换Mini版，请耐心等候...</hg:trans>"));
+            $.ajax({
+                type: "POST",
+                url: "/Enterprise/TabEdtion",
+                data: { ToEdtion: "Mini" },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    } else {
+                        //redgle.showMessage("成功切换使用Mini版！祝您使用愉快。");
+                        window.location.href = "/Login/logout";
+                    }
+
+                }
+            });
+        }
+        function openNewsNotRead(list) {
+            count = 3;
+            $.ajax({
+                type: "POST",
+                url: "/Home/GetAnnouncementRead",
+                data: {},
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+
+                    } else {
+                        var hash = {};
+                        $.each(data.ResultObject, function (i, readNews) {
+                            hash[readNews.NewId] = true;
+                        });
+                        $.each(list, function (i, news) {
+                            if (hash[news.NewId] == undefined) {
+                                OpenSystemNotice(news);
+                            }
+                            count--;
+                            if (count == 0) {
+                                return false;
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        function GetSystemNoticeAndOpen(newsId) {
+            $.getJSON("http://www.sumool.com/ApiNews/GetNewsByNewsId?newsId=" + newsId + "&callback=?", function (data) {
+                if (data.HasError === false) {
+                    var news = data.ResultObject;
+                    if (news != undefined) {
+                        OpenSystemNotice(news);
+                    }
+                }
+            });
+        }
+        function OpenSystemNotice(news) {
+            var html = '<div class="modal fade" id="newRead' + news.NewId + '" tabindex="-1" role="dialog" aria-labelledby="checkInOrderLabel" aria-hidden="true" style="padding-top:50px;">';
+            html += '<div class="modal-dialog" style="width:800px">';
+            html += '<div class="modal-content">';
+            html += '<div class="modal-header" style="cursor:move;background:#438EB9 none repeat scroll 0% 0%;color:white">';
+            html += '<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="SystemNoticeRead(' + news.NewId + ');" ><span aria-hidden="true">&times;</span></button>';
+            html += '<h4 class="modal-title" id="checkInOrderLabel"><hg:trans>系统公告</hg:trans></h4>';
+            html += '</div>';
+            html += '<div class="modal-body" style="height:520px;overflow:auto">';
+            html += '<h4 style="text-align:center;font-weight:bold;">' + news.Title + '</h4>';
+            html += '<p style="text-align:center;padding:5px">' + news.ReleaseTime + '<span style="margin-left:20px"><hg:trans>速猫运营中心</hg:trans></span></p>';
+            if (news.Content != null) {
+                html += news.Content;
+            }
+            html += '</div>';
+            html += '<div style="text-align:right;border-top:2px solid #adadad;">';
+            html += '<button type="button" style="width:100px;height:27px;margin-top: 5px;margin-right: 10px; margin-bottom: 5px;" onclick="SystemNoticeRead(' + news.NewId + ');" class="btn btn-warning"><hg:trans>关闭</hg:trans></button>'
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            $(".footer").after(html);
+            $("#newRead" + news.NewId + " img").each(function () {
+                var imgUrl = $(this).attr("src");
+                $(this).attr("src", "http://www.sumool.com" + imgUrl);
+            });
+            $("#newRead" + news.NewId + "").modal('show');
+        }
+        function SystemNoticeRead(newId) {
+            $.ajax({
+                type: "POST",
+                url: "/Home/SaveAnnouncementRead",
+                data: { newId: newId },
+                datatype: "json",
+                success: function (data) {
+                    $("#newRead" + newId + "").remove();
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

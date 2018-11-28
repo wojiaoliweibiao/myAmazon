@@ -1,0 +1,952 @@
+{:widget('Blog/header')}
+<html>
+ <head>
+  
+  <script src="__STATIC__/index/js/c6102531548c4f988e485ab0333845b4.js"></script> 
+  <script src="__STATIC__/index/js/74c4de9c7b314e3287f3b215e15b5158.js"></script> 
+  <script src="__STATIC__/index/js/hg.common.js"></script> 
+  <script src="__STATIC__/index/js/jquery.fancybox.js"></script> 
+ 
+ </head> 
+ <body>
+{:widget('Blog/left')}
+            <div style="clear:both"></div>
+            <div style="margin-left:20px;">
+                
+
+    <script src="js/5ab122538a894d088cc2df0dd2ce5a7b.js"></script>
+
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+
+    <ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+        <li id="liTabSupplierPrice" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>产品序列号</hg:trans></a></li>
+    </ul>
+    <div id="divTabContentPanel" class="tab-content">
+        <div id="tabContent_liTabSupplierPrice" role="tabpanel" class="tab-pane fade active in">
+            <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/Product/ProductSerial?Length=7" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1349105269divDataList" id="searchForm" method="post">                    <div class="parents-nodest" style="text-align:right; margin-right:5px">
+                        <span style=" float:right; margin-right:20px">
+                            
+                            <button type="button" class="btn btn-info btn-sm" onclick="p1349105269doUploadData()"><i class="glyphicon glyphicon-log-in"></i><hg:trans>导入</hg:trans></button>
+                            
+                        </span>
+                    </div>
+                    <div id="divMoreSearach">
+                        <div class="form-group" style="width:70%;">
+                            <label for="txtCountry" class="control-label col-sm-1" style="text-align:left; width:95px !important;"><hg:trans>产品类型</hg:trans></label>
+                            <div id="divProductType" class="input-group para-items" style="float:left">
+                                <span itemid="" class="active"><hg:trans>全部</hg:trans></span>
+                                <span itemid="normal"><hg:trans>普通</hg:trans></span>
+                                <span itemid="change"><hg:trans>多属性</hg:trans></span>
+                                
+                                <input type="hidden" id="hidProductType" name="hidProductType" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width:70%;">
+                        <label for="txtCountry" class="control-label col-sm-1" style="text-align:left; width:95px !important;"><hg:trans>搜索类型</hg:trans></label>
+                        <div id="divType" class="input-group para-items" style="float:left">
+                            <span itemid="proSKU" chooseid="Search" class="active"><hg:trans>SKU</hg:trans></span>
+                            <span itemid="proName" chooseid="Search"><hg:trans>产品名称</hg:trans></span>
+                            <span itemid="proSerial" chooseid="Search"><hg:trans>序列号</hg:trans></span>
+                            <input type="hidden" id="hidType" name="hidType" value="proSKU" />
+                        </div>
+                    </div>
+                    <div class="form-group " style="width:70%; display:none;margin-bottom: 16px" id="Date">
+                        <label for="txtDate" class="control-label col-sm-1" style="text-align:left; width:95px !important;"><hg:trans>搜索内容</hg:trans></label>
+                        <div class="input-group input-group-sm" style="max-width:450px;">
+                            <span class="date">
+                                <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" placeholder="开始时间" />
+                            </span>
+                            <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                            <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" placeholder="结束时间" /></span>
+                            <span class="input-group-btn">
+                                &nbsp;<input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group parents-nodest" style="width:70%; margin-bottom: 16px" id="Search">
+                        <label for="txtSearchContent" class="control-label col-sm-1" style="text-align:left; width:95px !important;"><hg:trans>搜索内容</hg:trans></label>
+                        <div class="input-group input-group-sm" style="width:40%">
+                            <input type="text" name="txtSearchKey" hgtrans="true" id="txtSearchKey" class="form-control" placeholder="请输入搜索内容" />
+                            <span class="input-group-btn">
+                                <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hidStatus" name="hidStatus" value="" />
+</form>
+            </div>
+            
+            <div id="p1349105269divDataList">
+                 
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:3%">
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p1349105269doSetCheckBox(this)" />
+            </th>
+            <th><hg:trans>产品图片</hg:trans></th>
+            <th><hg:trans>sku</hg:trans></th>
+            <th><hg:trans>产品名称</hg:trans></th>
+            <th><hg:trans>序列号数量</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody id="tbSupplierProduct">
+            <tr productid="14107">
+
+                <td><input type="checkbox" name="chk_list" value="14107" sku="pet-786919-200W-coffeecolor"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/31vszibnkrl.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='pet-786919-200W-coffeecolor'>pet-786919-200W-coffeecolor</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='High-power pet hair clipper long hair rabbit shaving dog electric razor cat shearing sheep shaving machine shaving machine(200W,coffee color)'>High-power pet hair clipper long hair rabbit shaving dog electric razor cat shearing sheep shaving machine shaving machine(200W,coffee color)</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('pet-786919-200W-coffeecolor','14107','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14106">
+
+                <td><input type="checkbox" name="chk_list" value="14106" sku="gh-047554692"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/2870411105_1363375613.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='gh-047554692'>gh-047554692</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='崇祥无线遥控美胸宝按摩器隐形文胸乳房胸部按摩仪器'>崇祥无线遥控美胸宝按摩器隐形文胸乳房胸部按摩仪器</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('gh-047554692','14106','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14103">
+
+                <td><input type="checkbox" name="chk_list" value="14103" sku="gh-047554691"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/5810159502_2025843947.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='gh-047554691'>gh-047554691</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='聪明缩阴球升级版硅胶球阴道修复紧致锻炼成人女用高潮性器具外贸'>聪明缩阴球升级版硅胶球阴道修复紧致锻炼成人女用高潮性器具外贸</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('gh-047554691','14103','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14097">
+
+                <td><input type="checkbox" name="chk_list" value="14097" sku="gj-002001196"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/tb15wumqazmbknjszpixxxfnvxa_!!0-item_pic.jpg_q90.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='gj-002001196'>gj-002001196</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='夏朵吊扇灯风扇灯木叶客厅餐厅灯卧室现代家用带风扇复古中式吊灯'>夏朵吊扇灯风扇灯木叶客厅餐厅灯卧室现代家用带风扇复古中式吊灯</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('gj-002001196','14097','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14096">
+
+                <td><input type="checkbox" name="chk_list" value="14096" sku="gh-047554690"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/9165443373_1497166302.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='gh-047554690'>gh-047554690</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='DINGYE7频硅胶震动后庭跳蛋成人情趣用品按摩AV自慰棒跨境货源'>DINGYE7频硅胶震动后庭跳蛋成人情趣用品按摩AV自慰棒跨境货源</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('gh-047554690','14096','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14095">
+
+                <td><input type="checkbox" name="chk_list" value="14095" sku="gj-002001195"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/8992892105_1446948162.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='gj-002001195'>gj-002001195</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='欧式隐形风扇灯复古LED餐厅装饰客厅电扇灯餐厅卧室书房吊扇灯'>欧式隐形风扇灯复古LED餐厅装饰客厅电扇灯餐厅卧室书房吊扇灯</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('gj-002001195','14095','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14094">
+
+                <td><input type="checkbox" name="chk_list" value="14094" sku="ry-001369651"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/9117040395_1227149344.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='ry-001369651'>ry-001369651</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='北欧铁艺收纳置物架  创意书桌化妆品桌面整理架简约鸟笼蛋糕架子'>北欧铁艺收纳置物架  创意书桌化妆品桌面整理架简约鸟笼蛋糕架子</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('ry-001369651','14094','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14093">
+
+                <td><input type="checkbox" name="chk_list" value="14093" sku="box-000000049"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/8820917844_1560161107.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='box-000000049'>box-000000049</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='18寸小型旅行箱 学生小清新万向轮镜面登机箱 一件代发 工厂直销'>18寸小型旅行箱 学生小清新万向轮镜面登机箱 一件代发 工厂直销</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('box-000000049','14093','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14088">
+
+                <td><input type="checkbox" name="chk_list" value="14088" sku="ry-001369650"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/tb2akagafowbunjy0fixxxfxvxa_!!2125806638-0-item_pic.jpg_q90.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='ry-001369650'>ry-001369650</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='学生不锈钢保温饭盒便当盒多层成人带盖韩国3双层超长手提保温桶2'>学生不锈钢保温饭盒便当盒多层成人带盖韩国3双层超长手提保温桶2</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('ry-001369650','14088','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+            <tr productid="14087">
+
+                <td><input type="checkbox" name="chk_list" value="14087" sku="ry-001369649"/></td>
+                <td><img class='img-thumbnail' style='width:50px; height:50px;' src='picture/tb2akagafowbunjy0fixxxfxvxa_!!2125806638-0-item_pic.jpg_q90.jpg' /></td>
+                <td>
+                    
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='ry-001369649'>ry-001369649</span>
+                </td>
+                <td>
+                    <span class='text-overflow' style='max-width:95%; width:250PX; ' title='学生不锈钢保温饭盒便当盒多层成人带盖韩国3双层超长手提保温桶2'>学生不锈钢保温饭盒便当盒多层成人带盖韩国3双层超长手提保温桶2</span>
+                </td>
+                <td>
+                    <table style="font:12px 微软雅黑;">
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>序列号总数：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>新增数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已入库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>已出库数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right !important"><span><hg:trans>禁用数量：</hg:trans></span></td>
+                            <td style="text-align:left !important">
+                                <span>0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td> 
+                    <div>
+                        <a href="javascript:void(0)" onclick="p1349105269doLookData('ry-001369649','14087','')" hgtrans="true" title="编辑序列号"><hg:trans>编辑序列号</hg:trans></a>
+                    </div>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    
+</script>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1349105269divDataList" data-maxpages="530" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Product/ProductSerial?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/Product/ProductSerial?pageIndex=2&amp;pagesize=10">2</a>  <a data-pageindex="3" href="/Product/ProductSerial?pageIndex=3&amp;pagesize=10">3</a>  <a data-pageindex="4" href="/Product/ProductSerial?pageIndex=4&amp;pagesize=10">4</a>  <a data-pageindex="5" href="/Product/ProductSerial?pageIndex=5&amp;pagesize=10">5</a>  <a data-pageindex="6" href="/Product/ProductSerial?pageIndex=6&amp;pagesize=10">6</a>  <a data-pageindex="7" href="/Product/ProductSerial?pageIndex=7&amp;pagesize=10">7</a>  <a data-pageindex="8" href="/Product/ProductSerial?pageIndex=8&amp;pagesize=10">8</a>  <a data-pageindex="9" href="/Product/ProductSerial?pageIndex=9&amp;pagesize=10">9</a>  <a data-pageindex="10" href="/Product/ProductSerial?pageIndex=10&amp;pagesize=10">10</a>  <a data-pageindex="11" href="/Product/ProductSerial?pageIndex=11&amp;pagesize=10">...</a>  <a data-pageindex="2" href="/Product/ProductSerial?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="530" href="/Product/ProductSerial?pageIndex=530&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 5296 条数据</span></div><div style="clear:both"></div></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <!-- Applypayment -->
+    <div class="modal fade" id="myApplypayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:150px;">
+        <div class="modal-dialog" style="width:600px;height:900px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><hg:trans>驳回原因</hg:trans></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <div style="margin-left:30px">
+                            <label>驳回原因：</label>
+                            <textarea class="form-control" readonly="readonly" style="height:100px" id="RejectReason" name="RejectReason"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Applypayment -->
+    <!-- Modal -->
+    <script language="javascript" type="text/javascript">
+
+        function p1349105269doUploadData() {
+            var url = "/Product/ImportSerial";
+            var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>序列号导入</hg:trans>") });
+            selectManageModal.show();
+        }
+
+        //选择状态
+        $("#divStatus > label").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divStatus > label").removeClass("active");
+                    $(this).addClass("active");
+                }
+                else {
+                    $(this).removeClass("active");
+                }
+                var selectedSatut = $(this).attr("itemid");
+                debugger
+                $("#hidStatus").val(selectedSatut);
+                if ($("#divStatus").find(".active").length == 0) {
+                    $("#hidStatus").val("");
+                }
+                $("#searchForm").submit();
+            });
+        });
+
+        jQuery(function () {
+            redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+            $('.date input').datepicker();
+        });
+        function p1349105269onCatalogSelected(catalog) {
+            $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+            $("#searchForm").submit();
+        }
+        //下拉框改变获取值（供应商）
+        $(function () {
+            $('#LogisticMode').bind('change', function () {
+                $("#hidLogisticMode").val($('#LogisticMode option:selected').val());
+                $("#searchForm").submit();
+            })
+        })
+
+        //选择产品类型
+        $("#divProductType > span").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divProductType > span").removeClass("active");
+                    $(this).addClass("active");
+                }
+                else {
+                    $(this).removeClass("active");
+                }
+                var selectedSatut = $(this).attr("itemid");
+                $("#hidProductType").val(selectedSatut);
+                $("#searchForm").submit();
+            });
+        });
+        //选择搜索类型
+        $("#divType > span").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divType > span").removeClass("active");
+                    $(this).addClass("active");
+                    //清空搜索内容
+                    $("#txtSearchKey").val("");
+                    if ($("#txtDateBegin").length > 0)
+                        $("#txtDateBegin").val("");
+                    if ($("#txtDateEnd").length > 0)
+                        $("#txtDateEnd").val("");
+                }
+                else {
+                    $(this).removeClass("active");
+                }
+                var selectedItems = $(this).attr("itemid");
+                var chooseItems = $(this).attr("chooseid")
+                if (chooseItems == "Date") {
+                    $("#Date").css("display", "");
+                    $("#Search").css("display", "none");
+                } else if (chooseItems == "Search") {
+                    $("#Date").css("display", "none");
+                    $("#Search").css("display", "");
+                }
+                //获取
+                $("#txtSearchKey").attr({ placeholder: $(this).attr("name") });
+                $("#hidType").val(selectedItems);
+            });
+        });
+
+
+        //选择搜索类型
+        $("#divSupp > span").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divSupp > span").removeClass("active");
+                    $(this).addClass("active");
+                }
+                else {
+                    $(this).removeClass("active");
+                }
+                var selectedSatut = $(this).attr("itemid");
+                $("#hidsupp").val(selectedSatut);
+                $("#searchForm").submit();
+            });
+        });
+        //产品供应商管理
+        function p1349105269doAddData(id) {
+            if (id == null || id == "")
+                id = "";
+            var url = "/Product/ProductSerialEdit/" + id;
+
+            redgle.tab.create("liProductSerialEdit", url, translate.format("<hg:trans>添加序列号</hg:trans>"));
+        }
+        //查看最新，历史报价
+        function p1349105269doLookData(sku, productId, productspecId) {
+            //弹出管理页面
+            var title = sku + "序列号信息";
+            sku = encodeURIComponent(sku);
+            var url = "../Product/ProductSerialInfo?isFirst=1&productId=" + productId + "&productSpecId=" + productspecId + "&sku=" + sku;
+            redgle.tab.create("liProductSerialInfo", url, translate.format("<hg:trans>" + title + "</hg:trans>"));
+        }
+        //高级筛选
+        function doShowMoreSearchPanel(event) {
+            $("#divMoreSearach").toggle("slow");
+            var src = event.target || window.event.srcElement;
+            if ($(src).attr("class").indexOf("search-down") > 0) {
+                $(src).removeClass("search-down").addClass("search-up").text(translate.format("<hg:trans>收起</hg:trans>"));
+            }
+            else {
+                $(src).removeClass("search-up").addClass("search-down").text(translate.format("<hg:trans>高级筛选</hg:trans>"));
+            }
+        }
+
+        function  p1349105269doSetCheckBox(obj) {
+            $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+        }
+
+        //excel导出
+        function OutExcleData(settingList) {
+            debugger;
+            var postData = {};
+            var productids = $("input[name=chk_list]:checked").map(function () {
+                return $(this).val();
+            }).get().join(",");
+
+            var ExportOption = "";
+            $("input[name=chk_list]:checked").each(function () {
+                var productid = $(this).val();//产品id
+                var sku = $(this).attr("sku");
+                ExportOption += '' + productid + '-' + sku + ',';
+            });
+            if (productids.length == 0) {
+                var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+                if (totalCount > 5000) {
+                    redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                    return;
+                }
+                if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择数据导出，将导出符合当前搜索条件的数据，数据较多，请耐心等候！</hg:trans>")))
+                    return;
+                postData = redgle.request.getFormData("searchForm");
+            }
+            postData["ExportOption"] = ExportOption,
+            postData["settingList"] = settingList,
+             postData["viewName"] = "ProductSKUPriceExcel",
+             postData["pageKey"] = "ProductSKUPriceExcel/Export";
+            $.ajax({
+                type: "POST",
+                url: "/Supplier/ExportProductSKUPriceExcel",
+                data: postData,
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    } else {
+                        window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Temp/" + 1 + "/" + data.ResultObject, "_self");
+                    }
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+
+        //sku报价导出
+        function p1349105269doExport(id) {
+            var ExportOption = $("input[name=chk_list]:checked").map(function () {
+                return $(this).val();
+            }).get().join(",");
+            if (ExportOption == "") {
+                redgle.showConfirm(translate.format("<hg:trans>将导出当前条件下的所有查询结果数据。<br/>是否继续？</hg:trans>"), "p1349105269doImport1(" + id + ")");
+            } else {
+                redgle.showConfirm(translate.format("<hg:trans>将导出所有选择的数据。<br/>是否继续？</hg:trans>"), "p1349105269doImport1(" + id + ")");
+            }
+        }
+
+        function p1349105269doImport1(id) {
+            var width = 950;
+            var height = 560;
+            var url = "/StockHandle/ExcelOutTemplate?viewName=" + "ProductSKUPriceExcel" + "&pagekey=" + "ProductSKUPriceExcel/Export";
+            var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择需要导出的供应商数据列</hg:trans>"), width: width, height: height });
+            DownsTemplateModal.show();
+        }
+
+        function p1349105269RejectShow(supplierOfferId) {
+            $.ajax({
+                type: "POST",
+                url: "/Supplier/GetSupplierOfferReject",
+                data: { supplierOfferId: supplierOfferId },
+                datatype: "json",
+                success: function (data) {
+                    $("#myApplypayment").modal('show');
+                    $("#RejectReason").val(data.RejectReason);
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    </script>
+    <script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/1d69db4d123a424686995517116a4bc7.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

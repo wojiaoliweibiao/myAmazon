@@ -1,0 +1,1012 @@
+{:widget('Blog/header')}
+
+  
+<script src="__STATIC__/index/js/public/chosen.jquery.js"></script> 
+<script src="__STATIC__/index/js/public/jquery.unobtrusive-ajax.min.js"></script> 
+  
+  
+<link href="__STATIC__/index/css/Logistics/chosen.css" rel="stylesheet" /> 
+
+<body>
+{:widget('Blog/left')}
+ 
+
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabDeclarationEdit" class="active"><a href="javascript:void(0);"><hg:trans>报关信息设置</hg:trans></a></li>
+    <li id="liTabDefaultDeclaration"><a href="/Logistics/DefaultDeclaration"><hg:trans>默认报关信息</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabDeclarationEdit" role="tabpanel" class="tab-pane fade active in">
+        
+        <p class="alert bg-info" style="padding: 8px;line-height:25px;margin-bottom:5px">
+            <hg:trans>提示：1、设置下列选项值之后，订单在预报至物流商时会重新计算申报信息。</hg:trans><br />
+            <hg:trans>　　　2、在设置下列选项值之前预报至物流商的订单不会生效。</hg:trans>
+        </p>
+        <div class="parents-nodes" style="text-align:right; ">
+            <button type="button" id="btnSaveSysSettingData" class="btn btn-info glyphicon glyphicon-floppy-save" onclick="doSaveDeclareSettingData()"> <hg:trans>保存设置</hg:trans></button>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><font style="font-weight:700"><hg:trans>申报商品</hg:trans></font>&nbsp;&nbsp;&nbsp;&nbsp;<hg:trans>「PS:限制申报产品种类之后，通过API打印的配货单信息会不全，如需打印配货单请使用系统模板进行打印！」</hg:trans></div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>申报方式</hg:trans></label>
+                        <div class="col-sm-8">
+                            <div class="radio" style="padding-top:0">
+                                <label style="margin-top: 3px;"><input type="radio" name="declareGoodsType" style="margin-top:5px;" value="All" checked /><hg:trans>全部申报</hg:trans></label><br />
+                                <label><input type="radio" name="declareGoodsType" style="margin-top:5px;" value="Part"  /><hg:trans>限制最多申报产品种类</hg:trans></label>&nbsp;
+                                <input type="text" style="width:45px;height:23px;border: 1px solid #ccc" id="declareNum" name="declareNum" value="">&nbsp;
+                                <select style="height:23px;border: 1px solid #ccc" id="declareGoodsMode">
+                                    <option selected value="priceDesc">按单品申报价值从高到低顺序选择</option>
+                                    <option  value="priceAsc">按单品申报价值从低到高顺序选择</option>
+                                    <option  value="weightDesc">按单品申报重量从高到低顺序选择</option>
+                                    <option  value="weightAsc">按单品申报重量从低到高顺序选择</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" style="margin-top:15px">
+            <div class="panel-heading"><font style="font-weight:700"><hg:trans>申报价值</hg:trans></font>&nbsp;&nbsp;&nbsp;&nbsp;<hg:trans>「PS：最低、最高申报价值：设置后报关单的申报总值将不会低于或超过此金额，不填或为0则按商品申报价值进行预报」</hg:trans></div>
+            <div class="panel-body" id="divDeclarePrice">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>价值设置</hg:trans></label>
+                        <div class="col-sm-8">
+                            <div class="radio" style="padding-top:0">
+                                <label style="margin-top:3px;"><input type="radio" name="declarePriceType" style="margin-top:5px;" value="Price" checked /><hg:trans>使用商品的申报价值申报</hg:trans></label><br />
+                                <label><input type="radio" name="declarePriceType" style="margin-top:5px;" value="SalePrice"  /><hg:trans>使用订单中商品售价申报&nbsp;&nbsp;「PS：同步订单时直接将商品售价做为申报价值」</hg:trans></label><br />
+                                <label><input type="radio" name="declarePriceType" style="margin-top:5px;" value="Proportion"  /><hg:trans>使用订单总金额的比例申报</hg:trans></label>&nbsp;<input type="text" style="width:45px;height:23px;border: 1px solid #ccc" id="declarePriceProportion" name="declarePriceProportion" value="">&nbsp;%<hg:trans>&nbsp;&nbsp;「PS：订单在预报至物流商时按照比例计算」</hg:trans>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <hg:trans>最低申报价值</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="minDeclarePrice" name="minDeclarePrice" value="">USD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <hg:trans>最高申报价值</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="maxDeclarePrice" name="maxDeclarePrice" value="25">USD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <hg:trans>最高申报数量</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="maxDeclareNumber" name="maxDeclareNumber" value="">
+                        </div>
+                    </div>
+                    <hr style="height:1px;border:none;border-top:1px dashed #3c763d;" />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8 text-success">
+                            PS：如果订单收件国家包含在下列国家集合中，申报价值限制则使用国家集合中的设置，不会使用上面的【价值设置】。
+                        </div>
+                        <div class="col-sm-1" style="padding-top:5px">
+                        </div>
+                    </div>
+
+                    <div style="display:none" id="hidCountrySelect">
+                        <div class="col-sm-9">
+                            <select class="chzn-select" id="listCountry" hgtrans="true" data-placeholder="设置后优先使用国家申报价值限制" multiple style="width:400px;" tabindex="1">
+                                <option value=""></option>
+                                    <option value="AF">Afghanistan(阿富汗)</option>
+                                    <option value="AL">Albania(阿尔巴尼亚)</option>
+                                    <option value="DZ">Algeria(阿尔及利亚)</option>
+                                    <option value="AS">American Samoa(美属萨摩亚)</option>
+                                    <option value="AD">Andorra(安道尔)</option>
+                                    <option value="AO">Angola(安哥拉)</option>
+                                    <option value="AI">Anguilla(安圭拉)</option>
+                                    <option value="AQ">Antarctica(南极洲)</option>
+                                    <option value="AG">Antigua and Barbuda(安提瓜和巴布达)</option>
+                                    <option value="AR">Argentina(阿根廷)</option>
+                                    <option value="AM">Armenia(亚美尼亚)</option>
+                                    <option value="AW">Aruba(阿鲁巴)</option>
+                                    <option value="AU">Australia(澳大利亚)</option>
+                                    <option value="AT">Austria(奥地利)</option>
+                                    <option value="AZ">Azerbaijan(阿塞拜疆)</option>
+                                    <option value="BS">Bahamas(巴哈马)</option>
+                                    <option value="BH">Bahrain(巴林)</option>
+                                    <option value="BD">Bangladesh(孟加拉国)</option>
+                                    <option value="BB">Barbados(巴巴多斯)</option>
+                                    <option value="BY">Belarus(白俄罗斯)</option>
+                                    <option value="BE">Belgium(比利时)</option>
+                                    <option value="BZ">Belize(伯利兹)</option>
+                                    <option value="BJ">Benin(贝宁)</option>
+                                    <option value="BM">Bermuda(百慕大)</option>
+                                    <option value="BT">Bhutan(不丹)</option>
+                                    <option value="BO">Bolivia(玻利维亚)</option>
+                                    <option value="BA">Bosnia and Herzegovina(波斯尼亚和黑塞哥维那)</option>
+                                    <option value="BW">Botswana(博茨瓦纳)</option>
+                                    <option value="BV">Bouvet Island(布维岛)</option>
+                                    <option value="BR">Brazil(巴西)</option>
+                                    <option value="IO">British indian Ocean Ter-ritory(英属印度洋领土)</option>
+                                    <option value="VG">British Virgin Islands(英属维尔京群岛)</option>
+                                    <option value="BN">Brunei Darussalam(文莱)</option>
+                                    <option value="BG">Bulgaria(保加利亚)</option>
+                                    <option value="BF">Burkina Faso(布基纳法索)</option>
+                                    <option value="BI">Burundi(布隆迪)</option>
+                                    <option value="KH">Cambodia(柬埔寨)</option>
+                                    <option value="CM">Cameroon(喀麦隆)</option>
+                                    <option value="CA">Canada(加拿大)</option>
+                                    <option value="CV">Cape Verde(佛得角)</option>
+                                    <option value="XK">CAROLINE ISLANDS(加罗林群岛)</option>
+                                    <option value="KY">Cayman Islands(开曼群岛)</option>
+                                    <option value="CF">Central Africa(中非)</option>
+                                    <option value="TD">Chad(乍得)</option>
+                                    <option value="CL">Chile(智利)</option>
+                                    <option value="CN">China(中国)</option>
+                                    <option value="CS">Christmas Island(圣诞岛)</option>
+                                    <option value="CC">Cocos Keeling Islands(科科斯(基林,0)群岛)</option>
+                                    <option value="CO">Colombia(哥伦比亚)</option>
+                                    <option value="KM">Comoros(科摩罗)</option>
+                                    <option value="CD">Congo(刚果（金）)</option>
+                                    <option value="CG">Congo(刚果（布）)</option>
+                                    <option value="CK">Cook Islands(库克群岛)</option>
+                                    <option value="CR">Costa Rica(哥斯达黎加)</option>
+                                    <option value="CI">Cote d&#39;Ivoire(科特迪瓦)</option>
+                                    <option value="HR">Croatia(克罗地亚)</option>
+                                    <option value="CU">Cuba(古巴)</option>
+                                    <option value="CY">Cyprus(塞浦路斯)</option>
+                                    <option value="CZ">Czech Repoublic(捷克)</option>
+                                    <option value="DK">Denmark(丹麦)</option>
+                                    <option value="DJ">Djibouti(吉布提)</option>
+                                    <option value="DM">Dominica(多米尼克)</option>
+                                    <option value="DO">Dominican Republic(多米尼加)</option>
+                                    <option value="TL">East Timor(东帝汶)</option>
+                                    <option value="EC">Ecuador(厄瓜多尔)</option>
+                                    <option value="EG">Egypt(埃及)</option>
+                                    <option value="SV">El Salvador(萨尔瓦多)</option>
+                                    <option value="GQ">Equatorial Guinea(赤道几内亚)</option>
+                                    <option value="ER">Eritrea(厄立特里亚)</option>
+                                    <option value="EE">Estonia(爱沙尼亚)</option>
+                                    <option value="ET">Ethiopia(埃塞俄比亚)</option>
+                                    <option value="FO">Faroe Islands(法罗群岛)</option>
+                                    <option value="FJ">Fiji(斐济)</option>
+                                    <option value="FI">Finland(芬兰)</option>
+                                    <option value="FR">France(法国)</option>
+                                    <option value="GF">French Guiana(法属圭亚那)</option>
+                                    <option value="PF">French Polynesia(法属波利尼西亚)</option>
+                                    <option value="TF">French Southern Territo-ries(法属南部领土)</option>
+                                    <option value="GA">Gabon(加蓬)</option>
+                                    <option value="GM">Gambia(冈比亚)</option>
+                                    <option value="GE">Georgia(格鲁吉亚)</option>
+                                    <option value="DE">Germany(德国)</option>
+                                    <option value="GH">Ghana(加纳)</option>
+                                    <option value="GI">Gibraltar(直布罗陀)</option>
+                                    <option value="GR">Greece(希腊)</option>
+                                    <option value="GL">Greenland(格陵兰)</option>
+                                    <option value="GD">Grenada(格林纳达)</option>
+                                    <option value="GP">Guadeloupe(瓜德罗普)</option>
+                                    <option value="GU">Guam(关岛)</option>
+                                    <option value="GT">Guatemala(危地马拉)</option>
+                                    <option value="GN">Guinea(几内亚)</option>
+                                    <option value="GW">Guine-bissau(几内亚比绍)</option>
+                                    <option value="GY">Guyana(圭亚那)</option>
+                                    <option value="HT">Haiti(海地)</option>
+                                    <option value="HM">Heard islands and Mc Donald Islands(赫德岛和麦克唐纳岛)</option>
+                                    <option value="HN">Honduras(洪都拉斯)</option>
+                                    <option value="HK">Hong Kong(香港)</option>
+                                    <option value="HU">Hungary(匈牙利)</option>
+                                    <option value="IS">Iceland(冰岛)</option>
+                                    <option value="IN">India(印度)</option>
+                                    <option value="ID">Indonesia(印度尼西亚)</option>
+                                    <option value="IR">Iran(伊朗)</option>
+                                    <option value="IQ">Iraq(伊拉克)</option>
+                                    <option value="IE">Ireland(爱尔兰)</option>
+                                    <option value="IL">Israel(以色列)</option>
+                                    <option value="IT">Italy(意大利)</option>
+                                    <option value="JM">Jamaica(牙买加)</option>
+                                    <option value="JP">Japan(日本)</option>
+                                    <option value="JE">Jersey(泽西岛（英属）)</option>
+                                    <option value="JO">Jordan(约旦)</option>
+                                    <option value="KZ">Kazakhstan(哈萨克斯坦)</option>
+                                    <option value="KE">Kenya(肯尼亚)</option>
+                                    <option value="KI">Kiribati(基里巴斯)</option>
+                                    <option value="KV">Kosovo(科索沃)</option>
+                                    <option value="KW">Kuwait(科威特)</option>
+                                    <option value="KG">Kyrgyzstan(吉尔吉斯斯坦)</option>
+                                    <option value="LA">Lao(老挝)</option>
+                                    <option value="LV">Latvia(拉脱维亚)</option>
+                                    <option value="LB">Lebanon(黎巴嫩)</option>
+                                    <option value="LS">Lesotho(莱索托)</option>
+                                    <option value="LR">Liberia(利比里亚)</option>
+                                    <option value="LY">Libya(利比亚)</option>
+                                    <option value="LI">Liechtenstein(列支敦士登)</option>
+                                    <option value="LT">Lithuania(立陶宛)</option>
+                                    <option value="LU">Luxembourg(卢森堡)</option>
+                                    <option value="MO">Macau(澳门)</option>
+                                    <option value="MK">Macedonia(马其顿)</option>
+                                    <option value="MG">Madagascar(马达加斯加)</option>
+                                    <option value="MW">Malawi(马拉维)</option>
+                                    <option value="MY">Malaysia(马来西亚)</option>
+                                    <option value="MV">Maldives(马尔代夫)</option>
+                                    <option value="ML">Mali(马里)</option>
+                                    <option value="MT">Malta(马耳他)</option>
+                                    <option value="FK">Malvinas islands (Falkland Islands,0)(马尔维纳斯群岛(福克兰群岛,0))</option>
+                                    <option value="MH">Marshall Islands(马绍尔群岛)</option>
+                                    <option value="MQ">Martinique(马提尼克)</option>
+                                    <option value="MR">Mauritania(毛里塔尼亚)</option>
+                                    <option value="MU">Mauritius(毛里求斯)</option>
+                                    <option value="YT">Mayotte(马约特)</option>
+                                    <option value="MX">Mexico(墨西哥)</option>
+                                    <option value="FM">Micronesia(密克罗尼西亚)</option>
+                                    <option value="MD">Moldova(摩尔多瓦)</option>
+                                    <option value="MC">Monaco(摩纳哥)</option>
+                                    <option value="MN">Mongolia(蒙古)</option>
+                                    <option value="ME">Montenegro(黑山)</option>
+                                    <option value="MS">Montserrat(蒙特塞拉特)</option>
+                                    <option value="MA">Morocco(摩洛哥)</option>
+                                    <option value="MZ">Mozambique(莫桑比克)</option>
+                                    <option value="MM">Myanmar(缅甸)</option>
+                                    <option value="NA">Namibia(纳米比亚)</option>
+                                    <option value="NR">Nauru(瑙鲁)</option>
+                                    <option value="NP">Nepal(尼泊尔)</option>
+                                    <option value="NL">Netherlands(荷兰)</option>
+                                    <option value="AN">Netherlands Antilles(荷属安的列斯)</option>
+                                    <option value="NC">New Caledonia(新喀里多尼亚)</option>
+                                    <option value="NZ">New Zealand(新西兰)</option>
+                                    <option value="NI">Nicaragua(尼加拉瓜)</option>
+                                    <option value="NE">Niger(尼日尔)</option>
+                                    <option value="NG">Nigeria(尼日利亚)</option>
+                                    <option value="NU">Niue(纽埃)</option>
+                                    <option value="NF">Norfolk Island(诺福克岛)</option>
+                                    <option value="KP">North Korea(朝鲜)</option>
+                                    <option value="MP">Northern Marianas(北马里亚纳)</option>
+                                    <option value="NO">Norway(挪威)</option>
+                                    <option value="OM">Oman(阿曼)</option>
+                                    <option value="PK">Pakistan(巴基斯坦)</option>
+                                    <option value="PW">Palau(帕劳)</option>
+                                    <option value="PS">Palestine(巴勒斯坦)</option>
+                                    <option value="PA">Panama(巴拿马)</option>
+                                    <option value="PG">Papua New Guinea(巴布亚新几内亚)</option>
+                                    <option value="PY">Paraguay(巴拉圭)</option>
+                                    <option value="PE">Peru(秘鲁)</option>
+                                    <option value="PH">Philippines(菲律宾)</option>
+                                    <option value="PN">Pitcairn Islands Group(皮特凯恩群岛)</option>
+                                    <option value="PL">Poland(波兰)</option>
+                                    <option value="PT">Portugal(葡萄牙)</option>
+                                    <option value="PR">Puerto Rico(波多黎各)</option>
+                                    <option value="QA">Qatar(卡塔尔)</option>
+                                    <option value="RE">Reunion(留尼汪)</option>
+                                    <option value="RO">Romania(罗马尼亚)</option>
+                                    <option value="RU">Russia(俄罗斯)</option>
+                                    <option value="RW">Rwanda(卢旺达)</option>
+                                    <option value="Sh">Saint helena(圣赫勒拿)</option>
+                                    <option value="KN">Saint Kitts and nevis(圣基茨和尼维斯)</option>
+                                    <option value="LC">Saint lucia(圣卢西亚)</option>
+                                    <option value="PM">Saint Pierre and Miquelon(圣皮埃尔和密克隆)</option>
+                                    <option value="VC">Saint Vincent and the Grenadines(圣文森特和格林纳丁斯)</option>
+                                    <option value="SM">San Marion(圣马力诺)</option>
+                                    <option value="ST">Sao Tome and Principe(圣多美和普林西比)</option>
+                                    <option value="SA">Saudi Arabia(沙特阿拉伯)</option>
+                                    <option value="SN">Senegal(塞内加尔)</option>
+                                    <option value="RS">Serbia(塞尔维亚)</option>
+                                    <option value="SC">Seychells(塞舌尔)</option>
+                                    <option value="SL">Sierra leone(塞拉利昂)</option>
+                                    <option value="SG">Singapore(新加坡)</option>
+                                    <option value="SK">Slovakia(斯洛伐克)</option>
+                                    <option value="SI">Slovenia(斯洛文尼亚)</option>
+                                    <option value="SB">Solomon Islands(所罗门群岛)</option>
+                                    <option value="SO">Somalia(索马里)</option>
+                                    <option value="ZA">South Africa(南非)</option>
+                                    <option value="GS">South Georgia and South Sandwich Islands(南乔治亚岛和南桑德韦奇岛)</option>
+                                    <option value="KR">South Korea(韩国)</option>
+                                    <option value="SS">South Sudan(南苏丹)</option>
+                                    <option value="ES">Spain(西班牙)</option>
+                                    <option value="LK">Sri Lanka(斯里兰卡)</option>
+                                    <option value="SD">Sudan(苏丹)</option>
+                                    <option value="SR">Suriname(苏里南)</option>
+                                    <option value="SJ">Svalbard and jan Mayen Islands(斯瓦尔巴群岛)</option>
+                                    <option value="SZ">Swaziland(斯威士兰)</option>
+                                    <option value="SE">Sweden(瑞典)</option>
+                                    <option value="CH">Switzerland(瑞士)</option>
+                                    <option value="SY">Syria(叙利亚)</option>
+                                    <option value="TW">Taiwan,China(中国台湾)</option>
+                                    <option value="TJ">Tajikistan(塔吉克斯坦)</option>
+                                    <option value="TZ">Tanzania(坦桑尼亚)</option>
+                                    <option value="TH">Thailand(泰国)</option>
+                                    <option value="TG">Togo(多哥)</option>
+                                    <option value="TK">Tokelau(托克劳)</option>
+                                    <option value="TO">Tonga(汤加)</option>
+                                    <option value="TT">Trinidad and Tobago(特立尼达和多巴哥)</option>
+                                    <option value="TN">Tunisia(突尼斯)</option>
+                                    <option value="TR">Turkey(土耳其)</option>
+                                    <option value="TM">Turkmenistan(土库曼斯坦)</option>
+                                    <option value="TC">Turks and Caicos Islands(特克斯科斯群岛)</option>
+                                    <option value="TV">Tuvalu(图瓦卢)</option>
+                                    <option value="UG">Uganda(乌干达)</option>
+                                    <option value="UA">Ukraine(乌克兰)</option>
+                                    <option value="AE">United Arab Emirates(阿联酋)</option>
+                                    <option value="GB">United Kingdom(英国)</option>
+                                    <option value="US">United States(美国)</option>
+                                    <option value="UM">UNITED STATES MINOR OUTLYING ISLANDS(美国本土外小岛屿)</option>
+                                    <option value="VI">United States Virgin Is-lands(美属维尔京群岛)</option>
+                                    <option value="UY">Uruguay(乌拉圭)</option>
+                                    <option value="UZ">Uzbekistan(乌兹别克斯坦)</option>
+                                    <option value="VU">Vanuatu(瓦努阿图)</option>
+                                    <option value="VA">Vatican(梵蒂冈)</option>
+                                    <option value="VE">Venezuela(委内瑞拉)</option>
+                                    <option value="VN">Viet Nam(越南)</option>
+                                    <option value="WF">Wallis and Futuna Is-lands(瓦利斯和富图纳群岛)</option>
+                                    <option value="EH">Western Sahara(西撒哈拉)</option>
+                                    <option value="WS">Western Samoa(西萨摩亚)</option>
+                                    <option value="YE">Yemen(也门)</option>
+                                    <option value="YU">Yugoslavia(南斯拉夫)</option>
+                                    <option value="ZR">Zaire(扎伊尔)</option>
+                                    <option value="ZM">Zambia(赞比亚)</option>
+                                    <option value="ZW">Zimbabwe(津巴布韦)</option>
+                            </select>
+                            <hg:trans>最低申报价值</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="countryMinDeclarePrice" name="countryMinDeclarePrice" value="">USD&nbsp;&nbsp;&nbsp;&nbsp;
+                            <hg:trans>最高申报价值</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="countryMaxDeclarePrice" name="countryMaxDeclarePrice" value="">USD&nbsp;&nbsp;&nbsp;&nbsp;
+                            <hg:trans>最高申报数量</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="countryMaxDeclareNumber" name="countryMaxDeclareNumber" value="">
+                        </div>
+                        <div class="col-sm-1" style="padding-top:5px">
+                            <button type="button" class="glyphicon glyphicon-minus item_removeCountry" hgtrans="true" style="height:25px" title="删除"></button>
+                        </div>
+                    </div>
+                        <div class="form-group item_CountrySelectDiv">
+                            <label class="col-sm-2 control-label"><hg:trans>国家集合</hg:trans>1</label>
+                            <div class="col-sm-9">
+                                <select class="chzn-select" id="listCountry" hgtrans="true" data-placeholder="设置后优先使用国家申报价值限制" multiple style="width:400px;" tabindex="1">
+                                    <option value=""></option>
+                                        <option value="AF">Afghanistan(阿富汗)</option>
+                                        <option value="AL">Albania(阿尔巴尼亚)</option>
+                                        <option value="DZ">Algeria(阿尔及利亚)</option>
+                                        <option value="AS">American Samoa(美属萨摩亚)</option>
+                                        <option value="AD">Andorra(安道尔)</option>
+                                        <option value="AO">Angola(安哥拉)</option>
+                                        <option value="AI">Anguilla(安圭拉)</option>
+                                        <option value="AQ">Antarctica(南极洲)</option>
+                                        <option value="AG">Antigua and Barbuda(安提瓜和巴布达)</option>
+                                        <option value="AR">Argentina(阿根廷)</option>
+                                        <option value="AM">Armenia(亚美尼亚)</option>
+                                        <option value="AW">Aruba(阿鲁巴)</option>
+                                        <option value="AU">Australia(澳大利亚)</option>
+                                        <option value="AT">Austria(奥地利)</option>
+                                        <option value="AZ">Azerbaijan(阿塞拜疆)</option>
+                                        <option value="BS">Bahamas(巴哈马)</option>
+                                        <option value="BH">Bahrain(巴林)</option>
+                                        <option value="BD">Bangladesh(孟加拉国)</option>
+                                        <option value="BB">Barbados(巴巴多斯)</option>
+                                        <option value="BY">Belarus(白俄罗斯)</option>
+                                        <option value="BE">Belgium(比利时)</option>
+                                        <option value="BZ">Belize(伯利兹)</option>
+                                        <option value="BJ">Benin(贝宁)</option>
+                                        <option value="BM">Bermuda(百慕大)</option>
+                                        <option value="BT">Bhutan(不丹)</option>
+                                        <option value="BO">Bolivia(玻利维亚)</option>
+                                        <option value="BA">Bosnia and Herzegovina(波斯尼亚和黑塞哥维那)</option>
+                                        <option value="BW">Botswana(博茨瓦纳)</option>
+                                        <option value="BV">Bouvet Island(布维岛)</option>
+                                        <option value="BR">Brazil(巴西)</option>
+                                        <option value="IO">British indian Ocean Ter-ritory(英属印度洋领土)</option>
+                                        <option value="VG">British Virgin Islands(英属维尔京群岛)</option>
+                                        <option value="BN">Brunei Darussalam(文莱)</option>
+                                        <option value="BG">Bulgaria(保加利亚)</option>
+                                        <option value="BF">Burkina Faso(布基纳法索)</option>
+                                        <option value="BI">Burundi(布隆迪)</option>
+                                        <option value="KH">Cambodia(柬埔寨)</option>
+                                        <option value="CM">Cameroon(喀麦隆)</option>
+                                        <option value="CA">Canada(加拿大)</option>
+                                        <option value="CV">Cape Verde(佛得角)</option>
+                                        <option value="XK">CAROLINE ISLANDS(加罗林群岛)</option>
+                                        <option value="KY">Cayman Islands(开曼群岛)</option>
+                                        <option value="CF">Central Africa(中非)</option>
+                                        <option value="TD">Chad(乍得)</option>
+                                        <option value="CL">Chile(智利)</option>
+                                        <option value="CN">China(中国)</option>
+                                        <option value="CS">Christmas Island(圣诞岛)</option>
+                                        <option value="CC">Cocos Keeling Islands(科科斯(基林,0)群岛)</option>
+                                        <option value="CO">Colombia(哥伦比亚)</option>
+                                        <option value="KM">Comoros(科摩罗)</option>
+                                        <option value="CD">Congo(刚果（金）)</option>
+                                        <option value="CG">Congo(刚果（布）)</option>
+                                        <option value="CK">Cook Islands(库克群岛)</option>
+                                        <option value="CR">Costa Rica(哥斯达黎加)</option>
+                                        <option value="CI">Cote d&#39;Ivoire(科特迪瓦)</option>
+                                        <option value="HR">Croatia(克罗地亚)</option>
+                                        <option value="CU">Cuba(古巴)</option>
+                                        <option value="CY">Cyprus(塞浦路斯)</option>
+                                        <option value="CZ">Czech Repoublic(捷克)</option>
+                                        <option value="DK">Denmark(丹麦)</option>
+                                        <option value="DJ">Djibouti(吉布提)</option>
+                                        <option value="DM">Dominica(多米尼克)</option>
+                                        <option value="DO">Dominican Republic(多米尼加)</option>
+                                        <option value="TL">East Timor(东帝汶)</option>
+                                        <option value="EC">Ecuador(厄瓜多尔)</option>
+                                        <option value="EG">Egypt(埃及)</option>
+                                        <option value="SV">El Salvador(萨尔瓦多)</option>
+                                        <option value="GQ">Equatorial Guinea(赤道几内亚)</option>
+                                        <option value="ER">Eritrea(厄立特里亚)</option>
+                                        <option value="EE">Estonia(爱沙尼亚)</option>
+                                        <option value="ET">Ethiopia(埃塞俄比亚)</option>
+                                        <option value="FO">Faroe Islands(法罗群岛)</option>
+                                        <option value="FJ">Fiji(斐济)</option>
+                                        <option value="FI">Finland(芬兰)</option>
+                                        <option value="FR">France(法国)</option>
+                                        <option value="GF">French Guiana(法属圭亚那)</option>
+                                        <option value="PF">French Polynesia(法属波利尼西亚)</option>
+                                        <option value="TF">French Southern Territo-ries(法属南部领土)</option>
+                                        <option value="GA">Gabon(加蓬)</option>
+                                        <option value="GM">Gambia(冈比亚)</option>
+                                        <option value="GE">Georgia(格鲁吉亚)</option>
+                                        <option value="DE">Germany(德国)</option>
+                                        <option value="GH">Ghana(加纳)</option>
+                                        <option value="GI">Gibraltar(直布罗陀)</option>
+                                        <option value="GR">Greece(希腊)</option>
+                                        <option value="GL">Greenland(格陵兰)</option>
+                                        <option value="GD">Grenada(格林纳达)</option>
+                                        <option value="GP">Guadeloupe(瓜德罗普)</option>
+                                        <option value="GU">Guam(关岛)</option>
+                                        <option value="GT">Guatemala(危地马拉)</option>
+                                        <option value="GN">Guinea(几内亚)</option>
+                                        <option value="GW">Guine-bissau(几内亚比绍)</option>
+                                        <option value="GY">Guyana(圭亚那)</option>
+                                        <option value="HT">Haiti(海地)</option>
+                                        <option value="HM">Heard islands and Mc Donald Islands(赫德岛和麦克唐纳岛)</option>
+                                        <option value="HN">Honduras(洪都拉斯)</option>
+                                        <option value="HK">Hong Kong(香港)</option>
+                                        <option value="HU">Hungary(匈牙利)</option>
+                                        <option value="IS">Iceland(冰岛)</option>
+                                        <option value="IN">India(印度)</option>
+                                        <option value="ID">Indonesia(印度尼西亚)</option>
+                                        <option value="IR">Iran(伊朗)</option>
+                                        <option value="IQ">Iraq(伊拉克)</option>
+                                        <option value="IE">Ireland(爱尔兰)</option>
+                                        <option value="IL">Israel(以色列)</option>
+                                        <option value="IT">Italy(意大利)</option>
+                                        <option value="JM">Jamaica(牙买加)</option>
+                                        <option value="JP">Japan(日本)</option>
+                                        <option value="JE">Jersey(泽西岛（英属）)</option>
+                                        <option value="JO">Jordan(约旦)</option>
+                                        <option value="KZ">Kazakhstan(哈萨克斯坦)</option>
+                                        <option value="KE">Kenya(肯尼亚)</option>
+                                        <option value="KI">Kiribati(基里巴斯)</option>
+                                        <option value="KV">Kosovo(科索沃)</option>
+                                        <option value="KW">Kuwait(科威特)</option>
+                                        <option value="KG">Kyrgyzstan(吉尔吉斯斯坦)</option>
+                                        <option value="LA">Lao(老挝)</option>
+                                        <option value="LV">Latvia(拉脱维亚)</option>
+                                        <option value="LB">Lebanon(黎巴嫩)</option>
+                                        <option value="LS">Lesotho(莱索托)</option>
+                                        <option value="LR">Liberia(利比里亚)</option>
+                                        <option value="LY">Libya(利比亚)</option>
+                                        <option value="LI">Liechtenstein(列支敦士登)</option>
+                                        <option value="LT">Lithuania(立陶宛)</option>
+                                        <option value="LU">Luxembourg(卢森堡)</option>
+                                        <option value="MO">Macau(澳门)</option>
+                                        <option value="MK">Macedonia(马其顿)</option>
+                                        <option value="MG">Madagascar(马达加斯加)</option>
+                                        <option value="MW">Malawi(马拉维)</option>
+                                        <option value="MY">Malaysia(马来西亚)</option>
+                                        <option value="MV">Maldives(马尔代夫)</option>
+                                        <option value="ML">Mali(马里)</option>
+                                        <option value="MT">Malta(马耳他)</option>
+                                        <option value="FK">Malvinas islands (Falkland Islands,0)(马尔维纳斯群岛(福克兰群岛,0))</option>
+                                        <option value="MH">Marshall Islands(马绍尔群岛)</option>
+                                        <option value="MQ">Martinique(马提尼克)</option>
+                                        <option value="MR">Mauritania(毛里塔尼亚)</option>
+                                        <option value="MU">Mauritius(毛里求斯)</option>
+                                        <option value="YT">Mayotte(马约特)</option>
+                                        <option value="MX">Mexico(墨西哥)</option>
+                                        <option value="FM">Micronesia(密克罗尼西亚)</option>
+                                        <option value="MD">Moldova(摩尔多瓦)</option>
+                                        <option value="MC">Monaco(摩纳哥)</option>
+                                        <option value="MN">Mongolia(蒙古)</option>
+                                        <option value="ME">Montenegro(黑山)</option>
+                                        <option value="MS">Montserrat(蒙特塞拉特)</option>
+                                        <option value="MA">Morocco(摩洛哥)</option>
+                                        <option value="MZ">Mozambique(莫桑比克)</option>
+                                        <option value="MM">Myanmar(缅甸)</option>
+                                        <option value="NA">Namibia(纳米比亚)</option>
+                                        <option value="NR">Nauru(瑙鲁)</option>
+                                        <option value="NP">Nepal(尼泊尔)</option>
+                                        <option value="NL">Netherlands(荷兰)</option>
+                                        <option value="AN">Netherlands Antilles(荷属安的列斯)</option>
+                                        <option value="NC">New Caledonia(新喀里多尼亚)</option>
+                                        <option value="NZ">New Zealand(新西兰)</option>
+                                        <option value="NI">Nicaragua(尼加拉瓜)</option>
+                                        <option value="NE">Niger(尼日尔)</option>
+                                        <option value="NG">Nigeria(尼日利亚)</option>
+                                        <option value="NU">Niue(纽埃)</option>
+                                        <option value="NF">Norfolk Island(诺福克岛)</option>
+                                        <option value="KP">North Korea(朝鲜)</option>
+                                        <option value="MP">Northern Marianas(北马里亚纳)</option>
+                                        <option value="NO">Norway(挪威)</option>
+                                        <option value="OM">Oman(阿曼)</option>
+                                        <option value="PK">Pakistan(巴基斯坦)</option>
+                                        <option value="PW">Palau(帕劳)</option>
+                                        <option value="PS">Palestine(巴勒斯坦)</option>
+                                        <option value="PA">Panama(巴拿马)</option>
+                                        <option value="PG">Papua New Guinea(巴布亚新几内亚)</option>
+                                        <option value="PY">Paraguay(巴拉圭)</option>
+                                        <option value="PE">Peru(秘鲁)</option>
+                                        <option value="PH">Philippines(菲律宾)</option>
+                                        <option value="PN">Pitcairn Islands Group(皮特凯恩群岛)</option>
+                                        <option value="PL">Poland(波兰)</option>
+                                        <option value="PT">Portugal(葡萄牙)</option>
+                                        <option value="PR">Puerto Rico(波多黎各)</option>
+                                        <option value="QA">Qatar(卡塔尔)</option>
+                                        <option value="RE">Reunion(留尼汪)</option>
+                                        <option value="RO">Romania(罗马尼亚)</option>
+                                        <option value="RU">Russia(俄罗斯)</option>
+                                        <option value="RW">Rwanda(卢旺达)</option>
+                                        <option value="Sh">Saint helena(圣赫勒拿)</option>
+                                        <option value="KN">Saint Kitts and nevis(圣基茨和尼维斯)</option>
+                                        <option value="LC">Saint lucia(圣卢西亚)</option>
+                                        <option value="PM">Saint Pierre and Miquelon(圣皮埃尔和密克隆)</option>
+                                        <option value="VC">Saint Vincent and the Grenadines(圣文森特和格林纳丁斯)</option>
+                                        <option value="SM">San Marion(圣马力诺)</option>
+                                        <option value="ST">Sao Tome and Principe(圣多美和普林西比)</option>
+                                        <option value="SA">Saudi Arabia(沙特阿拉伯)</option>
+                                        <option value="SN">Senegal(塞内加尔)</option>
+                                        <option value="RS">Serbia(塞尔维亚)</option>
+                                        <option value="SC">Seychells(塞舌尔)</option>
+                                        <option value="SL">Sierra leone(塞拉利昂)</option>
+                                        <option value="SG">Singapore(新加坡)</option>
+                                        <option value="SK">Slovakia(斯洛伐克)</option>
+                                        <option value="SI">Slovenia(斯洛文尼亚)</option>
+                                        <option value="SB">Solomon Islands(所罗门群岛)</option>
+                                        <option value="SO">Somalia(索马里)</option>
+                                        <option value="ZA">South Africa(南非)</option>
+                                        <option value="GS">South Georgia and South Sandwich Islands(南乔治亚岛和南桑德韦奇岛)</option>
+                                        <option value="KR">South Korea(韩国)</option>
+                                        <option value="SS">South Sudan(南苏丹)</option>
+                                        <option value="ES">Spain(西班牙)</option>
+                                        <option value="LK">Sri Lanka(斯里兰卡)</option>
+                                        <option value="SD">Sudan(苏丹)</option>
+                                        <option value="SR">Suriname(苏里南)</option>
+                                        <option value="SJ">Svalbard and jan Mayen Islands(斯瓦尔巴群岛)</option>
+                                        <option value="SZ">Swaziland(斯威士兰)</option>
+                                        <option value="SE">Sweden(瑞典)</option>
+                                        <option value="CH">Switzerland(瑞士)</option>
+                                        <option value="SY">Syria(叙利亚)</option>
+                                        <option value="TW">Taiwan,China(中国台湾)</option>
+                                        <option value="TJ">Tajikistan(塔吉克斯坦)</option>
+                                        <option value="TZ">Tanzania(坦桑尼亚)</option>
+                                        <option value="TH">Thailand(泰国)</option>
+                                        <option value="TG">Togo(多哥)</option>
+                                        <option value="TK">Tokelau(托克劳)</option>
+                                        <option value="TO">Tonga(汤加)</option>
+                                        <option value="TT">Trinidad and Tobago(特立尼达和多巴哥)</option>
+                                        <option value="TN">Tunisia(突尼斯)</option>
+                                        <option value="TR">Turkey(土耳其)</option>
+                                        <option value="TM">Turkmenistan(土库曼斯坦)</option>
+                                        <option value="TC">Turks and Caicos Islands(特克斯科斯群岛)</option>
+                                        <option value="TV">Tuvalu(图瓦卢)</option>
+                                        <option value="UG">Uganda(乌干达)</option>
+                                        <option value="UA">Ukraine(乌克兰)</option>
+                                        <option value="AE">United Arab Emirates(阿联酋)</option>
+                                        <option value="GB">United Kingdom(英国)</option>
+                                        <option value="US">United States(美国)</option>
+                                        <option value="UM">UNITED STATES MINOR OUTLYING ISLANDS(美国本土外小岛屿)</option>
+                                        <option value="VI">United States Virgin Is-lands(美属维尔京群岛)</option>
+                                        <option value="UY">Uruguay(乌拉圭)</option>
+                                        <option value="UZ">Uzbekistan(乌兹别克斯坦)</option>
+                                        <option value="VU">Vanuatu(瓦努阿图)</option>
+                                        <option value="VA">Vatican(梵蒂冈)</option>
+                                        <option value="VE">Venezuela(委内瑞拉)</option>
+                                        <option value="VN">Viet Nam(越南)</option>
+                                        <option value="WF">Wallis and Futuna Is-lands(瓦利斯和富图纳群岛)</option>
+                                        <option value="EH">Western Sahara(西撒哈拉)</option>
+                                        <option value="WS">Western Samoa(西萨摩亚)</option>
+                                        <option value="YE">Yemen(也门)</option>
+                                        <option value="YU">Yugoslavia(南斯拉夫)</option>
+                                        <option value="ZR">Zaire(扎伊尔)</option>
+                                        <option value="ZM">Zambia(赞比亚)</option>
+                                        <option value="ZW">Zimbabwe(津巴布韦)</option>
+                                </select>
+                                <hg:trans>最低申报价值</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="countryMinDeclarePrice" name="countryMinDeclarePrice" value="">USD&nbsp;&nbsp;&nbsp;&nbsp;
+                                <hg:trans>最高申报价值</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="countryMaxDeclarePrice" name="countryMaxDeclarePrice" value="">USD&nbsp;&nbsp;&nbsp;&nbsp;
+                                <hg:trans>最高申报数量</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="countryMaxDeclareNumber" name="countryMaxDeclareNumber" value="">
+                            </div>
+                            <div class="col-sm-1" style="padding-top:5px">
+                                <button type="button" class="glyphicon glyphicon-minus item_removeCountry" hgtrans="true" style="height:25px" title="删除"></button>
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <div class="input-group para-items">
+                                <button type="button" class="glyphicon glyphicon-plus" style="height:25px" onclick="PlusCountrySelectDiv(event, 'RemindPanelbody','')" hgtrans="true" title="添加国家申报限制"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info" style="margin-top:15px">
+            <div class="panel-heading"><font style="font-weight:700"><hg:trans>申报重量</hg:trans></font>&nbsp;&nbsp;&nbsp;&nbsp;<hg:trans>「最低、最高申报重量：设置后报关单的申报总重将不会低于或超过此重量，不填或为0则按商品申报重量进行预报」</hg:trans></div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><hg:trans>重量设置</hg:trans></label>
+                        <div class="col-sm-8">
+                            <div class="radio" style="padding-top:0">
+                                <label style="margin-top:3px;"><input type="radio" name="declareWeightType" style="margin-top:5px;" value="Weight" checked /><hg:trans>使用商品的申报重量申报</hg:trans></label><br />
+                                <label><input type="radio" name="declareWeightType" style="margin-top:5px;" value="Proportion"  /><hg:trans>使用订单总重量的比例申报</hg:trans></label>&nbsp;<input type="text" style="width:45px;height:23px;border: 1px solid #ccc" id="declareWeightProportion" name="declareWeightProportion" value="">&nbsp;%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <hg:trans>最低申报重量</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="minDeclareWeight" name="minDeclareWeight" value="">KG&nbsp;&nbsp;&nbsp;&nbsp;
+                            <hg:trans>最高申报重量</hg:trans>&nbsp;<input type="text" style="width:50px;height:23px;border: 1px solid #ccc" id="maxDeclareWeight" name="maxDeclareWeight" value="">KG
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-info" style="margin-top:15px">
+            <div class="panel-heading"><font style="font-weight:700"><hg:trans>申报重量信息来源</hg:trans></font></div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-8">
+                        <div class="radio" style="padding-top:0">
+                            <label style="margin-top:5px;"><input type="radio" name="productDeclareWeight" value="DeclareWeight" style="margin-top: 0px;" checked /><hg:trans>申报重量&nbsp;&nbsp;「PS：直接取产品的申报重量」</hg:trans></label><br />
+                            <label style="margin-top:5px;"><input type="radio" name="productDeclareWeight" value="SpecGrossWeight" style="margin-top: 0px;"  /><hg:trans>产品净重&nbsp;&nbsp;「PS：多属性产品可以优先取产品净重，产品净重为 0 时默认取父sku的净重」</hg:trans></label><br />
+                            <label style="margin-top:5px;"><input type="radio" name="productDeclareWeight" value="PackingWeight" style="margin-top: 0px;"  /><hg:trans>包裹重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;「PS：多属性产品可以优先取包裹重，产品包裹重为 0 时默认取父sku的包裹重」</hg:trans></label><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <link rel="stylesheet" href="css/chosen.css" />
+<script src="js/chosen.jquery.js"></script> -->
+<script type="text/javascript">
+    $(function () {
+        $(".chzn-select").chosen();
+        $(".chosen-container").css("width", "400px");
+        $(".item_removeCountry").click(function () {
+            var $removeDiv = $(this).parent().parent();
+            if ($removeDiv.next().find("#txtMaxDeclarePrice").length > 0) {
+                $removeDiv.next().remove()
+            }
+            $removeDiv.remove();
+        });
+        $("input:radio[name='declareGoodsType']:checked").val() == "Part" ? $("#declareNum").attr("disabled", false) : $("#declareNum").attr("disabled", true);
+        $("input:radio[name='declarePriceType']:checked").val() == "Proportion" ? $("#declarePriceProportion").attr("disabled", false) : $("#declarePriceProportion").attr("disabled", true);
+        $("input:radio[name='declareWeightType']:checked").val() == "Proportion" ? $("#declareWeightProportion").attr("disabled", false) : $("#declarePriceProportion").attr("disabled", true);
+
+        $("input:radio[name='declareGoodsType']").click(function () {
+            $("input:radio[name='declareGoodsType']:checked").val() != "Part" ? $("#declareNum").attr("disabled", true) : $("#declareNum").attr("disabled", false);
+        })
+        $("input:radio[name='declarePriceType']").click(function () {
+            $("input:radio[name='declarePriceType']:checked").val() != "Proportion" ? $("#declarePriceProportion").attr("disabled", true) : $("#declarePriceProportion").attr("disabled", false);
+        })
+        $("input:radio[name='declareWeightType']").click(function () {
+            $("input:radio[name='declareWeightType']:checked").val() != "Proportion" ? $("#declareWeightProportion").attr("disabled", true) : $("#declareWeightProportion").attr("disabled", false);
+        })
+    })
+    //添加规则
+    function PlusCountrySelectDiv(event) {
+        var src = event.target || window.event.srcElement;
+        var $this = $(src)
+        var $divCountry = $("#divDeclarePrice").find(".item_CountrySelectDiv");
+
+        var num = $divCountry.length;
+        num = num + 1;
+        var yy = $this.parent().parent().parent().before(GetSelectCountryHtml(num))
+        $(".chzn-select").chosen()
+        $(".chosen-container").css("width", "400px")
+        $(".item_removeCountry").click(function () {
+            var $removeDiv = $(this).parent().parent();
+            if ($removeDiv.next().find("#txtMaxDeclarePrice").length > 0) {
+                $removeDiv.next().remove()
+            }
+            $removeDiv.remove();
+        })
+    }
+
+    //获取添加规则的html
+    function GetSelectCountryHtml(num) {
+        $("#hidCountrySelect").find(".chosen-container-multi").remove()
+        var str = "";
+        str += "<div class='form-group item_CountrySelectDiv' >";
+        str += "<label class='col-sm-2 control-label'>国家集合" + num + ":</label>";
+        str += $("#hidCountrySelect").html();
+        str += "</div>";
+        return str;
+    }
+
+    function doSaveDeclareSettingData() {
+        var error = {};
+        var hasError = false;
+
+        //检查申报商品
+        var declareGoodsTypeValue = $("input:radio[name='declareGoodsType']:checked").val();
+        var txtDeclareNum = $("#declareNum").val().trim();
+        var sltDeclareGoodsMode = $("#declareGoodsMode").val();
+        if (declareGoodsTypeValue == "Part")//选择限制最多申报种类时需要判断
+        {
+            if (txtDeclareNum.length == 0) {
+                hasError = true;
+                error["declareNum"] = "请填写！";
+            }
+            if (!checkInt(txtDeclareNum) || txtDeclareNum == 0) {
+                hasError = true;
+                error["declareNum"] = "必须为大于零的整数！";
+            }
+        }
+        var declareGoodsTypeValues = {
+            declareGoodsType: declareGoodsTypeValue,
+            declareNum: (declareGoodsTypeValue == "Part" ? txtDeclareNum : ""),
+            declareGoodsMode: sltDeclareGoodsMode
+        }
+        //检查申报价值
+        var declarePriceType = $("input:radio[name='declarePriceType']:checked").val();
+        var declarePriceProportion = $("#declarePriceProportion").val().trim();
+        var minDeclarePrice = $("#minDeclarePrice").val().trim();
+        var maxDeclarePrice = $("#maxDeclarePrice").val().trim();
+        var maxDeclareNumber = $("#maxDeclareNumber").val().trim();
+        if (declarePriceType == "Proportion")//选择按比例申报时需要判断
+        {
+            if (declarePriceProportion.length == 0) {
+                hasError = true;
+                error["declarePriceProportion"] = "请填写！";
+            }
+            if (declarePriceProportion.length > 0) {
+                if (!checkDecimal(declarePriceProportion) || declarePriceProportion < 0) {
+                    hasError = true;
+                    error["declarePriceProportion"] = "输入有误！";
+                }
+            }
+        }
+        if (minDeclarePrice.length > 0) {
+            if (!checkDecimal(minDeclarePrice)) {
+                hasError = true;
+                error["minDeclarePrice"] = "输入有误！";
+            }
+        }
+        if (maxDeclarePrice.length > 0) {
+            if (!checkDecimal(maxDeclarePrice)) {
+                hasError = true;
+                error["maxDeclarePrice"] = "输入有误！";
+            }
+        }
+        if (maxDeclareNumber.length > 0) {
+            if (!checkDecimal(maxDeclareNumber)) {
+                hasError = true;
+                error["maxDeclareNumber"] = "输入有误！";
+            }
+        }
+
+        var declarePriceTypeValues = {
+            declarePriceType: declarePriceType,
+            declarePriceProportion: (declarePriceType == "Proportion" ? declarePriceProportion : ""),
+            minDeclarePrice: minDeclarePrice,
+            maxDeclarePrice: maxDeclarePrice,
+            maxDeclareNumber: maxDeclareNumber
+        }
+        //检查申报国家
+        var arrCountryDeclareList = new Array();
+        $(".item_CountrySelectDiv").each(function () {
+            var selectCountry = $(this).find("#listCountry  option:selected").map(function () {
+                return $(this).val();
+            }).get().join(",");
+            if (selectCountry.length > 0) {
+                var thisCountryHasError = false;
+                var countryMinDeclarePrice = $(this).find("#countryMinDeclarePrice").val();
+                var countryMaxDeclarePrice = $(this).find("#countryMaxDeclarePrice").val();
+                var countryMaxDeclareNumber = $(this).find("#countryMaxDeclareNumber").val();
+                if (countryMinDeclarePrice.length == 0) {
+                    hasError = true; thisCountryHasError = true;
+                    doShowDivError($(this), "countryMinDeclarePrice", "请填写！");
+                }
+                if (countryMinDeclarePrice.length > 0) {
+                    if (!checkDecimal(countryMinDeclarePrice) || countryMinDeclarePrice < 0) {
+                        hasError = true; thisCountryHasError = true;
+                        doShowDivError($(this), "countryMinDeclarePrice", "输入有误！");
+                    }
+                }
+                if (countryMaxDeclarePrice.length == 0) {
+                    hasError = true; thisCountryHasError = true;
+                    doShowDivError($(this), "countryMaxDeclarePrice", "请填写！");
+                }
+                if (countryMaxDeclarePrice.length > 0) {
+                    if (!checkDecimal(countryMaxDeclarePrice) || countryMaxDeclarePrice < 0) {
+                        hasError = true; thisCountryHasError = true;
+                        doShowDivError($(this), "countryMaxDeclarePrice", "输入有误！");
+                    }
+                }
+                //if (countryMaxDeclareNumber.length == 0) {
+                //    hasError = true; thisCountryHasError = true;
+                //    doShowDivError($(this), "countryMaxDeclareNumber", "请填写！");
+                //}
+                if (countryMaxDeclareNumber.length > 0) {
+                    if (!checkDecimal(countryMaxDeclareNumber) || countryMaxDeclareNumber < 0) {
+                        hasError = true; thisCountryHasError = true;
+                        doShowDivError($(this), "countryMaxDeclareNumber", "输入有误！");
+                    }
+                }
+                if (thisCountryHasError == false) {
+                    //检测都正确，则记录
+                    var countryListDeclare = {
+                        countrys: selectCountry,
+                        minDeclarePrice: countryMinDeclarePrice,
+                        maxDeclarePrice: countryMaxDeclarePrice,
+                        maxDeclareNumber: countryMaxDeclareNumber
+                    }
+                    arrCountryDeclareList.push(countryListDeclare);
+                }
+            }
+        })
+        var countryDeclareLists = {
+            countryDeclareList: arrCountryDeclareList
+        }
+        //检查申报重量
+        var declareWeightType = $("input:radio[name='declareWeightType']:checked").val();
+        var declareWeightProportion = $("#declareWeightProportion").val().trim();
+        var minDeclareWeight = $("#minDeclareWeight").val().trim();
+        var maxDeclareWeight = $("#maxDeclareWeight").val().trim();
+        if (declareWeightType == "Proportion")//选择按比例申报时需要判断
+        {
+            if (declareWeightProportion.length == 0) {
+                hasError = true;
+                error["declareWeightProportion"] = "请填写！";
+            }
+            if (declareWeightProportion.length > 0) {
+                if (!checkDecimal(declareWeightProportion) || declareWeightProportion < 0) {
+                    hasError = true;
+                    error["declareWeightProportion"] = "输入有误！";
+                }
+            }
+        }
+        if (minDeclareWeight.length > 0) {
+            if (!checkDecimal(minDeclareWeight)) {
+                hasError = true;
+                error["minDeclareWeight"] = "输入有误！";
+            }
+        }
+        if (maxDeclareWeight.length > 0) {
+            if (!checkDecimal(maxDeclareWeight)) {
+                hasError = true;
+                error["maxDeclareWeight"] = "输入有误！";
+            }
+        }
+        var declareWeightTypeValues = {
+            declareWeightType: declareWeightType,
+            declareWeightProportion: (declareWeightType == "Proportion" ? declareWeightProportion : ""),
+            minDeclareWeight: minDeclareWeight,
+            maxDeclareWeight: maxDeclareWeight
+        }
+        if (hasError) {
+p1769798141doShowError(error);
+            return;
+        }
+        declareGoodsTypeValues = JSON.stringify(declareGoodsTypeValues);
+        declarePriceTypeValues = JSON.stringify(declarePriceTypeValues);
+        countryDeclareLists = JSON.stringify(countryDeclareLists);
+        declareWeightTypeValues = JSON.stringify(declareWeightTypeValues);
+        var DeclareWeightSource = $("input:radio[name='productDeclareWeight']:checked").val();
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/EditDeclaration",
+            datatype: "text",
+            data: {
+                declareGoodsTypeValues: declareGoodsTypeValues,
+                declarePriceTypeValues: declarePriceTypeValues,
+                countryDeclareLists: countryDeclareLists,
+                declareWeightTypeValues: declareWeightTypeValues,
+                declareWeightSource: DeclareWeightSource
+            },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else
+                    redgle.showMessage(translate.format("<hg:trans>保存成功！</hg:trans>"));
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doShowDivError(event, key, value) {
+        $(event).find("#" + key).tooltip({ title: value });
+        $(event).find("#" + key).tooltip("show");
+        $(event).find("#" + key).css("border-color", "#a94442");
+        $(event).find("#" + key).change(function () {
+            $(event).find("#" + key).tooltip("destroy");
+            $(event).find("#" + key).css("border-color", "#ccc");
+        });
+    }
+    function p1769798141doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).css("border-color", "#a94442");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).css("border-color", "#ccc");
+            });
+        });
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

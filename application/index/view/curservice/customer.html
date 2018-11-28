@@ -1,0 +1,932 @@
+
+{:widget('Blog/header')}
+   
+
+    <script src="__STATIC__/index/js/a6ebffc3b6504e51bcae37b98f976409.js"></script>
+
+    <script src="__STATIC__/index/js/40cf7b22a4964fb99dd7aeefa8072132.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+{:widget('Blog/left')}
+<input id="pageCheckValue" type="hidden" value="" />
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>客户管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodest" style="float:right; margin-right:5px">
+            <div class="btn-group false">
+                <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-cog"></i>&nbsp;<hg:trans>客户设置</hg:trans>&nbsp;<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                    <li><a href="javascript:void(0)" onclick="p848933158SetCustomerStatus(0,-1);"><hg:trans>批量加入黑名单</hg:trans></a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0)" onclick="p848933158SetCustomerStatus(0,1);"><hg:trans>批量设为优质客户</hg:trans></a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0)" onclick="p848933158SetCustomerStatus(0,0);"><hg:trans>批量设为普通客户</hg:trans></a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0)" onclick="p848933158ReMathHeightCustomers();"><hg:trans>重新匹配优质客户</hg:trans></a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0)" onclick="p848933158doShowSetCustomerStatusSettingPanel();"><hg:trans>优质客户匹配设置</hg:trans></a></li>
+                </ul>
+            </div>
+            <a class="btn btn-info btn-sm" onclick="doBatchSendMessage()"><i class="glyphicon glyphicon-envelope"></i>&nbsp;<hg:trans>批量发送信息</hg:trans></a>
+            <button type="button" class="btn btn-info btn-sm" onclick="p848933158doEditData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加客户</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p848933158doExport()"><i class="glyphicon glyphicon-log-out"></i> <hg:trans>导出</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p848933158doImportData()"><i class="glyphicon glyphicon-log-in"></i> <hg:trans>导入</hg:trans></button>
+        </div>
+<form action="/Customer?Length=8" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p848933158divDataList" id="searchForm" method="post" style="margin-bottom:12px">            <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+                <div class="form-group parents-nodest">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台</hg:trans></label>
+                    <div class="input-group para-items">
+                        <div id="txtShopFrom" class="input-group para-items" style="float:left">
+
+                            <div id="divapifromitemsall" class="input-group para-items" divapifromitems style="float:left">
+                                <span userform="All" class="active"><hg:trans>全部</hg:trans></span>
+                            </div>
+                                <div id="divapifromitemsAmazon" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Amazon">Amazon</span>
+                                </div>
+                                <div id="divapifromitemsOffline" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Offline">Offline</span>
+                                </div>
+                            <input type="hidden" id="hidApiForms" name="hidApiForms" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台账号</hg:trans></label>
+                    <div id="divUserFormAndApiUserItems" class="input-group para-sales-items">
+                                        <span userform="Amazon" apiuserid="5310935598329333161" class="Amazon-sales">11(us)</span>
+                        <input type="hidden" id="hidApiAccountItems" name="hidApiAccountItems" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>国家</hg:trans></label>
+                    <div class="col-sm-2" style="margin-left:-18px">
+                        <select class="chzn-select" id="SearchCountry" data-placeholder="Choose Country" name="SearchCountry" style="width:200px;" tabindex="1">
+                            <option value="">全部</option>
+                                <option value="AF">Afghanistan(阿富汗)</option>
+                                <option value="AL">Albania(阿尔巴尼亚)</option>
+                                <option value="DZ">Algeria(阿尔及利亚)</option>
+                                <option value="AS">American Samoa(美属萨摩亚)</option>
+                                <option value="AD">Andorra(安道尔)</option>
+                                <option value="AO">Angola(安哥拉)</option>
+                                <option value="AI">Anguilla(安圭拉)</option>
+                                <option value="AQ">Antarctica(南极洲)</option>
+                                <option value="AG">Antigua and Barbuda(安提瓜和巴布达)</option>
+                                <option value="AR">Argentina(阿根廷)</option>
+                                <option value="AM">Armenia(亚美尼亚)</option>
+                                <option value="AW">Aruba(阿鲁巴)</option>
+                                <option value="AU">Australia(澳大利亚)</option>
+                                <option value="AT">Austria(奥地利)</option>
+                                <option value="AZ">Azerbaijan(阿塞拜疆)</option>
+                                <option value="BS">Bahamas(巴哈马)</option>
+                                <option value="BH">Bahrain(巴林)</option>
+                                <option value="BD">Bangladesh(孟加拉国)</option>
+                                <option value="BB">Barbados(巴巴多斯)</option>
+                                <option value="BY">Belarus(白俄罗斯)</option>
+                                <option value="BE">Belgium(比利时)</option>
+                                <option value="BZ">Belize(伯利兹)</option>
+                                <option value="BJ">Benin(贝宁)</option>
+                                <option value="BM">Bermuda(百慕大)</option>
+                                <option value="BT">Bhutan(不丹)</option>
+                                <option value="BO">Bolivia(玻利维亚)</option>
+                                <option value="BA">Bosnia and Herzegovina(波斯尼亚和黑塞哥维那)</option>
+                                <option value="BW">Botswana(博茨瓦纳)</option>
+                                <option value="BV">Bouvet Island(布维岛)</option>
+                                <option value="BR">Brazil(巴西)</option>
+                                <option value="IO">British indian Ocean Ter-ritory(英属印度洋领土)</option>
+                                <option value="VG">British Virgin Islands(英属维尔京群岛)</option>
+                                <option value="BN">Brunei Darussalam(文莱)</option>
+                                <option value="BG">Bulgaria(保加利亚)</option>
+                                <option value="BF">Burkina Faso(布基纳法索)</option>
+                                <option value="BI">Burundi(布隆迪)</option>
+                                <option value="KH">Cambodia(柬埔寨)</option>
+                                <option value="CM">Cameroon(喀麦隆)</option>
+                                <option value="CA">Canada(加拿大)</option>
+                                <option value="CV">Cape Verde(佛得角)</option>
+                                <option value="XK">CAROLINE ISLANDS(加罗林群岛)</option>
+                                <option value="KY">Cayman Islands(开曼群岛)</option>
+                                <option value="CF">Central Africa(中非)</option>
+                                <option value="TD">Chad(乍得)</option>
+                                <option value="CL">Chile(智利)</option>
+                                <option value="CN">China(中国)</option>
+                                <option value="CS">Christmas Island(圣诞岛)</option>
+                                <option value="CC">Cocos Keeling Islands(科科斯(基林,0)群岛)</option>
+                                <option value="CO">Colombia(哥伦比亚)</option>
+                                <option value="KM">Comoros(科摩罗)</option>
+                                <option value="CD">Congo(刚果（金）)</option>
+                                <option value="CG">Congo(刚果（布）)</option>
+                                <option value="CK">Cook Islands(库克群岛)</option>
+                                <option value="CR">Costa Rica(哥斯达黎加)</option>
+                                <option value="CI">Cote d&#39;Ivoire(科特迪瓦)</option>
+                                <option value="HR">Croatia(克罗地亚)</option>
+                                <option value="CU">Cuba(古巴)</option>
+                                <option value="CY">Cyprus(塞浦路斯)</option>
+                                <option value="CZ">Czech Repoublic(捷克)</option>
+                                <option value="DK">Denmark(丹麦)</option>
+                                <option value="DJ">Djibouti(吉布提)</option>
+                                <option value="DM">Dominica(多米尼克)</option>
+                                <option value="DO">Dominican Republic(多米尼加)</option>
+                                <option value="TP">East Timor(东帝汶)</option>
+                                <option value="EC">Ecuador(厄瓜多尔)</option>
+                                <option value="EG">Egypt(埃及)</option>
+                                <option value="SV">El Salvador(萨尔瓦多)</option>
+                                <option value="GQ">Equatorial Guinea(赤道几内亚)</option>
+                                <option value="ER">Eritrea(厄立特里亚)</option>
+                                <option value="EE">Estonia(爱沙尼亚)</option>
+                                <option value="ET">Ethiopia(埃塞俄比亚)</option>
+                                <option value="FO">Faroe Islands(法罗群岛)</option>
+                                <option value="FJ">Fiji(斐济)</option>
+                                <option value="FI">Finland(芬兰)</option>
+                                <option value="FR">France(法国)</option>
+                                <option value="GF">French Guiana(法属圭亚那)</option>
+                                <option value="PF">French Polynesia(法属波利尼西亚)</option>
+                                <option value="TF">French Southern Territo-ries(法属南部领土)</option>
+                                <option value="GA">Gabon(加蓬)</option>
+                                <option value="GM">Gambia(冈比亚)</option>
+                                <option value="GE">Georgia(格鲁吉亚)</option>
+                                <option value="DE">Germany(德国)</option>
+                                <option value="GH">Ghana(加纳)</option>
+                                <option value="GI">Gibraltar(直布罗陀)</option>
+                                <option value="GR">Greece(希腊)</option>
+                                <option value="GL">Greenland(格陵兰)</option>
+                                <option value="GD">Grenada(格林纳达)</option>
+                                <option value="GP">Guadeloupe(瓜德罗普)</option>
+                                <option value="GU">Guam(关岛)</option>
+                                <option value="GT">Guatemala(危地马拉)</option>
+                                <option value="GN">Guinea(几内亚)</option>
+                                <option value="GW">Guine-bissau(几内亚比绍)</option>
+                                <option value="GY">Guyana(圭亚那)</option>
+                                <option value="HT">Haiti(海地)</option>
+                                <option value="HM">Heard islands and Mc Donald Islands(赫德岛和麦克唐纳岛)</option>
+                                <option value="HN">Honduras(洪都拉斯)</option>
+                                <option value="HK">Hong Kong(香港)</option>
+                                <option value="HU">Hungary(匈牙利)</option>
+                                <option value="IS">Iceland(冰岛)</option>
+                                <option value="IN">India(印度)</option>
+                                <option value="ID">Indonesia(印度尼西亚)</option>
+                                <option value="IR">Iran(伊朗)</option>
+                                <option value="IQ">Iraq(伊拉克)</option>
+                                <option value="IE">Ireland(爱尔兰)</option>
+                                <option value="IL">Israel(以色列)</option>
+                                <option value="IT">Italy(意大利)</option>
+                                <option value="JM">Jamaica(牙买加)</option>
+                                <option value="JP">Japan(日本)</option>
+                                <option value="JE">Jersey(泽西岛（英属）)</option>
+                                <option value="JO">Jordan(约旦)</option>
+                                <option value="KZ">Kazakhstan(哈萨克斯坦)</option>
+                                <option value="KE">Kenya(肯尼亚)</option>
+                                <option value="KI">Kiribati(基里巴斯)</option>
+                                <option value="YK">Kosovo(科索沃)</option>
+                                <option value="KW">Kuwait(科威特)</option>
+                                <option value="KG">Kyrgyzstan(吉尔吉斯斯坦)</option>
+                                <option value="LA">Lao(老挝)</option>
+                                <option value="LV">Latvia(拉脱维亚)</option>
+                                <option value="LB">Lebanon(黎巴嫩)</option>
+                                <option value="LS">Lesotho(莱索托)</option>
+                                <option value="LR">Liberia(利比里亚)</option>
+                                <option value="LY">Libya(利比亚)</option>
+                                <option value="LI">Liechtenstein(列支敦士登)</option>
+                                <option value="LT">Lithuania(立陶宛)</option>
+                                <option value="LU">Luxembourg(卢森堡)</option>
+                                <option value="MO">Macau(澳门)</option>
+                                <option value="MK">Macedonia(马其顿)</option>
+                                <option value="MG">Madagascar(马达加斯加)</option>
+                                <option value="MW">Malawi(马拉维)</option>
+                                <option value="MY">Malaysia(马来西亚)</option>
+                                <option value="MV">Maldives(马尔代夫)</option>
+                                <option value="ML">Mali(马里)</option>
+                                <option value="MT">Malta(马耳他)</option>
+                                <option value="FK">Malvinas islands (Falkland Islands,0)(马尔维纳斯群岛(福克兰群岛,0))</option>
+                                <option value="MH">Marshall Islands(马绍尔群岛)</option>
+                                <option value="MQ">Martinique(马提尼克)</option>
+                                <option value="MR">Mauritania(毛里塔尼亚)</option>
+                                <option value="MU">Mauritius(毛里求斯)</option>
+                                <option value="YT">Mayotte(马约特)</option>
+                                <option value="MX">Mexico(墨西哥)</option>
+                                <option value="FM">Micronesia(密克罗尼西亚)</option>
+                                <option value="MD">Moldova(摩尔多瓦)</option>
+                                <option value="MC">Monaco(摩纳哥)</option>
+                                <option value="MN">Mongolia(蒙古)</option>
+                                <option value="ME">Montenegro(黑山)</option>
+                                <option value="MS">Montserrat(蒙特塞拉特)</option>
+                                <option value="MA">Morocco(摩洛哥)</option>
+                                <option value="MZ">Mozambique(莫桑比克)</option>
+                                <option value="MM">Myanmar(缅甸)</option>
+                                <option value="NA">Namibia(纳米比亚)</option>
+                                <option value="NR">Nauru(瑙鲁)</option>
+                                <option value="NP">Nepal(尼泊尔)</option>
+                                <option value="NL">Netherlands(荷兰)</option>
+                                <option value="AN">Netherlands Antilles(荷属安的列斯)</option>
+                                <option value="NC">New Caledonia(新喀里多尼亚)</option>
+                                <option value="NZ">New Zealand(新西兰)</option>
+                                <option value="NI">Nicaragua(尼加拉瓜)</option>
+                                <option value="NE">Niger(尼日尔)</option>
+                                <option value="NG">Nigeria(尼日利亚)</option>
+                                <option value="NU">Niue(纽埃)</option>
+                                <option value="NF">Norfolk Island(诺福克岛)</option>
+                                <option value="KP">North Korea(朝鲜)</option>
+                                <option value="MP">Northern Marianas(北马里亚纳)</option>
+                                <option value="NO">Norway(挪威)</option>
+                                <option value="OM">Oman(阿曼)</option>
+                                <option value="PK">Pakistan(巴基斯坦)</option>
+                                <option value="PW">Palau(帕劳)</option>
+                                <option value="PS">Palestine(巴勒斯坦)</option>
+                                <option value="PA">Panama(巴拿马)</option>
+                                <option value="PG">Papua New Guinea(巴布亚新几内亚)</option>
+                                <option value="PY">Paraguay(巴拉圭)</option>
+                                <option value="PE">Peru(秘鲁)</option>
+                                <option value="PH">Philippines(菲律宾)</option>
+                                <option value="PN">Pitcairn Islands Group(皮特凯恩群岛)</option>
+                                <option value="PL">Poland(波兰)</option>
+                                <option value="PT">Portugal(葡萄牙)</option>
+                                <option value="PR">Puerto Rico(波多黎各)</option>
+                                <option value="QA">Qatar(卡塔尔)</option>
+                                <option value="RE">Reunion(留尼汪)</option>
+                                <option value="RO">Romania(罗马尼亚)</option>
+                                <option value="RU">Russia(俄罗斯)</option>
+                                <option value="RW">Rwanda(卢旺达)</option>
+                                <option value="Sh">Saint helena(圣赫勒拿)</option>
+                                <option value="KN">Saint Kitts and nevis(圣基茨和尼维斯)</option>
+                                <option value="LC">Saint lucia(圣卢西亚)</option>
+                                <option value="PM">Saint Pierre and Miquelon(圣皮埃尔和密克隆)</option>
+                                <option value="VC">Saint Vincent and the Grenadines(圣文森特和格林纳丁斯)</option>
+                                <option value="SM">San Marion(圣马力诺)</option>
+                                <option value="ST">Sao Tome and Principe(圣多美和普林西比)</option>
+                                <option value="SA">Saudi Arabia(沙特阿拉伯)</option>
+                                <option value="SN">Senegal(塞内加尔)</option>
+                                <option value="RS">Serbia(塞尔维亚)</option>
+                                <option value="SC">Seychells(塞舌尔)</option>
+                                <option value="SL">Sierra leone(塞拉利昂)</option>
+                                <option value="SG">Singapore(新加坡)</option>
+                                <option value="SK">Slovakia(斯洛伐克)</option>
+                                <option value="SI">Slovenia(斯洛文尼亚)</option>
+                                <option value="SB">Solomon Islands(所罗门群岛)</option>
+                                <option value="SO">Somalia(索马里)</option>
+                                <option value="ZA">South Africa(南非)</option>
+                                <option value="GS">South Georgia and South Sandwich Islands(南乔治亚岛和南桑德韦奇岛)</option>
+                                <option value="KR">South Korea(韩国)</option>
+                                <option value="ES">Spain(西班牙)</option>
+                                <option value="LK">Sri Lanka(斯里兰卡)</option>
+                                <option value="SD">Sudan(苏丹)</option>
+                                <option value="SR">Suriname(苏里南)</option>
+                                <option value="SJ">Svalbard and jan Mayen Islands(斯瓦尔巴群岛)</option>
+                                <option value="SZ">Swaziland(斯威士兰)</option>
+                                <option value="SE">Sweden(瑞典)</option>
+                                <option value="CH">Switzerland(瑞士)</option>
+                                <option value="SY">Syria(叙利亚)</option>
+                                <option value="TW">Taiwan,China(中国台湾)</option>
+                                <option value="TJ">Tajikistan(塔吉克斯坦)</option>
+                                <option value="TZ">Tanzania(坦桑尼亚)</option>
+                                <option value="TH">Thailand(泰国)</option>
+                                <option value="TG">Togo(多哥)</option>
+                                <option value="TK">Tokelau(托克劳)</option>
+                                <option value="TO">Tonga(汤加)</option>
+                                <option value="TT">Trinidad and Tobago(特立尼达和多巴哥)</option>
+                                <option value="TN">Tunisia(突尼斯)</option>
+                                <option value="TR">Turkey(土耳其)</option>
+                                <option value="TM">Turkmenistan(土库曼斯坦)</option>
+                                <option value="TC">Turks and Caicos Islands(特克斯科斯群岛)</option>
+                                <option value="TV">Tuvalu(图瓦卢)</option>
+                                <option value="UG">Uganda(乌干达)</option>
+                                <option value="UA">Ukraine(乌克兰)</option>
+                                <option value="AE">United Arab Emirates(阿联酋)</option>
+                                <option value="GB">United Kingdom(英国)</option>
+                                <option value="US">United States(美国)</option>
+                                <option value="UM">UNITED STATES MINOR OUTLYING ISLANDS(美国本土外小岛屿)</option>
+                                <option value="VI">United States Virgin Is-lands(美属维尔京群岛)</option>
+                                <option value="UY">Uruguay(乌拉圭)</option>
+                                <option value="UZ">Uzbekistan(乌兹别克斯坦)</option>
+                                <option value="VU">Vanuatu(瓦努阿图)</option>
+                                <option value="VA">Vatican(梵蒂冈)</option>
+                                <option value="VE">Venezuela(委内瑞拉)</option>
+                                <option value="VN">Viet Nam(越南)</option>
+                                <option value="WF">Wallis and Futuna Is-lands(瓦利斯和富图纳群岛)</option>
+                                <option value="EH">Western Sahara(西撒哈拉)</option>
+                                <option value="WS">Western Samoa(西萨摩亚)</option>
+                                <option value="YE">Yemen(也门)</option>
+                                <option value="YU">Yugoslavia(南斯拉夫)</option>
+                                <option value="ZR">Zaire(扎伊尔)</option>
+                                <option value="ZM">Zambia(赞比亚)</option>
+                                <option value="ZW">Zimbabwe(津巴布韦)</option>
+                        </select>
+                    </div>
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>购买次数</hg:trans></label>
+                    <div class="col-sm-2" style="margin-left:-18px">
+                        <input id="hidBuyTime" name="hidBuyTime" value="" class="form-control input-sm" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span itemid="CustomerName" chooseid="Search" class="active"><hg:trans>客户名称</hg:trans></span>
+                        <span itemid="CustomerNo" chooseid="Search"><hg:trans>客户编号</hg:trans></span>
+                        <span itemid="Email" chooseid="Search"><hg:trans>电子邮件</hg:trans></span>
+                        <span itemid="OrderTime" chooseid="Date"><hg:trans>下单时间</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="CustomerName" />
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                            <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group " style="margin-bottom: 16px;display:none" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span class="date">
+                            <input type="text" class="form-control input-sm" hgtrans="true" id="txtBeginTime" name="txtBeginTime" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">To</span>
+                        <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtEndTime" name="txtEndTime" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" id="Search" style="margin-bottom:15px">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;padding-top:12px"><hg:trans>排序方式</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <div id="divSort" class="input-group para-items">
+                            <span itemid="CustomerId" sorttype="DESC" class="active"><hg:trans>默认排序</hg:trans><span id="CustomerIdSortMark" class="glyphicon glyphicon-arrow-down"></span></span>
+                            <span itemid="CreateTime" sorttype=""><hg:trans>创建时间</hg:trans><span id="CreateTimeSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="PurchaseNumber" sorttype=""><hg:trans>购买次数</hg:trans><span id="PurchaseNumberSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <input type="hidden" id="hidSort" name="hidSort" value="CustomerId" />
+                            <input type="hidden" id="hidSortType" name="hidSortType" value="DESC" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+</form>
+        <div id="divSupplierSearch">
+            
+<div id="f118divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f118divCatalogContentPanel" class="tree" contentgroup="#divSupplierSearch #f118divCatalogContentPanel" navigategroup="#divSupplierSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divSupplierSearch #f118divCatalogContentPanel" navigategroup="#divSupplierSearch .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f118treeObject = new redgle.tree({
+            contentPanelExpr:"#divSupplierSearch #f118divCatalogContentPanel"
+            , navigatePanelExpr:"#divSupplierSearch .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f118treeObject.convertCatalogToData(data);
+f118treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f118treeObject.convertDataToCatalog(data);
+                if(typeof(p848933158onCatalogSelected) == "function") p848933158onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"customer"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f118treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f118treeObject.addItemsToNavigate(data);
+f118treeObject.AddElementItem(data[0]);
+                }
+                else {
+f118treeObject.addItemsToNavigate([data]);
+f118treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f118divSelect").hover(
+            function () {
+                $("#f118divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f118divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div class="status-group parents-nodes" id="divStateItems">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="-1"><a><hg:trans>黑名单客户</hg:trans></a><span></span></label>
+            <label itemid="1"><a><hg:trans>优质客户</hg:trans></a><span></span></label>
+        </div>
+        <div id="p848933158divDataList">
+            <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+                <th>
+                    <input type="checkbox" name="chk_all" id="chk_all" onclick="p848933158doSetCheckBox(this)" />
+                </th>
+            <th style="width:10%"><hg:trans>客户编号</hg:trans></th>
+            <th style="width:15%"><hg:trans>客户名称<br />[国家]</hg:trans></th>
+            <th style="width:10%"><hg:trans>购买次数</hg:trans></th>
+            <th style="width:15%"><hg:trans>客户分类</hg:trans></th>
+            <th style="width:10%"><hg:trans>联系人</hg:trans></th>
+            <th style="width:10%"><hg:trans>联系电话</hg:trans><br /><hg:trans>手机号码</hg:trans></th>
+            <th style="width:10%"><hg:trans>电子邮件</hg:trans></th>
+            
+                <th style="min-width:72px;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p848933158divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Customer?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<link href="css/chosen.css" rel="stylesheet"/>
+
+<script src="js/chosen.jquery.js"></script>
+
+<script src="js/7eaca714a2764fec8cdf1221c5b887c8.js"></script>
+
+<link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+
+<script language="javascript" type="text/javascript">
+    //老客户匹配设置
+    function doShowStatusCodeSettingPanel() {
+        var url = "/Customer/StatusCodeSetting";
+        redgle.tab.create("liStatusCodeSetting", url, translate.format("<hg:trans>优质客户匹配设置</hg:trans>"));
+    }
+    //状态筛选
+    $("#divStateItems>label").click(function () {
+        var $this = $(this);
+        if ($this.attr("class") == "active") {
+            $("#txtStatusCode").val("");
+            $this.removeClass();
+        } else {
+            $("#txtStatusCode").val($this.attr("itemid"));
+            $("#divStateItems>label").removeClass();
+            $this.addClass("active");
+        };
+        $("#searchForm").submit();
+    });
+    $("#divUserFormAndApiUserItems > span").each(function () {
+        $(this).click(function () {
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divUserFormAndApiUserItems > span").removeClass("active");
+                $(this).addClass("active");
+                apiuserid = $(this).attr("apiuserid");
+            }
+            else {
+                $(this).removeClass("active");
+                $("#divUserFormAndApiUserItems > span").removeClass("active");
+            }
+            $("#hidApiAccountItems").val(apiuserid);
+            $("#searchForm").submit();
+        });
+    });
+    $('.date input').datepicker({
+        format: 'yyyy-mm-dd',
+        weekStart: 1,
+        autoclose: true,
+        forceParse: false,
+        language: 'zh-CN'
+    });
+    //支持多平台
+    $("[divapifromitems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = $(this).attr("userform");
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0 && selectedItem != "All") {
+                $("#divapifromitemsall > span").removeClass("active");
+                $(this).addClass("active");
+            } else if (selectedItem == "All") {
+                $("[divapifromitems] > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+                $("#divapifromitemsall > span").removeClass("active");
+            }
+            var selectValue = $("[divapifromitems] > span[class='active']").map(function () {
+                var thisValue = $(this).attr("userform");
+                return thisValue;
+            }).get().join(",");
+            $("#divUserFormAndApiUserItems > span").each(function () {
+                $(this).removeClass("active");
+                if (selectValue.indexOf($(this).attr("userform")) < 0) {
+                    if (selectValue != "All")
+                        $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            })
+            if (selectValue == "All" || selectValue == "") {
+                selectValue = "";
+                $("#divapifromitemsall > span").addClass("active");
+                $("#divUserFormAndApiUserItems span").css("display", "")
+                $("#hidApiForms").val("");
+            }
+            $(this).parent().parent().find("#hidApiForms").val(selectValue);
+            $("#searchForm").submit();
+        });
+    });
+
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        $("#divChooseItems > span").each(function () {
+            var $this = $(this)
+            $this.click(function () {
+                if ($(this).attr("class") == "active") {
+                    $(this).removeClass("active");
+                    $("#hidChoose").val("");
+                } else {
+                    $(this).addClass("active");
+                    $("#hidChoose").val($(this).attr("itemid"));
+                    $("#divChooseItems > span").not($(this)).removeClass("active")
+                }
+
+                var chooseItems = $(this).attr("chooseid")
+                if (chooseItems == "Date") {
+                    $("#Date").css("display", "");
+                    $("#Search").css("display", "none");
+                } else {
+                    $("#Date").css("display", "none");
+                    $("#Search").css("display", "");
+                }
+            })
+        });
+        //选择排序
+        $("#divSort > span").each(function () {
+            $(this).click(function () {
+                var selectedItems = "";
+                var sortType = "";
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divSort > span").removeClass("active");
+                    $("#divSort > span").attr("sorttype", "");
+                    $(this).addClass("active");
+                    $("#divSort > span > span").removeClass().addClass("glyphicon glyphicon-resize-vertical");
+                }
+                selectedItems = $(this).attr("itemid");
+                sortType = $(this).attr("sorttype");
+                if (sortType == "" || sortType == "DESC") {
+                    $(this).attr("sorttype", "ASC");
+                    $("#hidSortType").val("ASC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-up");
+                }
+                else {
+                    $(this).attr("sorttype", "DESC");
+                    $("#hidSortType").val("DESC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-down");
+                }
+                $("#hidSort").val(selectedItems);
+                $("#searchForm").submit();
+            });
+        });
+        $(".chzn-select").chosen({            //初始化组件
+            no_results_text: "没有匹配结果",
+        });
+        $(".chosen-container").css("width", "200px");
+    });
+    function doBatchSendMessage() {
+        var arrId = "";
+        $.each($("input[name='chk_list']:checked"), function () {
+            var orderId = $(this).parent().find("#item_OrderId").val();
+            if (orderId > 0) {
+                if (arrId == "")
+                    arrId = orderId;
+                else
+                    arrId += "," + orderId;
+            }
+        });
+        if (arrId.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>未选择客户或者选择的客户没有订单！</hg:trans>"));
+            return;
+        } else {
+            var url = "../HistoryData/BatchSendMessage?orderIds=" + arrId;
+            var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>批量发送信息</hg:trans>") });
+            selectManageModal.show();
+        }
+    }
+    //买家相关订单
+    function p848933158doSearchOrder(CustomerId) {
+        if (CustomerId == null || CustomerId == "")
+            CustomerId = "";
+        var url = "../HistoryData/OrderAll?pageSize=50&custId=" + CustomerId;
+        redgle.tab.create("liOrderManage", url, translate.format("<hg:trans>买家相关订单</hg:trans>"));
+    }
+
+    //显示线上订单详情
+    function doViewOnlineOrder(orderId) {
+        var url = "../HistoryData/ViewOrderInAll/" + orderId;
+        redgle.tab.create("liOrderDetail", url, translate.format("<hg:trans>订单详情</hg:trans>"));
+    }
+
+    //产品详情
+    function doEditProductData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "../Product/ProductInfo/" + id;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品编辑</hg:trans>"));
+    }
+
+    function  p848933158doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+    //excel导出
+    function OutExcleData(settingList) {
+        var ExportOption = $("input[name=chk_list]:checked").map(function () {
+            return $(this).val();
+        }).get().join(",");
+        $.ajax({
+            type: "POST",
+            url: "/Customer/ExportCustomerExcel",
+            data: {
+                ExportOption: ExportOption,
+                settingList: settingList,
+                txtSearchKey: $("#txtSearchKey").val(),
+                txtCatalogIdPath: $("#txtCatalogIdPath").val(),
+                hidChoose: $("#hidChoose").val(),
+                viewName: "IndexCustomer",
+                pageKey: "IndexCustomer/Export"
+            },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Temp/" + 23 + "/" + data.ResultObject, "_self");
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //客户导出
+    function p848933158doExport(id) {
+        var ExportOption = $("input[name=chk_list]:checked").map(function () {
+            return $(this).val();
+        }).get().join(",");
+        if (ExportOption == "") {
+            redgle.showConfirm(translate.format("<hg:trans>将导出当前条件下的所有查询结果数据。<br/>是否继续？</hg:trans>"), "p848933158doImport1(" + id + ")");
+        } else {
+            redgle.showConfirm(translate.format("<hg:trans>将导出所有选择的数据。<br/>是否继续？</hg:trans>"), "p848933158doImport1(" + id + ")");
+        }
+    }
+    function p848933158doImport1(id) {
+        var width = 950;
+        var height = 560;
+        var url = "/StockHandle/ExcelOutTemplate?viewName=" + "IndexCustomer" + "&pagekey=" + "IndexCustomer/Export";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择需要导出的客户数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+
+    function p848933158onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#searchForm").submit();
+    }
+    function p848933158doEditData(supplierId) {
+        if (supplierId == null || supplierId == "")
+            supplierId = "";
+
+        var url = "/Customer/Edit/" + supplierId;
+        redgle.tab.create("liCustomerEdit", url, translate.format("<hg:trans>客户编辑</hg:trans>"));
+    }
+
+    function p848933158doDeleteData(id) {
+        if (!window.confirm(translate.format("<hg:trans>删除客户信息之后将无法恢复,您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/Customer/Delete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p848933158doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p848933158doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/Customer",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p848933158divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p848933158doImportData() {
+        var url = "/Customer/Import";
+        redgle.tab.create("CustomerImport", url, translate.format("<hg:trans>导入客户</hg:trans>"));
+    }
+
+    //修改客户状态（设置黑名单等）
+    function p848933158SetCustomerStatus(id, statuscode) {
+        if (id == 0) {
+            id = $("input[name=chk_list]:checked").map(function () {
+                return $(this).val();
+            }).get().join(",");
+        }
+        if (id == 0 || !id) {
+            redgle.showMessage("请先选择需要操作的客户！");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Customer/SetCustomerStatus",
+            data: { customerIds: id, statuscode: statuscode },
+            datatype: "text",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.Message);
+                } else {
+                    redgle.showMessage("操作成功！");
+p848933158doReloadData()
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //物流同步设置
+    function p848933158doShowSetCustomerStatusSettingPanel() {
+        var url = "/Customer/SetCustomerStatusSetting";
+        redgle.tab.create("liSetCustomerStatusSetting", url, translate.format("<hg:trans>优质客户规则设置</hg:trans>"));
+    }
+
+    //重新匹配优质客户
+    function p848933158ReMathHeightCustomers() {
+        $.ajax({
+            type: "POST",
+            url: "/Customer/ReMathHeightCustomers",
+        datatype: "text",
+        success: function (data) {
+            if (data.HasError) {
+                redgle.showMessage(data.Message);
+            } else {
+                redgle.showMessage("操作成功！");
+p848933158doReloadData()
+            }
+        },
+        error: function (xhr) {
+            alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+        }
+    });
+    }
+
+
+</script>
+<script src="js/jquery.unobtrusive-ajax.min_1.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/872007a3b4954e24820d2ca521a4decf.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

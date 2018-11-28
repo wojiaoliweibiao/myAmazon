@@ -1,0 +1,237 @@
+<?php
+namespace app\index\model;
+
+use think\Db;
+use think\Loader;
+use think\Controller;
+use MarketplaceWebService\Samples\MarketplaceWebServiceOrders;
+use MarketplaceWebServiceOrders\Samples\ListOrdersSample;
+use MarketplaceWebServiceOrders\Samples\ListOrderItemsSample;
+use MarketplaceWebServiceOrders\Samples\GetOrderSample;
+class Orders extends Controller
+{
+
+
+    public function __construct($parameters = null)
+    {
+
+      Loader::import('MarketplaceWebServiceOrders/Client', EXTEND_PATH);
+      Loader::import('MarketplaceWebServiceOrders/Model/ListOrdersRequest', EXTEND_PATH);
+      Loader::import('MarketplaceWebServiceOrders/Model/ListOrderItemsRequest', EXTEND_PATH);
+      $this->parameters = $parameters;
+    }
+
+    public function ListOrders()
+    {
+
+      // 请求信息
+      $parameters=$this->parameters;
+
+      // 实例化 获取订单 类
+      $listorder=new ListOrdersSample($parameters);
+
+      // 获取订单信息
+      $orderMessage=$listorder->index();
+      // dump($orderMessage);
+
+      // 是否有下一页
+      if(!empty($orderMessage['ListOrdersResult']['NextToken']))
+      {
+        $NextToken=$orderMessage['ListOrdersResult']['NextToken'];
+      }
+      
+      // 订单信息
+      $order=$orderMessage['ListOrdersResult']['Orders']['Order'];
+
+
+      // 查找数据库订单
+      $order_where['uid'] = $_SESSION['module']['user_id'];
+
+      $allOrders=Db::name('index_order')->where($order_where)->field('AmazonOrderId')->select();
+
+      $allOrder=array();
+      foreach ($allOrders as $key => $value) {
+        $allOrder[$key] = $value['AmazonOrderId'];
+      }
+      
+      foreach ($order as $k => $v) {
+
+        $data[$k]['AmazonOrderId'] = $v['AmazonOrderId'];//订单编号
+        // 订单是否重复
+        if(!in_array($v['AmazonOrderId'],$allOrder))
+        {
+          $data[$k]['OrderStatus'] = $v['OrderStatus'];//订单状态
+
+          if(!empty($v['OrderTotal']))
+          {
+            $data[$k]['CurrencyCode'] = $v['OrderTotal']['CurrencyCode'];//交易币种
+            $data[$k]['TotalAmount'] = $v['OrderTotal']['Amount'];//价格
+          }
+          
+          $data[$k]['MarketplaceId'] = $v['MarketplaceId'];// 交易站点
+
+          $data[$k]['LatestShipDate'] = $v['LatestShipDate'];// 最晚发货日期
+
+          if(!empty($v['LatestDeliveryDate']))
+          {
+            $data[$k]['LatestDeliveryDate'] = $v['LatestDeliveryDate'];// 最晚收日期
+          }
+          // 配送地址
+          if(!empty($v['ShippingAddress']))
+          {
+
+            // 处理返回数据
+            $data[$k]['BuyerName'] = $v['ShippingAddress']['Name'];// 买家姓名
+            $data[$k]['AddressLine1'] = $v['ShippingAddress']['AddressLine1'];// 市内地址
+            $data[$k]['City'] = $v['ShippingAddress']['City'];// 城市
+            $data[$k]['StateOrRegion'] = $v['ShippingAddress']['StateOrRegion'];// 国家或区
+            $data[$k]['PostalCode'] = $v['ShippingAddress']['PostalCode'];// 邮政编码
+            $data[$k]['CountryCode'] = $v['ShippingAddress']['CountryCode'];// 国家代码
+            if(!empty($v['ShippingAddress']['Phone'])){  
+              $data[$k]['BuyerPhone'] = $v['ShippingAddress']['Phone'];// 联系人电话
+            }
+            if(!empty($v['ShippingAddress']['BuyerEmail'])){  
+              $data[$k]['BuyerEmail'] = $v['ShippingAddress']['BuyerEmail'];// 买家邮箱
+            }
+          }
+          if(!empty($v['PaymentMethodDetails']['PaymentMethodDetail']))
+          {
+            $data[$k]['PaymentMethodDetail'] = $v['PaymentMethodDetails']['PaymentMethodDetail'];// 付款方式
+          }
+          $data[$k]['NumberOfItemsShipped'] = $v['NumberOfItemsShipped'];// 订单数量
+
+          $data[$k]['uid'] = $_SESSION['module']['user_id'];// 订单对应用户
+
+          Db::name('index_order')->insert($data[$k]);
+          $oid=Db::name('index_order')->getLastInsID();
+          $data[$k]['oid'] = $oid;
+
+        }else{
+          unset($data[$k]);
+        }
+
+      }
+      // dump($data);
+      if(!empty($data))
+      {
+        $this->listOrderItems($data);
+      }
+
+
+
+    }
+    //详情获取方式1： 获取订单详情的报告
+    public function orderItems()
+    {
+      
+    }
+
+
+    //详情获取方式2： 根据您指定的 AmazonOrderId 返回订单商品。
+    public function listOrderItems($AmazonOrderId)
+    {
+
+      $parameters=$this->parameters;
+
+      $listorder=new ListOrderItemsSample($parameters);
+      
+      $i=0;
+      $list=0;
+      // 查询每个订单的详情
+      $update=array();
+      foreach ($AmazonOrderId as $key => $value) {
+
+        // 根据订单对应的订单号，查找订单详情
+        $data[$i]=$listorder->Index($value['AmazonOrderId']);
+
+        // 将数据转为数组
+        $arr=xmlToarr($data[$i]);
+
+        // dump($arr);
+        // 订单所有项信息
+        $update_data=$arr['ListOrderItemsResult']['OrderItems']['OrderItem'];
+
+        // 简单验证是否是索引数组，如果是说明买了不同变体（款式），则
+        if(_checkAssocArray($update_data))
+        {
+          foreach ($update_data as $k => $v) {
+            $update[$list]['ASIN'] = $v['ASIN'];//ASIN
+            $update[$list]['SellerSKU'] = $v['SellerSKU'];//SKU
+
+            $update[$list]['OrderItemId'] = $v['OrderItemId'];
+            $update[$list]['Title'] = $v['Title'];//标题
+            $update[$list]['QuantityOrdered'] = $v['QuantityOrdered'];//订单数量
+            if(!empty($v['ItemPrice']))
+            {
+              $update[$list]['CurrencyCode'] = $v['ItemPrice']['CurrencyCode'];//币种
+              $update[$list]['Amount'] = $v['ItemPrice']['Amount'];//价格
+            }else{
+              $update[$list]['CurrencyCode'] = ' ';//币种
+              $update[$list]['Amount'] = ' ';//价格
+            }
+            if(!empty($v['ShippingPrice']))
+            {
+              $update[$list]['ShippingPrice'] = $v['ShippingPrice']['Amount'];//运费
+            }else{
+              $update[$list]['ShippingPrice'] = ' ';//运费
+            }
+            $update[$list]['uid'] = $_SESSION['module']['user_id'];// 订单对应用户;
+            $update[$list]['oid'] = $value['oid'];// 对应订单;
+
+            $update[$list]['date'] = time();//时间
+
+            $list++;
+
+            
+          }   
+        }else{
+            $update[$list]['ASIN'] = $update_data['ASIN'];//ASIN
+            $update[$list]['SellerSKU'] = $update_data['SellerSKU'];//SKU
+
+            $update[$list]['OrderItemId'] = $update_data['OrderItemId'];
+            $update[$list]['Title'] = $update_data['Title'];//标题
+            $update[$list]['QuantityOrdered'] = $update_data['QuantityOrdered'];//订单数量
+            if(!empty($update_data['ItemPrice']))
+            {
+              $update[$list]['CurrencyCode'] = $update_data['ItemPrice']['CurrencyCode'];//币种
+              $update[$list]['Amount'] = $update_data['ItemPrice']['Amount'];//价格
+            }else{
+              $update[$list]['CurrencyCode'] = ' ';//币种
+              $update[$list]['Amount'] = ' ';//价格
+            }
+            if(!empty($update_data['ShippingPrice']))
+            {
+              $update[$list]['ShippingPrice'] = $update_data['ShippingPrice']['Amount'];//运费
+            }else{
+              $update[$list]['ShippingPrice'] = ' ';//运费
+            }
+            $update[$list]['uid'] = $_SESSION['module']['user_id'];// 订单对应用户;
+            $update[$list]['oid'] = $value['oid'];// 对应订单;
+
+            $update[$list]['date'] = time();//时间
+
+            $list++;
+        }
+
+        // ListOrderItems 和 ListOrderItemsByNextToken 操作共享的最大请求限额为 30 个，恢复速率为每 2 秒钟 1 个请求
+        if($i>29)
+        {
+          // 休息2秒
+          sleep(2);
+        }
+        $i++;
+
+      }
+      // 查询每个订单的详情 end
+
+      // 存储到订单详情表中
+      // dump($update);
+      Db::name('index_order_orderitems')->insertAll($update);
+
+
+    }
+
+
+
+ 
+}

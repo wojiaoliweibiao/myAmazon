@@ -1,0 +1,1290 @@
+{:widget('Blog/header')}
+
+      
+<script src="__STATIC__/index/js/public/chosen.jquery.js"></script> 
+<script src="__STATIC__/index/js/public/jquery.unobtrusive-ajax.min.js"></script> 
+
+
+  <link href="__STATIC__/index/css/Logistics/chosen.css" rel="stylesheet" /> 
+<body>
+{:widget('Blog/left')}
+ 
+
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>物流方案</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div style="float:right;" id="divFollowButtons">
+            <div class="btn-group false">
+                <button type="button" class="btn btn-info btn-sm dropdown-toggle" style="margin-top: 2px;margin-right: 10px; " data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-tag"></i>&nbsp;<hg:trans>标记订单</hg:trans><span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" style="min-width:93px">
+
+                    <li class="divider"></li>
+                    <li><a href="http://yhjm.sumool.com/Mark/MarkSetting/LogisticPlan" target="_blank"><hg:trans>标记管理</hg:trans></a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="float:right">
+            <button type="button" class="btn btn-info btn-sm" onclick="p1068799949doEditData()" style="margin-right: 10px; margin-top: 5px;"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加物流方案</hg:trans></button>
+        </div>
+        
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/Logistics/LogisticPlan?Length=9" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1068799949divDataList" id="searchForm" method="post">                <div id="divMoreSearach" role="form">
+                    <div class="form-group parents-nodes" style=" margin-right:10px;">
+                        <label for="txtIsActive"><hg:trans>方案名称</hg:trans></label>
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" class="form-control" style="width:220px;" />
+                    </div>
+                    <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                        <label for="txtIsActive"><hg:trans>物流方式</hg:trans>/<hg:trans>规则类型</hg:trans></label>
+                        <input type="text" name="txtLogistic" id="txtLogistic" hgtrans="true" class="form-control" style="width:220px;" />
+                    </div>
+                    <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                        <label for="txtIsActive"><hg:trans>是否激活</hg:trans></label>
+                        <select class="form-control" style="width:220px;" id="txtIsActive" name="txtIsActive">
+                            <option value=""></option>
+                            <option value="1"><hg:trans>是</hg:trans></option>
+                            <option value="-1"><hg:trans>否</hg:trans></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default"><hg:trans>查询</hg:trans></button>
+                </div> 
+</form>        </div>
+        <div id="p1068799949divDataList">
+            
+  
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:3%;">
+                <input type="checkbox" name="chk_all" id="chk_all" />
+            </th>
+            <th>
+                <hg:trans>标记</hg:trans>
+            </th>
+            <th>
+                <hg:trans>方案名称</hg:trans>
+            </th>
+            <th>
+                <hg:trans>物流方式/规则类型</hg:trans>
+            </th>
+            <th>
+                <hg:trans>排序号(数字越大优先级越高)</hg:trans>
+            </th>
+            <th>
+                <hg:trans>是否激活</hg:trans>
+            </th>
+            <th>
+                <hg:trans>操作</hg:trans>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr ondblclick="p1068799949doEditData('2')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="2" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    EQ英国快速专线小包裹（EQUK-2)
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'2','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('2')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('2')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('2')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('3')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="3" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    EQ德国快速专线小包裹（EQEUR-71DE)
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'3','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('3')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('3')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('3')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('4')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="4" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    EQ意大利快速专线小包裹（EQIT-2)
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'4','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('4')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('4')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('4')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('5')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="5" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    EQ法国快速小包（EQFR-2)
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'5','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('5')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('5')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('5')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('6')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="6" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    EQ西班牙快速专线小包
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'6','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('6')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('6')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('6')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('7')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="7" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    俄罗斯小包挂号 
+                </td>
+                <td>
+                    挂号
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'7','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('7')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('7')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('7')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('8')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="8" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    快邮小包二级平邮 
+                </td>
+                <td>
+                    平邮
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'8','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('8')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('8')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('8')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('9')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="9" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    快邮小包二级挂号 
+                </td>
+                <td>
+                    挂号
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'9','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('9')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('9')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('9')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('10')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="10" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    墨西哥专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'10','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('10')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('10')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('10')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('11')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="11" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    欧洲邮局快速小包
+                </td>
+                <td>
+                    挂号
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'11','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('11')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('11')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('11')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('12')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="12" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    中欧-荷兰线
+                </td>
+                <td>
+                    其它
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'12','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('12')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('12')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('12')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('13')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="13" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    中欧专线-英国线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'13','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('13')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('13')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('13')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('14')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="14" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    加拿大专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'14','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('14')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('14')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('14')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('15')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="15" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    澳洲专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'15','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('15')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('15')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('15')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('16')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="16" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    德国专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'16','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('16')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('16')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('16')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('17')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="17" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    法国专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'17','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('17')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('17')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('17')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('18')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="18" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    巴西专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'18','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('18')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('18')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('18')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('19')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="19" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    新加坡专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'19','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('19')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('19')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('19')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('20')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="20" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    香港邮政专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'20','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('20')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('20')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('20')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('21')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="21" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    西班牙专线
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'21','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('21')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('21')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('21')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('22')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="22" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    外围邮政小包
+                </td>
+                <td>
+                    平邮
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'22','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('22')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('22')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('22')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('23')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="23" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    外围邮政小包
+                </td>
+                <td>
+                    挂号
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'23','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('23')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('23')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('23')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('24')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="24" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    东南邮政小包
+                </td>
+                <td>
+                    平邮
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'24','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('24')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('24')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('24')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('25')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="25" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    东南邮政小包
+                </td>
+                <td>
+                    挂号
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'25','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('25')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('25')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('25')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('26')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="26" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    德国邮政小包
+                </td>
+                <td>
+                    平邮
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'26','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('26')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('26')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('26')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('27')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="27" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    德国邮政小包
+                </td>
+                <td>
+                    挂号
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'27','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('27')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('27')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('27')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('28')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="28" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    德国经济小包
+                </td>
+                <td>
+                    其它
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'28','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('28')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('28')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('28')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('29')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="29" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    英国专线经济小包
+                </td>
+                <td>
+                    专线
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'29','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('29')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('29')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('29')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('30')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="30" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    中英快邮小包
+                </td>
+                <td>
+                    其它
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'30','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('30')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('30')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('30')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr ondblclick="p1068799949doEditData('31')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="31" />
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    快邮1级小包
+                </td>
+                <td>
+                    挂号
+                </td>
+                
+                <td>
+                    0 
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditOrderNum(this,'31','0')" hgtrans="true" data-toggle="orderoperation" data-placement="top"><span class="glyphicon glyphicon-edit" title="编辑" style="color:#337ab7"></span></button>
+  </td>
+
+                <td>
+                        <hg:trans>是</hg:trans>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doEditData('31')" hgtrans="true" data-toggle="orderoperation" data-placement="top" data-original-title="编辑"><span class="glyphicon glyphicon-edit" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doCopyData('31')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="复制"><span class="glyphicon glyphicon-copy" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p1068799949doDeleteData('31')" hgtrans="true" data-toggle="orderoperation" data-placement="top"  data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="30" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1068799949divDataList" data-maxpages="3" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Logistics/LogisticPlan?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/Logistics/LogisticPlan?pageIndex=2&amp;pagesize=30">2</a>  <a data-pageindex="3" href="/Logistics/LogisticPlan?pageIndex=3&amp;pagesize=30">3</a>  <a data-pageindex="2" href="/Logistics/LogisticPlan?pageIndex=2&amp;pagesize=30">下一页</a>  <a data-pageindex="3" href="/Logistics/LogisticPlan?pageIndex=3&amp;pagesize=30">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20">20</option><option value="30" selected="selected">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 81 条数据</span></div><div style="clear:both"></div></div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script language="javascript" type="text/javascript">
+    //产品标记
+    function doMarkProduct(parentPageKey, markIds) {
+        debugger
+        var productIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            productIds += $(this).val() + ",";
+        });
+        if (productIds.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请选择产品！</hg:trans>"));
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/MarkPreviewProduct",
+            data: {
+                productIds: productIds, markIds: markIds
+            },
+            datatype: "text",
+            success: function (data) {
+                if (!data.HasError) {
+                    eval(parentPageKey + "doReloadData()");
+                }
+                else {
+                    //redgle.showMessage("<hg:trans>标记产品出错</hg:trans>：" + data.Message);
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+
+    //取消订单标记
+    function doDeleteProductMark(parentPageKey, markRelationId) {
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/DeletePreviewProductMark",
+            data: {
+                markRelationId: markRelationId
+            },
+            datatype: "text",
+            success: function (data) {
+                if (!data.HasError) {
+                    eval(parentPageKey + "doReloadData()");
+                }
+                else {
+                    //redgle.showMessage("<hg:trans>取消标记出错</hg:trans>：" + data.Message);
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    function p1068799949doEditData(logisticPlanId) {
+        if (logisticPlanId == null || logisticPlanId == "")
+            logisticPlanId = "";
+        var url = "/Logistics/LogisticPlanEdit/" + logisticPlanId;
+        redgle.tab.create("liLogisticPlanEdit", url, translate.format("<hg:trans>物流方案编辑</hg:trans>"));
+    }
+    function p1068799949doDeleteData(logisticPlanId) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/LogisticPlanDelete",
+            data: { logisticPlanId: logisticPlanId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p1068799949doReloadData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1068799949doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        postData["pageSize"] = 30;
+
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/LogisticPlan",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1068799949divDataList").html(data);
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function p1068799949doCopyData(logisticPlanId) {
+        if (logisticPlanId == null || logisticPlanId == "")
+            logisticPlanId = "";
+        var url = "/Logistics/LogisticPlanCopy/" + logisticPlanId;
+        redgle.tab.create("liLogisticPlanEdit", url, translate.format("<hg:trans>物流方案复制</hg:trans>"));
+    }
+
+    function p1068799949doEditOrderNum(event, logisticPlanId, orderNum) {
+       // var orderNum = $.trim($(event).parent().text());
+        var td = $(event).parent().html("<input type='text' value=" + orderNum + " style=\"width: 65px;text-align: center;\"> <input type=\"button\" onclick=\"PreservationOrderNum(this,'" + logisticPlanId + "','" + orderNum + "')\" value=\"保存\" hgtrans=\"true\"> <input type=\"button\"  hgtrans=\"true\" value=\"取消\" onclick=\"cancelEdit(this,'" + logisticPlanId + "','" + orderNum + "')\">");
+    }
+
+    function cancelEdit(event, logisticPlanId, orderNum) {
+
+        $(event).parent().html(orderNum+" <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"p1068799949doEditOrderNum(this,'" + logisticPlanId + "','" + orderNum + "')\" hgtrans=\"true\" data-toggle=\"orderoperation\" data-placement=\"top\" data-original-title=\"编辑\"><span class=\"glyphicon glyphicon-edit\" title=\"编辑\" style=\"color:#337ab7\"></span></button>");
+        //$(event).parent().html("" + orderNum + "<a href=\"javascript:void(0)\" onclick=\"p1068799949doEditOrderNum(this,'" + logisticPlanId + "')\" hgtrans=\"true\" class=\"glyphicon glyphicon-edit\" title=\"编辑\"></a>");
+    }
+
+    function PreservationOrderNum(event, logisticPlanId) {
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/GetOrderNumRepeat",
+            data: { orderNum: $(event).prev().val() },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [data.Message]));
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Logistics/PreservationPlanOrderNum",
+                        data: { logisticPlanId: logisticPlanId, orderNum: $(event).prev().val() },
+                        datatype: "json",
+                        success: function (data) {
+                            if (data.HasError) {
+                                redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                            } else {
+p1068799949doReloadData();
+                            }
+                        }
+                    });
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script>
+
+    $(function () {
+        $("table").find("a[groupkey='Ali1688OrderNo']").each(function () {
+            //触发后不消失 离开后才消失
+            $(this).popover({ trigger: "manual", html: true, animation: false }).on("mouseenter", function () {
+                var _this = this;
+                $(this).popover("show");
+                $(".popover").on("mouseleave", function () {
+                    $(_this).popover('hide');
+                });
+            }).on("mouseleave", function () {
+                var _this = this;
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 300);
+            });
+        });
+        $('[data-toggle="orderoperation"]').tooltip();
+        if ($("#hidOpenAllDetailType1").attr("name") == "sku") {
+            var isOpen = $("#hidOpenAllDetailType").val();
+            $('input[name="chk_list"]').each(function () {
+                var span = $(this).parent().parent().find("[name=spanForPurDetail]");
+                var cls = span.attr("class");
+                if (cls.indexOf("glyphicon glyphicon-triangle-right") >= 0 && isOpen == "false") {
+                    span.click();
+                }
+                else if (cls.indexOf("glyphicon glyphicon-triangle-bottom") >= 0 && isOpen == "true") {
+                    span.click();
+                }
+            });
+            if (isOpen == "true") {
+                $("#spanForPurDetailid").removeClass();
+                $("#spanForPurDetailid").addClass("glyphicon glyphicon-triangle-right");
+                $("#hidOpenAllDetailType").val("false");
+            }
+            else {
+                $("#spanForPurDetailid").removeClass();
+                $("#spanForPurDetailid").addClass("glyphicon glyphicon-triangle-bottom");
+                $("#hidOpenAllDetailType").val("true");
+            }
+        }
+    });
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/7ebd955204f94a638e6a0183bf4895bb.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

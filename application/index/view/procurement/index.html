@@ -1,0 +1,2065 @@
+{:widget('Blog/header')}
+
+
+    <script src="__STATIC__/index/js/c556be63d1234f3bb4022c5dcd4be9d4.js"></script>
+
+    <script src="__STATIC__/index/js/8e1680447bbd4e069b0a62c61310c8f2.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+
+{:widget('Blog/left')}
+   
+                
+<script src="__STATIC__/index/js/18791602a57841ac993c8d257e0afd81.js"></script>
+
+<script src="__STATIC__/index/js/wdatepicker.js"></script>
+
+<script src="__STATIC__/index/js/4b1c67d7965c43eeb91567e0b9002af3.js"></script>
+
+<script src="__STATIC__/index/js/bb1289408c164c4d83f84c6339e065a0.js"></script>
+
+<script src="__STATIC__/index/js/5d9718feb4944ee9915990c20c101aa3.js"></script>
+
+
+
+
+
+<style type="text/css">
+    .tbcolor {
+        background-color: #f5f5f5;
+    }
+</style>
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabPurOrderManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>采购单</hg:trans></a></li>
+</ul>
+
+
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabPurOrderManage" role="tabpanel" class="tab-pane fade active in">
+        <input type="hidden" id="hidStoreInfo" name="hidStoreInfo" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;默认仓库（自有仓）&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+        <input type="hidden" id="hidSupplierInfo" name="hidSupplierInfo" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;&quot;,&quot;Value&quot;:&quot;&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;1688供应商&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+        <input type="hidden" id="hidMarkInfo" name="hidMarkInfo" value="" />
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/PurOrder?Length=8" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p2019889841divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <input type="hidden" id="hidStore" name="hidStore" value="" />
+                <input type="hidden" id="hidSupplier" name="hidSupplier" value="" />
+                <input type="hidden" id="hidMark" name="hidMark" value="" />
+                <div id="J_selector" class="selector" style="border:none">
+                <div id="DropListItem"></div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px"><hg:trans>付款状态</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divPaymentStatus" class="input-group para-items-sm">
+                            <span itemid="AlreadyPaid" chooseid="Search"><hg:trans>已付款</hg:trans></span>
+                            <span itemid="PartPayment" chooseid="Search"><hg:trans>部分付款</hg:trans></span>
+                            <span itemid="NoPayment" chooseid="Search"><hg:trans>未付款</hg:trans></span>
+                            <span itemid="CancelPayment" chooseid="Search"><hg:trans>取消付款</hg:trans></span>
+                            <input type="hidden" id="hidPaymentStatus" name="hidPaymentStatus" value="divPaymentStatus" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px"><hg:trans>搜索类型</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divChooseItems" class="input-group para-items-sm">
+                            <span itemid="PurOrderNo" chooseid="Search" class="active"><hg:trans>采购单号</hg:trans></span>
+                            <span itemid="TrackNo" chooseid="Search"><hg:trans>运单号</hg:trans></span>
+                            <span itemid="RelationNo" chooseid="Search"><hg:trans>来源单号</hg:trans></span>
+                            <span itemid="CorrelationNo" chooseid="Search"><hg:trans>关联单号</hg:trans></span>
+                            <span itemid="SKU" chooseid="Search"><hg:trans>SKU</hg:trans></span>
+                            <span itemid="ProductName" chooseid="Search"><hg:trans>产品名称</hg:trans></span>
+                            <span itemid="CreateTime" chooseid="Date"><hg:trans>创建日期</hg:trans></span>
+                            <span itemid="PurFinishDate" chooseid="Date"><hg:trans>结束日期</hg:trans></span>
+                            <span itemid="PurUserName" chooseid="Search"><hg:trans>采购员</hg:trans></span>
+                            <span itemid="BuyerRelationOrder" chooseid="Search"><hg:trans>1688采购单号</hg:trans></span>
+                            <span itemid="Remarks" chooseid="Search"><hg:trans>备注</hg:trans></span>
+                            <input type="hidden" id="hidChoose" name="hidChoose" value="PurOrderNo" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group " style="display:none;" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:90px"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm">
+                            <span>
+                                <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" onfocus="WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss' })" placeholder="开始时间" />
+                            </span>
+                            <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                            <span>
+                                <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" onfocus="WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss' })" placeholder="结束时间" />
+                            </span>
+                            <span class="input-group-btn">
+                                &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:90px"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm">
+                            <input type="text" hgtrans="true" name="txtSearchKey" id="txtSearchKey" class="form-control" />
+                            <span class="input-group-btn">
+                                <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px"><hg:trans>物流状态</hg:trans></label>
+                      <div class="col-sm-10">
+                          <div id="divExpressLogisticStatus" class="input-group para-items-sm">
+                              <span itemid="Signed" chooseid="Search"><hg:trans>签收</hg:trans></span>
+                              <span itemid="SellerSended" chooseid="Search"><hg:trans>卖家发货</hg:trans></span>
+                              <span itemid="NoLogisticMsg" chooseid="Search"><hg:trans>无物流信息</hg:trans></span>
+                              <span itemid="Ontheway" chooseid="Search"><hg:trans>在途</hg:trans></span>
+                              <span itemid="SellNotSendGoods" chooseid="Search"><hg:trans>卖家未发货</hg:trans></span>
+                              <input type="hidden" id="hidExpressLogisticStatus" name="hidExpressLogisticStatus" value="" />
+                          </div>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:90px"><hg:trans>排序方式</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divSort" class="input-group para-items-sm">
+                            <span itemid="CreateTime" sorttype="DESC" class="active"><hg:trans>创建时间</hg:trans>&nbsp;<span id="CreateTimeSortMark" class="glyphicon glyphicon-menu-down"></span></span>
+                            <span itemid="PurOrderNo" sorttype=""><hg:trans>采购单号</hg:trans>&nbsp;<span id="PurOrderNoSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="SupplierNo" sorttype=""><hg:trans>供应商编号</hg:trans>&nbsp;<span id="SupplierNoSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="SumFees" sorttype=""><hg:trans>预估金额</hg:trans>&nbsp;<span id="SumFeesSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="TotalNum" sorttype=""><hg:trans>申请数量</hg:trans>&nbsp;<span id="TotalNumSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <span itemid="ApproveTime" sorttype=""><hg:trans>审核日期</hg:trans>&nbsp;<span id="ApproveTimeSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                            <input type="hidden" id="hidSort" name="hidSort" value="CreateTime" />
+                            <input type="hidden" id="hidSortType" name="hidSortType" value="DESC" />
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+</form>        </div>
+        <div class="status-group" id="divStateItems">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="-2"><a><hg:trans>待下单</hg:trans></a><span></span></label>
+            <label itemid="3"><a><hg:trans>待审核</hg:trans></a><span></span></label>
+            <label itemid="-1"><a><hg:trans>等待到货</hg:trans></a><span></span></label>
+            <label itemid="0"><a><hg:trans>部分到货</hg:trans></a><span></span></label>
+            <label itemid="1"><a><hg:trans>全部到货</hg:trans></a><span></span></label>
+            <label itemid="-3"><a><hg:trans>审批驳回</hg:trans></a><span></span></label>
+            <label itemid="2"><a><hg:trans>已作废</hg:trans></a><span></span></label>
+            <label itemid="4"><a><hg:trans>入库驳回</hg:trans></a><span></span></label>
+        </div>
+        
+        <div id="p2019889841divDataList">
+            
+
+
+<div class="datalist-top">
+    <div class="button-area parents-nodes" style="float:right" id="divFollowButtons">
+        <button type="button" class="btn btn-primary btn-sm" onclick="p2019889841doCreate()"><i class="glyphicon glyphicon-plus"></i>&nbsp;<hg:trans>创建采购单</hg:trans></button>
+        <div class="btn-group false">
+            <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-tag"></i>&nbsp;<hg:trans>标记采购单</hg:trans><span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" style="min-width:93px;max-height:500px;overflow:auto">
+
+                <li><a href="http://yhjm.sumool.com/Mark/MarkSetting/PurOrder" target="_blank"><hg:trans>设置标记</hg:trans></a></li>
+                <li><a href="javascript:void(0)" onclick="doDeleteMarkPurOrders('p2019889841')"><hg:trans>删除标记</hg:trans></a></li>
+            </ul>
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon glyphicon-print"></i>&nbsp;<hg:trans>打印采购单</hg:trans><span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-left" role="menu" style="min-width:130px;">
+                <li><a href="javascript:void(0)" onclick="p2019889841doPrintPurOrder('SKU')"><hg:trans>按SKU打印</hg:trans></a></li>
+                <li><a href="javascript:void(0)" onclick="p2019889841doPrintPurOrder('PurOrder')"><hg:trans>按采购单打印</hg:trans></a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-log-out"></i>&nbsp;<hg:trans>导入</hg:trans><span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-left" role="menu" style="min-width:130px;">
+                <li><a href="javascript:void(0)" onclick="p2019889841ImportWaybillNumber()"><hg:trans>导入运单号</hg:trans></a></li>
+                <li><a href="javascript:void(0)" onclick="p2019889841doExportArrive()"><hg:trans>导入到货</hg:trans></a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-export"></i>&nbsp;<hg:trans>导出</hg:trans><span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-left" role="menu" style="min-width:140px;">
+                <li><a href="javascript:void(0)" onclick="p2019889841doExportSumPurOrder()"><hg:trans>导出汇总采购单</hg:trans></a></li>
+                <li><a href="javascript:void(0)" onclick="p2019889841doExportData()"><hg:trans>导出采购单明细</hg:trans></a></li>
+                <li><a href="javascript:void(0)" onclick="p2019889841doExportPuringPayment()"><hg:trans>导出付费记录</hg:trans></a></li>
+            </ul>
+        </div>
+                <button type="button" class="btn btn-info btn-sm" onclick="p2019889841doCopyData()"><i class="glyphicon glyphicon-duplicate"></i>&nbsp;<hg:trans>批量复制</hg:trans></button>
+        <input type="hidden" id="hidOpenAllDetailType" value="false" />
+        <a id="btnOpenWindow" class="btn btn-primary" target="_blank" style="display:none" href="javascript:void(0)"></a>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th><input type="checkbox" name="chk_all" id="chk_all" onclick="p2019889841doSetCheckBox(this)" /></th>
+            <th><hg:trans>标记</hg:trans></th>
+            <th style="width:20%"><hg:trans>采购单号</hg:trans> <br /><hg:trans>来源单号</hg:trans><br /><hg:trans>关联单号</hg:trans><br /><hg:trans>1688单号</hg:trans></th>
+            <th><hg:trans>仓库</hg:trans><br />[<hg:trans>供应商</hg:trans>]</th>
+            <th><hg:trans>创建人</hg:trans><br />[<hg:trans>采购员</hg:trans>]</th>
+            <th><hg:trans>已付金额</hg:trans></th>
+            <th><hg:trans>预估金额</hg:trans></th>
+            <th>
+                <hg:trans>数量</hg:trans>
+                <input type="hidden" id="hidOpenAllDetailType1" value="false" />
+                <span class="glyphicon glyphicon-triangle-right" id="spanForPurDetailid" style="cursor:pointer" hgtrans="true" onclick="javascript: p2019889841doOpenAllDetail(event)" title="展开全部采购单明细"></span>
+                <br /><hg:trans>状态</hg:trans>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </th>
+            <th><hg:trans>运单号</hg:trans></th>
+            <th>
+                <hg:trans>创建日期</hg:trans>
+
+                <br /><hg:trans>付款状态</hg:trans>
+            </th>
+            <th style="width:8%"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr id="tr7" ondblclick="p2019889841doViewData('7')">
+                <td style="line-height:22px">
+                    <input type="checkbox" name="chk_list" value="7" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已作废" />
+                    <input data-val="true" data-val-number="字段 PurOrderId 必须是一个数字。" data-val-required="PurOrderId 字段是必需的。" id="item_PurOrderId" name="item.PurOrderId" type="hidden" value="7" />
+                    <input id="item_PurOrderNo" name="item.PurOrderNo" type="hidden" value="PO-201805200001" />
+                    <input id="item_StoreName" name="item.StoreName" type="hidden" value="默认仓库" />
+                    <input data-val="true" data-val-number="字段 PurUserId 必须是一个数字。" data-val-required="PurUserId 字段是必需的。" id="item_PurUserId" name="item.PurUserId" type="hidden" value="0" />
+                    <input data-val="true" data-val-number="字段 SupplyId 必须是一个数字。" data-val-required="SupplyId 字段是必需的。" id="item_SupplyId" name="item.SupplyId" type="hidden" value="0" />
+                    <input type="hidden" id="hidPurOrderRemarks7" value="" />
+                </td>
+                <td style="line-height:25px">
+                    
+                </td>
+                <td style="line-height:22px">
+                    <span style="font-size:13px;" class="limingcentUrlpic">PO-201805200001</span>
+                    <br />
+<span>-</span>                    <br />
+<span>-</span>                                        <span>-</span>                </td>
+                <td style="text-align: left ! important; width: 150px; word-break: break-all;line-height:22px">
+                    默认仓库<br /><a href="javascript:void(0)" onclick="p2019889841doEditData(1)">1688供应商</a>
+                </td>
+                <td style="line-height:22px">
+                    cheerwsn<br />cheerwsn
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>已付金额</hg:trans>：0.00<br />
+                    <hg:trans>已付货款</hg:trans>：0.00<br /><hg:trans>运费</hg:trans>：0.00<br /><hg:trans>其它</hg:trans>：0.00
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>合计</hg:trans>：11.00<br />
+                    <hg:trans>货款</hg:trans>：11.00<br />
+                    <hg:trans>运费</hg:trans>：0.00<br />
+                    <hg:trans>其他</hg:trans>：0.00<br />
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>申请</hg:trans>：1
+                        <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'7','')" title="查看采购单明细"></span>
+                    <br /><hg:trans>到货</hg:trans>：0
+
+                        <div><span style='color:gray;font-weight:bold;font-size:14px'><hg:trans>已作废</hg:trans></span></div>
+                </td>
+                <td style="line-height:22px">
+                    <a href='javascript:void(0)' title='编辑运单信息' hgtrans='true' onclick="doSelectPurExpressList(7,'PO-201805200001')" class='glyphicon glyphicon-edit' title='入库'></a>
+                </td>
+                <td style="line-height:22px">
+                    <div>2018/5/20 11:49:00</div>
+
+                        <label class="text-danger">未付款</label>
+                </td>
+                <td style="line-height:33px">
+                    <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doViewData('7')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="详情"><span class="glyphicon glyphicon-search" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doPrintProductLable('7')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="打印商品标签"><span class="glyphicon glyphicon-print" style="color:#337ab7"></span></button>
+                    <br />
+                                                                                
+                                                            
+                        <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doDelte('7')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr id="tr6" ondblclick="p2019889841doViewData('6')">
+                <td style="line-height:22px">
+                    <input type="checkbox" name="chk_list" value="6" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已作废" />
+                    <input id="item_PurOrderId" name="item.PurOrderId" type="hidden" value="6" />
+                    <input id="item_PurOrderNo" name="item.PurOrderNo" type="hidden" value="PO-201805170002" />
+                    <input id="item_StoreName" name="item.StoreName" type="hidden" value="默认仓库" />
+                    <input id="item_PurUserId" name="item.PurUserId" type="hidden" value="0" />
+                    <input id="item_SupplyId" name="item.SupplyId" type="hidden" value="0" />
+                    <input type="hidden" id="hidPurOrderRemarks6" value="缺货生成采购单，缺货订单号：171-6070870-7045927-R1" />
+                </td>
+                <td style="line-height:25px">
+                    
+                </td>
+                <td style="line-height:22px">
+                    <span style="font-size:13px;" class="limingcentUrlpic">PO-201805170002</span>
+                    <br />
+<span>-</span>                    <br />
+<span>-</span>                                        <span>-</span>                </td>
+                <td style="text-align: left ! important; width: 150px; word-break: break-all;line-height:22px">
+                    默认仓库<br /><a href="javascript:void(0)" onclick="p2019889841doEditData(1)">1688供应商</a>
+                </td>
+                <td style="line-height:22px">
+                    cheerwsn<br />cheerwsn
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>已付金额</hg:trans>：0.00<br />
+                    <hg:trans>已付货款</hg:trans>：0.00<br /><hg:trans>运费</hg:trans>：0.00<br /><hg:trans>其它</hg:trans>：0.00
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>合计</hg:trans>：10.00<br />
+                    <hg:trans>货款</hg:trans>：10.00<br />
+                    <hg:trans>运费</hg:trans>：0.00<br />
+                    <hg:trans>其他</hg:trans>：0.00<br />
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>申请</hg:trans>：1
+                        <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'6','')" title="查看采购单明细"></span>
+                    <br /><hg:trans>到货</hg:trans>：0
+
+                        <div><span style='color:gray;font-weight:bold;font-size:14px'><hg:trans>已作废</hg:trans></span></div>
+                </td>
+                <td style="line-height:22px">
+                    <a href='javascript:void(0)' title='编辑运单信息' hgtrans='true' onclick="doSelectPurExpressList(6,'PO-201805170002')" class='glyphicon glyphicon-edit' title='入库'></a>
+                </td>
+                <td style="line-height:22px">
+                    <div>2018/5/17 15:31:36</div>
+
+                        <label class="text-danger">未付款</label>
+                </td>
+                <td style="line-height:33px">
+                    <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doViewData('6')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="详情"><span class="glyphicon glyphicon-search" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doPrintProductLable('6')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="打印商品标签"><span class="glyphicon glyphicon-print" style="color:#337ab7"></span></button>
+                    <br />
+                                                                                
+                                                            
+                        <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doDelte('6')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+            <tr id="tr4" ondblclick="p2019889841doViewData('4')">
+                <td style="line-height:22px">
+                    <input type="checkbox" name="chk_list" value="4" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已作废" />
+                    <input id="item_PurOrderId" name="item.PurOrderId" type="hidden" value="4" />
+                    <input id="item_PurOrderNo" name="item.PurOrderNo" type="hidden" value="PO-201805170001" />
+                    <input id="item_StoreName" name="item.StoreName" type="hidden" value="默认仓库" />
+                    <input id="item_PurUserId" name="item.PurUserId" type="hidden" value="0" />
+                    <input id="item_SupplyId" name="item.SupplyId" type="hidden" value="0" />
+                    <input type="hidden" id="hidPurOrderRemarks4" value="缺货生成采购单，缺货订单号：306-7069769-4693937" />
+                </td>
+                <td style="line-height:25px">
+                    
+                </td>
+                <td style="line-height:22px">
+                    <span style="font-size:13px;" class="limingcentUrlpic">PO-201805170001</span>
+                    <br />
+<span>-</span>                    <br />
+<span>-</span>                                        <span>-</span>                </td>
+                <td style="text-align: left ! important; width: 150px; word-break: break-all;line-height:22px">
+                    默认仓库<br /><a href="javascript:void(0)" onclick="p2019889841doEditData(1)">1688供应商</a>
+                </td>
+                <td style="line-height:22px">
+                    cheerwsn<br />cheerwsn
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>已付金额</hg:trans>：0.00<br />
+                    <hg:trans>已付货款</hg:trans>：0.00<br /><hg:trans>运费</hg:trans>：0.00<br /><hg:trans>其它</hg:trans>：0.00
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>合计</hg:trans>：11.00<br />
+                    <hg:trans>货款</hg:trans>：11.00<br />
+                    <hg:trans>运费</hg:trans>：0.00<br />
+                    <hg:trans>其他</hg:trans>：0.00<br />
+                </td>
+                <td style="text-align:left !important;line-height:22px">
+                    <hg:trans>申请</hg:trans>：1
+                        <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'4','')" title="查看采购单明细"></span>
+                    <br /><hg:trans>到货</hg:trans>：0
+
+                        <div><span style='color:gray;font-weight:bold;font-size:14px'><hg:trans>已作废</hg:trans></span></div>
+                </td>
+                <td style="line-height:22px">
+                    <a href='javascript:void(0)' title='编辑运单信息' hgtrans='true' onclick="doSelectPurExpressList(4,'PO-201805170001')" class='glyphicon glyphicon-edit' title='入库'></a>
+                </td>
+                <td style="line-height:22px">
+                    <div>2018/5/17 15:26:50</div>
+
+                        <label class="text-danger">未付款</label>
+                </td>
+                <td style="line-height:33px">
+                    <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doViewData('4')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="详情"><span class="glyphicon glyphicon-search" style="color:#337ab7"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doPrintProductLable('4')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="打印商品标签"><span class="glyphicon glyphicon-print" style="color:#337ab7"></span></button>
+                    <br />
+                                                                                
+                                                            
+                        <button type="button" class="btn btn-default btn-xs" onclick="p2019889841doDelte('4')" hgtrans="true" data-toggle="orderoperation" data-placement="top" title="" data-original-title="删除"><span class="glyphicon glyphicon-remove" style="color:#337ab7"></span></button>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p2019889841divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/PurOrder?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 3 条数据</span></div><div style="clear:both"></div></div>
+
+<script>
+
+    $(function () {
+        $("table").find("a[groupkey='Ali1688OrderNo']").each(function () {
+            //触发后不消失 离开后才消失
+            $(this).popover({ trigger: "manual", html: true, animation: false }).on("mouseenter", function () {
+                var _this = this;
+                $(this).popover("show");
+                $(".popover").on("mouseleave", function () {
+                    $(_this).popover('hide');
+                });
+            }).on("mouseleave", function () {
+                var _this = this;
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 300);
+            });
+        });
+        $('[data-toggle="orderoperation"]').tooltip();
+        if ($("#hidOpenAllDetailType1").attr("name") == "sku") {
+            var isOpen = $("#hidOpenAllDetailType").val();
+            $('input[name="chk_list"]').each(function () {
+                var span = $(this).parent().parent().find("[name=spanForPurDetail]");
+                var cls = span.attr("class");
+                if (cls.indexOf("glyphicon glyphicon-triangle-right") >= 0 && isOpen == "false") {
+                    span.click();
+                }
+                else if (cls.indexOf("glyphicon glyphicon-triangle-bottom") >= 0 && isOpen == "true") {
+                    span.click();
+                }
+            });
+            if (isOpen == "true") {
+                $("#spanForPurDetailid").removeClass();
+                $("#spanForPurDetailid").addClass("glyphicon glyphicon-triangle-right");
+                $("#hidOpenAllDetailType").val("false");
+            }
+            else {
+                $("#spanForPurDetailid").removeClass();
+                $("#spanForPurDetailid").addClass("glyphicon glyphicon-triangle-bottom");
+                $("#hidOpenAllDetailType").val("true");
+            }
+        }
+    });
+</script>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:600px;height:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><hg:trans>采购单作废</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div style="margin-left:30px">
+                        <input type="hidden" id="cancelPurOrderId" />
+                        <div><hg:trans>温馨提示：采购单【<span id='cancelPurOrderNo'></span>】将作废，关联采购中数量将会被冲销。</hg:trans><br /></div>
+                        <div>
+                            <hg:trans>作废原因</hg:trans>：
+                            <br /> <textarea class="form-control" rows="3" id="cancelRemart"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="p2019889841doCancel()"><hg:trans>确定</hg:trans></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Applypayment -->
+<div class="modal fade" id="myApplypayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:600px;height:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><hg:trans>申请付款</hg:trans></h4>
+                <input type="hidden" id="purOrderId" />
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div style="margin-top:-10px;margin-bottom:20px; border-bottom:1px dashed #ccc;">
+                        <div style="color: #1b809e;font-size:14px;">已付款项</div>
+                        <div style="margin:10px 0px 10px 10px;">
+                            <span style="padding-right:10px">总货款：<span id="spanTotalAmount">840.00</span></span>
+                            <span style="padding-right:10px">已付货款：<span id="spanActualGoodsAmount" style="color: #1b809e;">0.00</span></span>
+                            <span style="padding-right:10px">运费：<span id="spanActualFreightAmount" style="color: #1b809e;">0.00</span></span>
+                            <span style="padding-right:10px">其它费用：<span id="spanActualOtherAmount" style="color: #1b809e;">0.00</span></span>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><hg:trans>申请货款</hg:trans></label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" id="PayGoodsAmount" name="PayGoodsAmount" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><hg:trans>运费</hg:trans></label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" id="BeforeFreight" name="BeforeFreight" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><hg:trans>其他费用</hg:trans></label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" id="PurOtherFees" name="PurOtherFees" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><hg:trans>备注</hg:trans></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="PayRemarks" name="PayRemarks" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="p2019889841doApplypayment(false)"><hg:trans>确定</hg:trans></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Applypayment -->
+<!-- Modal -->
+<div class="modal fade" id="myModalBohui" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:600px;height:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabelBohui"><hg:trans>采购单驳回</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div style="margin-left:30px">
+                        <input type="hidden" id="cancelBohuiPurOrderIds" />
+                        <div>
+                            <hg:trans>驳回原因</hg:trans>：
+                            <br /> <textarea class="form-control" rows="3" id="bohuiRemart"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="p2019889841doConfirmNo()"><hg:trans>确定</hg:trans></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<input type="hidden" id="printPurOrderId" />
+<!--打印商品标签模态框-->
+<div class="modal fade" id="editPrintModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:600px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editPrintModalLabel"><hg:trans>打印商品标签</hg:trans></h4>
+                <input id="printProductType" type="hidden" value="100*25" />
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div id="divTabPlableContentPanel" class="tab-content">
+                        <div id="tabContent_liTabPlableManage" role="tabpanel" class="tab-pane fade active in">
+                            <table>
+                                <tr>
+                                    <th><hg:trans>可选参数</hg:trans>：</th>
+                                    <td width="180px">
+                                        <select class="form-control" id="optional">
+                                            <option value="sku" selected><hg:trans>SKU</hg:trans></option>
+                                            <option value="productname"><hg:trans>SKU&产品名称</hg:trans></option>
+                                            <option value="skuAndChina"><hg:trans>SKU&made in china</hg:trans></option>
+                                            <option value="skuAndShelves"><hg:trans>SKU&货架位</hg:trans></option>
+                                            <option value="skuAndProductNameAndShelves"><hg:trans>SKU&中文配货名&货架位</hg:trans></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <hg:trans>注：如果可选打印参数大于55个字符将会被截取</hg:trans>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <tr>
+                                    <th><hg:trans>打印模板</hg:trans>：</th>
+                                    <td>
+                                        <div class="row-fluid">
+                                            <div class="breadcrumbs">
+                                                <div class="row-fluid">
+                                                    <ul class="th-thumbnails">
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="    CheckPrintModel(this, '100*25')">
+                                                                <img src="picture/100_25.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName" typevalue="100*50模板">
+                                                                            100*25模板
+                                                                            <i class="glyphicon glyphicon-ok"></i>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="    CheckPrintModel(this, '40*30')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="40*30模板">
+                                                                            40*30模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="    CheckPrintModel(this, '50*30')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="50*30模板">
+                                                                            50*30模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="    CheckPrintModel(this, '60*30')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="60*30模板">
+                                                                            60*30模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="    CheckPrintModel(this, '60*40')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="60*40模板">
+                                                                            60*40模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="    CheckPrintModel(this, '100*10')">
+                                                                <img src="picture/100_10.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="100*10模板">
+                                                                            100*10模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="CheckPrintModel(this, '20*10')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="20*10模板">
+                                                                            20*10模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="CheckPrintModel(this, '25*10')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="25*10模板">
+                                                                            25*10模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-rel="colorbox" onclick="CheckPrintModel(this, '25*15')">
+                                                                <img src="picture/50_30.png" data-holder-rendered=" true" style="width: 140px; height: 140px;">
+                                                                <div class="tags">
+                                                                    <span class="label-holder">
+                                                                        <span class="label  label-primary arrowed-in displayName add" typevalue="25*15模板">
+                                                                            25*15模板
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="p2019889841doPrintProductLables()"><hg:trans>确认打印</hg:trans></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-dot-template" id="DropItemTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        搜索(S)
+                    </span>
+                </div>
+            </div>
+            {{?}}
+            <ul class="J_valueList clearfix {{=it.ClassName}}">
+                {{  var objarray=it.data;  for(var i=0;i
+                <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                    <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                    <li id="{{=objarray[i].Value}}" style="display:block;">
+                        <a href="javascript:;" title="{{=textname}}">
+                            <i></i>{{=textname}}
+                        </a>
+                    </li>
+                    {{ } }}
+            </ul>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+<!--隐藏链接-->
+<a id="btnOpenWindow" href="#" class="btn btn-primary" style="display:none" target="_blank"><hg:trans>隐藏链接</hg:trans></a>
+<script src="__STATIC__/index/js/61c33981275f42809599d2c3eeaec8af.js"></script>
+
+<script language="javascript" type="text/javascript">
+    $('.date input').datepicker();
+
+    /*附件管理*/
+    var ASPSESSID = "n2xr0ljqrnkytnhnd1fhwvjq";
+    SWFUpload.movieCount = $(".uploadify").length;
+    function Inituploadifyy() {
+        $('#filedatas').uploadify({
+            swf: '/Content/uploadify/uploadify.swf',
+            uploader: '/Upload/UploadFile',
+            multi: true,
+            auto: true,
+            method: "post",
+            fileObjName: 'Filedata',
+            buttonText: translate.format("<hg:trans>添加文件</hg:trans>"),
+            formData: {
+                ASPSESSID: ASPSESSID,
+                targetFolder: "",
+                isRename: false,
+                extNames: ".png|.jpg|.zip|.rar|.jpge|.gif|.txt|.doc|.ppt|.xls|.docx|.pptx|.xlsx|.bmp|.pdf|.pdfx|.jpeg",
+            },
+            onUploadStart: function () {
+            },
+            onUploadSuccess: function (file, data, response) {
+                var data = JSON.parse(data);
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [file.name, data.Message]));
+                }
+                else {
+                    //重新获取文件列表
+                    //
+                }
+            }
+        });
+    }
+
+    $(function () {
+        Inituploadifyy();
+    })
+    function removeAllSpace(str) {
+        return str.replace(/\s+/g, "");
+    }
+    function LoadMenuInfo() {
+        //重置
+        $("#listItem,#DropListItem").html("");
+
+        var SearchOption = SearchOptonRedgle();//初始化方法
+        SearchOption.Droptempl = $("#DropItemTempl").html();
+        //仓库
+        var storelist = $("#hidStoreInfo").val();
+        if (storelist.length > 0) {
+            storelist = JSON.parse(storelist)
+        }
+        if (storelist.length > 0) {
+            SearchOption.BindDropDataUI(storelist, "仓库", "StoreIdType", false, "", true, true, false);
+        }
+
+        //供应商
+        var supplierlist = $("#hidSupplierInfo").val();
+        if (supplierlist.length > 0) {
+            supplierlist = JSON.parse(supplierlist)
+        }
+        if (supplierlist.length > 0) {
+            SearchOption.BindDropDataUI(supplierlist, "供应商", "SupplierType", false, "", true, true, false);
+        }
+        //处理标记
+        var markStrList = $("#hidMarkInfo").val();
+        var ArrayMark = [];
+        if (markStrList.length > 0) {
+            ArrayMark = JSON.parse(markStrList);
+        }
+        if (ArrayMark.length > 0) {
+            SearchOption.BindDropDataUI(ArrayMark, "采购单标记", "markList", false, "", false, true);
+        }
+        //展开，收缩回调
+        SearchOption.CallExtendFun = function (typeid, isExtend) {
+            if (!isExtend) {
+                if ($("#" + typeid + " .MenuSearchInfo input").length > 0) {
+                    var text = $("#" + typeid + " .MenuSearchInfo input").val().trim();
+                    if (text.length > 0) {
+                        $("#" + typeid + " .MenuSearchInfo input").val("");
+                        $("#" + typeid + " .J_valueList li ").show();
+                    }
+                }
+
+            }
+        }
+        //删除类型模块的时候回调处理
+        SearchOption.CallDelFun = function (typeid) {
+            switch (typeid) {
+                case "StoreIdType":
+                    $("#hidStore").val("");
+                    break;
+                case "SupplierType":
+                    $("#hidSupplier").val("");
+                    break;
+                case "markList":
+                    $("#hidMark").val("");
+                    break;
+                default:
+                    break;
+            }
+            $("#searchForm").submit();
+        };
+        SearchOption.CallUserFun = function (typeid, id, title) {
+            //获取到类型，与参数id
+            switch (typeid) {
+                case "StoreIdType":
+                    $("#hidStore").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "SupplierType":
+                    $("#hidSupplier").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "markList":
+                    $("#hidMark").val(id);
+                    $("#searchForm").submit();
+                    break;
+            }
+        }
+        SearchOption.CallTabFun = function (typeid) {
+            var Search = "";
+            var paramFiled = "";
+            switch (typeid) {
+
+                case "StoreIdType":
+                    paramFiled = "hidStore";
+                    break;
+                case "SupplierType":
+                    paramFiled = "hidSupplier";
+                    break;
+                case "markList":
+                    paramFiled = "hidMark";
+                    break;
+            }
+
+            var data = $("#J_crumbsBar .crumb-select-item[typeid='" + typeid + "']");
+            if (data) {
+                Search = $(data).attr("atrrvalue");
+            }
+
+            $("#" + paramFiled).val(Search);
+            $("#searchForm").submit();
+        }
+        SearchOption.initEvent(false);//初始化事件绑定
+
+        //替换样式保持界面一致
+        $("#DropListItem .sl-key").each(function () {
+            $(this).css("color", "#333");
+            $(this).css("font-weight", "700");
+            $(this).css("padding-top", "6px");
+        })
+        $("#DropListItem .sl-wrap").each(function () {
+            $(this).css("border", "none");
+        })
+        $("#DropListItem .sl-tab-trigger").each(function () {
+            $(this).css("height", "32px");
+        })
+        $("#DropListItem .trig-item").each(function () {
+            $(this).css("height", "24px");
+            $(this).css("padding", "0px 3px 0 6px");
+        })
+        $("#DropListItem .sl-tab-cont-item").each(function () {
+            $(this).css("top", "28px");
+        })
+    }
+    //打印商品标签 begin
+    function p2019889841doPrintProductLable(ThirdStoreAllocationPlanId) {
+        $("#printPurOrderId").val(ThirdStoreAllocationPlanId);
+        $("#editPrintModal").modal('show');
+
+    }
+    //选择哪种模板
+    function CheckPrintModel(event, val) {
+        var $this = $(event)
+        $("#printProductType").val(val)
+        $this.parent().parent().find(".glyphicon-ok").remove()
+        $this.find(".label-holder").find("span").append("<i class='glyphicon glyphicon-ok'></i>")
+
+        var num = 2;
+        if (val == "100*10") {
+            num = 3;
+        }
+        $("#divPrintDataList table tbody tr").each(function () {
+            var $this = $(this)
+            $this.find("#item_printNum").val(num)
+        });
+    }
+    function  p2019889841doPrintProductLables() {
+        $.ajax({
+            type: "post",
+            url: "/PurOrder/PrintProductLabel",
+            data: { purOrderId: $("#printPurOrderId").val(), printType: $("#printProductType").val(), optional: $("#optional").val() },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.Message);
+                } else {
+                    $("#btnOpenWindow").attr("href", "../Order/ViewPdf?fileName=" + escape(data.ResultObject));
+                    document.getElementById("btnOpenWindow").click();
+                }
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        })
+    }
+    //打印商品标签 end
+    jQuery(function () {
+        //选项卡初始化
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        $(".chzn-select").chosen();
+        //$(".chosen-container").css("width", "230px");
+        //日历控件初始化
+        //$('.date input').datepicker();
+        //状态筛选
+        $("#divStateItems>label").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                $("#txtStatusCode").val("");
+                $this.removeClass();
+            } else {
+                $("#txtStatusCode").val($this.attr("itemid"));
+                $("#divStateItems>label").removeClass();
+                $this.addClass("active");
+            };
+            $("#searchForm").submit();
+        });
+        //搜索类型筛选
+        $("#divChooseItems>span").click(function () {
+            var $this = $(this);
+            $("#divChooseItems>span").removeClass();
+            $this.addClass("active");
+            $("#hidChoose").val($this.attr("itemid"))
+            if ($this.attr("chooseid") == "Search") {
+                $("#Date").css("display", "none");
+                $("#Search").css("display", "");
+            } else {
+                $("#Date").css("display", "");
+
+                $("#Search").css("display", "none");
+            }
+        });
+
+        //选择付款状态
+        $("#divPaymentStatus > span").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divPaymentStatus > span").removeClass("active");
+                    $(this).addClass("active");
+                }
+                else {
+                    $(this).removeClass("active");
+                }
+
+                var selectedItems = "";
+                $("#divPaymentStatus > span").each(function () {
+                    var cls = $(this).attr("class");
+                    if (typeof (cls) != "undefined" && cls.indexOf("active") >= 0) {
+                        selectedItems = $(this).attr("itemid");
+                    }
+                });
+                $("#hidPaymentStatus").val(selectedItems);
+                $("#searchForm").submit();
+            });
+        });
+
+        //物流状态
+        $("#divExpressLogisticStatus > span").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divExpressLogisticStatus > span").removeClass("active");
+                    $(this).addClass("active");
+                }
+                else {
+                    $(this).removeClass("active");
+                }
+
+                var selectedItems = "";
+                $("#divExpressLogisticStatus > span").each(function () {
+                    var cls = $(this).attr("class");
+                    if (typeof (cls) != "undefined" && cls.indexOf("active") >= 0) {
+                        selectedItems = $(this).attr("itemid");
+                    }
+                });
+                $("#hidExpressLogisticStatus").val(selectedItems);
+                $("#searchForm").submit();
+            });
+        });
+        var divButtonsStarPos = "";
+        if ($("#divFollowButtons").length > 0)
+            divButtonsStarPos = $('#divFollowButtons').offset().top;
+        var oldTabContentPanelWidth = $("#divTabContentPanel").width();
+        $(window).scroll(function () {
+            if ($("#divFollowButtons").length > 0) {
+                var elm = $("#divFollowButtons");
+                var startPos = $(elm).offset().top;
+                var p = $(window).scrollTop();
+                if (p > startPos) {
+                    $("#divFollowButtons").addClass("buttons-follow");
+                    $("#divFollowButtons").css("right", "11px");
+                }
+                if (p <= divButtonsStarPos) {
+                    $("#divFollowButtons").removeClass("buttons-follow");
+                }
+            }
+        });
+
+        LoadMenuInfo();
+    });
+    //复选框选中
+    function  p2019889841doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+    
+
+    //导出采购单汇总
+    function p2019889841doExportSumPurOrder() {
+        var codeList = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).val();
+        }).get().join(",")
+        var postData = redgle.request.getFormData("searchForm");
+        postData["codeList"] = codeList;
+        postData.hidSort = $("#hidSort").val();
+        postData.hidSortType = $("#hidSortType").val();
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/ExportSumPurOrder",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+
+
+        
+    }
+
+    //导出选择数据列
+    function p2019889841doExportData() {
+        var exportmode = "";
+        var width = 950;
+        var height = 560;
+        var url = "../Order/Export?viewName=PurOrder&pagekey=PurOrder/Export&exportmode=" + exportmode + "&functionName=p2019889841doExport";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+
+    //导出
+    function p2019889841doExport(fieldName, notMergeCoumn) {
+        debugger
+        var codeList = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            codeList += $(this).val() + ",";
+        });
+        if (codeList != "") {
+            codeList = codeList.substring(0, codeList.length - 1);
+        }
+        if (codeList.length == 0 && !window.confirm(translate.format("<hg:trans>没有选择数据导出，默认导出全部，数据量较多，是否需要继续？</hg:trans>")))
+            return;
+        var postData = redgle.request.getFormData("searchForm");
+        //window.open("/PurOrder/PurOrderExport?txtStoreId=" + $("#txtStoreId").val() + "&hidChoose=" + $("#hidChoose").val() + "&txtSearchKey=" + $("#txtSearchKey").val() + "&DateBegin=" + $("#txtDateBegin").val() + "&DateEnd=" + $("#txtDateEnd").val() + "&txtStatusCode=" + $("#txtStatusCode").val() + "&codeList=" + codeList, "_self");
+        postData["viewName"] = "PurOrder";
+        postData["pageKey"] = "PurOrder/Export";
+        postData["codeList"] = codeList;
+        postData["fieldName"] = fieldName;
+        postData["notMergeCoumn"] = notMergeCoumn;
+        postData.hidSort = $("#hidSort").val();
+        postData.hidSortType = $("#hidSortType").val();
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/PurOrderExport",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //打印
+    function p2019889841doPrintPurOrder(type) {
+        var codeList = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            codeList += $(this).val() + ",";
+        });
+        if (codeList != "") {
+            codeList = codeList.substring(0, codeList.length - 1);
+        } else if (codeList.length == 0) {
+            alert(translate.format("<hg:trans>请至少选择一个订单</hg:trans>！"));
+            return;
+        }
+        codeList = JSON.stringify(codeList);
+
+        $.ajax({
+            url: "/PurOrder/PrintPurOrder",
+            type: "post",
+            data: {
+                codeList: codeList,
+                type: type,
+                orderSort: $("#hidSort").val(),
+                orderType: $("#hidSortType").val()
+            },
+            datatype: "json",
+            success: function (data) {
+                if (!data.HasError) {
+                    $("#btnOpenWindow").attr("href", "../Order/ViewPdf?fileName=" + escape(data.ResultObject));
+                    document.getElementById("btnOpenWindow").click();
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的打印采购单操作没有成功，原因如下{0}</hg:trans>:", [data.Message]));
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+
+    }
+    //详情
+    function p2019889841doViewData(id) {
+        if (id == null || id == "")
+            id = "0";
+        var url = "/PurOrder/Edit/" + id;
+        redgle.tab.create("liPurOrderEdit", url, translate.format("<hg:trans>采购单详情</hg:trans>"));
+    }
+
+    //创建采购单
+    function p2019889841doCreate() {
+        var url = "/PurOrder/Edit/0";
+        redgle.tab.create("liPurOrderEdit", url, translate.format("<hg:trans>创建采购单</hg:trans>"));
+    }
+    //弹出作废确认框
+    function  p2019889841doCancelConfirm(purOrderId, purOrderNo) {
+        $("#cancelPurOrderId").val(purOrderId);
+        $("#cancelPurOrderNo").html(purOrderNo);
+        $("#myModal").modal('show');
+    }
+    //作废
+    function  p2019889841doCancel() {
+        var purOrderId = $("#cancelPurOrderId").val();
+        var cancelRemart = $("#cancelRemart").val().replace(/[\r\n]/g, "");
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/Cancel",
+            data: { purOrderId: purOrderId, cancelRemart: cancelRemart },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    alert(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    $("#myModal").modal('hide');
+                    redgle.showMessage(translate.format("<hg:trans>作废操作成功</hg:trans>！"));
+                    try { p2019889841doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //删除
+    function  p2019889841doDelte(purOrderId) {
+        if (window.confirm(translate.format("<hg:trans>确认要删除采购单吗</hg:trans>？"))) {
+            $.ajax({
+                type: "POST",
+                url: "/PurOrder/Delete",
+                data: { purOrderId: purOrderId },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    }
+                    else {
+                        redgle.showMessage(translate.format("<hg:trans>您所做的删除已保存成功</hg:trans>！"));
+                        try { p2019889841doReloadData(); } catch (e) { }
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+    //采购到货
+    function p2019889841doArrival(id) {
+        var url = "/PurOrder/PurchaseArrivalIndex?id=" + id;
+        redgle.tab.create("liPurchaseArrival", url, translate.format("<hg:trans>采购到货</hg:trans>"));
+
+        //var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>采购到货</hg:trans>") });
+        //selectManageModal.show();
+    }
+
+    //到货记录
+    function p2019889841doArrivalRecord(id) {
+        var url = "/PurOrder/PurchaseArrivalRecord?id=" + id;
+        var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>到货记录</hg:trans>") });
+        selectManageModal.show();
+
+    }
+    //提交审核
+    function p2019889841doConfirm(purOrderId) {
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/Confirm",
+            data: { purOrderId: purOrderId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>操作成功！</hg:trans>！"))
+                    try { p2019889841doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //结束
+    function p2019889841doEndPur(purOrderId) {
+        if (window.confirm(translate.format("<hg:trans>结束采购将不能恢复，确定结束该采购单吗</hg:trans>？"))) {
+            $.ajax({
+                type: "POST",
+                url: "/PurOrder/EndPur",
+                data: { purOrderId: purOrderId },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    }
+                    else {
+                        redgle.showMessage(translate.format("<hg:trans>您所做的结束采购已保存成功</hg:trans>！"))
+                        try { p2019889841doReloadData(); } catch (e) { }
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+    //重新加载
+    function p2019889841doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/Index",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p2019889841divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //查看采购单明细
+    function showPurOrderDetail(event, id, Skuidenty) {
+        var src = event.target || window.event.srcElement;
+        if ($("#d_" + id + "").length > 0) {
+            if ($("#d_" + id + "").is(":visible")) {
+                $("#d_" + id + "").hide();
+                $(src).removeClass();
+                $(src).addClass("glyphicon glyphicon-triangle-right");
+            } else {
+                $("#d_" + id + "").show();
+                $(src).removeClass();
+                $(src).addClass("glyphicon glyphicon-triangle-bottom");
+            }
+        } else {
+            $.ajax({
+                url: "/PurOrder/GetPurOrderDetailListUsePurOrderId",
+                data: { purOrderId: id },
+                success: function (data) {
+                    $(src).parent().parent().after("<tr id='d_" + id + "'><td colspan='5'></td><td colspan='6'><div style='float:right;width:100%;margin-top:0;'><table class='table table-condensed table-hover' onmouseover='doSetTbColor(" + id + ")' onmouseout='doSetTbColor(" + id + ")' style='float:right;height:20px'><thead><tr class='info'><th><hg:trans>产品图片</hg:trans></th><th><hg:trans>SKU<br />产品属性</hg:trans></th><th><hg:trans>产品名称<br/>中文配货名称</hg:trans></th><th><hg:trans>采购数量</hg:trans></th><th><hg:trans>到货数量</hg:trans></th><th><hg:trans>采购价</hg:trans></th><th><hg:trans>采购链接</hg:trans></th></tr></thead><tbody></tbody></table></div></td></tr>");
+                    $.each(data, function (index, value) {
+                        var sku = (value.Sku == null ? "" : value.Sku);
+                        var productname = (value.ProductName == null ? "" : value.ProductName);
+                        var productAttr = value.Attr;//产品属性
+                        if (productAttr == null || productAttr.trim() == "") {
+                            productAttr = "无"
+                        }
+                        if (value.PurLink != undefined && value.PurLink != "") {
+                            if (value.PurLink.indexOf("http://") < 0 && value.PurLink.indexOf("https://") < 0) {
+                                value.PurLink = "http://" + value.PurLink;
+                            }
+                        }
+                        if ((Skuidenty == "sku" || Skuidenty == "ProductName") && ($("#txtSearchKey").val() == sku || $("#txtSearchKey").val() == productname)) {
+                            if (value.Num > value.ArrivedNum && value.StatusCode == 0) { //数量>已到货数量 && 部分到货
+                                $("#d_" + id + " tbody").append("<tr><td><img onmouseover='showPic(this)' onmouseout='hidePic(this)' class='img-thumbnail' style='width:50px; height:50px;' src="picture/+ value.productpicurl +"></td><td style=\"color:red\">" + sku + "<br/>" + productAttr + "</td><td><span title='" + value.ProductName + "' class='text-overflow' style='max-width:250px;'>" + value.ProductName + "</span><br/><span class='text-info'>" + (value.Describe == "null" ? "" : value.Describe) + "</span></td><td>" + value.Num + "</td><td style=\"color:red\">" + value.ArrivedNum + "</td><td>" + value.Price + "</td><td><a class='text-overflow' style='max-width:250px;cursor:pointer' target='_blank' href='" + value.PurLink + "'>" + value.PurLink + "</a></td></tr>")
+                            }
+                            else {
+                                $("#d_" + id + " tbody").append("<tr><td><img onmouseover='showPic(this)' onmouseout='hidePic(this)' class='img-thumbnail' style='width:50px; height:50px;' src="picture/+ value.productpicurl +"></td><td style=\"color:red\">" + sku + "<br/>" + productAttr + "</td><td><span title='" + value.ProductName + "' class='text-overflow' style='max-width:250px;'>" + value.ProductName + "</span><br/><span class='text-info'>" + (value.Describe == "null" ? "" : value.Describe) + "</span></td><td>" + value.Num + "</td><td>" + value.ArrivedNum + "</td><td>" + value.Price + "</td><td><a class='text-overflow' style='max-width:250px;cursor:pointer' target='_blank' href='" + value.PurLink + "'>" + value.PurLink + "</a></td></tr>")
+                            }
+                        }
+                        else {
+                            if ((Skuidenty != "sku" && Skuidenty != "ProductName") && value.Num > value.ArrivedNum && value.StatusCode == 0) {
+                                $("#d_" + id + " tbody").append("<tr><td><img onmouseover='showPic(this)' onmouseout='hidePic(this)' class='img-thumbnail' style='width:50px; height:50px;' src="picture/+ value.productpicurl +"></td><td>" + sku + "<br/>" + productAttr + "</td><td><span title='" + value.ProductName + "' class='text-overflow' style='max-width:250px;'>" + value.ProductName + "</span><br/><span class='text-info'>" + (value.Describe == "null" ? "" : value.Describe) + "</span></td><td>" + value.Num + "</td><td style=\"color:red\">" + value.ArrivedNum + "</td><td>" + value.Price + "</td><td><a class='text-overflow' style='max-width:250px;cursor:pointer' target='_blank' href='" + value.PurLink + "'>" + value.PurLink + "</a></td></tr>")
+                            }
+                            else {
+                                $("#d_" + id + " tbody").append("<tr><td><img onmouseover='showPic(this)' onmouseout='hidePic(this)' class='img-thumbnail' style='width:50px; height:50px;' src="picture/+ value.productpicurl +"></td><td>" + sku + "<br/>" + productAttr + "</td><td><span title='" + value.ProductName + "' class='text-overflow' style='max-width:250px;'>" + value.ProductName + "</span><br/><span class='text-info'>" + (value.Describe == "null" ? "" : value.Describe) + "</span></td><td>" + value.Num + "</td><td>" + value.ArrivedNum + "</td><td>" + value.Price + "</td><td><a class='text-overflow' style='max-width:250px;cursor:pointer' target='_blank' href='" + value.PurLink + "'>" + value.PurLink + "</a></td></tr>")
+                            }
+                        }
+                    })
+                    var purOrderRemarks = $("#hidPurOrderRemarks" + id).val();
+                    if (purOrderRemarks.length > 0)
+                        $("#d_" + id + " tbody").append("<tr><td colspan='7' style='text-align:left !important'><label class='text-warning'>采购备注：" + purOrderRemarks + "</label></td></tr>");
+                    $(src).removeClass();
+                    $(src).addClass("glyphicon glyphicon-triangle-bottom");
+                }
+            })
+        }
+    }
+    //显示来源单详情
+    function p2019889841doViewDetailData(RelationId, RelationType) {
+        switch (RelationType) {
+            case "ErpPurPlan":  //采购计划编辑
+                var url = "/PurOrder/PurPlanEdit/" + RelationId + "?view=false";
+                redgle.tab.create("liPurPlanEdit", url, translate.format("<hg:trans>采购计划</hg:trans>"));
+
+                break;
+        }
+    }
+    //显示付款记录
+    function p2019889841doViewPaymentRecord(purOrderId) {
+        var url = "/PurOrder/PuringPayment/?purOrderId=" + purOrderId;
+        redgle.tab.create("liPaymentRecord", url, translate.format("<hg:trans>付款记录</hg:trans>"));
+    }
+    function doSetTbColor(id) {
+        if ($("#tr" + id).hasClass("tbcolor"))
+            $("#tr" + id).removeClass("tbcolor");
+        else
+            $("#tr" + id).addClass("tbcolor");
+    }
+    function showPic(obj) {
+        var urlPic = $(obj).attr("src");
+        var html = "<div name ='mainPicShow' style='position: absolute; border: 1px solid silver; background: silver;'><img class='img-thumbnail' style='width:300px; height:300px;' src='" + urlPic + "' /></div>";
+        var objDiv = $(html).appendTo($(obj).parent());
+        objDiv.css("top", $(obj).offset().top - 200);
+        objDiv.css("left", $(obj).offset().left - 100);
+    }
+
+    function hidePic(obj) {
+        var objDiv = $(obj).parent().find("[name=mainPicShow]");
+        if (objDiv != undefined) {
+            objDiv.remove();
+        }
+    }
+    //采购单运单列表
+    function doSelectPurExpressList(purOrderId, purOrderNo) {
+        var width = 600;
+        var height = 450;
+        var url = "/PurOrder/PurExpressList?purOrderId=" + purOrderId;
+        var selectProductModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>采购单[{0}]运单号</hg:trans>", [purOrderNo]), width: width, height: height });
+        selectProductModal.show();
+    }
+
+    //添加运单回传后重新加载
+    function ExpressReturndoReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/Index",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p2019889841divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //选择供应商
+    $("[divSupplierItem] >span").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+            }
+            var selectedItems = "";
+            $("[divSupplierItem] >span").each(function () {
+                var cls = $(this).attr("class");
+                if (typeof (cls) != "undefined" && cls.indexOf("active") >= 0) {
+                    selectedItems += $(this).attr("supplierid") + ",";
+                }
+            })
+            if (selectedItems.length > 0) {
+                selectedItems = selectedItems.substr(0, selectedItems.length - 1);
+            }
+            $("#txtSupplier").val(selectedItems);
+            $("#searchForm").submit();
+
+        });
+    });
+
+    function p2019889841doEditData(supplierId) {
+        if (supplierId == null || supplierId == "")
+            supplierId = "";
+
+        var url = "/Supplier/Edit/" + supplierId;
+        redgle.tab.create("liTabEditSupplier", url, translate.format("<hg:trans>供应商编辑</hg:trans>"));
+    }
+    function p2019889841doOpenAllDetail(event) {
+        var src = event.target || window.event.srcElement;
+        var isOpen = $("#hidOpenAllDetailType1").val();
+        $('input[name="chk_list"]').each(function () {
+            var span = $(this).parent().parent().find("[name=spanForPurDetail]");
+            var cls = span.attr("class");
+            if (cls.indexOf("glyphicon glyphicon-triangle-right") >= 0 && isOpen == "false") {
+                span.click();
+            }
+            else if (cls.indexOf("glyphicon glyphicon-triangle-bottom") >= 0 && isOpen == "true") {
+                span.click();
+            }
+        });
+        if (isOpen == "true") {
+            $(src).removeClass();
+            $(src).addClass("glyphicon glyphicon-triangle-right");
+            $("#hidOpenAllDetailType1").val("false");
+        }
+        else {
+            $(src).removeClass();
+            $(src).addClass("glyphicon glyphicon-triangle-bottom");
+            $("#hidOpenAllDetailType1").val("true");
+        }
+    }
+
+    function p2019889841ImportWaybillNumber() {
+        var url = "/PurOrder/Import";
+        redgle.tab.create("Import", url, translate.format("<hg:trans>导入运单号</hg:trans>"));
+    }
+    //批量提交审核
+    function  p2019889841doBatchConfirm() {
+        var purIds = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).val()
+        }).get().join(",");
+        if (purIds) {
+            $.ajax({
+                type: "POST",
+                url: "/PurOrder/BatchConfirm",
+                data: { purOrderIds: purIds },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(data.Message);
+                    }
+                    else {
+                        try { p2019889841doReloadData(); } catch (e) { }
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+
+    //申请付款
+    function p2019889841doApplypaymentShow(id) {
+        $.ajax({
+            url: "/PurOrder/GetErpPurOrderCost",
+            type: "POST",
+            data: { PurOrderId: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    $("#spanTotalAmount").text(data.ResultObject.TotalAmount);
+                    $("#spanActualGoodsAmount").text(data.ResultObject.ActualGoodsAmount);
+                    $("#spanActualFreightAmount").text(data.ResultObject.ActualFreightAmount);
+                    $("#spanActualOtherAmount").text(data.ResultObject.ActualOtherAmount);
+
+                    var goodsAmount = parseFloat(data.ResultObject.TotalAmount) - parseFloat(data.ResultObject.ActualGoodsAmount);
+                    if (goodsAmount < 0) {
+                        goodsAmount = 0;
+                    }
+                    var paymentFreight = data.ResultObject.BeforeFreight * 1.0 - data.ResultObject.ActualFreightAmount * 1.0;
+                    if (paymentFreight < 0) {
+                        paymentFreight = 0;
+                    }
+                    var paymentOther = data.ResultObject.PurOtherFees * 1.0 - data.ResultObject.ActualOtherAmount * 1.0;
+                    if (paymentOther < 0) {
+                        paymentOther = 0;
+                    }
+
+                    $("#PayGoodsAmount").val(goodsAmount.toFixed(2));
+                    $("#PurOtherFees").val(paymentOther.toFixed(2));
+                    $("#BeforeFreight").val(paymentFreight.toFixed(2));
+                    $("#PayRemarks").val("");
+                    $("#purOrderId").val(id);
+                    $("#myApplypayment").modal('show');
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    /*
+       显示指定元素的错误提示信息
+   */
+    function doShowElementError(obj, message) {
+        $(obj).tooltip({ title: message });
+        $(obj).tooltip("show");
+        $(obj).parent().addClass("has-error");
+        $(obj).change(function () {
+            $(obj).tooltip("destroy");
+            $(obj).parent().removeClass("has-error");
+        });
+    }
+
+    function p2019889841doApplypayment(IsAccountBook) {
+        var costData = {};
+        if (IsAccountBook == true) {
+            var hasError = false;
+            var BillPayType = $("#BillPayType").val();
+            if (BillPayType.length == 0) {
+                hasError = true;
+                doShowElementError($("#BillPayType"), "请选择支付方式");
+            }
+            var FAccountId = $("#FAccountId").val();
+            if (FAccountId.length == 0) {
+                hasError = true;
+                doShowElementError($("#FAccountId"), "请选择财务账号");
+            }
+            var Currency = $("#Currency").val();
+            if (Currency.length == 0) {
+                hasError = true;
+                doShowElementError($("#Currency"), "请选择币种");
+            }
+            var AdvancePaymentDate = $("#AdvancePaymentDate").val();
+            if (AdvancePaymentDate.length == 0) {
+                hasError = true;
+                doShowElementError($("#AdvancePaymentDate"), "请输入日期");
+            }
+            if (hasError) {
+                return;
+            }
+            costData = {
+                PayGoodsAmount: $("#PayGoodsAmount").val(),
+                PurOtherFees: $("#PurOtherFees").val(),
+                BeforeFreight: $("#BeforeFreight").val(),
+                purOrderId: $("#purOrderId").val(),
+                remarks: $("#PayRemarks").val(),
+                BillPayType: $("#BillPayType").val(),
+                FAccountId: $("#FAccountId").val(),
+                CurrencyType: $("#Currency").val(),
+                AdvancePaymentDate: $("#AdvancePaymentDate").val(),
+                IsAccountBook: IsAccountBook
+            }
+        }
+        else {
+             costData = {
+                PayGoodsAmount: $("#PayGoodsAmount").val(),
+                PurOtherFees: $("#PurOtherFees").val(),
+                BeforeFreight: $("#BeforeFreight").val(),
+                purOrderId: $("#purOrderId").val(),
+                remarks: $("#PayRemarks").val(),
+                IsAccountBook: IsAccountBook
+            }
+        }
+        $.ajax({
+            url: "/PurOrder/PreservationCost",
+            type: "POST",
+            data: costData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的操作已成功</hg:trans>"));
+                    $("#myApplypayment").modal('hide');
+                    try { p2019889841doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p2019889841doCancelpayment(id) {
+        if (window.confirm(translate.format("<hg:trans>确认要取消付款吗</hg:trans>？"))) {
+            $.ajax({
+                url: "/PurOrder/Cancelpayment",
+                type: "POST",
+                data: { PurOrderId: id },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    } else {
+                        redgle.showMessage(translate.format("<hg:trans>您已成功取消付款</hg:trans>"));
+                        try { p2019889841doReloadData(); } catch (e) { }
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+    //打开驳回原因窗口
+    function p2019889841doOpenConfirmNoWin(id) {
+        var ids = "";
+        if (id == 0) {
+            ids = $('input[name="chk_list"]:checked').map(function () {
+                return $(this).val();
+            }).get().join(",");
+        } else {
+            ids = id;
+        }
+        if (ids != 0) {
+            $("#cancelBohuiPurOrderIds").val(ids);
+            $("#myModalBohui").modal('show');
+        } else {
+            alert("请选择要驳回的采购单");
+        }
+    }
+    //驳回
+    function  p2019889841doConfirmNo() {
+        var ids = $("#cancelBohuiPurOrderIds").val();
+        var reason = $("#bohuiRemart").val().replace(/[\r\n]/g, "");;
+        if (ids) {
+            $.ajax({
+                type: "POST",
+                url: "/PurOrder/PurOrderCheckNo",
+                data: { ids: ids, reason: reason },
+                datatype: "text",
+                success: function (data) {
+                    $("#myModalBohui").modal('hide');
+                    redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [data.Message]));
+                    ExpressReturndoReloadData()
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+
+    //审核通过
+    function  p2019889841doConfirmOk(id) {
+        var ids = "";
+        if (id == 0) {
+            ids = $('input[name="chk_list"]:checked').map(function () {
+                return $(this).val();
+            }).get().join(",");
+        } else {
+            ids = id;
+        }
+        if (ids != 0) {
+            $.ajax({
+                type: "POST",
+                url: "/PurOrder/PurOrderCheckOk",
+                data: { ids: ids },
+                datatype: "text",
+                success: function (data) {
+                    redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [data.Message]));
+                    ExpressReturndoReloadData()
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        } else {
+            alert("请选择审核的采购单");
+        }
+    }
+
+    //选择排序
+    $("#divSort > span").click(function () {
+        var selectedItems = "";
+        var sortType = "";
+        var cls = $(this).attr("class");
+        if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+            $("#divSort > span").removeClass("active");
+            $("#divSort > span").attr("sorttype", "");
+            $(this).addClass("active");
+            $("#divSort > span > span").removeClass().addClass("glyphicon glyphicon-resize-vertical");
+        }
+        selectedItems = $(this).attr("itemid");
+        sortType = $(this).attr("sorttype");
+        if (sortType == "" || sortType == "DESC") {
+            $(this).attr("sorttype", "ASC");
+            $("#hidSortType").val("ASC");
+            $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-menu-up");
+        }
+        else {
+            $(this).attr("sorttype", "DESC");
+            $("#hidSortType").val("DESC");
+            $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-menu-down");
+        }
+        $("#hidSort").val(selectedItems);
+        $("#searchForm").submit();
+    });
+
+    //批量复制采购单
+    function p2019889841doCopyData(obj) {
+        var purOrderList = new Array();
+        if (obj == undefined) {
+            $('input[name="chk_list"]:checked').each(function () {
+                var purOrder = {
+                    purOrderId: $(this).val()
+                }
+                purOrderList.push(purOrder);
+            });
+        } else {
+            var purOrder = {
+                purOrderId: obj
+            }
+            purOrderList.push(purOrder);
+        }
+        if (purOrderList.length == 0) {
+            alert(translate.format("<hg:trans>请先选择要复制的采购单！</hg:trans>"));
+            return;
+        }
+        purOrderList = JSON.stringify(purOrderList);
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/CopyPurOrder",
+            data: { purOrderList: purOrderList },
+            dataType: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    try {
+                        if (data.Message.length > 0)
+                            alert(data.Message);
+p2019889841doReloadData();
+                    } catch (e) {
+                        alert(translate.format("<hg:trans>重新加载数据失败！</hg:trans>"));
+                    }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //导出付费记录
+    function p2019889841doExportPuringPayment() {
+        var codeList = $('input[name="chk_list"]:checked').map(function () {
+            return $(this).val();
+        }).get().join(",")
+        var postData = redgle.request.getFormData("searchForm");
+        postData["codeList"] = codeList;
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/ExportPuringPayment",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p2019889841doExportArrive() {
+        var url = "/PurOrder/ImportStorage";
+        redgle.tab.create("Import", url, translate.format("<hg:trans>导入入库</hg:trans>"));
+    }
+
+    //订单标记
+    function doMarkPurOrder(markId) {
+        var orderIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            orderIds += $(this).val() + ",";
+        });
+        if (orderIds.length == 0) {
+            redgle.showMessage("请至少选择一个订单！");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/MarkPurOrder",
+            data: {
+                purOrderIds: orderIds, markId: markId
+            },
+            datatype: "text",
+            success: function (data) {
+                if (!data.HasError) {
+p2019889841doReloadData();
+                }
+                else {
+                    redgle.showMessage("标记采购单出错:" + data.Message);
+                }
+            },
+            error: function () {
+                redgle.showMessage("标记采购单出错.");
+            }
+        });
+    }
+    //批量删除标记
+    function doDeleteMarkPurOrders() {
+        var arrId = $('input[name="chk_list"]:checked').map(function () {
+            return this.value;
+        }).get().join(",");
+        if (arrId.length == 0) {
+            redgle.showMessage("请至少选择一个采购单！");
+            return;
+        } else {
+            redgle.showConfirm("您确认要删除选择的采购单的所有标记吗？", "ConfirmRemovPurOrderRemarks('" + arrId + "')");
+        }
+    }
+    //确认移除标记
+    function ConfirmRemovPurOrderRemarks(arrId) {
+        $.ajax({
+            type: "post",
+            url: "/PurOrder/DeletePurOrderMarks",
+            data: { orderIds: arrId },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.Message);
+                }
+                else {
+                    redgle.showMessage("删除成功！");
+                    try {
+p2019889841doReloadData();//刷新页面
+                    } catch (e) { redgle.showMessage("重新加载数据失败！"); }
+                }
+            },
+            error: function (e) {
+                redgle.showMessage("操作失败！");
+            }
+        })
+    }
+    //取消订单标记
+    function doDeletePurOrderMark(markRelationId) {
+        $.ajax({
+            type: "POST",
+            url: "/PurOrder/DeleteOrderMark",
+            data: {
+                markRelationId: markRelationId
+            },
+            datatype: "text",
+            success: function (data) {
+                if (!data.HasError) {
+p2019889841doReloadData();
+                }
+                else {
+                    redgle.showMessage("取消标记出错:" + data.Message);
+                }
+            },
+            error: function () {
+                redgle.showMessage("取消标记出错.");
+            }
+        });
+    }
+</script>
+<link href="__STATIC__/index/css/chosen.css" rel="stylesheet"/>
+
+<script src="__STATIC__/index/js/chosen.jquery.js"></script>
+
+<script src="__STATIC__/index/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="__STATIC__/index/js/b9474bea6f3d4c3787df7d7b71091f95.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

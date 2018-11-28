@@ -1,0 +1,14 @@
+﻿.valid-tips .form-control{
+    border: 1px solid #eb3c00 !important;
+    box-shadow: inset 0 1px 1px rgba(230,60,0,.3);
+}
+.valid-tips .form-control:focus{
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(237,60,0,.6) !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(237,60,0,.6) !important;
+}
+.valid-tips:after{
+    content: attr(data-content);
+    color: #eb3c00;
+    position: relative;
+    top: 2px;
+}

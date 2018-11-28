@@ -1,0 +1,621 @@
+{:widget('Blog/header')}
+
+
+
+
+    <script src="__STATIC__/index/js/99ceb706dfe446e4b01dcb2c6c39b327.js"></script>
+
+    <script src="__STATIC__/index/js/86301531ce674dd9add7e9eb961e6576.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabDeptManage" role="presentation" class="active"><a href="javascript:void(0);">组织架构管理</a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabDeptManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodes">
+<form action="/Dept?Length=4" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p208789074divDataList" id="searchForm" method="post">                <input type="hidden" id="txtDeptIdPath" name="txtDeptIdPath" value="1/" />
+                <input type="hidden" id="txtParentDeptId" name="txtParentDeptId" value="1" />
+                <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                    <label for="txtDeptName"><hg:trans>名称</hg:trans></label>
+                    <input type="text" class="form-control" style="width:220px;" hgtrans="true" id="txtDeptName" name="txtDeptName" placeholder="请输入名称">
+                </div>
+                <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                    <label for="txtContainsChild"><hg:trans>包含子级</hg:trans></label>
+                    <select class="form-control" style="width:220px;" id="txtContainsChild" name="txtContainsChild">
+                        <option value=""></option>
+                        <option value="1"><hg:trans>是</hg:trans></option>
+                        <option value="-1"><hg:trans>否</hg:trans></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default"><hg:trans>查询</hg:trans></button>
+</form>        </div>
+        <div id="divDeptSearch">
+            <div style="float:right; margin-right:20px;">
+                <button type="button" class="btn btn-info btn-sm" onclick="p208789074doEditData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加部门</hg:trans></button>
+            </div>
+            
+<div id="f378divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择组织架构</hg:trans>:</span>
+    <div id="f378divDeptContentPanel" class="tree" contentgroup="#divDeptSearch #f378divDeptContentPanel" navigategroup="#divDeptSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 35px;" contentgroup="#divDeptSearch #f378divDeptContentPanel" navigategroup="#divDeptSearch .breadcrumb"></ol>
+
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f378treeObject = new redgle.tree({
+            contentPanelExpr:"#divDeptSearch #f378divDeptContentPanel"
+            , navigatePanelExpr:"#divDeptSearch .breadcrumb"
+            , fnLoadChildren:function(deptId){
+                $.ajax({
+                    type: "POST",
+                    url: "/DeptTree/LoadDept",
+                    data: { deptId: deptId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f378treeObject.convertDeptToData(data);
+f378treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f378treeObject.convertDataToDept(data);
+                if(typeof(p208789074onDeptSelected) == "function") p208789074onDeptSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/DeptTree/LoadRoot",
+            data: {},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f378treeObject.convertDeptToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f378treeObject.addItemsToNavigate(data);
+f378treeObject.AddElementItem(data[0]);
+                }
+                else {
+f378treeObject.addItemsToNavigate([data]);
+f378treeObject.AddElementItem(data);
+                }
+            },
+            error: function () {
+
+            }
+        });
+
+        $("#f378divSelect").hover(
+            function () {
+                $("#f378divDeptContentPanel").show();
+            },
+            function () {
+                $("#f378divDeptContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="p208789074divDataList" class="parents-nodes">
+            <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                <hg:trans>名称</hg:trans>
+            </th>
+            <th>
+                <hg:trans>排序号</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建时间</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建者</hg:trans>
+            </th>
+            <th>
+                <hg:trans>操作</hg:trans>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr class="info">
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    2015/2/14 19:48:20
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                   <a href="javascript:void(0)" onclick="p208789074doEditData('1')" hgtrans="true" class="glyphicon glyphicon-edit" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('1')" hgtrans="true" class="glyphicon glyphicon-remove" title="删除"></a>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    远华嘉贸物流部
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/15 10:20:39
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('5')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('5')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    远华嘉贸加盟1部薛继兰
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/15 10:48:15
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('6')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('6')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    杜艳萍
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/21 23:58:51
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('7')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('7')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    王艳军
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/21 23:59:32
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('8')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('8')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    高海龙
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/21 23:59:52
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('9')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('9')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    白艳飞
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:00:16
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('10')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('10')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    苗海云
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:00:30
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('11')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('11')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    张艳荣
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:00:43
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('12')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('12')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    高利军
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:00:59
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('13')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('13')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    吕彩锋
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:01:23
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('14')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('14')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    苗艳梅
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:01:47
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('15')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('15')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    崔新宇
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:01:57
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('16')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('16')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    刘睿
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 0:02:09
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('17')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('17')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    樊艳军
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/22 10:29:24
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('18')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('18')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    韩晋
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/23 15:33:08
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('19')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('19')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    马东东
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/7/13 9:48:12
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('21')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('21')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    fanyanjun
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    2018/6/5 18:41:03
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p208789074doEditData('20')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>&nbsp;
+                    <a href="javascript:void(0)" onclick="p208789074doDeleteData('20')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+    </tbody>
+</table>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    function p208789074doShowMoreSearchPanel() {
+        $("#divMoreSearach").toggle("fast");
+    }
+    function p208789074onDeptSelected(dept) {
+        $("#txtDeptIdPath").val(dept.DeptIdPath);
+        $("#txtParentDeptId").val(dept.DeptId);
+        $("#searchForm").submit();
+    }
+    function p208789074doEditData(deptId) {
+        if (deptId == null || deptId == "")
+            deptId = "";
+
+        var url = "/Dept/Edit/" + deptId;
+        if (deptId == "")
+            url = url + "?parentDeptId=" + $("#txtParentDeptId").val();
+        redgle.tab.create("liDeptEdit", url, translate.format("<hg:trans>编辑组织</hg:trans>"));
+    }
+    function p208789074doDeleteData(deptId) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/Dept/Delete",
+            data: { deptId: deptId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p208789074doReloadData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p208789074doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/Dept",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p208789074divDataList").html(data);
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min_7.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/b78439fd9d3e424aaa78166cd9d585c3.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

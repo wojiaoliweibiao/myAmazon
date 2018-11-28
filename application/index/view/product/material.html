@@ -1,0 +1,279 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+     
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabSupplierManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>包材管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabSupplierManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodes">
+<form action="/Material?Length=8" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p236223428divDataList" id="searchForm" method="post">                <div>
+                    <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" />
+                    <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" placeholder="包材编码/包材名称" class="form-control" />
+                    <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary btn-sm" />
+                </div>
+</form>        </div>
+        <div id="divMaterialSearch">
+            <div style="float:right; margin-top:0px; margin-right:5px;">
+                <button type="button" class="btn btn-info btn-sm" onclick="p236223428doEditData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加包材</hg:trans></button>
+            </div>
+            
+<div id="f694divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f694divCatalogContentPanel" class="tree" contentgroup="#divMaterialSearch #f694divCatalogContentPanel" navigategroup="#divMaterialSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divMaterialSearch #f694divCatalogContentPanel" navigategroup="#divMaterialSearch .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f694treeObject = new redgle.tree({
+            contentPanelExpr:"#divMaterialSearch #f694divCatalogContentPanel"
+            , navigatePanelExpr:"#divMaterialSearch .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f694treeObject.convertCatalogToData(data);
+f694treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f694treeObject.convertDataToCatalog(data);
+                if(typeof(p236223428onCatalogSelected) == "function") p236223428onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"material"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f694treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f694treeObject.addItemsToNavigate(data);
+f694treeObject.AddElementItem(data[0]);
+                }
+                else {
+f694treeObject.addItemsToNavigate([data]);
+f694treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f694divSelect").hover(
+            function () {
+                $("#f694divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f694divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="p236223428divDataList">
+            
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:10%"><hg:trans>包材名称</hg:trans></hg:trans></th>
+            <th style="width:10%"><hg:trans>包材编号</hg:trans></th>
+            <th style="width:10%"><hg:trans>包材分类</hg:trans></th>
+            <th style="width:10%"><hg:trans>重量</hg:trans>(KG)</th>
+            <th style="width:10%"><hg:trans>价格</hg:trans>(CNY)</th>
+            <th style="width:10%"><hg:trans>尺寸</hg:trans></th>
+            <th style="width:15%"><hg:trans>供应商</hg:trans></th>
+            <th style="width:10%"><hg:trans>优先顺序</hg:trans><br />（<hg:trans>数值越大优先级越高</hg:trans>）</th>
+            <th style="width:10%"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p236223428divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Material?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    function p236223428onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#searchForm").submit();
+    }
+    function p236223428doEditSupplierProduct(supplierId) {
+        if (supplierId == null || supplierId == "")
+            supplierId = "";
+        var url = "/Supplier/EditSupplierProduct/" + supplierId;
+        redgle.tab.create("liTabEditSupplierProduct", url, translate.format("<hg:trans>供应产品</hg:trans>"), "liTabSupplierManage");
+    }
+    function p236223428doEditData(materialId) {
+        debugger
+        if (materialId == null || materialId == "")
+            materialId = "";
+
+        var url = "/Material/Edit/" + materialId;
+        redgle.tab.create("liTabEditMaterial", url, translate.format("<hg:trans>包材编辑</hg:trans>"));
+    }
+
+    function p236223428doDeleteData(id) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/Material/Delete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p236223428doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p236223428doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/Material",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p236223428divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/24d2e89e612f40069765510ab9cb9aea.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

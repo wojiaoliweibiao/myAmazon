@@ -1,0 +1,1293 @@
+{:widget('Blog/header')}
+
+<link href="__STATIC__/index/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="__STATIC__/index/js/76c3b3f0ab7d4673914b9719d33f59cd.js"></script>
+
+    <script src="__STATIC__/index/js/acd99e5e6a77468d8ebbc01aa4ca9aaa.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabInStoreManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>全部订单</hg:trans></a></li>
+</ul>
+
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabInStoreManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="alert bg-info" style="padding:8px;margin:0px">
+            <hg:trans>PS：在这里您可以看到所有订单，未付款、资金未到帐包含在订单状态“其他”中。</hg:trans>
+        </div>
+        <div class="row" style="margin:0 2px">
+            
+
+
+
+<input id="saleManInfo" type="hidden" value="" />
+<input id="saleDeveloperInfo" type="hidden" value="" />
+<input id="StoreInfo" type="hidden" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;默认仓库（自有仓）&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+<input id="LogisticMode" type="hidden" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;自定义物流商-远华嘉贸物流&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+<input id="userfromlist" type="hidden" value="[&quot;Amazon&quot;,&quot;Offline&quot;]" />
+<input id="AccountUser" type="hidden" value="[{&quot;Value&quot;:&quot;5310935598329333161&quot;,&quot;Text&quot;:&quot;11(us)&quot;,&quot;item&quot;:&quot;Amazon&quot;}]" />
+<input id="OrderStatus" type="hidden" value="{&quot;0&quot;:&quot;其它&quot;,&quot;1&quot;:&quot;待处理&quot;,&quot;2&quot;:&quot;待配货&quot;,&quot;3&quot;:&quot;待发货&quot;,&quot;4&quot;:&quot;已发货&quot;,&quot;5&quot;:&quot;已完成&quot;,&quot;6&quot;:&quot;虚拟已发货&quot;}" />
+<input id="markListJSonStr" type="hidden" value="[{&quot;Text&quot;:&quot;需确认妥投&quot;,&quot;Value&quot;:&quot;8&quot;},{&quot;Text&quot;:&quot;退货入库&quot;,&quot;Value&quot;:&quot;9&quot;}]" />
+<input id="markProductListJSonStr" type="hidden" value="[{&quot;Text&quot;:&quot;跟卖&quot;,&quot;Value&quot;:&quot;1&quot;},{&quot;Text&quot;:&quot;带电&quot;,&quot;Value&quot;:&quot;2&quot;},{&quot;Text&quot;:&quot;粉末&quot;,&quot;Value&quot;:&quot;3&quot;},{&quot;Text&quot;:&quot;液体&quot;,&quot;Value&quot;:&quot;4&quot;},{&quot;Text&quot;:&quot;纯电池&quot;,&quot;Value&quot;:&quot;5&quot;},{&quot;Text&quot;:&quot;非液体化妆品&quot;,&quot;Value&quot;:&quot;6&quot;},{&quot;Text&quot;:&quot;带磁&quot;,&quot;Value&quot;:&quot;7&quot;}]" />
+<input id="ConturyList" type="hidden" value="" />
+<input id="LogistciAccount" type="hidden" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;自定义物流商&quot;,&quot;Value&quot;:&quot;7&quot;}]" />
+<input id="bindTypeData" type="hidden" value="" />
+<div id="J_selector" class="selector">
+    <div id="DropListItem">
+    </div>
+    <div id="listItem"></div>
+    <div class="J_selectorLine s-brand s-line oc_select ">
+        <div class="sl-wrap  NoEvent SearchType ">
+            <div class="sl-key" typeid="SearchType"><hg:trans>搜索类型</hg:trans></div>
+            <div class="sl-value" id="SearchType">
+                <div class="clr"></div>
+                <div class="sl-v-list">
+                    <ul class="J_valueList" style="height:auto">
+                        <li style="">
+                            <a href="javascript:;" id="OrderNO_Type" class="J_active" title="订单号">
+                                <i></i>
+                                <hg:trans>订单号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="TrackingNum_Type" title="物流跟踪号">
+                                <i></i>
+                                <hg:trans>物流跟踪号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="LogisticNum_Type" title="物流服务单号">
+                                <i></i>
+                                <hg:trans>物流服务单号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="ReferenceNo_Type" title="转单号">
+                                <i></i>
+                                <hg:trans>转单号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="ProductSKU_Type" title="SKU">
+                                <i></i>
+                                <hg:trans>SKU</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="BuyerId_Type" title="买家账号">
+                                <i></i>
+                                <hg:trans>买家账号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="Contact_Type" title="收件人">
+                                <i></i>
+                                <hg:trans>收件人</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="OrderDate_Type" title="下单时间">
+                                <i></i>
+                                <hg:trans>下单时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="PaymentDate_Type" title="付款时间">
+                                <i></i>
+                                <hg:trans>付款时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="UpdateLoadDate_Type" title="订单预报至物流时间">
+                                <i></i>
+                                <hg:trans>预报时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="LocalDeliveryDate_Type" title="系统发货时间">
+                                <i></i>
+                                <hg:trans>系统发货时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="DeliveryDate_Type" title="平台发货时间">
+                                <i></i>
+                                <hg:trans>平台发货时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="VirtualDeliveryDate_Type" title="虚拟发货时间">
+                                <i></i>
+                                <hg:trans>虚拟发货时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="PrintTime_Type" title="打印时间">
+                                <i></i>
+                                <hg:trans>打印时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="PayableAmount_Type" title="订单金额">
+                                <i></i>
+                                <hg:trans>订单金额</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="SalesRecord_Type" title="Ebay-SalesRecord，Shopify-订单号">
+                                <i></i>
+                                <hg:trans>销售编号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="proRelationId_Type" title="商品编号">
+                                <i></i>
+                                <hg:trans>商品编号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="ProductName_Type" title="产品名称">
+                                <i></i>
+                                <hg:trans>产品名称</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="Describe_Type" title="中文配货名称">
+                                <i></i>
+                                <hg:trans>中文配货名称</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="CustomerName_Type" title="买家名称">
+                                <i></i>
+                                <hg:trans>买家名称</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="Memo_Type" title="买家备注">
+                                <i></i>
+                                <hg:trans>买家备注</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="OrderId_Type" title="速猫订单ID">
+                                <i></i>
+                                <hg:trans>速猫订单ID</hg:trans>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="J_selectorLine s-brand s-line single">
+        <div class="sl-wrap  NoEvent" style="line-height:inherit;">
+            <div class="sl-key gride" typeid="SearchContent"><hg:trans>搜索内容</hg:trans></div>
+            <div class="sl-value" id="SearchContent">
+                <div class="clr"></div>
+                <div class="sl-v-Contentlist ContentValueList">
+                    <div class="col-sm-6 "  id="OrderNOItem" style=" padding:0px;">
+                        <div class="input-group input-group-sm ">
+                            <label class="input-group-addon">
+                                <input id="isckbFuzzySearch"  name="isckbFuzzySearch" value="true" type="checkbox"> 模糊搜索
+                            </label>
+                            <input type="text" name="SearchKey" id="SearchKey" onkeydown="enterSearch()" class="form-control" placeholder="请输入搜索内容，多个单号请用逗号隔开">
+                            <span class="input-group-btn ">
+                                <input hgtrans="true" value="搜索(S)" type="button" onclick="doSearchOrder()" accesskey="S" class="btn btn-primary">
+                            </span>
+                            <span class="input-group-addon" style="background:#fff;border:none" id="addMoreOrderno">
+                                <a href="javascript:void(0)" onclick="addPublicMoreOrderno('inputOrderNos', 'txtSearchMoreOrder')"><hg:trans>输入更多单号</hg:trans></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none;padding:0px" id="SearchDate">
+                        <div class="input-group input-group-sm ">
+                            <input type="text" class="form-control" id="txtSearchDateBegin" name="txtSearchDateBegin" onfocus="doInitWdatePickerEndDate('begin');" hgtrans="true" placeholder="开始时间">
+                            <span class="input-group-addon">
+                                TO
+                            </span>
+                            <input type="text" class="form-control " id="SearchtxtDateEnd" name="SearchtxtDateEnd" onfocus="doInitWdatePickerEndDate('end');" hgtrans="true" placeholder="结束时间">
+                            <span class="input-group-btn">
+                                <input hgtrans="true" value="搜索(S)" type="button" onclick="doSearchOrder()" accesskey="S" class="btn btn-primary">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none;padding:0px" id="PayableAmountSearch">
+                        <div class="input-group input-group-sm ">
+                            <input type="number" class="form-control input-sm" id="txtNumberBeginTemp" name="txtNumberBeginTemp">
+                            <span class="input-group-addon">
+                                TO
+                            </span>
+                            <input type="number" class="form-control input-sm" id="txtNumberEndTemp" name="txtNumberEndTemp">
+                            <span class="input-group-btn">
+                                <input hgtrans="true" value="搜索(S)" type="button" onclick="doSearchOrder()" accesskey="S" class="btn btn-primary">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 " id="searchtype">
+                        <div class="pull-right checkbox">
+                            <label for="morCheck"><input type="checkbox" id="morCheck" /><hg:trans>是否合并查询</hg:trans></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divSortType"> </div>
+    <div id="J_crumbsBar" class="crumbs-bar" style="display:none">
+        <div class="crumbs-nav">
+            <div class="crumbs-nav-main clearfix">
+                <div class="crumbs-nav-item">
+                    <div class="crumbs-first"><a href="javascript:;">全部结果</a></div>
+                </div>
+                <i class="crumbs-arrow">&gt;</i>
+                <div style="float:left;width:90%" id="baritem">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<form action="/Order?Length=5" class="" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#divOrderDataList" id="searchForm" method="post" style="">    <input type="hidden" value="" name="txtSearchKey" id="txtSearchKey" /><!--搜索条件：支持多条件查询-->
+      <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+    <input type="hidden" id="txtExtraStatusCode" name="txtExtraStatusCode" value="" />
+    <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" value="" />
+    <input type="hidden" id="hidSaleMan" name="hidSaleMan" value="" />
+    <input type="hidden" id="hidDeveloper" name="hidDeveloper" value="" />
+    <input type="hidden" id="hidStore" name="hidStore" value="" />
+    <input type="hidden" id="hidLogisticMode" name="hidLogisticMode" value="">
+    <input type="hidden" id="hidPackageMaterial" name="hidPackageMaterial" value="">
+    <input type="hidden" value="" name="hidSaleStatues" id="hidSaleStatues" />
+    <input type="hidden" value="OrderNO" name="hidChoose" id="hidChoose" />
+    <input type="hidden" value="" name="hidApiAccountItems" id="hidApiAccountItems" /><!--平台账号-->
+    <input type="hidden" value="" name="hidApiForms" id="hidApiForms" /><!--平台-->
+    <input type="hidden" value="" name="hidOrderStatusCodes" id="hidOrderStatusCodes" />
+    <input type="hidden" value="" name="hidCountrys" id="hidCountrys" />
+    <input type="hidden" value="" name="hidMark" id="hidMark" />
+    <input type="hidden" value="" name="hidSystemMark" id="hidSystemMark" />
+    <input type="hidden" value="" name="hidProductMark" id="hidProductMark" />
+    <input type="hidden" id="hidSort" name="hidSort" value="" /><!--排序字段-->
+    <input type="hidden" id="hidSortType" name="hidSortType" value="" /> <!--排序类型-->
+    <input type="hidden" id="hidDeliveryTime" name="hidDeliveryTime" value="">
+    <input type="hidden" id="hidOrderPrintStatus" name="hidOrderPrintStatus" value=""><!---订单  -->
+    <input type="hidden" id="hidAccordingState" name="hidAccordingState" value="">
+    <input type="hidden" id="hidPostBck" name="hidPostBck" value="0"><!---回传状态 -->
+    <input type="hidden" id="hidshipType" name="hidshipType" value=""><!--配送类型-->
+    <input type="hidden" id="hidshipStatus" name="hidshipStatus" value=""><!--配送状态-->
+    <input type="hidden" id="hidLogistics" name="hidLogistics" value=""><!--物流商-->
+    <input type="hidden" id="hidIsFBAOrder" name="hidIsFBAOrder" value="" /><!--FBA订单-->
+    <input type="hidden" id="hidtxtStatusCode" name="hidtxtStatusCode" value="" /><!--状态查询-->
+</form>
+<script src="__STATIC__/index/js/wdatepicker.js"></script>
+
+<script src="__STATIC__/index/js/dot.js"></script>
+<!-- 物流方式-->
+<script type="text/x-dot-template" id="CommonTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}}" menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                            <input type="text" id="hhhhh" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                <hg:trans>搜索(S)</hg:trans>
+                            </span>
+                        </div>
+                    </div>
+                    {{?}}
+                    <ul class="J_valueList {{=it.ClassName}}">
+                        {{ var objarray=it.listItem;  for(var i=0;i
+                        <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                            <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                            <li id="{{=objarray[i].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}">
+                                    <i></i>{{=textname}}
+                                </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                </div>
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;" type="{{=it.isMultioleStr}}">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;"><hg:trans>更多</hg:trans><i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+<script type="text/x-dot-template" id="DropItemTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        <hg:trans>搜索(S)</hg:trans>
+                    </span>
+                </div>
+            </div>
+            {{?}}
+            <ul class="J_valueList clearfix {{=it.ClassName}}">
+                {{  var objarray=it.data;  for(var i=0;i
+                <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                    <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                    <li id="{{=objarray[i].Value}}" style="display:block;">
+                        <a href="javascript:;" title="{{=textname}}">
+                            <i></i>{{=textname}}
+                        </a>
+                    </li>
+                    {{ } }}
+            </ul>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+
+<!-- 平台账号-->
+<script type="text/x-dot-template" id="CommonAccountUserTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}} " menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list ">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                            <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                <hg:trans>搜索(S)</hg:trans>
+                            </span>
+                        </div>
+                    </div>
+                    {{?}}
+                    <ul class="J_valueList {{=it.ClassName}}">
+                        {{ var objarray=it.listItem;  for(var i=0;i
+                        <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                            <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                            <li id="{{=objarray[i].Value}}" style="display:block;" class="para-item">
+                                <a class="{{=objarray[i].item}}-sales" href="javascript:;" title="{{=textname}}">
+                                    <i></i>{{=textname}}
+                                </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                </div>
+                {{?it.isMultiple}}
+                <div class="sl-btns">
+                    <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+                    <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+                    <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+                </div>
+                {{?}}
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;"><hg:trans>更多</hg:trans><i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+<!----下拉订单状态-->
+<script type="text/x-dot-template" id="DropSaleStatusItemTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            <div class="J_valueList">
+                {{  var objarray=it.data;  for(var i=0;i<objarray.length;i++){ }}
+                    <div class="OrderStatusTitle"> <b>{{=objarray[i].saleName}}</b></div>
+                    <ul class=" clearfix {{=it.ClassName}}">
+                        {{  var datalist=objarray[i].saleListStatus;  for(var j=0;j
+                        <datalist.length;j++){var textname=translate.format("
+                            <hg:trans>{0}</hg:trans>", [datalist[j].Text.trim()]);  }}
+
+                            <li id="{{=datalist[j].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                    {{ } }}
+            </div>
+
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+<!--排序模板-->
+<!--国家模板 START-->
+<script type="text/x-dot-template" id="CountryExtendTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}}" menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                            <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                <hg:trans>搜索(S)</hg:trans>
+                            </span>
+                        </div>
+                    </div>
+                    {{?}}
+                    <div class="J_valueList">
+                        <div class="CommonCountry">
+                            <b><hg:trans>常用国家</hg:trans></b>
+                            <ul>
+                                {{ var objarray=it.listItem.CommonCountry;  for(var i=0;i
+                                <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                                    <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                                    <li id="{{=objarray[i].Value}}" style="display:block;">
+                                        <a href="javascript:;" title="{{=textname}}">
+                                            <i></i>{{=textname}}
+                                        </a>
+                                    </li>
+                                    {{ } }}
+                            </ul>
+                        </div>
+                        <div class="OtherCountry">
+                            {{ var objarray=it.listItem.CountryList;  for(var j=0;j<objarray.length;j++){var continent=removeAllSpace(translate.format("
+                                <hg:trans>{0}</hg:trans>", [objarray[j].TextName]));  }}
+                                <b><hg:trans>{{=continent}}</hg:trans></b>
+                                <ul class=" {{=it.ClassName}}">
+                                    {{ var continentcountry=objarray[j].listData;  for(var i=0;i
+                                    <continentcountry.length;i++){var textname=removeAllSpace(translate.format("
+                                        <hg:trans>{0}</hg:trans>", [continentcountry[i].Text]));  }}<li id="{{=continentcountry[i].Value}}" style="display:block;">
+                                            <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}} </a>
+                                        </li>
+                                        {{ } }}
+                                </ul>
+
+
+                                {{ } }}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;" type="{{=it.isMultioleStr}}">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;"><hg:trans>更多</hg:trans><i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+
+<!--下拉国家模板 END-->
+<script type="text/x-dot-template" id="DropCountryTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        <hg:trans>搜索(S)</hg:trans>
+                    </span>
+                </div>
+            </div>
+            {{?}}
+            <div class="J_valueList">
+                <div class="OrderStatusTitle"> <b><hg:trans>常用国家</hg:trans></b></div>
+                <ul class=" clearfix {{=it.ClassName}}">
+                    {{  var datalist=it.data.CommonCountry; for(var j=0;j
+                    <datalist.length;j++){var textname=translate.format("
+                        <hg:trans>{0}</hg:trans>", [datalist[j].Text.trim()]);  }}
+                        <li id="{{=datalist[j].Value}}" style="display:block;">
+                            <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                        </li>
+                        {{ } }}
+                </ul>
+                {{  var objarray=it.data.CountryList;  for(var i=0;i<objarray.length;i++){ }}
+                    <div class="OrderStatusTitle"> <b>{{=objarray[i].TextName}}</b></div>
+                    <ul class=" clearfix {{=it.ClassName}}">
+                        {{  var continentcountry=objarray[i].listData;  for(var j=0;j
+                        <continentcountry.length;j++){var textname=translate.format("
+                            <hg:trans>{0}</hg:trans>", [continentcountry[j].Text.trim()]);  }}
+                            <li id="{{=continentcountry[j].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                    {{ } }}
+            </div>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+
+<!--国家模板 END-->
+
+<script type="text/x-dot-template" id="OrderListTempl">
+    <div class="J_selectorLine s-brand s-line ">
+        <div class="sl-wrap" style="line-height:22px">
+            <div class="sl-key gridt" typeid="OrderListInfo"><hg:trans>排序</hg:trans></div>
+            <div class="sl-value" id="OrderListInfo">
+                <div class="sl-v-list">
+                    <div class=" order-content para-items" id="divSort">
+                        {{ var active="active";var orderType="DESC";var iconOrder="glyphicon-menu-down"; for(var i=0;i<it.length;i++){var textname=translate.format("
+                            <hg:trans>{0}</hg:trans>", [it[i].Text.trim()]);  }}
+                            <span itemid="{{=it[i].Value}}" sorttype="{{=orderType}}" class="{{=active}}"> <hg:trans>{{=textname}}</hg:trans>&nbsp;<span id="{{=it[i].Value}}SortMark" class="glyphicon {{=iconOrder}}"></span></span>
+                            {{active="";orderType=""; iconOrder="glyphicon-resize-vertical";} }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+<div class="modal fade" id="SearchMenuModal" tabindex="-1" style="padding-top:12%" role="dialog" aria-labelledby="SetSearchMenuModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="SetSearchMenuModalLabel"><hg:trans>设置常用菜单</hg:trans></h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="SetUpMenuUI()"><hg:trans>设置</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-dot-template" id="SetMenuTempl">
+    <div>
+        {{ var ischecked="checked='checked'"; for(var i=0;i<it.length;i++){}}
+            <div class="checkbox" typeid="{{=it[i].typeid}}">
+                {{
+                if(it[i].isExtend)
+                {
+                ischeckedInfo=ischecked;
+                }
+                else
+                {
+                ischeckedInfo="";
+                }
+                }}
+                <label> <input type="checkbox" {{=ischeckedInfo}} value="{{=it[i].isExtend}}">{{=it[i].typeName}}</label>
+            </div>
+            {{}}}
+    </div>
+</script>
+
+        </div>
+        <div class="status-group" id="divExtraStateItems">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="HasReissue"><a><hg:trans>有补发</hg:trans></a><span></span></label>
+            <label itemid="Reissue"><a><hg:trans>补发</hg:trans></a><span></span></label>
+            <label itemid="CombinPackage"><a><hg:trans>合并订单</hg:trans></a><span></span></label>
+            <label itemid="SplitPackage"><a><hg:trans>拆分订单</hg:trans></a><span></span></label>
+            <label itemid="BeMerged"><a><hg:trans>被合并</hg:trans></a><span></span></label>
+            <label itemid="WasSplit"><a><hg:trans>被拆分</hg:trans></a><span></span></label>
+            <label itemid="IsAbandoned"><a><hg:trans>已作废</hg:trans></a><span></span></label>
+            <label itemid="Virtual"><a><hg:trans>虚拟已发货</hg:trans></a><span></span></label>
+            <label itemid="NoVirtual"><a><hg:trans>非虚拟发货</hg:trans></a><span></span></label>
+            <label itemid="CantReceipt"><a><hg:trans>阻止发货</hg:trans></a><span></span></label>
+            <label itemid="SmtSendgoods"><a><hg:trans>速卖通发货</hg:trans></a><span></span></label>
+            <label itemid="NoSmtSendgoods"><a><hg:trans>不含速卖通发货</hg:trans></a><span></span></label>
+            <label itemid="INISSUE"><a><hg:trans>有纠纷订单</hg:trans></a><span></span></label>
+            <label class="checkbox" style="margin-top:3px"><input type="checkbox" id="chkMoreStatusGroup" style="margin-top:3px" />允许多选</label>
+        </div>
+        <div style="margin-top:18px;">
+            <div style="float:right; margin-right:5px;" id="divFollowButtons">
+
+                <div class="btn-group false">
+                    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-tag"></i>&nbsp;<hg:trans>标记订单</hg:trans><span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" style="min-width:93px;max-height:400px;overflow-y:auto">
+                            <li><a href="javascript:void(0)" style="color:#FF9900" onclick="doMarkOrder('p1118289734','8')">需确认妥投</a></li>
+                            <li><a href="javascript:void(0)" style="color:#00FF00" onclick="doMarkOrder('p1118289734','9')">退货入库</a></li>
+
+                        <li class="divider"></li>
+                        <li><a href="http://yhjm.sumool.com/Mark/MarkSetting/Order" target="_blank"><hg:trans>设置标记</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doDeleteMarkOrders('p1118289734')"><hg:trans>删除标记</hg:trans></a></li>
+                    </ul>
+                </div>
+                <div class="btn-group false">
+                    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;<hg:trans>订单操作</hg:trans><span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                        <li><a href="javascript:void(0)" onclick="AddPreventDelivery('p1118289734')"><hg:trans>阻止发货</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="DeletePreventDelivery('p1118289734')"><hg:trans>取消阻止发货</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="p1118289734doGetLogisticTransitNo()"><hg:trans>获取跟踪号</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doPrintView('p1118289734')"><hg:trans>打印地址标签</hg:trans></a></li>
+                        <li hgtrans="true" title="针对选中的订单发送信息，只支持速卖能和Ebay订单"><a href="javascript:void(0)" onclick="doShowBatchSendMessagePanel()"><hg:trans>批量发送信息</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doBatchAutoSalesMan('p1118289734')"><hg:trans>自动匹配业务员</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="GetAliexpressLogisticFreight('p1118289734')"><hg:trans>同步速卖通线上运费</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doEditSelectShop('p1118289734')"><hg:trans>修改所属线下店铺</hg:trans></a></li>
+                    </ul>
+                </div>
+                <div class="btn-group false" title="只匹配还未有产品成本且最近两个月的订单">
+                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-refresh"></i>&nbsp;<hg:trans>匹配订单成本</hg:trans><span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                            <li><a href="javascript:void(0)" onclick="p1118289734MatchOrderProductCosts(1)"><hg:trans>根据库存平均价匹配</hg:trans></a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)" onclick="p1118289734MatchOrderProductCosts(0)"><hg:trans>根据标准采购价匹配</hg:trans></a></li>
+                        </ul>
+                    </div>
+                <div class="btn-group false">
+                    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;<hg:trans>导入/导出</hg:trans><span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                        <li><a href="javascript:void(0)" onclick="doExportData('OrderIndex')"><hg:trans>导出订单</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doExportPackage('order', 'Order/ExportPackage', '')"><hg:trans>导出拣货单</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="p1118289734doExportNoCostOrder()"><hg:trans>导出订单费用</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doImportOrderCost()"><hg:trans>导入订单费用</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doImportFreight()"><hg:trans>导入运费</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="p1118289734doImportTrackNo()"><hg:trans>导入跟踪号</hg:trans></a></li>
+                        <li><a href="javascript:void(0)" onclick="doShowReportPlanWin('order')"><hg:trans>下载订单计划报表</hg:trans></a></li>
+                    </ul>
+                </div>
+
+                <a id="btnOpenWindow" href="#" class="btn btn-primary" style="display:none" target="_blank"><hg:trans>隐藏链接</hg:trans></a>
+                <button type="button" class="btn btn-info btn-sm" onclick="doDeleteOrder('p1118289734')"><i class="glyphicon glyphicon-trash"></i> <hg:trans>删除订单</hg:trans></button>
+            </div>
+            <div id="divOrderDataList" style="margin-top:0px;clear:both">
+                
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:2%;"><input type="checkbox" name="chk_all" id="chk_all" onclick="doSetCheckBox(this)" /></th>
+            <th style="width:5%"><hg:trans>订单标记</hg:trans></th>
+            <th style="width:14%;"><hg:trans>订单号</hg:trans><br /><hg:trans>[店铺]</hg:trans></th>
+            <th style="width:20%"><hg:trans>商品信息</hg:trans></th>
+            <th style="width:12%"><hg:trans>买家</hg:trans><br /><hg:trans>[收件人/国家]</hg:trans></th>
+            <th style="width:10%;"><hg:trans>订单时间</hg:trans><br /><hg:trans>[状态]</hg:trans></th>
+            <th style=""><hg:trans>客选物流</hg:trans><br /><hg:trans>[物流方式]</hg:trans></th>
+            <th style=""><hg:trans>服务单号</hg:trans><br /><hg:trans>[物流跟踪号]</hg:trans></th>
+            <th style="width:4%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+     <tbody>
+        
+
+
+
+        {volist  name="$orders"  id="orders"  key="k"}
+
+            <tr ondblclick="doViewOnlineOrder('4830')">
+                <td style="text-align:center">
+                    <input id="item_OrderNo" name="item.OrderNo" type="hidden" value="407-0386806-5995560" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已发货" />
+                    <input type="checkbox" name="chk_list" value="4830" orderno="407-0386806-5995560" ordermark="Normal" />
+
+                    <span>{$k}</span>
+                </td>
+                <td style="line-height:27px">
+                    
+                </td>
+                <td style="line-height:22px">
+                    <a href='javascript:void(0)' data-orderno='orderno' class='limingcentUrlpic' onclick='doViewOnlineOrder(4830)'>{$orders.AmazonOrderId}</a><br /><span>平台状态：{$orders.order_status}</span><br /><span class='sales-item'><a class='Amazon-sales'>苗贵鹏</a></span><input type='hidden' value='Amazon' id='hidRelationType' /><br />
+                    
+                    <a href='javascript:void(0)' ordermessage='4830'  onclick='doViewOrderMsg(4830,"ordermsg","p1951038002")'></a> <a href='javascript:void(0)' message='4830' onclick='doViewSiteMsg(4830,"sitemsg","p1951038002","苗贵鹏")'></a>
+                    <a href='javascript:void(0)' onclick='doAddOrderMemo(4830,"p1951038002")' class='label ' style='font-size:13px;background-color:#d6d3d3'>备</a>
+                </td>
+                <td>
+                    <table style="border:none;width:370px">
+                        <tbody>
+                                <tr>
+                                    <td style="border:none; width:80px;">
+                                        <div id='0' style='position: absolute; display: none; border: 1px solid silver; background: #ffffff;z-index:1000;width:300px;height:300px; line-height:300px'><img style='width:100%; ' src='picture/4181cgu6dxl.jpg' /></div><div class='ProImageList' onmouseover='javascript:show(this,"0");' onmouseout='hide(this,"0")'><img style='height:62px;max-width:62px;display:inline-block' src='picture/4181cgu6dxl._sl75_.jpg' onerror=''   /></div>
+                                    </td> 
+                                    <td style="border:none;text-align:left !important;word-wrap:break-word;word-break:break-all;width:290px;line-height:20px">
+                                        <div  style='width:270px;max-height:40px;overflow:hidden;  margin:5px; '  title='MSFS Sandalias de Mujer Zapatillas Pluma de Piel Punta Abierta Chanclas Suela Blanda Multicolor, Black, EU42' ><a  style='display:inline-block;width:auto;height:auto'   href='https://www.amazon.es/gp/product/B07FFQVLQB' target='_blank'    >MSFS Sandalias de Mujer Zapatillas Pluma de Piel Punta Abierta Chanclas Suela Blanda Multicolor, Black, EU42</a></div>商品SKU：<span class='limingcentUrlpic'>{$orders.order_sku}</span>  <span class='badge'>1</span><br/>商品属性：black EU42   <br/><a style='cursor:pointer' href='javascript:void(0)' onclick='jacascript:doMappOrderSkuSelectProduct(4830,13971,"p1951038002")'><span class='text-danger'>指定产品库SKU</span></a></span><br/>ASIN：{$orders.ASIN}<br/>商品状况：New<br/><a title='报关信息不完善，修改报关信息' href='javascript:void(0)' onclick='doBatchEditDeclare("p1951038002",4830)'><span class='label label-warning' style='font-size:12px;'>报关<span></a><br/>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="text-align:center;line-height:22px">
+                    <span class="label label-success" title='订单金额' style="font-size:11px;">EUR 47.06</span> <br />
+                    <a href="javascript:void(0)" onclick="doViewCustomer(4229)">roberta almeida</a><br/>西班牙
+                </td>
+                <td style="line-height:22px">
+                    <span title="下单时间" hgtrans='true'>2018-08-05 21:50:13</span><br /><span title="付款时间" hgtrans='true'>2018-08-05 21:50:13</span><input type='hidden' value='2018-08-05 21:50:13' id='hidPaymentTime' /><br /><span title='本地发货时间' class='text-warning'>--</span><br /><span title='平台发货时间' class='text-warning'>2018-08-08 05:59:59</span> <br />
+                    <label style='font-size:12px'>已发货</span>
+                </td>
+                <td style="text-align:center;line-height:22px">
+                    MFN（Standard）<br/>[<a title='分配物流方式' href='javascript:void(0)' onclick='doSelectLogisticModeStore("p1951038002",4830,0,0)'><span class='text-danger'>未分配物流方式</span></a>]<br />
+                    
+                </td>
+                <td>
+                    <a class='text-danger'>--</a><br/><span class='text-danger'>--</span><br/>[<span class='text-danger'>待获取/录入</span>]
+                </td>
+                <td>
+                    <button type='button' class='btn btn-default btn-xs' onclick='doViewOnlineOrder(4830)' hgtrans='true' data-toggle='orderoperation' data-placement='top' title='详情'><span class='glyphicon glyphicon-search' style='color:#337ab7'></span></button><br/><button type='button' style='margin-top:7px' class='btn btn-default btn-xs' onclick='doReimbursement(4830)' hgtrans='true' data-toggle='orderoperation' data-placement='top' title='补发'><span class='glyphicon glyphicon-registration-mark' style='color:#337ab7'></span></button><br/><button type='button' style='margin-top:7px' class='btn btn-default btn-xs' onclick='SyncOrderById("p1951038002",4830)' hgtrans='true' data-toggle='orderoperation' data-placement='top' title='同步订单'><span class='glyphicon glyphicon-refresh' style='color:#337ab7'></span></button>
+                </td>
+            </tr>
+            {/volist}
+    </tbody>
+</table>
+<script type="text/javascript">
+    jQuery(function () {
+        $('[data-toggle="orderoperation"]').tooltip();
+        $("button[id='butShippedErrorInfo']").each(function () {
+            $(this).popover();
+        });
+
+        if (typeof (doLoadOrderMessage) == "function") {
+            doLoadOrderMessage();
+        }
+        if (typeof (doViewStore) == "function") {
+            doViewStore();//查看库存
+        }
+        if (typeof (doViewRemarks) == "function") {
+            doViewRemarks();//备注信息
+        }
+        if (typeof (doMemo) == "function") {
+            doMemo();//买备信息
+        }
+        if (typeof (doViewDifrentPaypalAddress) == "function") {
+            doViewDifrentPaypalAddress();//paypal地址
+        }
+
+
+        //订单为合并订单（合并包裹）时，默认展开相关订单
+        if ("" == "1") {
+            $("button[name='relationOrdersa']").each(function () {
+                $(this).click() //默认点击
+            })
+        }
+    });
+</script>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="50" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Order?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="50" selected="selected">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="pushModal" tabindex="-1" role="dialog" aria-labelledby="pushModalLabel" aria-hidden="true" style="padding-top:100px;">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="tokenModalLabel"><hg:trans>推送销售汇总</hg:trans></h4>
+            </div>
+            <div class="modal-body" style="height:100px">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <label class="col-sm-3 control-label"><hg:trans>选择日期</hg:trans></label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="txtPushDateBegin" name="txtPushDateBegin" onfocus="WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd' });" hgtrans="true" placeholder="选择日期">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align:center">
+                <button type="button" class="btn btn-primary" id="tokenSearch" onclick="doPushOrderSummary()"><hg:trans>推送</hg:trans></button>
+                <button type="button" class="btn btn-default" style="margin-left:30px" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__STATIC__/index/js/9ea27a8b1e184c7cbf088a023a62c5a1.js"></script>
+
+<script src="__STATIC__/index/js/ec16fef2494c41d4af4728db7c233635.js"></script>
+
+<script language="javascript" type="text/javascript">
+    //导入跟踪号
+    function p1118289734doImportTrackNo() {
+        var url = "/Order/ImportTrackNo";
+        redgle.tab.create("liTrackNoImport", url, translate.format("<hg:trans>导入跟踪号</hg:trans>"));
+    }
+
+    //手动匹配订单成本
+    function  p1118289734MatchOrderProductCosts(type) {
+        $.ajax({
+            type: "POST",
+            url: "/Order/DoMatchOrderProductCosts",
+            data: { type: type },
+            datatype: "text",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    if (data.Message!=null && data.Message!="")
+                    {
+                        redgle.showMessage(data.Message);
+                    } else {
+                        redgle.showMessage(translate.format("<hg:trans>匹配完成</hg:trans>"));
+                    }                 
+                }
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+    }
+    //订单状态
+    $(function () {
+        $('#theOrderStatusCodes').bind('change', function () {
+            $("#hidOrderStatusCodes").val($('#theOrderStatusCodes option:selected').val());
+            $("#searchForm").submit();
+        })
+    })
+    //重新加载订单列表
+    function p1118289734doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+        //把查询条件传递给本页面
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/Order",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#divOrderDataList").html(data);
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+    }
+
+    ////删除正常状态的订单，排除已拆分，已合并，被拆分，被合并
+    //function doDeleteData() {
+    //    var hasError = false;
+    //    var arrId = "";
+    //    var arrIdError = "";  //不能被删除的
+    //    $('input[name="chk_list"]:checked').each(function () {
+    //        var orderNo = $(this).attr("orderno");
+    //        var orderMark = $(this).attr("ordermark");
+    //        if (orderMark == 'Normal') {
+    //            arrId += this.value + ",";
+    //        } else {
+    //            arrIdError += orderNo + ",";
+    //        }
+    //    });
+    //    if (arrIdError.length > 0) {
+    //        arrIdError = arrIdError.substring(0, arrIdError.length - 1);
+    //        redgle.showConfirm("订单号：" + arrIdError + "为拆分或合并订单，请撤销拆分或合并后再删除。<br/>是否继续删除其他订单？", "RunDeleData('" + arrId + "')");
+    //    } else if (arrIdError.length == 0 && arrId.length == 0) {
+    //        redgle.showMessage("请至少选择一个订单！");
+    //        return;
+    //    }
+    //    else {
+    //        RunDeleData(arrId);
+    //    }
+    //}
+    
+
+    function show(obj, id) {
+        var objDiv = $(obj).parent().find("#" + id + "");
+        $(objDiv).css("display", "block");
+        $(objDiv).css("top", $(obj).offset().top - 200);
+        $(objDiv).css("left", $(obj).offset().left - 100);
+    }
+
+    function hide(obj, id) {
+        var objDiv = $(obj).parent().find("#" + id + "");
+        $(objDiv).css("display", "none");
+    }
+
+
+    //获取跟踪号
+    function p1118289734doGetLogisticTransitNo() {
+        var orderIds = "";
+        var error = false;
+        $('input[name="chk_list"]:checked').each(function () {
+            orderIds += $(this).val() + ",";
+        });
+        if (orderIds.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请至少选择一个订单！</hg:trans>"));
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Order/GetLogisticTransitNo",
+            data: { orderIds: orderIds },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p1118289734doReloadData();
+                }
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+    }
+    //目录选择的改变事件(通过catalog拿到CatalogIdPath传到OrderController)
+    function p1118289734onCatalogSelected(catalog) {
+        //我们在这里添加目录的 呈现UI
+        //用settimeout是因为数据事件加载 方法调用先后顺序导致，避免加载数据不正确
+        setTimeout(function () {
+            var treeCatalogName = "";
+            $("#J_selectorSenior .breadcrumb li").each(function () {
+                treeCatalogName += $(this).text() + "/";
+            });
+            var strTempl = ' <a class="crumb-select-item"  typeid="ProdcutCatalog" href="javascript:;" title="' + treeCatalogName + '" atrrvalue="' + catalog.CatalogIdPath + '"><b>产品目录：</b><em>' + catalog.CatalogName + '</em><i></i></a> ';
+            if ($(".crumbs-nav-main").find("[typeid='ProdcutCatalog']").length > 0) {
+                //则替换掉
+                $(".crumbs-nav-main [typeid='ProdcutCatalog']").replaceWith(strTempl);
+            }
+            else {
+
+                $("#baritem").append(strTempl);
+            }
+            $(".crumb-select-item[typeid='ProdcutCatalog'] i").on("click", function () {
+                $("#baritem a[typeid='ProdcutCatalog']").remove();
+                $("#txtCatalogIdPath").val("");
+                if ($(".crumb-select-item").length == 0) {
+                    $("#J_crumbsBar").hide();
+                }
+                else {
+                    $("#J_crumbsBar").show();
+                }
+                $("#searchForm").submit();
+            });
+
+            if ($(".crumb-select-item").length == 0) {
+                $("#J_crumbsBar").hide();
+            }
+            else {
+                $("#J_crumbsBar").show();
+            }
+
+            $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+            $("#searchForm").submit();
+        }, 200)
+    }
+
+    //选择国家
+    $(function () {
+        $(".chzn-select").chosen({            //初始化组件
+            no_results_text: "没有匹配结果",
+            search_contains: true,  //关键字模糊搜索，设置为false，则只从开头开始匹配
+        });
+        $(".chosen-container").css({ "width": "550px", "padding-top": "5px", });//设置chosen的宽度
+    });
+
+    function p1118289734doExportNoCostOrder() {
+        var width = 950;
+        var height = 560;
+        var url = "../Order/Export?viewName=OrderCost&pagekey=OrderCost/ImportOrderCost&functionName=doExportOrderCost";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的产品信息</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+
+    //导出订单费用
+    function doExportOrderCost(fieldName) {
+        var orderIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            orderIds += $(this).val() + ",";
+        });
+        var postData = {};
+        if (orderIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择订单导出，将导出符合当前查询条件的订单，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");
+        } else {
+            postData["orderIds"] = orderIds;
+        }
+        postData["financeNo"] = "";
+        postData["costType"] = "ExportOrderCost";
+        postData["fieldName"] = fieldName;
+        $.ajax({
+            type: "POST",
+            url: "../Finance/ExportNoCostOrder",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下{0}：</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //导入订单费用
+    function doImportOrderCost() {
+        var url = "../Report/ImportOrderCost";
+        redgle.tab.create("liImportOrderCost", url, translate.format("<hg:trans>导入订单成本</hg:trans>"));
+    }
+
+    function GetAliexpressLogisticFreight() {
+        batchEditOrderIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            batchEditOrderIds += $(this).val() + ",";
+        });
+        if (batchEditOrderIds.length == 0) {
+            redgle.showConfirm(translate.format("<hg:trans>将匹配当前条件下的所有查询结果数据。<br/>是否继续？</hg:trans>"), "GetLogisticFreight(" + batchEditOrderIds + ")");
+        } else {
+            redgle.showConfirm(translate.format("<hg:trans>将匹配当前选择的订单数据。<br/>是否继续？</hg:trans>"), "GetLogisticFreight('" + batchEditOrderIds + "')");
+        }
+        //var postData = {};
+        ////把查询条件传递给本页面
+        //postData = redgle.request.getFormData("searchForm");
+        //postData["pageIndex"] = 1;
+        //$.ajax({
+        //    type: "POST",
+        //    url: "../Order/GetAliexpressLogisticFreight",
+        //    data: postData,
+        //    datatype: "json",
+        //    success: function (data) {
+        //        if (data.HasError) {
+        //            redgle.showMessage(translate.trans("您所做的操作没有成功，原因如下：") + "<br/>" + data.Message);
+        //        }
+        //        else {
+        //            redgle.showMessage(translate.trans("您所做的操作已完成") + "<br/>" + data.Message);
+        //            try { eval(pageKey + "doReloadData()"); } catch (e) { }
+        //        }
+        //    },
+        //    error: function (xhr) {
+        //        redgle.showMessage(translate.trans("操作发生未知异常：{0} - {1}", [xhr.status, xhr.statusText]));
+        //    }
+        //});
+    }
+
+    function GetLogisticFreight(orderIds) {
+        if (orderIds == undefined) {
+            var url = "/Order/AllGetLogisticFreight?route=visitOrderIndex";
+            redgle.tab.create("liGetLogisticFreight", url, translate.format("<hg:trans>自动同步运费</hg:trans>"));
+        }
+        else {
+            var postData = {};
+            //把查询条件传递给本页面
+            postData["orderIds"] = orderIds;
+            $.ajax({
+                type: "POST",
+                url: "../Order/GetLogisticFreight",
+                data: postData,
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.trans("您所做的操作没有成功，原因如下：") + "<br/>" + data.Message);
+                    }
+                    else {
+                        redgle.showMessage(translate.trans("您所做的操作已完成") + "<br/>" + data.Message);
+                        try { eval(pageKey + "doReloadData()"); } catch (e) { }
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.trans("操作发生未知异常：{0} - {1}", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+    }
+
+    //导入运费
+    function doImportFreight() {
+        var url = "../Report/ImportFreight";
+        redgle.tab.create("liImportFreight", url, translate.format("<hg:trans>导入运费</hg:trans>"));
+    }
+    //获取单个跟踪号
+    function doGetSingleLogisticTransitNo(orderid) {
+        GetTrackingNumber(orderid);
+    }
+
+
+    function GetTrackingNumber(orderIds) {
+        if (orderIds == undefined) {
+            var url = "/Order/AllGetLogisticTransitNo?orderType=OrderPrint";
+            redgle.tab.create("liGetTrackingNumber", url, translate.format("<hg:trans>获取跟踪号</hg:trans>"));
+            //var selectOrderModal = new redgle.modal({title: translate.format("<hg:trans>获取跟踪号</hg:trans>") });
+            //selectOrderModal.show();
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/Order/GetLogisticTransitNo",
+                data: { orderIds: orderIds },
+            datatype: "json",
+            success: function (data) {
+p1118289734doReloadData();
+                if (data.Message.length > 0) {
+                    redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [data.Message]));
+                }
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+    }
+    }
+
+    function doShowPushOrderSummaryModel() {
+        $("#pushModal").modal('show');
+    }
+    function doPushOrderSummary()
+    {
+        var error = {};
+        var hasError = false;
+     
+        var beginTime = $("#txtPushDateBegin").val();
+        if (beginTime.length == 0) {
+            hasError = true;
+            error["txtPushDateBegin"] = translate.format("<hg:trans>【{0}】不允许为空</hg:trans>", ["日期"]);
+        }
+       
+        if (hasError) {
+p1118289734doShowError(error);
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Order/PushOrderSummary",
+            data: { beginTime: beginTime, isPush: "N" },
+        datatype: "json",
+        success: function (data) {
+            if (data.HasError) {
+                redgle.showMessage(translate.format("<hg:trans>{0}</hg:trans>", [data.Message]));
+            }
+            else {
+                $("#pushModal").modal('hide');
+                redgle.showMessage(translate.format("<hg:trans>销售汇总推送成功！</hg:trans>"));
+            }
+        },
+        error: function (XMLHttpRequest) {
+            redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+        }
+    });
+    }
+
+    function p1118289734doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).parent().addClass("has-error");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).parent().removeClass("has-error");
+            });
+        });
+    }
+</script>
+<link href="__STATIC__/index/css/chosen.css" rel="stylesheet"/>
+
+<script src="__STATIC__/index/js/chosen.jquery.js"></script>
+
+<script src="__STATIC__/index/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="__STATIC__/index/js/baa98b6a94bd4d44a3f5baa8c78285cd.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

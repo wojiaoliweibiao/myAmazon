@@ -1,0 +1,2432 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabInStoreManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>全部订单</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabInStoreManage" role="tabpanel" class="tab-pane fade active in">
+
+        <div class="alert bg-info" style="padding:8px;margin:0px">
+            <hg:trans>PS：在这里您可以看到所有订单，未付款、资金未到帐包含在订单状态“其他”中。</hg:trans>
+        </div>
+        <div class="row" style="margin:0 2px">
+            
+<input id="saleManInfo" type="hidden" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;管理员&quot;,&quot;Value&quot;:&quot;1&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗贵鹏&quot;,&quot;Value&quot;:&quot;19&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗小云&quot;,&quot;Value&quot;:&quot;20&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝军龙&quot;,&quot;Value&quot;:&quot;21&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张飞&quot;,&quot;Value&quot;:&quot;22&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;weishengnan&quot;,&quot;Value&quot;:&quot;23&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杜艳萍&quot;,&quot;Value&quot;:&quot;27&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王艳军&quot;,&quot;Value&quot;:&quot;28&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高海龙&quot;,&quot;Value&quot;:&quot;29&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;白艳飞&quot;,&quot;Value&quot;:&quot;30&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗海云&quot;,&quot;Value&quot;:&quot;31&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张艳荣&quot;,&quot;Value&quot;:&quot;32&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高利军&quot;,&quot;Value&quot;:&quot;33&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;吕彩锋&quot;,&quot;Value&quot;:&quot;34&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗艳梅&quot;,&quot;Value&quot;:&quot;35&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;崔新宇&quot;,&quot;Value&quot;:&quot;36&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘睿&quot;,&quot;Value&quot;:&quot;37&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗利军&quot;,&quot;Value&quot;:&quot;38&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;冯状&quot;,&quot;Value&quot;:&quot;39&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘晓瑶&quot;,&quot;Value&quot;:&quot;40&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;樊港港&quot;,&quot;Value&quot;:&quot;41&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;孙婷婷&quot;,&quot;Value&quot;:&quot;42&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;白萌&quot;,&quot;Value&quot;:&quot;43&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;许璐&quot;,&quot;Value&quot;:&quot;44&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭建珍&quot;,&quot;Value&quot;:&quot;45&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛海存&quot;,&quot;Value&quot;:&quot;46&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王燕香&quot;,&quot;Value&quot;:&quot;47&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;尹琪梦&quot;,&quot;Value&quot;:&quot;48&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高俊伟&quot;,&quot;Value&quot;:&quot;49&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;韩江龙&quot;,&quot;Value&quot;:&quot;50&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;魏泽平&quot;,&quot;Value&quot;:&quot;51&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘静&quot;,&quot;Value&quot;:&quot;52&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张曼微&quot;,&quot;Value&quot;:&quot;53&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;吕瑞芳&quot;,&quot;Value&quot;:&quot;54&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;陈小燕&quot;,&quot;Value&quot;:&quot;55&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;史岱&quot;,&quot;Value&quot;:&quot;56&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高卫峰&quot;,&quot;Value&quot;:&quot;57&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;宋健&quot;,&quot;Value&quot;:&quot;58&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张艳伟&quot;,&quot;Value&quot;:&quot;59&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;赵敏&quot;,&quot;Value&quot;:&quot;60&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王乾&quot;,&quot;Value&quot;:&quot;61&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘阳&quot;,&quot;Value&quot;:&quot;62&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;崔新雅&quot;,&quot;Value&quot;:&quot;63&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;吴汉叶&quot;,&quot;Value&quot;:&quot;64&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张弘&quot;,&quot;Value&quot;:&quot;65&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李媛&quot;,&quot;Value&quot;:&quot;66&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝军娥&quot;,&quot;Value&quot;:&quot;67&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;樊艳军&quot;,&quot;Value&quot;:&quot;68&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;白伟连&quot;,&quot;Value&quot;:&quot;69&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;韩晋&quot;,&quot;Value&quot;:&quot;70&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高海峰&quot;,&quot;Value&quot;:&quot;71&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;姚青琴&quot;,&quot;Value&quot;:&quot;72&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝东元&quot;,&quot;Value&quot;:&quot;73&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李保明&quot;,&quot;Value&quot;:&quot;74&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王然&quot;,&quot;Value&quot;:&quot;75&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;田晓雄&quot;,&quot;Value&quot;:&quot;77&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王彦杰&quot;,&quot;Value&quot;:&quot;78&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王庆&quot;,&quot;Value&quot;:&quot;79&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭秋爱&quot;,&quot;Value&quot;:&quot;80&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗小娥&quot;,&quot;Value&quot;:&quot;81&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王平&quot;,&quot;Value&quot;:&quot;82&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杜悦宁&quot;,&quot;Value&quot;:&quot;83&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘晶&quot;,&quot;Value&quot;:&quot;84&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭季芳&quot;,&quot;Value&quot;:&quot;85&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭飞&quot;,&quot;Value&quot;:&quot;86&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭泽民&quot;,&quot;Value&quot;:&quot;87&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;chen sir&quot;,&quot;Value&quot;:&quot;88&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;chen sir&quot;,&quot;Value&quot;:&quot;89&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;任晓宁&quot;,&quot;Value&quot;:&quot;90&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘旭东&quot;,&quot;Value&quot;:&quot;91&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杜水仙&quot;,&quot;Value&quot;:&quot;92&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;赵阳&quot;,&quot;Value&quot;:&quot;93&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;马艳飞&quot;,&quot;Value&quot;:&quot;94&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;闫文静&quot;,&quot;Value&quot;:&quot;95&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭建&quot;,&quot;Value&quot;:&quot;96&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;樊理军&quot;,&quot;Value&quot;:&quot;97&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杨康&quot;,&quot;Value&quot;:&quot;98&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;闫斌&quot;,&quot;Value&quot;:&quot;99&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;袁月奇&quot;,&quot;Value&quot;:&quot;100&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;马东东&quot;,&quot;Value&quot;:&quot;101&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;马艳&quot;,&quot;Value&quot;:&quot;102&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高洋洋&quot;,&quot;Value&quot;:&quot;103&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛艳珍&quot;,&quot;Value&quot;:&quot;104&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛艳峰&quot;,&quot;Value&quot;:&quot;105&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;马艳东&quot;,&quot;Value&quot;:&quot;106&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛艳伟&quot;,&quot;Value&quot;:&quot;107&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛浩杰&quot;,&quot;Value&quot;:&quot;108&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛子涵&quot;,&quot;Value&quot;:&quot;109&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张艳勤&quot;,&quot;Value&quot;:&quot;110&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张生贵&quot;,&quot;Value&quot;:&quot;111&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王素兰&quot;,&quot;Value&quot;:&quot;112&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛艳荣&quot;,&quot;Value&quot;:&quot;113&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗小娥&quot;,&quot;Value&quot;:&quot;114&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗军娥&quot;,&quot;Value&quot;:&quot;115&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;梁宵&quot;,&quot;Value&quot;:&quot;116&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;朱子栋&quot;,&quot;Value&quot;:&quot;117&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高海龙&quot;,&quot;Value&quot;:&quot;118&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘红红&quot;,&quot;Value&quot;:&quot;119&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;任琪&quot;,&quot;Value&quot;:&quot;120&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;恒宁&quot;,&quot;Value&quot;:&quot;121&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王孝娥&quot;,&quot;Value&quot;:&quot;122&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;曹慧斌&quot;,&quot;Value&quot;:&quot;123&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王静静&quot;,&quot;Value&quot;:&quot;124&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高海军&quot;,&quot;Value&quot;:&quot;125&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;乔二龙&quot;,&quot;Value&quot;:&quot;126&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张宁芳&quot;,&quot;Value&quot;:&quot;127&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;仝永平&quot;,&quot;Value&quot;:&quot;128&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;武彤&quot;,&quot;Value&quot;:&quot;129&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李智翔&quot;,&quot;Value&quot;:&quot;130&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李慧&quot;,&quot;Value&quot;:&quot;131&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘瑞红&quot;,&quot;Value&quot;:&quot;132&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;赵焕荣&quot;,&quot;Value&quot;:&quot;133&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王智&quot;,&quot;Value&quot;:&quot;134&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;任宝珍&quot;,&quot;Value&quot;:&quot;135&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王凯民&quot;,&quot;Value&quot;:&quot;136&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗洁&quot;,&quot;Value&quot;:&quot;137&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;边利娟&quot;,&quot;Value&quot;:&quot;138&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;林慧&quot;,&quot;Value&quot;:&quot;139&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李慧&quot;,&quot;Value&quot;:&quot;140&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;梁宵&quot;,&quot;Value&quot;:&quot;141&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘鹏&quot;,&quot;Value&quot;:&quot;142&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;赵飞飞&quot;,&quot;Value&quot;:&quot;143&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王永军&quot;,&quot;Value&quot;:&quot;144&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘艳阳&quot;,&quot;Value&quot;:&quot;145&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王海有&quot;,&quot;Value&quot;:&quot;146&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;fengjiwei&quot;,&quot;Value&quot;:&quot;147&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;jiashuaibin&quot;,&quot;Value&quot;:&quot;148&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝永红&quot;,&quot;Value&quot;:&quot;149&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;yewuyuan&quot;,&quot;Value&quot;:&quot;150&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝芳芳&quot;,&quot;Value&quot;:&quot;151&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;宋晓辉&quot;,&quot;Value&quot;:&quot;152&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张浩&quot;,&quot;Value&quot;:&quot;155&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;乔龙龙&quot;,&quot;Value&quot;:&quot;156&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李红霞&quot;,&quot;Value&quot;:&quot;157&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李美娟&quot;,&quot;Value&quot;:&quot;158&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;邓恩惠&quot;,&quot;Value&quot;:&quot;159&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高永军&quot;,&quot;Value&quot;:&quot;160&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;柏娜&quot;,&quot;Value&quot;:&quot;161&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;任小军&quot;,&quot;Value&quot;:&quot;162&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;贺朝瑞&quot;,&quot;Value&quot;:&quot;163&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝慧星&quot;,&quot;Value&quot;:&quot;164&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李杨&quot;,&quot;Value&quot;:&quot;165&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘丽芳&quot;,&quot;Value&quot;:&quot;166&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;崔凝&quot;,&quot;Value&quot;:&quot;167&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;任小花&quot;,&quot;Value&quot;:&quot;168&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;周伟强&quot;,&quot;Value&quot;:&quot;169&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高新明&quot;,&quot;Value&quot;:&quot;170&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛雅静&quot;,&quot;Value&quot;:&quot;171&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杨阳&quot;,&quot;Value&quot;:&quot;172&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;陈洁&quot;,&quot;Value&quot;:&quot;173&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭文佳&quot;,&quot;Value&quot;:&quot;174&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭晓燕&quot;,&quot;Value&quot;:&quot;175&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝荣杰&quot;,&quot;Value&quot;:&quot;176&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭永莲&quot;,&quot;Value&quot;:&quot;177&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张洁&quot;,&quot;Value&quot;:&quot;178&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;苗琦迹&quot;,&quot;Value&quot;:&quot;179&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;温丹&quot;,&quot;Value&quot;:&quot;180&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王亚琦&quot;,&quot;Value&quot;:&quot;181&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张晋&quot;,&quot;Value&quot;:&quot;182&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭雨&quot;,&quot;Value&quot;:&quot;183&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;李锦媛&quot;,&quot;Value&quot;:&quot;184&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杨翠翠&quot;,&quot;Value&quot;:&quot;185&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;薛艳红&quot;,&quot;Value&quot;:&quot;186&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘秀秀&quot;,&quot;Value&quot;:&quot;187&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杨薇&quot;,&quot;Value&quot;:&quot;188&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘兵&quot;,&quot;Value&quot;:&quot;189&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝睿涛&quot;,&quot;Value&quot;:&quot;190&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;赵文如&quot;,&quot;Value&quot;:&quot;191&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;崔曼坤&quot;,&quot;Value&quot;:&quot;192&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;宿阳&quot;,&quot;Value&quot;:&quot;193&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郝鹏&quot;,&quot;Value&quot;:&quot;194&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;梁豪杰&quot;,&quot;Value&quot;:&quot;195&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;钞晓楠&quot;,&quot;Value&quot;:&quot;196&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭阳阳&quot;,&quot;Value&quot;:&quot;197&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;刘彦远&quot;,&quot;Value&quot;:&quot;198&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;赵卓玥&quot;,&quot;Value&quot;:&quot;199&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭阳阳&quot;,&quot;Value&quot;:&quot;200&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高李峰&quot;,&quot;Value&quot;:&quot;201&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杜国栋&quot;,&quot;Value&quot;:&quot;202&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王一指&quot;,&quot;Value&quot;:&quot;203&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;闫君函&quot;,&quot;Value&quot;:&quot;204&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;东东&quot;,&quot;Value&quot;:&quot;205&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;郭燕珍&quot;,&quot;Value&quot;:&quot;206&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;duyanjie&quot;,&quot;Value&quot;:&quot;207&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;温彦博&quot;,&quot;Value&quot;:&quot;208&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;wangyue&quot;,&quot;Value&quot;:&quot;209&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;王建华&quot;,&quot;Value&quot;:&quot;210&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;杜艳萍&quot;,&quot;Value&quot;:&quot;211&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;高雄&quot;,&quot;Value&quot;:&quot;212&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;张晋&quot;,&quot;Value&quot;:&quot;213&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;陈倩&quot;,&quot;Value&quot;:&quot;214&quot;}]" />
+<input id="StoreInfo" type="hidden" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;默认仓库（自有仓）&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+<input id="LogisticMode" type="hidden" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-加拿大专线特惠线&quot;,&quot;Value&quot;:&quot;159&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-EQ西班牙快速专线小包&quot;,&quot;Value&quot;:&quot;165&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-EQ德国快速专线小包裹&quot;,&quot;Value&quot;:&quot;169&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick法国快速专线小包&quot;,&quot;Value&quot;:&quot;170&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-EQ英国快速专线小包裹&quot;,&quot;Value&quot;:&quot;173&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick澳大利亚专线&quot;,&quot;Value&quot;:&quot;175&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick中欧专线&quot;,&quot;Value&quot;:&quot;176&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick中美专线&quot;,&quot;Value&quot;:&quot;177&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick加拿大专线&quot;,&quot;Value&quot;:&quot;180&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick新西兰专线&quot;,&quot;Value&quot;:&quot;181&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick中美专线(加急)&quot;,&quot;Value&quot;:&quot;182&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-Equick欧洲专线促销价&quot;,&quot;Value&quot;:&quot;183&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Equick 国际快递-意大利快速专线小包&quot;,&quot;Value&quot;:&quot;356&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-德国邮政小包（挂号）&quot;,&quot;Value&quot;:&quot;5&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-中欧-英国线&quot;,&quot;Value&quot;:&quot;6&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-中欧-荷兰线&quot;,&quot;Value&quot;:&quot;7&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-香港DHL1&quot;,&quot;Value&quot;:&quot;11&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-中英快邮小包&quot;,&quot;Value&quot;:&quot;13&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-快邮小包二级挂号&quot;,&quot;Value&quot;:&quot;17&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-快邮三级小包（挂号）&quot;,&quot;Value&quot;:&quot;18&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-加拿大专线&quot;,&quot;Value&quot;:&quot;27&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-三态墨西哥专线&quot;,&quot;Value&quot;:&quot;29&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-快邮德国小包挂号&quot;,&quot;Value&quot;:&quot;32&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-快邮意大利小包挂号&quot;,&quot;Value&quot;:&quot;34&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-法国专线&quot;,&quot;Value&quot;:&quot;40&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-快邮西班牙小包挂号&quot;,&quot;Value&quot;:&quot;44&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-西班牙专线&quot;,&quot;Value&quot;:&quot;53&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-香港邮政专线服务&quot;,&quot;Value&quot;:&quot;54&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-德国专线&quot;,&quot;Value&quot;:&quot;188&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;三态速递-中英快邮经济小包&quot;,&quot;Value&quot;:&quot;189&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-HK DHL eCommerce挂号&quot;,&quot;Value&quot;:&quot;66&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-中美专线(特惠)&quot;,&quot;Value&quot;:&quot;69&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-云途中欧专线挂号&quot;,&quot;Value&quot;:&quot;78&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-德国专线挂号&quot;,&quot;Value&quot;:&quot;84&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-意大利专线挂号&quot;,&quot;Value&quot;:&quot;86&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-特惠28国&quot;,&quot;Value&quot;:&quot;89&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-加拿大专线&quot;,&quot;Value&quot;:&quot;102&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-西班牙专线挂号&quot;,&quot;Value&quot;:&quot;109&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-奥地利专线&quot;,&quot;Value&quot;:&quot;127&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-日本专线挂号&quot;,&quot;Value&quot;:&quot;128&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-英国专线挂号特惠&quot;,&quot;Value&quot;:&quot;130&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-德国专线挂号特惠&quot;,&quot;Value&quot;:&quot;134&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-荷比卢专线&quot;,&quot;Value&quot;:&quot;135&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-丹麦专线挂号&quot;,&quot;Value&quot;:&quot;142&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-巴西专线&quot;,&quot;Value&quot;:&quot;146&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;云途物流-法国专线挂号特惠&quot;,&quot;Value&quot;:&quot;147&quot;},{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;自定义物流商-远华嘉贸物流&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+<input id="userfromlist" type="hidden" value="[&quot;Amazon&quot;,&quot;Offline&quot;]" />
+<input id="AccountUser" type="hidden" value="[{&quot;Value&quot;:&quot;5310935598329333161&quot;,&quot;Text&quot;:&quot;11（US)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879160769857360&quot;,&quot;Text&quot;:&quot;睿盛达美洲店&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164276593115232&quot;,&quot;Text&quot;:&quot;欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872331625683483&quot;,&quot;Text&quot;:&quot;李洋&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877209203576673&quot;,&quot;Text&quot;:&quot;海峰日本&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878991458728662&quot;,&quot;Text&quot;:&quot;日本&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873990262874254&quot;,&quot;Text&quot;:&quot;海峰美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929742374010433&quot;,&quot;Text&quot;:&quot;田晓雄（北美）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871372149985256&quot;,&quot;Text&quot;:&quot;王彦杰（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933260676148507&quot;,&quot;Text&quot;:&quot;薛龙 &quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874835077693896&quot;,&quot;Text&quot;:&quot;glj&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875553155840876&quot;,&quot;Text&quot;:&quot;dsx6688&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936672891264197&quot;,&quot;Text&quot;:&quot;LION KING&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873053166056911&quot;,&quot;Text&quot;:&quot;Obenhimmer556&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936669577641156&quot;,&quot;Text&quot;:&quot;grmshop(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877230535004185&quot;,&quot;Text&quot;:&quot;grmshop(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930702626234231&quot;,&quot;Text&quot;:&quot;grmshop(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878192615025085&quot;,&quot;Text&quot;:&quot;grmshop(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934087599387859&quot;,&quot;Text&quot;:&quot;grmshop(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933202011332760&quot;,&quot;Text&quot;:&quot;ggshop(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852611044485442&quot;,&quot;Text&quot;:&quot;ggshop(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935765868013582&quot;,&quot;Text&quot;:&quot;ggshop(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872310962740279&quot;,&quot;Text&quot;:&quot;ggshop(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875668442666254&quot;,&quot;Text&quot;:&quot;ggshop(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871459154902603&quot;,&quot;Text&quot;:&quot;高永军(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931474098772316&quot;,&quot;Text&quot;:&quot;高永军(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381876351137120821&quot;,&quot;Text&quot;:&quot;高永军(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935600106992701&quot;,&quot;Text&quot;:&quot;高永军(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936672925285739&quot;,&quot;Text&quot;:&quot;高永军(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871431502836602&quot;,&quot;Text&quot;:&quot;FanLiJun&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934938859637410&quot;,&quot;Text&quot;:&quot;白艳明欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934110815992986&quot;,&quot;Text&quot;:&quot;FanYanJun&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929762014533464&quot;,&quot;Text&quot;:&quot;刘旭梅(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934113536717438&quot;,&quot;Text&quot;:&quot;刘旭梅(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935734834047630&quot;,&quot;Text&quot;:&quot;刘旭梅(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933011252319369&quot;,&quot;Text&quot;:&quot;刘旭梅(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874891852216962&quot;,&quot;Text&quot;:&quot;刘旭梅(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936534501583912&quot;,&quot;Text&quot;:&quot;王庆（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873103584758564&quot;,&quot;Text&quot;:&quot;GYLUS&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930456013780902&quot;,&quot;Text&quot;:&quot;ZhaoYang&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874890305114411&quot;,&quot;Text&quot;:&quot;1994&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934026355230045&quot;,&quot;Text&quot;:&quot;1314&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878274329151910&quot;,&quot;Text&quot;:&quot;田晓雄（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852578230852884&quot;,&quot;Text&quot;:&quot;高峰峰&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879079149075501&quot;,&quot;Text&quot;:&quot;美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164381488390993&quot;,&quot;Text&quot;:&quot;欧洲1&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934084989634973&quot;,&quot;Text&quot;:&quot;苗利军&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164250935883669&quot;,&quot;Text&quot;:&quot; Counting STar&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933071635903081&quot;,&quot;Text&quot;:&quot;1561616&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932240873264777&quot;,&quot;Text&quot;:&quot;闫斌（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931414463417633&quot;,&quot;Text&quot;:&quot;ypshop(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931442120129847&quot;,&quot;Text&quot;:&quot;ypshop(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929687497408401&quot;,&quot;Text&quot;:&quot;ypshop(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929656430224457&quot;,&quot;Text&quot;:&quot;ypshop(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381876493137650168&quot;,&quot;Text&quot;:&quot;ypshop(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164384175838222&quot;,&quot;Text&quot;:&quot;GuoJiFang&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879017079043346&quot;,&quot;Text&quot;:&quot;zhangyanrong(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934804701554956&quot;,&quot;Text&quot;:&quot;zhangyanrong(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871374816430689&quot;,&quot;Text&quot;:&quot;zhangyanrong(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933071601795206&quot;,&quot;Text&quot;:&quot;zhangyanrong(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164353859619107&quot;,&quot;Text&quot;:&quot;zhangyanrong(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936424597877034&quot;,&quot;Text&quot;:&quot;zhangshenggui&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932379323006848&quot;,&quot;Text&quot;:&quot;李丽红店铺&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877346740968402&quot;,&quot;Text&quot;:&quot;miaohoufeng(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936673090601768&quot;,&quot;Text&quot;:&quot;miaohoufeng(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872276571703280&quot;,&quot;Text&quot;:&quot;miaohoufeng(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929656434896773&quot;,&quot;Text&quot;:&quot;miaohoufeng(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929735448736827&quot;,&quot;Text&quot;:&quot;miaohoufeng(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934029221864929&quot;,&quot;Text&quot;:&quot;刘晓瑶(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852471819071250&quot;,&quot;Text&quot;:&quot;刘晓瑶(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877338784596606&quot;,&quot;Text&quot;:&quot;刘晓瑶(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933063592838687&quot;,&quot;Text&quot;:&quot;刘晓瑶(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873818829672950&quot;,&quot;Text&quot;:&quot;刘晓瑶(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878062215737592&quot;,&quot;Text&quot;:&quot;miaohaiyun123(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879074765987116&quot;,&quot;Text&quot;:&quot;miaohaiyun123(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930676058299427&quot;,&quot;Text&quot;:&quot;miaohaiyun123(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936447640922188&quot;,&quot;Text&quot;:&quot;miaohaiyun123(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935651350518926&quot;,&quot;Text&quot;:&quot;miaohaiyun123(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875721749398751&quot;,&quot;Text&quot;:&quot;haodongyuan123(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936476015025896&quot;,&quot;Text&quot;:&quot;haodongyuan123(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873874828288615&quot;,&quot;Text&quot;:&quot;haodongyuan123(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164304070758648&quot;,&quot;Text&quot;:&quot;haodongyuan123(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879074765833200&quot;,&quot;Text&quot;:&quot;haodongyuan123(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932405831628797&quot;,&quot;Text&quot;:&quot;邓恩惠（英国站）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930644084153479&quot;,&quot;Text&quot;:&quot;李红霞（英国站）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852692752044756&quot;,&quot;Text&quot;:&quot;haoyedongdian(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872143452796354&quot;,&quot;Text&quot;:&quot;haoyedongdian(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929763732483403&quot;,&quot;Text&quot;:&quot;haoyedongdian(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873189671662464&quot;,&quot;Text&quot;:&quot;haoyedongdian(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878170455978643&quot;,&quot;Text&quot;:&quot;haoyedongdian(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935711846565362&quot;,&quot;Text&quot;:&quot;高晓琴(欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935739325126255&quot;,&quot;Text&quot;:&quot;郭晓伟（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935819291916031&quot;,&quot;Text&quot;:&quot;郭飞（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874037184179851&quot;,&quot;Text&quot;:&quot;郭晓燕（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932163547860494&quot;,&quot;Text&quot;:&quot;ggus(us)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879076459777333&quot;,&quot;Text&quot;:&quot;ggus(ca)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871457353170757&quot;,&quot;Text&quot;:&quot;ggus(mx)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871403042742796&quot;,&quot;Text&quot;:&quot;郭泽民（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935684270345416&quot;,&quot;Text&quot;:&quot;ynshop(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879073048199521&quot;,&quot;Text&quot;:&quot;ynshop(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931473184637223&quot;,&quot;Text&quot;:&quot;ynshop(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852584505226806&quot;,&quot;Text&quot;:&quot;ynshop(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933179769069258&quot;,&quot;Text&quot;:&quot;ynshop(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875503364326192&quot;,&quot;Text&quot;:&quot;郭飞（北美）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875748460456160&quot;,&quot;Text&quot;:&quot;白军庆(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930565983023271&quot;,&quot;Text&quot;:&quot;白军庆(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874012447577579&quot;,&quot;Text&quot;:&quot;白军庆(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381876356404143855&quot;,&quot;Text&quot;:&quot;白军庆(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873844568236082&quot;,&quot;Text&quot;:&quot;白军庆(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933896893288310&quot;,&quot;Text&quot;:&quot;常国锋&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873982332486192&quot;,&quot;Text&quot;:&quot;苗艳梅&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936565530936012&quot;,&quot;Text&quot;:&quot;xiaoyan(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879073907197216&quot;,&quot;Text&quot;:&quot;xiaoyan(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873983935956974&quot;,&quot;Text&quot;:&quot;xiaoyan(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929792940447465&quot;,&quot;Text&quot;:&quot;xiaoyan(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933071402312870&quot;,&quot;Text&quot;:&quot;xiaoyan(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877208429720017&quot;,&quot;Text&quot;:&quot;longlongqiao(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934111669353147&quot;,&quot;Text&quot;:&quot;longlongqiao(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164387640017266&quot;,&quot;Text&quot;:&quot;longlongqiao(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381876353739787475&quot;,&quot;Text&quot;:&quot;longlongqiao(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929603930968428&quot;,&quot;Text&quot;:&quot;longlongqiao(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929598771321981&quot;,&quot;Text&quot;:&quot;Cuiyungao&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933865805807148&quot;,&quot;Text&quot;:&quot;郭建珍美洲站&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933867550368197&quot;,&quot;Text&quot;:&quot;王艳军美洲站&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935762487002457&quot;,&quot;Text&quot;:&quot;WuHanYan&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871455407252277&quot;,&quot;Text&quot;:&quot;马燕&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852689311935791&quot;,&quot;Text&quot;:&quot;ZNF&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873825124418996&quot;,&quot;Text&quot;:&quot;杜宝平&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877315596858240&quot;,&quot;Text&quot;:&quot;唐逸超&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164409947728555&quot;,&quot;Text&quot;:&quot;李文文美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933201841251175&quot;,&quot;Text&quot;:&quot;苗润娥欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871374812615586&quot;,&quot;Text&quot;:&quot;苗贵鹏&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873821745106667&quot;,&quot;Text&quot;:&quot;薛小飞&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873048565018643&quot;,&quot;Text&quot;:&quot;李文文&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930700050510080&quot;,&quot;Text&quot;:&quot;贺青峰美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873818888836206&quot;,&quot;Text&quot;:&quot;高洋洋&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930672656041373&quot;,&quot;Text&quot;:&quot;武鹏鹏(欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931468662839369&quot;,&quot;Text&quot;:&quot; 白艳飞(欧洲站)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164387526603824&quot;,&quot;Text&quot;:&quot;王燕香店铺&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933257898972954&quot;,&quot;Text&quot;:&quot;grmshop(us)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874044367473164&quot;,&quot;Text&quot;:&quot;grmshop(ca)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933201978854750&quot;,&quot;Text&quot;:&quot;grmshop(mx)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873137278477837&quot;,&quot;Text&quot;:&quot;xpshop(us)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871428039866623&quot;,&quot;Text&quot;:&quot;xpshop(ca)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935793435178027&quot;,&quot;Text&quot;:&quot;xpshop(mx)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932161940104772&quot;,&quot;Text&quot;:&quot;苗小云&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872196611622153&quot;,&quot;Text&quot;:&quot;苗小云美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875607294522575&quot;,&quot;Text&quot;:&quot;刘焕明&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933869302353934&quot;,&quot;Text&quot;:&quot;郭秋爱（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877264173446706&quot;,&quot;Text&quot;:&quot;乔占孝&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877456701693491&quot;,&quot;Text&quot;:&quot;张生贵美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874891108720001&quot;,&quot;Text&quot;:&quot;李文忠&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872224013296500&quot;,&quot;Text&quot;:&quot;薛燕&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933012997916318&quot;,&quot;Text&quot;:&quot;刘艳斌店铺&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935762547954686&quot;,&quot;Text&quot;:&quot;杨康（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879074884018992&quot;,&quot;Text&quot;:&quot;李红霞（美国站）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936588555206542&quot;,&quot;Text&quot;:&quot;邓恩惠宋晓慧 （美国站）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936669454784032&quot;,&quot;Text&quot;:&quot;刘富珍&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878914046399171&quot;,&quot;Text&quot;:&quot;刘旭东&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872201851532433&quot;,&quot;Text&quot;:&quot;Weilitian&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877234140694410&quot;,&quot;Text&quot;:&quot;武彤 （英国站）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875551353284463&quot;,&quot;Text&quot;:&quot;刘瑞红（ 英国站）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872331602687744&quot;,&quot;Text&quot;:&quot;zhanggaoping(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871259323631171&quot;,&quot;Text&quot;:&quot;zhanggaoping(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877314788749624&quot;,&quot;Text&quot;:&quot;zhanggaoping(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933098112180529&quot;,&quot;Text&quot;:&quot;zhanggaoping(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873186982586373&quot;,&quot;Text&quot;:&quot;zhanggaoping(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933066281356103&quot;,&quot;Text&quot;:&quot;苗艾平&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875746744410884&quot;,&quot;Text&quot;:&quot;gaowenli&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931415290917251&quot;,&quot;Text&quot;:&quot;苗小娥（公司）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936426223541997&quot;,&quot;Text&quot;:&quot;苗润娥美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873077042771786&quot;,&quot;Text&quot;:&quot;郭高峰&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935570733538580&quot;,&quot;Text&quot;:&quot;郭军军&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933922548843106&quot;,&quot;Text&quot;:&quot;郝永红&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381876493824099471&quot;,&quot;Text&quot;:&quot;杜艳飞&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934802032557257&quot;,&quot;Text&quot;:&quot;王小平&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936422585676461&quot;,&quot;Text&quot;:&quot;gaoping&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936612711781885&quot;,&quot;Text&quot;:&quot;zhangxiaoying(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871486499608899&quot;,&quot;Text&quot;:&quot;zhangxiaoying(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931417988524162&quot;,&quot;Text&quot;:&quot;zhangxiaoying(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164303358719238&quot;,&quot;Text&quot;:&quot;zhangxiaoying(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873880262346602&quot;,&quot;Text&quot;:&quot;zhangxiaoying(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878164249140039&quot;,&quot;Text&quot;:&quot;郭亚康(欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872172622121523&quot;,&quot;Text&quot;:&quot;白旭斌欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852693723535031&quot;,&quot;Text&quot;:&quot;白旭斌美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873027287360072&quot;,&quot;Text&quot;:&quot;白旭斌日本&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381876547184904489&quot;,&quot;Text&quot;:&quot;Bonana&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874676381602831&quot;,&quot;Text&quot;:&quot;renyongqiang&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878997444274808&quot;,&quot;Text&quot;:&quot;薛雅静&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874897314637871&quot;,&quot;Text&quot;:&quot;马东东美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381851811626115150&quot;,&quot;Text&quot;:&quot;马东东欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877368074122842&quot;,&quot;Text&quot;:&quot;王燕香店铺&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871424458273165&quot;,&quot;Text&quot;:&quot;刘旭东美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875666729680691&quot;,&quot;Text&quot;:&quot;zxwuk(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874840457143143&quot;,&quot;Text&quot;:&quot;zxwuk(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873054913421099&quot;,&quot;Text&quot;:&quot;zxwuk(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929599686376572&quot;,&quot;Text&quot;:&quot;zxwuk(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935822865888456&quot;,&quot;Text&quot;:&quot;zxwuk(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932326956712766&quot;,&quot;Text&quot;:&quot;baiyanlong &quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936509683055528&quot;,&quot;Text&quot;:&quot;yzlshop(us)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874752480746189&quot;,&quot;Text&quot;:&quot;yzlshop(ca)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929679539453855&quot;,&quot;Text&quot;:&quot;yzlshop(mx)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164328292773349&quot;,&quot;Text&quot;:&quot;LION KING A&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164250139958728&quot;,&quot;Text&quot;:&quot;1314A&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935795357117507&quot;,&quot;Text&quot;:&quot;cxyA&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381877429253663324&quot;,&quot;Text&quot;:&quot;ZNFA&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;8624244559173571454&quot;,&quot;Text&quot;:&quot;Bonana A&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930619318268602&quot;,&quot;Text&quot;:&quot;周克嵩店铺&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878994124069785&quot;,&quot;Text&quot;:&quot;美洲李洋&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931304384265728&quot;,&quot;Text&quot;:&quot;郭晓伟（美洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874040821148737&quot;,&quot;Text&quot;:&quot;白军庆美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930477405239081&quot;,&quot;Text&quot;:&quot;高晓琴(美洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852502990740049&quot;,&quot;Text&quot;:&quot;赵帅帅（美洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934743514564902&quot;,&quot;Text&quot;:&quot;白艳飞（美洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310934826861566445&quot;,&quot;Text&quot;:&quot;GYLUK&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930621235406779&quot;,&quot;Text&quot;:&quot;武鹏鹏(美洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930642305450105&quot;,&quot;Text&quot;:&quot;Leo&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874862763841267&quot;,&quot;Text&quot;:&quot;Leo E&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935651578594784&quot;,&quot;Text&quot;:&quot;贾保平欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936481311477265&quot;,&quot;Text&quot;:&quot;Cfus&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872145911177544&quot;,&quot;Text&quot;:&quot; Counting STar a&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852639554469556&quot;,&quot;Text&quot;:&quot;杨洋（英国站）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873873881801480&quot;,&quot;Text&quot;:&quot;LGRUK&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872248837657412&quot;,&quot;Text&quot;:&quot;fanlijunuk&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164275671384730&quot;,&quot;Text&quot;:&quot;liucaiming(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878934516416973&quot;,&quot;Text&quot;:&quot;liucaiming(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874041767609866&quot;,&quot;Text&quot;:&quot;liucaiming(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852632508870216&quot;,&quot;Text&quot;:&quot;liucaiming(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874870577812273&quot;,&quot;Text&quot;:&quot;liucaiming(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871368489353761&quot;,&quot;Text&quot;:&quot;高利军(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873793287881581&quot;,&quot;Text&quot;:&quot;高利军(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935788080424484&quot;,&quot;Text&quot;:&quot;高利军(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871266565910910&quot;,&quot;Text&quot;:&quot;高利军(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872942059059862&quot;,&quot;Text&quot;:&quot;高利军(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;9097164357495489351&quot;,&quot;Text&quot;:&quot;王艳军英国站&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873022047959148&quot;,&quot;Text&quot;:&quot;lxjingyuan&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873900588984287&quot;,&quot;Text&quot;:&quot;LiXiang Wang&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878305270741900&quot;,&quot;Text&quot;:&quot;WeiWei Zhang&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932157414815413&quot;,&quot;Text&quot;:&quot;XinLu Ma&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929816953812576&quot;,&quot;Text&quot;:&quot;DongMing Zhang&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879101282028915&quot;,&quot;Text&quot;:&quot;QiongQiong Zhang&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381871259528537704&quot;,&quot;Text&quot;:&quot;郭晓伟（日本）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874815495262166&quot;,&quot;Text&quot;:&quot;赵帅帅(欧洲)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933091015011853&quot;,&quot;Text&quot;:&quot;雷长平（欧洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932299363687045&quot;,&quot;Text&quot;:&quot;雷长平（美洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;7457529948386091794&quot;,&quot;Text&quot;:&quot;白艳明（美洲）&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872940203682265&quot;,&quot;Text&quot;:&quot;郭亚康(美洲）(us)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936531867821128&quot;,&quot;Text&quot;:&quot;青平欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874017773675208&quot;,&quot;Text&quot;:&quot;Gpouzhou&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852501247989337&quot;,&quot;Text&quot;:&quot;吴亮&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873157007682663&quot;,&quot;Text&quot;:&quot;青平美洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310932301111822889&quot;,&quot;Text&quot;:&quot;郭建珍欧洲站&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872972290639854&quot;,&quot;Text&quot;:&quot;张&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874838798703129&quot;,&quot;Text&quot;:&quot;Ghouzhou&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930646001587701&quot;,&quot;Text&quot;:&quot;苗贵鹏美国&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878252885888184&quot;,&quot;Text&quot;:&quot;zhangxiaorongdian(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381874042568455179&quot;,&quot;Text&quot;:&quot;zhangxiaorongdian(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878137567721830&quot;,&quot;Text&quot;:&quot;zhangxiaorongdian(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878220099009983&quot;,&quot;Text&quot;:&quot;zhangxiaorongdian(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381851807131520228&quot;,&quot;Text&quot;:&quot;zhangxiaorongdian(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310929686697901687&quot;,&quot;Text&quot;:&quot;王新兴  欧洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381879127219083490&quot;,&quot;Text&quot;:&quot;baijingshop(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381872284593382572&quot;,&quot;Text&quot;:&quot;baijingshop(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381878166082152432&quot;,&quot;Text&quot;:&quot;baijingshop(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310935788195952901&quot;,&quot;Text&quot;:&quot;baijingshop(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381873107281587219&quot;,&quot;Text&quot;:&quot;baijingshop(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381875609185123795&quot;,&quot;Text&quot;:&quot;caocaihong(uk)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936561182105419&quot;,&quot;Text&quot;:&quot;caocaihong(de)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310930509263223138&quot;,&quot;Text&quot;:&quot;caocaihong(fr)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310936448438695625&quot;,&quot;Text&quot;:&quot;caocaihong(it)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381852474390302701&quot;,&quot;Text&quot;:&quot;caocaihong(es)&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310931419763529390&quot;,&quot;Text&quot;:&quot;duguodong&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;1381876409648759022&quot;,&quot;Text&quot;:&quot;李立红美洲&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;5310933918057764203&quot;,&quot;Text&quot;:&quot;刘马平&quot;,&quot;item&quot;:&quot;Amazon&quot;},{&quot;Value&quot;:&quot;8394965973522953076&quot;,&quot;Text&quot;:&quot;offine&quot;,&quot;item&quot;:&quot;Offline&quot;}]" />
+<input id="OrderStatus" type="hidden" value="" />
+<input id="markListJSonStr" type="hidden" value="[{&quot;Text&quot;:&quot;需确认妥投&quot;,&quot;Value&quot;:&quot;8&quot;},{&quot;Text&quot;:&quot;退货入库&quot;,&quot;Value&quot;:&quot;9&quot;}]" />
+
+<input id="LogistciAccount" type="hidden" value="" />
+<input id="bindTypeData" type="hidden" value="" />
+<div id="J_selector" class="selector">
+    <div id="DropListItem">
+    </div>
+    <div id="listItem"></div>
+    <div class="J_selectorLine s-brand s-line oc_select ">
+        <div class="sl-wrap  NoEvent SearchType ">
+            <div class="sl-key" typeid="SearchType"><hg:trans>搜索类型</hg:trans></div>
+            <div class="sl-value" id="SearchType">
+                <div class="clr"></div>
+                <div class="sl-v-list">
+                    <ul class="J_valueList">
+                        <li style="">
+                            <a href="javascript:;" id="OrderNO_Type" class="J_active" title="订单号">
+                                <i></i>
+                                <hg:trans>订单号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="TrackingNum_Type" title="物流跟踪号">
+                                <i></i>
+                                <hg:trans>物流跟踪号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="LogisticNum_Type" title="物流服务单号">
+                                <i></i>
+                                <hg:trans>物流服务单号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="BuyerId_Type" title="买家账号">
+                                <i></i>
+                                <hg:trans>买家账号</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="Memo_Type" title="买家备注">
+                                <i></i>
+                                <hg:trans>买家备注</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="Contact_Type" title="收件人">
+                                <i></i>
+                                <hg:trans>收件人</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="OrderDate_Type" title="下单时间">
+                                <i></i>
+                                <hg:trans>下单时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="PaymentDate_Type" title="付款时间">
+                                <i></i>
+                                <hg:trans>付款时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="LocalDeliveryDate_Type" title="系统发货时间">
+                                <i></i>
+                                <hg:trans>系统发货时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="DeliveryDate_Type" title="平台发货时间">
+                                <i></i>
+                                <hg:trans>平台发货时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="PrintTime_Type" title="打印时间">
+                                <i></i>
+                                <hg:trans>打印时间</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="PayableAmount_Type" title="订单金额">
+                                <i></i>
+                                <hg:trans>订单金额</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="ProductSKU_Type" title="SKU">
+                                <i></i>
+                                <hg:trans>SKU</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="SalesRecord_Type" title="Ebay-SalesRecord">
+                                <i></i>
+                                <hg:trans>Ebay-SalesRecord</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="ProductName_Type" title="产品名称">
+                                <i></i>
+                                <hg:trans>产品名称</hg:trans>
+                            </a>
+                        </li>
+                        <li style="">
+                            <a href="javascript:;" id="Describe_Type" title="中文配货名称">
+                                <i></i>
+                                <hg:trans>中文配货名称</hg:trans>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="J_selectorLine s-brand s-line single">
+        <div class="sl-wrap  NoEvent" style="line-height:inherit;">
+            <div class="sl-key gride" typeid="SearchContent"><hg:trans>搜索内容</hg:trans></div>
+            <div class="sl-value" id="SearchContent">
+                <div class="clr"></div>
+                <div class="sl-v-Contentlist ContentValueList">
+                    <div class="col-sm-6 " id="OrderNOItem" style=" padding:0px;">
+                        <div class="input-group input-group-sm ">
+                            <label class="input-group-addon">
+                                <input id="isckbFuzzySearch" name="isckbFuzzySearch" value="true" type="checkbox"> 模糊搜索
+                            </label>
+                            <input type="text" name="SearchKey" id="SearchKey" onkeydown="enterSearch()" class="form-control" placeholder="请输入搜索内容，多个单号请用逗号隔开">
+                            <span class="input-group-btn ">
+                                <input hgtrans="true" value="搜索(S)" type="button" onclick="doSearchOrder()" accesskey="S" class="btn btn-primary">
+                            </span>
+                            <span class="input-group-addon" style="background:#fff;border:none" id="addMoreOrderno">
+                                <a href="javascript:void(0)" onclick="addPublicMoreOrderno('inputOrderNos', 'txtSearchMoreOrder')"><hg:trans>输入更多单号</hg:trans></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none;padding:0px" id="SearchDate">
+                        <div class="input-group input-group-sm ">
+                            <input type="text" class="form-control" id="txtSearchDateBegin" name="txtSearchDateBegin" onfocus="doInitWdatePickerEndDate('begin');" hgtrans="true" placeholder="开始时间">
+                            <span class="input-group-addon">
+                                TO
+                            </span>
+                            <input type="text" class="form-control " id="SearchtxtDateEnd" name="SearchtxtDateEnd" onfocus="doInitWdatePickerEndDate('end');" hgtrans="true" placeholder="结束时间">
+                            <span class="input-group-btn">
+                                <input hgtrans="true" value="搜索(S)" type="button" onclick="doSearchOrder()" accesskey="S" class="btn btn-primary">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none;padding:0px" id="PayableAmountSearch">
+                        <div class="input-group input-group-sm ">
+                            <input type="number" class="form-control input-sm" id="txtNumberBeginTemp" name="txtNumberBeginTemp">
+                            <span class="input-group-addon">
+                                TO
+                            </span>
+                            <input type="number" class="form-control input-sm" id="txtNumberEndTemp" name="txtNumberEndTemp">
+                            <span class="input-group-btn">
+                                <input hgtrans="true" value="搜索(S)" type="button" onclick="doSearchOrder()" accesskey="S" class="btn btn-primary">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 " id="searchtype">
+                        <div class="pull-right checkbox">
+                            <label for="morCheck"><input type="checkbox" id="morCheck" />是否合并查询</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divSortType"> </div>
+    <div id="J_crumbsBar" class="crumbs-bar" style="display:none">
+        <div class="crumbs-nav">
+            <div class="crumbs-nav-main clearfix">
+                <div class="crumbs-nav-item">
+                    <div class="crumbs-first"><a href="javascript:;">全部结果</a></div>
+                </div>
+                <i class="crumbs-arrow">&gt;</i>
+                <div style="float:left;width:90%" id="baritem">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<form action="/HistoryData/Order?Length=11" class="" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#divOrderDataList" id="searchForm" method="post" style="">    <input type="hidden" value="" name="txtSearchKey" id="txtSearchKey" /><!--搜索条件：支持多条件查询-->
+    <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+    <input type="hidden" id="txtExtraStatusCode" name="txtExtraStatusCode" value="" />
+    <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" value="" />
+    <input type="hidden" id="hidSaleMan" name="hidSaleMan" value="" />
+    <input type="hidden" id="hidStore" name="hidStore" value="" />
+    <input type="hidden" id="hidLogisticMode" name="hidLogisticMode" value="">
+    <input type="hidden" id="hidPackageMaterial" name="hidPackageMaterial" value="">
+    <input type="hidden" value="" name="hidSaleStatues" id="hidSaleStatues" />
+    <input type="hidden" value="OrderNO" name="hidChoose" id="hidChoose" />
+    <input type="hidden" value="" name="hidApiAccountItems" id="hidApiAccountItems" /><!--平台账号-->
+    <input type="hidden" value="" name="hidApiForms" id="hidApiForms" /><!--平台-->
+    <input type="hidden" value="" name="hidOrderStatusCodes" id="hidOrderStatusCodes" />
+    <input type="hidden" value="" name="hidCountrys" id="hidCountrys" />
+    <input type="hidden" value="" name="hidMark" id="hidMark" />
+    <input type="hidden" value="" name="hidSystemMark" id="hidSystemMark" />
+    <input type="hidden" id="hidSort" name="hidSort" value="" /><!--排序字段-->
+    <input type="hidden" id="hidSortType" name="hidSortType" value="" /> <!--排序类型-->
+    <input type="hidden" id="hidDeliveryTime" name="hidDeliveryTime" value="">
+    <input type="hidden" id="hidOrderPrintStatus" name="hidOrderPrintStatus" value=""><!---订单  -->
+    <input type="hidden" id="hidAccordingState" name="hidAccordingState" value="">
+    <input type="hidden" id="hidPostBck" name="hidPostBck" value="-1"><!---回传状态 -->
+    <input type="hidden" id="hidshipType" name="hidshipType" value=""><!--配送类型-->
+    <input type="hidden" id="hidshipStatus" name="hidshipStatus" value=""><!--配送状态-->
+    <input type="hidden" id="hidLogistics" name="hidLogistics" value=""><!--物流商-->
+    <input type="hidden" id="hidIsFBAOrder" name="hidIsFBAOrder" value="" /><!--FBA订单-->
+    <input type="hidden" id="hidtxtStatusCode" name="hidtxtStatusCode" value="" /><!--状态查询-->
+</form>
+<script src="static/js/wdatepicker_1.js"></script>
+
+<script src="static/js/dot_1.js"></script>
+<script type="text/x-dot-template" id="CommonTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}}" menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                            <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                搜索(S)
+                            </span>
+                        </div>
+                    </div>
+                    {{?}}
+                    <ul class="J_valueList {{=it.ClassName}}">
+                        {{ var objarray=it.listItem;  for(var i=0;i
+                        <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                            <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                            <li id="{{=objarray[i].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}">
+                                    <i></i>{{=textname}}
+                                </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                </div>
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;" type="{{=it.isMultioleStr}}">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;">更多<i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+<script type="text/x-dot-template" id="DropItemTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        搜索(S)
+                    </span>
+                </div>
+            </div>
+            {{?}}
+            <ul class="J_valueList clearfix {{=it.ClassName}}">
+                {{  var objarray=it.data;  for(var i=0;i
+                <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                    <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                    <li id="{{=objarray[i].Value}}" style="display:block;">
+                        <a href="javascript:;" title="{{=textname}}">
+                            <i></i>{{=textname}}
+                        </a>
+                    </li>
+                    {{ } }}
+            </ul>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+<script type="text/x-dot-template" id="CommonAccountUserTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}} " menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list ">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                            <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                搜索(S)
+                            </span>
+                        </div>
+                    </div>
+                    {{?}}
+                    <ul class="J_valueList {{=it.ClassName}}">
+                        {{ var objarray=it.listItem;  for(var i=0;i
+                        <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                            <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                            <li id="{{=objarray[i].Value}}" style="display:block;" class="para-item">
+                                <a class="{{=objarray[i].item}}-sales" href="javascript:;" title="{{=textname}}">
+                                    {{=textname}}
+                                </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                </div>
+                {{?it.isMultiple}}
+                <div class="sl-btns">
+                    <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+                    <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+                    <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+                </div>
+                {{?}}
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;">更多<i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+<!----下拉订单状态-->
+<script type="text/x-dot-template" id="DropSaleStatusItemTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            <div class="J_valueList">
+                {{  var objarray=it.data;  for(var i=0;i<objarray.length;i++){ }}
+                    <div class="OrderStatusTitle"> <b>{{=objarray[i].saleName}}</b></div>
+                    <ul class=" clearfix {{=it.ClassName}}">
+                        {{  var datalist=objarray[i].saleListStatus;  for(var j=0;j
+                        <datalist.length;j++){var textname=translate.format("
+                            <hg:trans>{0}</hg:trans>", [datalist[j].Text.trim()]);  }}
+
+                            <li id="{{=datalist[j].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                    {{ } }}
+            </div>
+
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+<!--排序模板-->
+<!--国家模板 START-->
+<script type="text/x-dot-template" id="CountryExtendTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}}" menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5" style="float:left;">
+                            <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                搜索(S)
+                            </span>
+                        </div>
+                        <label class="col-sm-2"><a href="../country/Index" target="_blank">设置常用国家</a></label>
+                    </div>
+                    {{?}}
+                    <div class="J_valueList">
+                        <div class="CommonCountry">
+                            <b><hg:trans>常用国家</hg:trans></b>
+                            <ul>
+                                {{ var objarray=it.listItem.CommonCountry;  for(var i=0;i
+                                <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                                    <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                                    <li id="{{=objarray[i].Value}}" style="display:block;">
+                                        <a href="javascript:;" title="{{=textname}}">
+                                            <i></i>{{=textname}}
+                                        </a>
+                                    </li>
+                                    {{ } }}
+                            </ul>
+                        </div>
+                        <div class="OtherCountry">
+                            {{ var objarray=it.listItem.CountryList;  for(var j=0;j<objarray.length;j++){var continent=removeAllSpace(translate.format("
+                                <hg:trans>{0}</hg:trans>", [objarray[j].TextName]));  }}
+                                <b><hg:trans>{{=continent}}</hg:trans></b>
+                                <ul class=" {{=it.ClassName}}">
+                                    {{ var continentcountry=objarray[j].listData;  for(var i=0;i
+                                    <continentcountry.length;i++){var textname=removeAllSpace(translate.format("
+                                        <hg:trans>{0}</hg:trans>", [continentcountry[i].Text]));  }}<li id="{{=continentcountry[i].Value}}" style="display:block;">
+                                            <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}} </a>
+                                        </li>
+                                        {{ } }}
+                                </ul>
+
+
+                                {{ } }}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;" type="{{=it.isMultioleStr}}">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;">更多<i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+
+<!--下拉国家模板 END-->
+<script type="text/x-dot-template" id="DropCountryTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5" style="float:left;">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        搜索(S)
+                    </span>
+                </div>
+                <label class="col-sm-2"><a href="../country/Index" target="_blank">设置常用国家</a></label>
+            </div>
+            {{?}}
+            <div class="J_valueList">
+                <div class="OrderStatusTitle"> <b><hg:trans>常用国家</hg:trans></b></div>
+                <ul class=" clearfix {{=it.ClassName}}">
+                    {{  var datalist=it.data.CommonCountry; for(var j=0;j
+                    <datalist.length;j++){var textname=translate.format("
+                        <hg:trans>{0}</hg:trans>", [datalist[j].Text.trim()]);  }}
+                        <li id="{{=datalist[j].Value}}" style="display:block;">
+                            <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                        </li>
+                        {{ } }}
+                </ul>
+                {{  var objarray=it.data.CountryList;  for(var i=0;i<objarray.length;i++){ }}
+                    <div class="OrderStatusTitle"> <b>{{=objarray[i].TextName}}</b></div>
+                    <ul class=" clearfix {{=it.ClassName}}">
+                        {{  var continentcountry=objarray[i].listData;  for(var j=0;j
+                        <continentcountry.length;j++){var textname=translate.format("
+                            <hg:trans>{0}</hg:trans>", [continentcountry[j].Text.trim()]);  }}
+                            <li id="{{=continentcountry[j].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                    {{ } }}
+            </div>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+
+<!--国家模板 END-->
+
+<script type="text/x-dot-template" id="OrderListTempl">
+    <div class="J_selectorLine s-brand s-line ">
+        <div class="sl-wrap" style="line-height:20px">
+            <div class="sl-key gridt" typeid="OrderListInfo"><hg:trans>排序</hg:trans></div>
+            <div class="sl-value" id="OrderListInfo">
+                <div class="sl-v-list">
+                    <div class=" order-content para-items" id="divSort">
+                        {{ var active="active";var orderType="Desc";var iconOrder="glyphicon-arrow-down"; for(var i=0;i<it.length;i++){var textname=translate.format("
+                            <hg:trans>{0}</hg:trans>", [it[i].Text.trim()]);  }}
+                            <span itemid="{{=it[i].Value}}" sorttype="{{=orderType}}" class="{{=active}}"> <hg:trans>{{=textname}}</hg:trans><span id="{{=it[i].Value}}SortMark" class="glyphicon {{=iconOrder}} "></span> </span>
+                            {{active="";orderType=""; iconOrder="glyphicon-resize-vertical";} }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+<div class="modal fade" id="SearchMenuModal" tabindex="-1" style="padding-top:12%" role="dialog" aria-labelledby="SetSearchMenuModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="SetSearchMenuModalLabel"><hg:trans>设置常用菜单</hg:trans></h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="SetUpMenuUI()"><hg:trans>设置</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-dot-template" id="SetMenuTempl">
+    <div>
+        {{ var ischecked="checked='checked'"; for(var i=0;i<it.length;i++){}}
+            <div class="checkbox" typeid="{{=it[i].typeid}}">
+                {{
+                if(it[i].isExtend)
+                {
+                ischeckedInfo=ischecked;
+                }
+                else
+                {
+                ischeckedInfo="";
+                }
+                }}
+                <label> <input type="checkbox" {{=ischeckedInfo}} value="{{=it[i].isExtend}}">{{=it[i].typeName}}</label>
+            </div>
+            {{}}}
+    </div>
+</script>
+<script type="text/x-dot-template" id="CatalogTempl">
+
+
+</script>
+
+<script type="text/javascript">
+    var jsonStr = "[]";
+    var commonCountryConst = eval('(' + jsonStr + ')');
+    var countryListConst = eval('(' + jsonStr + ')');
+    function GetCountryList() {
+        $.ajax({
+            url: "/Country/GetCountryList",
+            type: "post",
+            async: false,
+            success: function (data) {
+                commonCountryConst = eval('(' + jsonStr + ')');
+                countryListConst = eval('(' + jsonStr + ')');
+                var titleList = new Array;
+                for (var i = 0 ; i < data.length; i++) {
+                    if (data[i].IsCommonCountry)
+                        commonCountryConst.push({ "Text": data[i].Name + "（" + data[i].EnglishName + "）", "Value": data[i].Name });
+                    if (titleList.indexOf(data[i].ContinentsName) == -1) {
+                        titleList[titleList.length] = data[i].ContinentsName;
+                    }
+                }
+                if (commonCountryConst.length == 0) { // 如果没有设置常用国家. 那么设置常用国家默认值.
+                    commonCountryConst = [
+           { Text: "美国（United States）", Value: "美国" },
+           { Text: "英国（United Kingdom）", Value: "英国" },
+           { Text: "法国（France）", Value: "法国" },
+           { Text: "德国（Germany）", Value: "德国" },
+           { Text: "日本（Japan）", Value: "日本" },
+           { Text: "俄罗斯（Russian Federation）", Value: "俄罗斯" },
+           { Text: "澳大利亚（Australia）", Value: "澳大利亚" },
+           { Text: "加拿大（Canada）", Value: "加拿大" },
+           { Text: "巴西（Brazil）", Value: "巴西" },
+           { Text: "荷兰（Netherlands）", Value: "荷兰" },
+           { Text: "其它(Other)", Value: "其它" }
+                    ];
+                }
+                for (var i = 0 ; i < titleList.length ; i++) {
+                    var listData = eval('(' + jsonStr + ')');
+                    for (var j = 0 ; j < data.length ; j++) {
+                        var isCommonCountry = false;
+                        for (var z = 0 ; z < commonCountryConst.length; z++) {
+                            if (commonCountryConst[z].Value == data[j].Name) {
+                                isCommonCountry = true;
+                                break;
+                            }
+                        }
+                        if (!isCommonCountry && data[j].ContinentsName == titleList[i])
+                            listData.push({ "Text": data[j].Name + "（" + data[j].EnglishName + "）", "Value": data[j].Name, "ContinentsName": data[j].ContinentsName });
+                    }
+                    countryListConst.push({ "TextName": titleList[i], "listData": listData });
+                }
+            }
+        });
+    }
+    GetCountryList();
+    //移除空白字符
+    function removeAllSpace(str) {
+        return str.replace(/\s+/g, "");
+    }
+    /*关于订单查询相关逻辑 ***************--------->Start*/
+    //备注：定义公用数据源  --------->Start
+    //定义平台状态
+    var saleOrderStatueErp = {
+        ControllerId: "saleOrderStatue",
+        ControllerDisplayName: "平台状态",
+        listItem: [
+        {
+            "saleName": "速卖通平台",
+            "saleListStatus": [
+                { Value: "PLACE_ORDER_SUCCESS", Text: "待付款" },
+               { Value: "WAIT_BUYER_ACCEPT_GOODS", Text: "待收货" },
+               { Value: "WAIT_SELLER_SEND_GOODS", Text: "待发货" },
+               { Value: "IN_FROZEN", Text: "冻结中" },
+               { Value: "IN_ISSUE", Text: "含纠纷" },
+               { Value: "FINISH", Text: "已结束" },
+               { Value: "SELLER_PART_SEND_GOODS", Text: "部分发货" },
+               { Value: "WAIT_SELLER_EXAMINE_MONEY", Text: "确认金额" },
+               { Value: "FUND_PROCESSING", Text: "资金处理中" },
+               { Value: "RISK_CONTROL", Text: "资金未到帐" }
+            ]
+        },
+        {
+            "saleName": "亚马逊平台",
+            "saleListStatus": [
+            { Value: "Pending", Text: "未付款" },
+            { Value: "Unshipped", Text: "待发货" },
+            { Value: "Shipped", Text: "已发货" },
+            { Value: "PartiallyShipped", Text: "部分发货" },
+            { Value: "Unfulfillable", Text: "无法配送" },
+            { Value: "PendingAvailability", Text: "预定订单" },
+            { Value: "InvoiceUnconfirmed", Text: "未寄发票" }
+            ]
+        },
+        {
+            "saleName": "敦煌平台",
+            "saleListStatus": [
+                { Value: "101003", Text: "等待买家付款" },
+                { Value: "102111", Text: "交易成功" },
+                { Value: "103001", Text: "等待发货" },
+                { Value: "103002", Text: "已部分发货" },
+                { Value: "111000", Text: "订单取消" },
+                {
+                    Value: "111111", Text: "交易关闭"
+                }
+            ]
+        }
+        ]
+    };
+
+    //定义包材
+    var PackageMaterial = [
+    { Text: "有包材", Value: "HavePackageMaterial" },
+    { Text: "无包材", Value: "NotPackageMaterial" }
+    ];
+    //定义是否是FBA订单
+    var IsFBAOrderData = [
+     {
+         Text: "FBA配送订单", Value: "1"
+     }, {
+         Text: "非FBA配送订单", Value: "0"
+     }];
+    var ArrayMarkSys = [
+          { Text: "合并包裹", Value: "CombinPackage" },
+          { Text: "拆分包裹", Value: "SplitPackage" },
+          { Text: "被合并", Value: "BeMerged" },
+          { Text: "被拆分", Value: "WasSplit" },
+          { Text: "已验货", Value: "IsCheckGoods" },
+          { Text: "已作废", Value: "IsAbandoned" },
+          { Text: "阻止发货", Value: "CantReceipt" },
+          { Text: "关联订单异常", Value: "RelationAbnormal" },
+          { Text: "补发", Value: "Reissue" },
+          { Text: "FBA订单", Value: "FBAOrder" },
+          { Text: "有退款", Value: "HaveRefund" },
+          { Text: "有退货", Value: "HasReturn" }
+    ];
+    //虚拟发货：
+    //订单类型
+    var OrderPrintStatusData = [];
+    //配货状态
+    var AccordingStateData = [];
+    var hidPostBckData = []; //定义回传状态类型
+    //第三方仓库配送
+    var shipType = [];//配送类型
+    var shipStatus = [];//配送状态
+    var OrderInfo = [];//定义排序
+    var OrderLogistic = [];//定义物流商
+    var Url = "";//当前页面地址
+
+    //备注：定义公用数据源--------->END
+    //核心业务逻辑 Start
+    //debugger;
+
+    $(function () {
+        Url = "HistoryData/Order";
+        LoadMenuInfo();
+
+        $("#divExtraStateItems>label").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                $("#hidtxtStatusCode").val("");
+                $this.removeClass();
+            } else {
+                $("#hidtxtStatusCode").val($this.attr("itemid"));
+                $("#divExtraStateItems>label").removeClass();
+                $this.addClass("active");
+            };
+            $("#searchForm").submit();
+        });
+    })
+
+    //加载菜单信息
+    function LoadMenuInfo() {
+        //重置
+        $("#listItem,#DropListItem").html("");
+
+        //获取页面设置菜单呈现方式
+        var objUserSetType = $("#bindTypeData").val();
+        if (objUserSetType.length > 0) {
+            objUserSetType = objUserSetType;
+        }
+
+        //处理业务员
+        var salemanlist = $("#saleManInfo").val();
+        if (salemanlist.length > 0) {
+            salemanlist = JSON.parse(salemanlist)
+        }
+        //处理仓库
+        var Store = $("#StoreInfo").val();
+        if (Store.length > 0) {
+            Store = JSON.parse(Store);
+        }
+        var SearchOption = SearchOptonRedgle();//初始化方法
+
+        var hidLogisticMode = $("#LogisticMode").val();
+        if (hidLogisticMode.length > 0)
+            hidLogisticMode = JSON.parse(hidLogisticMode);
+
+        SearchOption.templ = $("#CommonTempl").html();
+        SearchOption.Droptempl = $("#DropItemTempl").html();
+        var userformlist = $("#userfromlist").val();
+        var userfromlists = [];
+        if (userformlist.length > 0) {
+            userfromlist = JSON.parse(userformlist);
+            for (var i = 0; i < userfromlist.length; i++) {
+                userfromlists.push({
+                    Text: userfromlist[i],
+                    Value: userfromlist[i]
+                });
+            }
+        }
+        //debugger;
+        //平台账户　AccountUser
+        var AccountUser = $("#AccountUser").val();
+        if (AccountUser.length > 0)
+            AccountUser = JSON.parse(AccountUser);
+
+        var markListJSonStr = $("#markListJSonStr").val();
+        var ArrayMarkList = [];
+        if (markListJSonStr.length > 0) {
+            ArrayMarkList = JSON.parse(markListJSonStr);
+        }
+
+        var OrderStatusData = [];
+        var OrderStatus = $("#OrderStatus").val();
+        if (OrderStatus.length > 0) {
+            var OrderStatus = JSON.parse($("#OrderStatus").val());
+            for (var i in OrderStatus) {
+                OrderStatusData.push({
+                    Text: OrderStatus[i],
+                    Value: i
+                });
+            }
+        }
+        //处理国家信息
+        var CommonCountry = {
+            CommonCountry: commonCountryConst,
+            CountryList: countryListConst
+        };
+        //定义发货时间
+        var DeliveryTimeData = [];
+        switch (Url) {
+            case "Order/Index"://全部订单
+                $("#PrintTime_Type,#PayableAmount_Type,#Memo_Type").parent().remove();
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                    { Text: "付款时间", Value: "PaymentTime" },
+                    { Text: "订单号", Value: "OrderNo" },
+                    { Text: "订单金额", Value: "PayableAmount" },
+                    { Text: "收件国家", Value: "CountryName" },
+                    { Text: "物流方式", Value: "LogisticMode" },
+                    { Text: "SKU", Value: "SKU" }];
+
+
+                $("#DropListItem .sl-tab-trigger").append($("#CatalogTempl").html());
+
+                break;
+            case "HistoryData/Order"://全部订单
+                $("#PrintTime_Type,#PayableAmount_Type,#Memo_Type").parent().remove();
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                    { Text: "付款时间", Value: "PaymentTime" },
+                    { Text: "订单号", Value: "OrderNo" },
+                    { Text: "订单金额", Value: "PayableAmount" },
+                    { Text: "收件国家", Value: "CountryName" },
+                    { Text: "物流方式", Value: "LogisticMode" },
+                    { Text: "SKU", Value: "SKU" }];
+                $("#DropListItem .sl-tab-trigger").append($("#CatalogTempl").html());
+                break;
+            case "Order/OrderReceipt"://已发货
+                IsFBAOrderData = [];//FBA
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                //覆盖信息订单状态(系统)
+                ArrayMarkSys = [
+                { Text: "已验货", Value: "IsCheckGoods" },
+                { Text: "合并包裹", Value: "CombinPackage" },
+                { Text: "拆分包裹", Value: "SplitPackage" },
+                { Text: "FBA订单", Value: "FBAOrder" },
+                { Text: "关联订单异常", Value: "RelationAbnormal" }
+                ];
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                 { Text: "付款时间", Value: "PaymentTime" },
+                 { Text: "订单号", Value: "OrderNo" },
+                 { Text: "订单金额", Value: "PayableAmount" },
+                 { Text: "收件国家", Value: "CountryName" },
+                 { Text: "物流方式", Value: "LogisticMode" },
+                 { Text: "平台发货时间", Value: "DeliveryDate" },
+                 { Text: "系统发货时间", Value: "LocalDeliveryDate" },
+                 { Text: "SKU", Value: "SKU" }];
+                //隐藏搜索条件
+                $("#OrderDate_Type,#PaymentDate_Type,#ProductName_Type,#Describe_Type,#PayableAmount_Type,#Memo_Type").parent().remove();
+                //处理排序
+                break;
+            case "Order/ReportLogisticModel":
+                IsFBAOrderData = [];//FBA
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                ArrayMarkSys = [];
+                Store = [];
+                PackageMaterial = [];
+                var JSonStr = $("#LogistciAccount").val();
+                if (JSonStr.length > 0) {
+                    LogistciAccount = JSON.parse(JSonStr);
+                }
+                DeliveryTimeData = [
+            { Text: "全部", Value: "Whole" },
+            { Text: "今天", Value: "Today" },
+            { Text: "昨天", Value: "Yesterday" },
+            { Text: "7天以内", Value: "SevenDay" },
+            { Text: "30天以内", Value: "ThirtyDay" }
+                ];
+                $("#OrderNO_Type,#TrackingNum_Type,#LogisticNum_Type,#BuyerId_Type,#Contact_Type,#OrderDate_Type,#PaymentDate_Type,#PrintTime_Type,#ProductSKU_Type,#SalesRecord_Type,#ProductName_Type,#Describe_Type,#PayableAmount_Type,#Memo_Type").parent().remove();
+                $("#SearchType .sl-ext ").remove();
+                $("#addMoreOrderno").remove();
+                $("#LocalDeliveryDate_Type").addClass("J_active");
+                $("#OrderNOItem").css("display", "none");
+                $("#SearchDate").css("display", "");
+                break;
+            case "Order/OrderShippingRecord"://发货记录
+                IsFBAOrderData = [];//FBA
+                PackageMaterial = [];
+                ArrayMarkSys = [];
+                ArrayMarkList = [];
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                $("#BuyerId_Type,#Contact_Type,#OrderDate_Type,#PaymentDate_Type,#PrintTime_Type,#ProductSKU_Type,#SalesRecord_Type,#ProductName_Type,#Describe_Type,#PayableAmount_Type,#Memo_Type").parent().remove();
+
+                $("#SearchType .sl-ext ").remove();
+                DeliveryTimeData = [
+               { Text: "全部", Value: "Whole" },
+               { Text: "今天", Value: "Today" },
+               { Text: "昨天", Value: "Yesterday" },
+               { Text: "7天以内", Value: "SevenDay" },
+               { Text: "30天以内", Value: "ThirtyDay" }
+                ];
+
+                OrderInfo = [
+                    { Text: "系统发货时间", Value: "LocalDeliveryDate" },
+                    { Text: "运费", Value: "Freight" },
+                    { Text: "重量", Value: "Weight" }];
+                break;
+            case "Order/OrderAbandoned"://已作废
+                IsFBAOrderData = [];//FBA
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                //覆盖信息订单状态(系统)
+                ArrayMarkSys = [
+                { Text: "合并包裹", Value: "CombinPackage" },
+                { Text: "拆分包裹", Value: "SplitPackage" },
+                 { Text: "被合并", Value: "BeMerged" },
+                 { Text: "被拆分", Value: "WasSplit" },
+                { Text: "已验货", Value: "IsCheckGoods" },
+                { Text: "已作废", Value: "IsAbandoned" },
+                { Text: "阻止发货", Value: "CantReceipt" },
+                { Text: "关联订单异常", Value: "RelationAbnormal" }
+                ];
+
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                 { Text: "付款时间", Value: "PaymentTime" },
+                { Text: "订单号", Value: "OrderNo" },
+                 { Text: "订单金额", Value: "PayableAmount" },
+                 { Text: "收件国家", Value: "CountryName" },
+                 { Text: "物流方式", Value: "LogisticMode" }
+                ];
+                $("#PrintTime_Type,#ProductName_Type,#Describe_Type,#PayableAmount_Type,#Memo_Type").parent().remove();
+                break;
+            case "Order/OrderApprove":
+                IsFBAOrderData = [];//FBA
+                ArrayMarkSys = [
+               { Text: "合并包裹", Value: "CombinPackage" },
+               { Text: "拆分包裹", Value: "SplitPackage" },
+               { Text: "阻止发货", Value: "CantReceipt" },
+               { Text: "关联订单异常", Value: "RelationAbnormal" }
+                ];
+
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                { Text: "付款时间", Value: "PaymentTime" },
+                { Text: "订单号", Value: "OrderNo" },
+                { Text: "订单金额", Value: "PayableAmount" },
+                { Text: "收件国家", Value: "CountryName" },
+                { Text: "物流方式", Value: "LogisticMode" },
+                { Text: "发货超时时间", Value: "OrderColumn10" },
+                { Text: "SKU", Value: "SKU" },
+                { Text: "收件人", Value: "Contact" }
+                ];
+                $("#TrackingNum_Type,#LogisticNum_Type,#DeliveryDate_Type,#LocalDeliveryDate_Type,#PrintTime_Type,#ProductName_Type,#Describe_Type,#Memo_Type").parent().remove();
+                $("#SearchType .sl-ext ").remove();
+                break;
+            case "Order/OrderAccording":
+                //配货状态
+                AccordingStateData = [
+                   { Text: "未配货", Value: "0" },
+                   { Text: "部分缺货", Value: "1" },
+                   { Text: "全部缺货", Value: "2" }
+                ];
+                IsFBAOrderData = [];//FBA
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                ArrayMarkSys = [
+               { Text: "合并包裹", Value: "CombinPackage" },
+               { Text: "拆分包裹", Value: "SplitPackage" },
+               { Text: "阻止发货", Value: "CantReceipt" },
+               { Text: "关联订单异常", Value: "RelationAbnormal" }
+                ];
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+              { Text: "付款时间", Value: "PaymentTime" },
+              { Text: "订单号", Value: "OrderNo" },
+              { Text: "订单金额", Value: "PayableAmount" },
+              { Text: "收件国家", Value: "CountryName" },
+              { Text: "物流方式", Value: "LogisticMode" },
+              { Text: "预报时间", Value: "LogisticColumn1" },
+              { Text: "发货超时时间", Value: "OrderColumn10" },
+              { Text: "SKU", Value: "SKU" }];
+                $("#DeliveryDate_Type,#LocalDeliveryDate_Type,#PrintTime_Type,#ProductName_Type,#Describe_Type").parent().remove();
+                break;
+            case "Order/OrderPicking":
+            case "Order/OrderPrint":
+            case "Order/OrderVirtual":
+                IsFBAOrderData = [];//FBA
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                ArrayMarkSys = [
+             { Text: "已验货", Value: "IsCheckGoods" },
+            { Text: "合并包裹", Value: "CombinPackage" },
+            { Text: "拆分包裹", Value: "SplitPackage" },
+            { Text: "阻止发货", Value: "CantReceipt" },
+            { Text: "关联订单异常", Value: "RelationAbnormal" }
+                ];
+                if ("Order/OrderPicking" == Url) {
+                    saleOrderStatueErp.listItem = [];//平台订单状态
+                    OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                        { Text: "付款时间", Value: "PaymentTime" },
+                        { Text: "订单号", Value: "OrderNo" },
+                        { Text: "订单金额", Value: "PayableAmount" },
+                        { Text: "收件国家", Value: "CountryName" },
+                        { Text: "物流方式", Value: "LogisticMode" },
+                        { Text: "预报时间", Value: "LogisticColumn1" },
+                        { Text: "发货超时时间", Value: "OrderColumn10" },
+                        { Text: "货架位", Value: "ShelfPosition" },
+                        { Text: "物流跟踪号", Value: "LogisticTransitNo" },
+                        { Text: "SKU", Value: "SKU" }];
+                    $("#DeliveryDate_Type,#LocalDeliveryDate_Type,#PrintTime_Type,#ProductName_Type,#Describe_Type").parent().remove();
+                }
+                else if ("Order/OrderPrint" == Url) {
+                    saleOrderStatueErp.listItem = [];//平台订单状态
+                    OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                        { Text: "付款时间", Value: "PaymentTime" },
+                        { Text: "订单号", Value: "OrderNo" },
+                        { Text: "订单金额", Value: "PayableAmount" },
+                        { Text: "收件国家", Value: "CountryName" },
+                        { Text: "物流方式", Value: "LogisticMode" },
+                        { Text: "预报时间", Value: "LogisticColumn1" },
+                        { Text: "发货超时时间", Value: "OrderColumn10" },
+                        { Text: "货架位", Value: "ShelfPosition" },
+                        { Text: "SKU", Value: "SKU" },
+                        { Text: "物流跟踪号", Value: "LogisticTransitNo" },
+                        { Text: "运单号过期时间", Value: "AliLogisticsNoTimeOut" }];
+
+                    $("#DeliveryDate_Type,#LocalDeliveryDate_Type,#PayableAmount_Type,#ProductName_Type,#Describe_Type").parent().remove();
+                }
+                else if ("Order/OrderVirtual" == Url) {
+                    saleOrderStatueErp.listItem = [];//平台订单状态
+                    $("#PayableAmount_Type,#ProductName_Type,#Describe_Type,#OrderDate_Type,#PaymentDate_Type,#PayableAmount_Type,#ProductName_Type,#Describe_Type,#Memo_Type").parent().remove();
+                    $("#SearchType .sl-ext ").remove();
+                    //虚拟发货：
+                    //订单类型
+                    OrderPrintStatusData = [
+                       { Text: "未打印", Value: "NoPrint" },
+                       { Text: "已打印", Value: "HasPrint" },
+                       { Text: "单SKU", Value: "SingleSku" },
+                       { Text: "多SKU", Value: "MoreSku" }
+                    ];
+                    //配货状态
+                    AccordingStateData = [
+                       { Text: "未配货", Value: "0" },
+                       { Text: "缺货", Value: "1,2" },
+                       { Text: "成功配货", Value: "3" }
+                    ];
+                    OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                            { Text: "付款时间", Value: "PaymentTime" },
+                            { Text: "订单号", Value: "OrderNo" },
+                            { Text: "订单金额", Value: "PayableAmount" },
+                            { Text: "收件国家", Value: "CountryName" },
+                            { Text: "物流方式", Value: "LogisticMode" },
+                            { Text: "货架位", Value: "ShelfPosition" },
+                            { Text: "SKU", Value: "SKU" }];
+                }
+                break;
+            case "Order/OrderPostBacked":
+                IsFBAOrderData = [];//FBA
+                hidPostBckData = [
+                    { Text: "回传中", Value: "0" },
+                    { Text: "回传失败", Value: "2" }
+                ];
+                OrderPrintStatusData = [
+                     { Text: "有留言备注", Value: "hasOrderNote" },
+                     { Text: "单SKU", Value: "SingleSku" },
+                     { Text: "多SKU", Value: "MoreSku" },
+                     { Text: "未打印", Value: "NoPrint" },
+                     { Text: "已打印", Value: "HasPrint" },
+                     { Text: "无跟踪号", Value: "Notrack" },
+                     { Text: "有跟踪号", Value: "Hastrack" }
+                ];
+                ArrayMarkSys = [
+                   { Text: "已验货", Value: "IsCheckGoods" },
+                   { Text: "合并包裹", Value: "CombinPackage" },
+                   { Text: "拆分包裹", Value: "SplitPackage" }
+                ];
+                PackageMaterial = []; //包材
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                         { Text: "付款时间", Value: "PaymentTime" },
+                         { Text: "订单号", Value: "OrderNo" },
+                         { Text: "订单金额", Value: "PayableAmount" },
+                         { Text: "收件国家", Value: "CountryName" },
+                         { Text: "物流方式", Value: "LogisticMode" }];
+
+                $("#DeliveryDate_Type,#LocalDeliveryDate_Type,#PayableAmount_Type,#ProductName_Type,#Describe_Type,#OrderDate_Type,#PaymentDate_Type,#PayableAmount_Type,#ProductName_Type,#Describe_Type,#BuyerId_Type,#Memo_Type").parent().remove();
+                $("#SearchType .sl-ext ").remove();
+                break;
+            case "Order/AllocationException":
+                IsFBAOrderData = [];//FBA
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                PackageMaterial = [];
+                CommonCountry = null;//收件国家
+                ArrayMarkSys = [];//订单标记
+                //订单号 物流跟踪号 SKU 下单时间 付款时间 平台发货时间
+                OrderInfo = [{ Text: "下单时间", Value: "OrderTime" },
+                    { Text: "付款时间", Value: "PaymentTime" },
+                    { Text: "物流方式", Value: "LogisticMode" }
+                ];
+                $("#PayableAmount_Type,#ProductName_Type,#Describe_Type,#Contact_Type,#LogisticNum_Type,#PayableAmount_Type,#ProductName_Type,#Describe_Type,#BuyerId_Type,#PrintTime_Type,#SalesRecord_Type,#Memo_Type").parent().remove();
+                $("#SearchType .sl-ext ").remove();
+                break;
+            case "PackageTrack/SyncTrack":
+                IsFBAOrderData = [];//FBA
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                PackageMaterial = [];
+                ArrayMarkSys = [];//订单标记
+                ArrayMarkList = [];
+                Store = [];
+                OrderInfo = [
+                  { Text: "物流方式", Value: "LogisticMode" }
+                ]; $("#PayableAmount_Type,#ProductName_Type,#Describe_Type,#LogisticNum_Type,#PayableAmount_Type,#ProductName_Type,#Describe_Type,#BuyerId_Type,#PrintTime_Type,#SalesRecord_Type,#OrderDate_Type,#PaymentDate_Type,#DeliveryDate_Type,#LocalDeliveryDate_Type,#ProductSKU_Type,#Memo_Type").parent().remove();
+                $("#SearchKey").attr("placeholder", "请输入搜索内容");
+                $("#addMoreOrderno").remove();
+                $("#SearchType .sl-ext ").remove();
+                break;
+            case "PackageTrack/SyncFbaTrack":
+                IsFBAOrderData = [];//FBA
+                PackageMaterial = [];
+                ArrayMarkSys = [];//订单标记
+                ArrayMarkList = [];
+                CommonCountry = null;//收件国家
+                saleOrderStatueErp.listItem = [];//平台订单状态
+                shipType = [
+                    { Text: "FBA海外仓", Value: "FBA" },
+                    { Text: "4PX海外仓", Value: "4PX" },
+                    { Text: "出口易海外仓", Value: "chukou1" },
+                    { Text: "万邑联海外仓", Value: "winit" },
+                    { Text: "旺集海外仓", Value: "WangJi" },
+                    { Text: "艾姆勒海外仓", Value: "AML" }
+                ];
+                shipStatus = [{ Text: "更新获取", Value: "A1" }, { Text: "已配送", Value: "A2" }, { Text: "已取消", Value: "A3" }, { Text: "异常", Value: "A4" }];//配送状态
+
+                $("#SearchType .J_valueList li ").remove();
+                $("#SearchType .J_valueList  ").append('<li><a href="javascript:;" id="OrderNO_Type" class="J_active" title="订单编号"><i></i><hg:trans>订单编号</hg:trans> </a></li>');
+                $("#SearchType .J_valueList  ").append('<li><a href="javascript:;" id="FillMentId_Type" class="" title="配送单号"><i></i><hg:trans>配送单号</hg:trans> </a></li>');
+                $("#SearchType .J_valueList  ").append('<li><a href="javascript:;" id="OrderDate_Type" class="" title="发货日期"><i></i><hg:trans>发货日期</hg:trans> </a></li>');
+
+                $("#OrderListInfo").parents(".J_selectorLine ").remove();
+                $("#SearchKey").attr("placeholder", "请输入搜索内容");
+                $("#addMoreOrderno").remove();
+                $("#SearchType .sl-ext ").remove();
+                break;
+            default:
+                break;
+        }
+
+        if (userfromlists.length > 0)
+            SearchOption.BindDataUI(userfromlists, "平台类型", "userfromlist", false, true, "", false, false);//PlatformTypeTempl
+
+        if (AccountUser.length > 0) {
+            //SearchOption.BindDropDataUI(AccountUser, "平台账户", "StoreIdType", true);
+            SearchOption.BindDataUI(AccountUser, "平台账户", "AccountUser", true, true, $("#CommonAccountUserTempl").html(), true);
+        }
+        //debugger;
+        //处理订单标记
+        $.merge(ArrayMarkSys, ArrayMarkList);
+
+        //默认设置
+        //数据绑定------Start
+        var HasUserData = false;
+        var UserData = {};
+        if (objUserSetType.length > 0) {
+            HasUserData = true;
+            UserData = JSON.parse(objUserSetType);
+        }
+        //debugger;
+        if (hidPostBckData.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "OrderPostBckStatus")) {//是常用菜单
+
+                SearchOption.BindDataUI(hidPostBckData, "回传状态", "OrderPostBckStatus", false, false, "", false, true);
+            }
+            else {
+                SearchOption.BindDropDataUI(hidPostBckData, "回传状态", "OrderPostBckStatus", false, "", false, true);
+            }
+        }
+        if (shipType.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "shipType")) {
+                SearchOption.BindDataUI(shipType, "配送类型", "shipType", false, false, "", false, true);
+            }
+            else
+                SearchOption.BindDropDataUI(shipType, "配送类型", "shipType", false, "", false, true);
+        }
+        if (shipStatus.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "shipStatus")) {
+                SearchOption.BindDataUI(shipStatus, "配送状态", "shipStatus", false, false, "", false, true);
+            }
+            else
+                SearchOption.BindDropDataUI(shipStatus, "配送状态", "shipStatus", false, "", false, true);
+        }
+        if (OrderPrintStatusData.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "OrderPrintStatus")) {
+                SearchOption.BindDataUI(OrderPrintStatusData, "订单类型", "OrderPrintStatus", false, false, "", false, true);
+            }
+            else
+                SearchOption.BindDropDataUI(OrderPrintStatusData, "订单类型", "OrderPrintStatus", false, "", false, true);
+        }
+        if (AccordingStateData.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "AccordingState")) {
+                SearchOption.BindDataUI(AccordingStateData, "配货状态", "AccordingState", false, false, "", false, true);
+            }
+            else
+                SearchOption.BindDropDataUI(AccordingStateData, "配货状态", "AccordingState", false, "", false, true);
+        }
+
+        if (CommonCountry != null) {
+            if (HasUserData && returnUserCheck(UserData, "CommonCountry")) {
+                SearchOption.BindDataUI(CommonCountry, "收件国家", "CommonCountry", true, true, $("#CountryExtendTempl").html(), true, true, "commonCountry");
+            }
+            else
+                SearchOption.BindDropDataUI(CommonCountry, "收件国家", "CommonCountry", true, $("#DropCountryTempl").html(), true, true, "commonCountry");
+
+            //var selectCountryValue = $("#hidCountrys").val().split(",");
+            //for (var i = 0 ; i < selectCountryValue.length ; i++) {
+            //    if (selectCountryValue[i] != "") {
+            //        $("#" + selectCountryValue[i]).attr("class", "selected");
+            //        if (HasUserData && returnUserCheck(UserData, "CommonCountry"))
+            //            $("#" + selectCountryValue[i] + " a").each(function () {
+            //            $(this).attr("class", "J_active");
+            //        })
+            //    }
+            //}
+
+        }
+        if (DeliveryTimeData.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "DeliveryTime")) {
+                SearchOption.BindDataUI(DeliveryTimeData, "发货时间", "DeliveryTime", false, false, "", true, true);
+            }
+            else
+                SearchOption.BindDropDataUI(DeliveryTimeData, "发货时间", "DeliveryTime", false, "", false, true);
+        }
+        if (OrderStatusData.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "OrderStatus")) {
+                SearchOption.BindDataUI(OrderStatusData, "订单状态", "OrderStatus", false, false, "", false, true);
+            }
+            else
+                SearchOption.BindDropDataUI(OrderStatusData, "订单状态", "OrderStatus", false, "", false, true);
+        }
+
+        if (ArrayMarkSys.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "markSysList")) {
+                SearchOption.BindDataUI(ArrayMarkSys, "订单标记", "markSysList", true, false, "", true, true);
+            }
+            else
+                SearchOption.BindDropDataUI(ArrayMarkSys, "订单标记", "markSysList", false, "", false, true);
+        }
+        if (Store.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "StoreIdType")) {
+                SearchOption.BindDataUI(Store, "仓库", "StoreIdType", true, false, "", true, true);
+            }
+            else
+                SearchOption.BindDropDataUI(Store, "仓库", "StoreIdType", false, "", true, true);//配置仓库为单选
+        }
+        if (salemanlist.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "txtSaleMan")) {
+                SearchOption.BindDataUI(salemanlist, "业务员", "txtSaleMan", true, false, "", true, true);
+            }
+            else
+                SearchOption.BindDropDataUI(salemanlist, "业务员", "txtSaleMan", false, "", true, true);//
+        }
+        if (LogistciAccount.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "LogistciAccount")) {
+                SearchOption.BindDataUI(LogistciAccount, "物流商", "LogistciAccount", true, false, "", true, true);
+            }
+            else
+                SearchOption.BindDropDataUI(LogistciAccount, "物流商", "LogistciAccount", false, "", true, true);
+        }
+        if (hidLogisticMode.length > 0) {
+            if (HasUserData) { //默认数据
+                if (returnUserCheck(UserData, "LogisticMode")) {
+                    SearchOption.BindDataUI(hidLogisticMode, "物流方式", "LogisticMode", true, false, "", true, true);
+                }
+                else {
+                    SearchOption.BindDropDataUI(hidLogisticMode, "物流方式", "LogisticMode", false, "", true, true);
+                }
+            }
+            else {
+                SearchOption.BindDataUI(hidLogisticMode, "物流方式", "LogisticMode", true, false, "", true, true);
+            }
+        }
+        if (PackageMaterial.length > 0) {
+            if (HasUserData && returnUserCheck(UserData, "PackageMaterial")) {
+                SearchOption.BindDataUI(PackageMaterial, "包材", "PackageMaterial", false, false, "", true, true);
+            }
+            else
+                SearchOption.BindDropDataUI(PackageMaterial, "包材", "PackageMaterial", false, "", false, true);
+        }
+        if (IsFBAOrderData.length > 0) {
+            if (HasUserData && objUserSetType.indexOf("IsFBAOrder") > -1 && returnUserCheck(UserData, "IsFBAOrder")) {
+                SearchOption.BindDataUI(IsFBAOrderData, "FBA订单", "IsFBAOrder", false, false, "", true, true);
+            }
+            else {
+                SearchOption.BindDropDataUI(IsFBAOrderData, "FBA订单", "IsFBAOrder", false, "", false, true);
+            }
+        }
+
+        //绑定平台状态
+        if (saleOrderStatueErp.listItem.length > 0) {
+            SearchOption.BindDropDataUI(saleOrderStatueErp.listItem, saleOrderStatueErp.ControllerDisplayName, saleOrderStatueErp.ControllerId, true, $("#DropSaleStatusItemTempl").html(), false, false);
+        }
+        //debugger;
+        //绑定排序UI信息
+        //OrderListTempl
+        if (OrderInfo.length > 0) {
+            var interText = doT.template($("#OrderListTempl").html());
+            $("#divSortType").html(interText(OrderInfo));
+            //选择排序
+            $("#divSort > span").each(function () {
+                $(this).click(function () {
+                    var selectedItems = "";
+                    var sortType = "";
+                    var cls = $(this).attr("class");
+                    if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                        $("#divSort > span").removeClass("active");
+                        $("#divSort > span").attr("sorttype", "");
+                        $(this).addClass("active");
+                        $("#divSort > span > span").removeClass().addClass("glyphicon glyphicon-resize-vertical");
+                    }
+                    selectedItems = $(this).attr("itemid");
+                    sortType = $(this).attr("sorttype");
+                    if (sortType == "" || sortType == "DESC") {
+                        $(this).attr("sorttype", "ASC");
+                        $("#hidSortType").val("ASC");
+                        $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-up");
+                    }
+                    else {
+                        $(this).attr("sorttype", "DESC");
+                        $("#hidSortType").val("DESC");
+                        $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-down");
+                    }
+                    $("#hidSort").val(selectedItems);
+                    $("#searchForm").submit();
+                });
+            });
+        }
+
+        //$("#DropListItem").append($("#CatalogTempl").html());
+
+        //数据绑定------End
+
+        //方法回调
+        //展开，收缩回调
+        SearchOption.CallExtendFun = function (typeid, isExtend) {
+            if (!isExtend) {
+                if ($("#" + typeid + " .MenuSearchInfo input").length > 0) {
+                    var text = $("#" + typeid + " .MenuSearchInfo input").val().trim();
+                    if (text.length > 0) {
+                        $("#" + typeid + " .MenuSearchInfo input").val("");
+                        $("#" + typeid + " .J_valueList li ").show();
+                    }
+                }
+
+            }
+        }
+        //删除类型模块的时候回调处理
+        SearchOption.CallDelFun = function (typeid) {
+            console.log("您当前删除了模块:" + typeid);
+            if (typeid == "userfromlist") {
+                $("#listItem").find("[typeid='AccountUser']").parents(".sl-wrap").find(".J_valueList li").show();
+            }
+            switch (typeid) {
+                case "userfromlist":
+                    $("#hidApiForms").val("");
+                    break;
+                case "AccountUser":
+                    $("#hidApiAccountItems").val("");
+                    break;
+                case "saleOrderStatue":
+                    $("#hidSaleStatues").val("");
+                    break;
+                case "OrderStatus":
+                    $("#hidOrderStatusCodes").val("");
+                    break;
+                case "CommonCountry":
+                    $("#hidCountrys").val("");
+                    break;
+                case "StoreIdType":
+                    $("#hidStore").val("");
+                    break;
+                case "txtSaleMan":
+                    $("#hidSaleMan").val("");
+                    break;
+                case "LogisticMode":
+                    $("#hidLogisticMode").val("");
+                    break;
+                case "PackageMaterial":
+                    $("#hidPackageMaterial").val("");
+                    break;
+                case "markSysList":
+                    $("#hidSystemMark").val("");
+                    $("#hidMark").val("");
+                    break;
+                case "markList":
+                    $("#hidMark").val("");
+                    break;
+                case "DeliveryTime":
+                    $("#hidDeliveryTime").val("");
+                    break;
+                case "OrderPrintStatus":
+                    $("#hidOrderPrintStatus").val("");
+                    break;
+                case "AccordingState":
+                    $("#hidAccordingState").val("");
+                    break;
+                case "OrderPostBckStatus":
+                    $("#hidPostBck").val("");
+                    break;
+                case "shipType":
+                    $("#hidshipType").val("");
+                    break;
+                case "shipStatus":
+                    $("#hidshipStatus").val("");
+                case "IsFBAOrder":
+                    $("#hidIsFBAOrder").val("");
+                    break;
+                default:
+
+                    break;
+            }
+            $("#searchForm").submit();
+        };
+        SearchOption.CallUserFun = function (typeid, id, title) {
+            //获取到类型，与参数id
+            //alert("自定义方法：" + typeid + id);
+            console.log("自定义方法：" + typeid + "|" + id);
+            switch (typeid) {
+                case "userfromlist":
+                    $("#hidApiForms").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "AccountUser":
+                    $("#hidApiAccountItems").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "OrderStatus":
+                    $("#hidOrderStatusCodes").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "StoreIdType":
+                    $("#hidStore").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "txtSaleMan":
+                    $("#hidSaleMan").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "CommonCountry":
+                    $("#hidCountrys").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "LogisticMode":
+                    $("#hidLogisticMode").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "PackageMaterial":
+                    $("#hidPackageMaterial").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "markSysList":
+                    if (parseInt(id) > 0) {
+                        $("#hidSystemMark").val("");
+                        $("#hidMark").val(id);
+                    }
+                    else {
+                        $("#hidSystemMark").val(id);
+                        $("#hidMark").val("");
+                    }
+                    $("#searchForm").submit();
+                    break;
+                case "markList":
+                    $("#hidMark").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "DeliveryTime":
+                    $("#hidDeliveryTime").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "OrderPrintStatus":
+                    $("#hidOrderPrintStatus").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "AccordingState":
+                    $("#hidAccordingState").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "OrderPostBckStatus":
+                    $("#hidPostBck").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "shipType":
+                    $("#hidshipType").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "shipStatus":
+                    $("#hidshipStatus").val(id);
+                    $("#searchForm").submit();
+                    break
+                case "IsFBAOrder":
+                    $("#hidIsFBAOrder").val(id);
+                    $("#searchForm").submit();
+                    break;
+            }
+
+            //用于特殊处理方法，譬如对某些数据处理, 重新绑定
+            //处理账户类型 与账户隐藏 通过js 添加hide 去掉hide
+            if (typeid == "userfromlist") {
+                if ($("#listItem").find("[typeid='userfromlist']").parents(".sl-wrap").find(".J_valueList li[class*='selected']").length == 0) {
+                    $("#listItem").find("[typeid='AccountUser']").parents(".sl-wrap").find(".J_valueList li").show();
+                    return;
+                }
+                var ArraryFromAccount = id.split(',');
+                $("#listItem").find("[typeid='AccountUser']").parents(".sl-wrap").find(".J_valueList li").hide();
+                for (var i = 0; i < ArraryFromAccount.length; i++) {
+                    $("#listItem").find("[typeid='AccountUser']").parents(".sl-wrap").find(".J_valueList li a[class*='" + ArraryFromAccount[i] + "']").each(function () {
+                        $(this).parent().show();
+                    });
+                }
+            }
+            if (typeid == "SearchType")//针对搜索类型进行处理
+            {
+                var isMore = $("#morCheck").prop("checked");
+                $("#SearchType").find(" .J_valueList li a[class*='J_active']").removeClass("J_active");
+                if (isMore) {
+                    $("#J_crumbsBar .crumb-select-item[searchtype='1']").each(function () {
+                        $("#" + $(this).attr("typeid") + "_Type").addClass("J_active");
+                    });
+
+                }
+
+                $("#" + id).addClass("J_active");
+
+                clearBoxSearch();//清空搜素
+                $("#isckbclearBoxSearchFuzzySearch").prop("checked", false);
+                $(".ContentValueList>div:not(#searchtype)").hide();
+                id = id.replace("_Type", "");
+                switch (id) {
+                    //case "TrackingNum":
+                    case "LogisticNum":
+                    case "BuyerId":
+                    case "Contact":
+                        //case "ProductSKU":
+                    case "SalesRecord":
+                    case "ProductName":
+                    case "Describe":
+                    case "Memo":
+                        $("#SearchKey").attr("placeholder", "请输入搜索内容");
+
+                        $("#addMoreOrderno").hide();
+                        $("#OrderNOItem").show();
+                        if (id == "ProductName") {
+                            $("#isckbFuzzySearch").prop("checked", true);
+                        }
+                        else if (id == "Describe") {
+                            $("#isckbFuzzySearch").prop("checked", true);
+                        }
+                        $("#SearchDate").hide();
+                        break;
+                    case "OrderDate":
+                    case "PaymentDate":
+                    case "DeliveryDate":
+                    case "LocalDeliveryDate":
+                    case "PrintTime":
+                        $("#addMoreOrderno").hide();
+                        $("#OrderNOItem").hide();
+                        $("#SearchDate").show();
+                        break;
+                    case "DeliveryTime":
+                        break;
+
+                    case "PayableAmount":
+                        $("#addMoreOrderno").hide();
+                        $("#OrderNOItem").hide();
+                        $("#PayableAmountSearch").show();
+                        break;
+                    default:
+                        $("#addMoreOrderno").show();
+                        $("#SearchDate").hide();
+                        $("#OrderNOItem").show();
+
+                        if (id == "ProductSKU") {
+
+                            $("#addMoreOrderno a").text(translate.format("<hg:trans>输入多个SKU</hg:trans>"));
+                        }
+                        else {
+                            $("#addMoreOrderno a").text(translate.format("<hg:trans>输入多个单号</hg:trans>"));
+                        }
+                        //请输入搜索内容，多个单号请用逗号隔开
+                        $("#SearchKey").attr("placeholder", "请输入搜索内容，多个单号请用逗号隔开");
+                        break;
+                }
+                $("#hidChoose").val(id);
+
+            }
+        }
+        SearchOption.CallTabFun = function (typeid) {
+            var Search = "";
+            console.log("自定义方法：" + typeid);
+            var paramFiled = "";
+            switch (typeid) {
+                case "saleOrderStatue":
+                    paramFiled = "hidSaleStatues";
+                    break;
+                case "userfromlist":
+                    paramFiled = "hidApiForms";
+                    break;
+                case "AccountUser":
+                    paramFiled = "hidApiAccountItems";
+                    break;
+                case "OrderStatus":
+                    paramFiled = "hidOrderStatusCodes";
+                    break;
+                case "CommonCountry":
+                    paramFiled = "hidCountrys";
+                    $("#CommonCountry").css("display", "none")
+                    break;
+                case "StoreIdType":
+                    paramFiled = "hidStore";
+                    break;
+                case "txtSaleMan":
+                    paramFiled = "hidSaleMan";
+                    break;
+                case "LogisticMode":
+                    paramFiled = "hidLogisticMode";
+                    break;
+                case "PackageMaterial":
+                    paramFiled = "hidPackageMaterial";
+                    break;
+                case "markSysList":
+                    paramFiled = "hidSystemMark";
+                    break;
+                case "markList":
+                    paramFiled = "hidMark";
+                    break;
+                case "AccordingState":
+                    paramFiled = "hidAccordingState";
+                    break;
+                case "OrderPostBckStatus":
+                    paramFiled = "hidPostBck";
+                    break;
+                case "shipType":
+                    paramFiled = "hidshipType";
+                    break;
+                case "shipStatus":
+                    paramFiled = "hidshipStatus";
+                    break;
+
+            }
+
+            var data = $("#J_crumbsBar .crumb-select-item[typeid='" + typeid + "']");
+            if (data) {
+                Search = $(data).attr("atrrvalue");
+            }
+
+            $("#" + paramFiled).val(Search);
+            $("#searchForm").submit();
+            //alert("确定更多按钮触发" + typeid);//接口暴露出来，供不同参数类型定制开发 达到效果
+            //typeid:平台类型 平台账户类型
+            //我们根据不同类型，不同需要，达到控制
+        }
+        SearchOption.initEvent();//初始化事件绑定　
+    }
+    //返回用户设置根据
+    function returnUserCheck(data, typeid) {
+        var ischeck = false;
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].typeid == typeid) {
+                return data[i].isExtend;
+            }
+        }
+        return ischeck;
+    }
+
+
+    function enterSearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13) {
+            doSearchOrder();
+        }
+    }
+
+    //搜索查询
+    function doSearchOrder() {
+        var SearchKey = $("#hidChoose").val();   //默认初始化类型
+        if (SearchKey.length == 0) {
+            //获取第一个默认的
+            SearchKey = $("#SearchType a[class='J_active']").attr("id");
+        }
+        var isMore = $("#morCheck").prop("checked");
+        if (!isMore) {
+            $("#txtSearchKey").val("");
+            $("#J_crumbsBar .crumb-select-item[searchtype=1]").remove();
+            isShowSearchResult();
+        }
+        var SearchContent = "";
+        var SearchTempContent = "";
+        var SearchValue = "";
+        switch (SearchKey) {
+            case "OrderDate":
+            case "PaymentDate":
+            case "DeliveryDate":
+            case "LocalDeliveryDate":
+            case "PrintTime":
+                var txtDateBegin = $("#txtSearchDateBegin").val();
+                var txtDateEnd = $("#SearchtxtDateEnd").val();
+                if (txtDateBegin.length == 0 && txtDateEnd.length == 0) {
+                    $("#searchForm").submit();
+                    return;
+                }
+
+                if (txtDateBegin.length != 0) {
+                    SearchTempContent = "开始时间:" + txtDateBegin;
+                    if (txtDateEnd.length != 0) {
+                        SearchTempContent += "--" + "结束时间：" + txtDateEnd;
+                    }
+                }
+                else {
+                    if (txtDateEnd.length != 0) {
+                        SearchTempContent = "结束时间：" + txtDateEnd;
+                    }
+                }
+                SearchContent = SearchTempContent;
+                SearchValue = JSON.stringify({
+                    txtDateBegin: txtDateBegin,
+                    txtDateEnd: txtDateEnd
+                });
+
+                break;
+            case "PayableAmount":
+                var beginNumber = $("#txtNumberBeginTemp").val();
+                var endNumber = $("#txtNumberEndTemp").val()
+                if (isNaN(beginNumber) || beginNumber <= 0) {
+                    beginNumber = 0;
+                    $("#txtNumberBeginTemp").val("");
+                }
+                else {
+                    SearchTempContent += ">=" + beginNumber + ";";
+                }
+                if (isNaN(endNumber) || endNumber <= 0) {
+                    endNumber = 0;
+                    $("#txtNumberEndTemp").val("");
+                }
+                else {
+                    SearchTempContent += "<=" + endNumber;
+                }
+                if (beginNumber == 0 && endNumber == 0) {
+                    return;
+                }
+
+                SearchContent = SearchTempContent;
+                SearchValue = JSON.stringify({
+                    NumberBegin: beginNumber,
+                    NumberEnd: endNumber
+                });
+                break;
+            default:
+                SearchTempContent = $("#SearchKey").val().trim();
+                SearchContent = SearchTempContent;
+                if (SearchTempContent.length == 0) {
+                    $("#searchForm").submit();
+                    return;
+                }
+                if (SearchTempContent.length > 12) {
+                    SearchTempContent = SearchTempContent.substr(0, 12) + "…";
+                }
+                SearchValue = JSON.stringify({
+                    SearchValue: $("#SearchKey").val(),
+                    ckbFuzzySearch: $("#isckbFuzzySearch").prop("checked")
+                });
+                break;
+        }
+
+        //debugger;
+        var SearchName = $("#SearchType #" + SearchKey + "_Type").attr("title");
+        var strTempl = ' <a class="crumb-select-item"  searchtype="1"  typeid="' + SearchKey + '" href="javascript:;" title="' + SearchContent.replace(/"/g, "&quot;") + '" atrrvalue="' + escape(SearchValue) + '"><b>' + SearchName + '：</b><em>' + SearchTempContent + '</em><i></i></a> ';
+        if ($(".crumbs-nav-main").find("[typeid='" + SearchKey + "']").length > 0) {
+            //则替换掉
+            $(".crumbs-nav-main [typeid='" + SearchKey + "']").replaceWith(strTempl);
+        }
+        else {
+
+            $("#baritem").append(strTempl);
+        }
+        $(".crumb-select-item[typeid='" + SearchKey + "'] i").on("click", function () {
+
+
+            $("#baritem a[typeid='" + SearchKey + "']").remove();
+
+            if ($("#hidChoose").val() != SearchKey)
+                $("#" + SearchKey + "_Type").removeClass("J_active");
+
+            if ($("#SearchType .J_valueList a[class='J_active']").length == 0) {
+                $("#" + $("#hidChoose").val() + "_Type").click();
+            }
+
+            clearBoxSearch();
+            if ($(".crumb-select-item").length == 0) {
+                $("#txtSearchKey").val("");//清掉 当前搜索内容没有的情况清掉
+                $("#J_crumbsBar").hide();
+            }
+            else {
+                $("#J_crumbsBar").show();
+            }
+            //重新采集多条件查询，并提交
+            reloadSearchContent();
+        });
+
+        isShowSearchResult();
+        reloadSearchContent();
+    }
+
+    //清空搜索内容
+    function clearBoxSearch() {
+        $("#SearchKey").val("");
+        $("#txtNumberBeginTemp").val("");
+        $("#txtNumberEndTemp").val("");
+        $("#txtSearchDateBegin").val("");
+        $("#SearchtxtDateEnd").val("");
+    }
+    function isShowSearchResult() {
+        if ($(".crumb-select-item").length == 0) {
+            $("#J_crumbsBar").hide();
+        }
+        else {
+            $("#J_crumbsBar").show();
+        }
+    }
+
+    //采集多条件查询数据，并查询提交
+    function reloadSearchContent() {
+
+        var JsontempStr = [];
+        $("#J_crumbsBar  a[searchtype='1']").each(function () {
+            JsontempStr.push({
+                typeid: $(this).attr("typeid"),
+                SearchContent: eval("(" + unescape($(this).attr("atrrvalue")) + ")")
+            });
+        });
+
+        $("#txtSearchKey").val(JSON.stringify(JsontempStr));//给搜索的隐藏域添加值
+        $("#searchForm").submit();
+    }
+
+
+    //设置菜单呈现方式
+    function SetUpMenuUI() {
+        var SetUserData = [];
+        //$("#SearchMenuModal .modal-body .checkbox input:checked").each(function () {
+        //    SetUserData.push($(this).parents(".checkbox").attr("typeid"));
+        //});
+        $("#SearchMenuModal .modal-body .checkbox").each(function () {
+            var ObjInfo = {
+                typeid: $(this).attr("typeid"),
+                typeName: $(this).text(),
+                isExtend: $(this).find("input").prop("checked")
+            };
+            SetUserData.push(ObjInfo);
+        });
+        var JsonDataSet = JSON.stringify(SetUserData);
+        //保存到input
+        //更新服务器
+        //重新加载数据
+        $("#bindTypeData").val(JsonDataSet);
+        $('#SearchMenuModal').modal('hide');
+        LoadMenuInfo();
+        SettingUserMenu(JsonDataSet);
+
+    }
+
+    //设置提交常用菜单给数据库
+    function SettingUserMenu(JsonDataSet) {
+        var postData = {
+            SettingGroup: "PageSearchMenu",
+            SettingKey: Url,
+            SettingValue: JsonDataSet
+        };
+        $.ajax({
+            type: "POST",
+            url: "/Order/SeetingPageSearchMenu",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下{0}：</hg:trans>", [data.Message]));
+                } else {
+
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //输入更多订单号
+    function addPublicMoreOrderno(modalName, inputName) {
+
+        var Text = $("#addMoreOrderno a").text();
+
+
+        var explainText = "";//"每个单号占一行，单号必须填写完整，不支持模糊搜索";
+        var tempText = "";
+        debugger;
+        if (Text.indexOf("SKU") > 0) {
+            tempText = "SKU";
+        }
+        else {
+            tempText = "单号";
+        }
+        explainText = translate.format("<hg:trans>每个{0}占一行，{0}必须填写完整，不支持模糊搜索</hg:trans>", [tempText]);
+        var modelDiv = '<div class="modal fade" id="' + modalName + '" tabindex="-1" role="dialog" aria-labelledby="moreOrdernoModalLabel" aria-hidden="true" style="padding-top:150px;">'
+        modelDiv += '<div class="modal-dialog" style="width:500px;height: 280px;">';
+        modelDiv += '<div class="modal-content">';
+        modelDiv += ' <div class="modal-header">';
+        modelDiv += ' <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        modelDiv += '<h4 class="modal-title"><hg:trans>' + Text + '</hg:trans></h4>';
+        modelDiv += '  </div>';
+        modelDiv += ' <div class="modal-body">';
+        modelDiv += ' <div class="panel-body">';
+        modelDiv += '<div class="form-group" style="padding: 10px 5px 0px;">';
+        modelDiv += '<span style="color:red"><hg:trans>PS：' + explainText + '</hg:trans></span>';
+        modelDiv += '<div style="margin:5px 0px;">';
+        modelDiv += '<textarea class="form-control input-sm" cols="20" id="orderNos" name="orderNos" rows="5"></textarea>';
+        modelDiv += '</div>';
+        modelDiv += ' <div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '<div class="modal-footer">';
+        modelDiv += "<button type=\"button\" class=\"btn btn-default\" onclick=\"btnPublicOrderNos('" + modalName + "','" + inputName + "')\" data-dismiss=\"modal\"><hg:trans>确定</hg:trans></button>";
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += '</div>';
+        modelDiv += "</div>";
+
+        if ($("#" + modalName).length == 0) {
+            $("body").append(modelDiv);
+        }
+        else {
+            $("#" + modalName).replaceWith(modelDiv);
+        }
+
+
+        $("#" + modalName).modal("show");
+    }
+
+    function btnPublicOrderNos(modalName, inputName) {  //modalName：随便取的用于区分页面，inputName：搜索框的Id
+        var orderNos = $("#orderNos").val().replace(/[\r\n]/g, ","); //用逗号替换回车换行
+        //debugger;
+        var SearchValue = JSON.stringify({
+            SearchValue: orderNos,
+            ckbFuzzySearch: $("#isckbFuzzySearch").prop("checked")
+        });
+
+
+        var SearchTempContent = orderNos.trim();
+        SearchContent = SearchTempContent;
+        if (SearchTempContent.length == 0) {
+            $("#searchForm").submit();
+            return;
+        }
+        if (SearchTempContent.length > 12) {
+            SearchTempContent = SearchTempContent.substr(0, 12) + "…";
+        }
+        //debugger;
+        var SearchKey = $("#hidChoose").val();
+        var SearchName = $("#SearchType #" + SearchKey + "_Type").attr("title");
+        var strTempl = ' <a class="crumb-select-item"  searchtype="1"  typeid="' + SearchKey + '" href="javascript:;" title="' + SearchContent.replace(/"/g, "&quot;") + '" atrrvalue="' + escape(SearchValue) + '"><b>' + SearchName + '：</b><em>' + SearchTempContent + '</em><i></i></a> ';
+        if ($(".crumbs-nav-main").find("[typeid='" + SearchKey + "']").length > 0) {
+            //则替换掉
+            $(".crumbs-nav-main [typeid='" + SearchKey + "']").replaceWith(strTempl);
+        }
+        else {
+
+            $("#baritem").append(strTempl);
+        }
+        $(".crumb-select-item[typeid='" + SearchKey + "'] i").on("click", function () {
+
+            if ($("#hidChoose").val() != SearchKey)
+                $("#" + SearchKey + "_Type").removeClass("J_active");
+
+            $("#baritem a[typeid='" + SearchKey + "']").remove();
+
+            if ($("#SearchType .J_valueList a[class='J_active']").length == 0) {
+                $("#" + $("#hidChoose").val() + "_Type").click();
+            }
+
+            clearBoxSearch();
+            if ($(".crumb-select-item").length == 0) {
+                $("#txtSearchKey").val("");//清掉 当前搜索内容没有的情况清掉
+
+                $("#J_crumbsBar").hide();
+            }
+            else {
+                $("#J_crumbsBar").show();
+            }
+            //重新采集多条件查询，并提交
+            reloadSearchContent();
+        });
+        if ($(".crumb-select-item").length == 0) {
+            $("#J_crumbsBar").hide();
+        }
+        else {
+            $("#J_crumbsBar").show();
+        }
+        $("#orderNos").val("");//清空内容
+        $("#" + modalName).modal("hide");
+
+        reloadSearchContent();
+    }
+
+    //核心业务逻辑 END
+    //业务逻辑方法-------------------------------
+    /*关于订单查询相关逻辑 ***************--------->End*/
+
+    function doInitWdatePickerEndDate(type) {
+        if (type == "begin") {
+            WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', startDate: redgle.datetime.getTodayBeginString() });
+        }
+        if (type == "end") {
+            WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', startDate: redgle.datetime.getTodayEndString() });
+        }
+        else {
+            WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' });
+        }
+    }
+</script>
+        </div>
+        <div class="status-group" id="divExtraStateItems">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="HasReissue"><a><hg:trans>有补发</hg:trans></a><span></span></label>
+            <label itemid="Reissue"><a><hg:trans>补发</hg:trans></a><span></span></label>
+            <label itemid="CombinPackage"><a><hg:trans>合并订单</hg:trans></a><span></span></label>
+            <label itemid="SplitPackage"><a><hg:trans>拆分订单</hg:trans></a><span></span></label>
+            <label itemid="BeMerged"><a><hg:trans>被合并</hg:trans></a><span></span></label>
+            <label itemid="WasSplit"><a><hg:trans>被拆分</hg:trans></a><span></span></label>
+            <label itemid="IsAbandoned"><a><hg:trans>已作废</hg:trans></a><span></span></label>
+            <label itemid="Virtual"><a><hg:trans>虚拟已发货</hg:trans></a><span></span></label>
+            <label itemid="NoVirtual"><a><hg:trans>非虚拟发货</hg:trans></a><span></span></label>
+            <label itemid="CantReceipt"><a><hg:trans>阻止发货</hg:trans></a><span></span></label>
+        </div>
+        <div style="margin-top:0px;" class="datalist-top">
+            <div style="float:right; margin-right:5px;" id="divFollowButtons">
+              
+        <div class="btn-group false">
+            <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;<hg:trans>导出</hg:trans><span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" style="min-width:93px">
+              <li><a href="javascript:void(0)" onclick="doExportData()"><hg:trans>导出订单</hg:trans></a></li>
+               
+            </ul>
+        </div>
+                <a id="btnOpenWindow" href="#" class="btn btn-primary" style="display:none" target="_blank"><hg:trans>隐藏链接</hg:trans></a>
+                
+                <button type="button" class="btn btn-info btn-sm" onclick="doShowBatchSendMessagePanel()"><hg:trans>批量发送消息</hg:trans></button>
+            </div>
+            <div id="divOrderDataList" style="margin-top:0px;clear:both">
+                
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:30px;"><input type="checkbox" name="chk_all" id="chk_all" onclick="doSetCheckBox(this)" /></th>
+            <th style="width:6%"><hg:trans>订单标记</hg:trans></th>
+            <th style="width:10%;"><hg:trans>订单号</hg:trans><br /><hg:trans>[店铺]</hg:trans></th>
+            <th style="width:20%;"><hg:trans>商品信息</hg:trans></th>
+            <th style="width:5%;"><hg:trans>订单金额</hg:trans></th>
+            <th style="width:10%;"><hg:trans>买家</hg:trans><br /><hg:trans>[收件人/国家]</hg:trans></th>
+            <th style="width:13%;"><hg:trans>下单时间</hg:trans><br /><hg:trans>[付款时间]</hg:trans></th>
+            <th style="width:10%;"><hg:trans>客选物流</hg:trans><br /><hg:trans>[物流方式]</hg:trans></th>
+            <th style="width:10%;"><hg:trans>服务单号</hg:trans><br /><hg:trans>[物流跟踪号]</hg:trans></th>
+            <th style="width:6%;"><hg:trans>状态</hg:trans></th>
+            <th style="width:6%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    jQuery(function () {
+        $("button[id='butShippedErrorInfo']").each(function () {
+            $(this).popover();
+        });
+
+        //if (typeof (doLoadOrderMessage) == "function") {
+        //    doLoadOrderMessage();
+        //}
+        //if (typeof (doViewStore) == "function") {
+        //    doViewStore();//查看库存
+        //}
+        //if (typeof (doViewRemarks) == "function") {
+        //    doViewRemarks();//备注信息
+        //}
+        //if (typeof (doMemo) == "function") {
+        //    doMemo();//买备信息
+        //}
+
+        //订单为合并订单（合并包裹）时，默认展开相关订单
+        if ("" == "1") {
+            $("a[name='relationOrdersa']").each(function () {
+                $(this).click() //默认点击
+            })
+        }
+    });
+</script>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="50" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/HistoryData/Order?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="50" selected="selected">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="static/js/054c8ee5726e43e689627d5d967ac1b6.js"></script>
+
+<script src="static/js/dfc90b76ffec49f293a6a1270e7ea0e7.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+    //订单状态
+    $(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        $('#theOrderStatusCodes').bind('change', function () {
+            $("#hidOrderStatusCodes").val($('#theOrderStatusCodes option:selected').val());
+            $("#searchForm").submit();
+        })
+    })
+    //重新加载订单列表
+    function p645367128doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+        //把查询条件传递给本页面
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/HistoryOrder/Order",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#divOrderDataList").html(data);
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+    }
+
+    function show(obj, id) {
+        var objDiv = $(obj).parent().find("#" + id + "");
+        $(objDiv).css("display", "block");
+        $(objDiv).css("top", $(obj).offset().top - 200);
+        $(objDiv).css("left", $(obj).offset().left - 100);
+    }
+
+    function hide(obj, id) {
+        var objDiv = $(obj).parent().find("#" + id + "");
+        $(objDiv).css("display", "none");
+    }
+
+    //目录选择的改变事件(通过catalog拿到CatalogIdPath传到OrderController)
+    function p645367128onCatalogSelected(catalog) {
+        //我们在这里添加目录的 呈现UI
+        //用settimeout是因为数据事件加载 方法调用先后顺序导致，避免加载数据不正确
+        setTimeout(function () {
+            var treeCatalogName = "";
+            $("#J_selectorSenior .breadcrumb li").each(function () {
+                treeCatalogName += $(this).text() + "/";
+            });
+            var strTempl = ' <a class="crumb-select-item"  typeid="ProdcutCatalog" href="javascript:;" title="' + treeCatalogName + '" atrrvalue="' + catalog.CatalogIdPath + '"><b>产品目录：</b><em>' + catalog.CatalogName + '</em><i></i></a> ';
+            if ($(".crumbs-nav-main").find("[typeid='ProdcutCatalog']").length > 0) {
+                //则替换掉
+                $(".crumbs-nav-main [typeid='ProdcutCatalog']").replaceWith(strTempl);
+            }
+            else {
+
+                $("#baritem").append(strTempl);
+            }
+            $(".crumb-select-item[typeid='ProdcutCatalog'] i").on("click", function () {
+                $("#baritem a[typeid='ProdcutCatalog']").remove();
+                $("#txtCatalogIdPath").val("");
+                if ($(".crumb-select-item").length == 0) {
+                    $("#J_crumbsBar").hide();
+                }
+                else {
+                    $("#J_crumbsBar").show();
+                }
+                $("#searchForm").submit();
+            });
+
+            if ($(".crumb-select-item").length == 0) {
+                $("#J_crumbsBar").hide();
+            }
+            else {
+                $("#J_crumbsBar").show();
+            }
+
+            $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+            $("#searchForm").submit();
+        }, 200)
+    }
+
+    //选择国家
+    $(function () {
+        $(".chzn-select").chosen({            //初始化组件
+            no_results_text: "没有匹配结果",
+            search_contains: true,  //关键字模糊搜索，设置为false，则只从开头开始匹配
+        });
+        $(".chosen-container").css({ "width": "550px", "padding-top": "5px", });//设置chosen的宽度
+    });
+
+    //重写 hg.erp.order.js里的方法
+    //显示订单详情  
+    function doViewOnlineOrder(orderId) {
+        scollTop = $(document).scrollTop();
+        var url = "../HistoryData/ViewOrder/" + orderId;
+        redgle.tab.create("liOrderDetail", url, translate.trans("详情"));
+    }
+    //补发
+    function doReimbursement(orderId) {
+        $.ajax({
+            type: "POST",
+            url: "../HistoryData/OrderReimbursement",
+            data: { orderId: orderId },
+            datatype: "text",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.Message);
+                }
+                else {
+                    redgle.showMessage("订单补发货成功！" + data.Message);
+                }
+            },
+            error: function () {
+                redgle.showMessage("订单补发货失败！");
+            }
+        });
+    }
+    function doDeleteOrder(pageKey, isConfirm) {
+        var orderList = doGetSelectedOrderIds();
+        if (orderList.length == 0) {
+            redgle.showMessage(translate.trans("请至少选择一个订单"));
+            return;
+        }
+        if (typeof (isConfirm) == "undefined" || isConfirm == "") {
+            redgle.showConfirm(translate.trans("删除您选择的信息之后将无法恢复，您确认要删除吗？"), "doDeleteOrder('" + pageKey + "','Y')");
+            return;
+        }
+        orderList = JSON.stringify(orderList);
+        $.ajax({
+            type: "POST",
+            url: "../HistoryOrder/DeleteOrder",
+            datatype: "json",
+            data: { orderList: orderList },
+            success: function (data) {
+                if (data.MapData.DeleteNum > 0) {
+                    if (data.MapData.DeleteNum == data.MapData.OrderNum)
+                        redgle.showMessage(translate.trans("订单删除成功") + "<br />" + data.Message);
+                    else
+                        redgle.showMessage(translate.trans("部分订单删除成功") + "<br />" + data.Message);
+                } else {
+                    redgle.showMessage(data.Message);
+                }
+                try {
+                    eval(pageKey + "doReloadData()");//刷新页面
+                } catch (e) { redgle.showMessage(translate.trans("重新加载数据失败")); }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.trans("操作发生未知异常：{0} - {1}", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doShowBatchSendMessagePanel() {
+        var arrId = $('input[name="chk_list"]:checked').map(function () {
+            return this.value;
+        }).get().join(",");
+        if (arrId.length == 0) {
+            redgle.showMessage("请至少选择一个订单！");
+            return;
+        }
+
+        var url = "../HistoryData/BatchSendMessage";
+        var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: "批量发送信息" });
+        selectManageModal.show();
+    }
+
+    //导出订单选择数据列
+    function doExportData() {
+      
+        var exportmode = "";
+        var width = 950;
+        var height = 560;
+        var url = "../Order/Export?viewName=order&pagekey=Order/Export&exportmode=" + exportmode + "&functionName=doExportOrderForHistory";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+    //导出订单（exportMode：标记是哪个页面）
+    function doExportOrderForHistory(fieldName) {
+        debugger
+        var orderIds = "";
+        var notMergeCoumn = "fales";
+        parent.window.$('input[name="chk_list"]:checked').each(function () {
+            orderIds += $(this).val() + ",";//父页面的订单ids
+        });
+        if (fieldName.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请至少选择一个字段导出！</hg:trans>"));
+            return;
+        }
+        if ($("input:checkbox[name='notMergeCoumn']").prop("checked"))
+            notMergeCoumn = $("input:checkbox[name='notMergeCoumn']").val();
+        var postData = {};
+        if (orderIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last", window.parent.document).html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 180000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于180000条！</hg:trans>"));
+                return;
+            }
+            //if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择订单导出，将导出符合当前搜索条件的订单，数据较多，请耐心等候！</hg:trans>")))
+            //    return;
+        }
+        postData = parent.window.redgle.request.getFormData("searchForm");//父页面的搜索条件
+        postData["viewName"] = "Order";
+        postData["pageKey"] = "Order/Export";
+        postData["orderIds"] = orderIds;
+        postData["fieldName"] = fieldName;
+        postData["exportMode"] = "";
+        postData["notMergeCoumn"] = notMergeCoumn;
+        $.ajax({
+            type: "POST",
+            url: "../HistoryData/OrderExport",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    if (data.MapData.ReportType && data.MapData.ReportType == 1) {
+                        redgle.showMessage(translate.format("<hg:trans>已提交到订单导出计划，请稍后下载</hg:trans>"));
+                    } else {
+                        window.open(data.ResultObject);
+                    }
+                }
+            },
+            error: function () {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+
+    }
+    </script>
+<link href="static/css/chosen_2.css" rel="stylesheet"/>
+
+<script src="static/js/chosen.jquery_2.js"></script>
+
+<script src="static/js/jquery.unobtrusive-ajax.min_2.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/c6b20f929d4e426a91130cf0cb4691f8.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<script language="javascript" type="text/javascript">
+    $("#lnkTopUserMenu").hover(
+        function () {
+            $(this).children("ul").show();
+            $(this).addClass("active");
+        },
+        function () {
+            $(this).children("ul").hide();
+            $(this).removeClass("active");
+        }
+    );
+    function doUserSetting() {
+        var userSettingModal = new redgle.modal({ type: "iframe", content: "/Account/UserSetting", title: translate.format("<hg:trans>帐号设置</hg:trans>") });
+        userSettingModal.show();
+    }
+    function doSetMulitLanage() {
+        var changePasswordModal = new redgle.modal({ width: 400, height: 300, type: "iframe", content: "/Account/Lanage", title: translate.format("<hg:trans>设置多语言</hg:trans>") });
+        changePasswordModal.show();
+    }
+    function doChangePassword() {
+        var changePasswordModal = new redgle.modal({ width: 500, height: 400, type: "iframe", content: "/Account/ChangePwd", title: translate.format("<hg:trans>修改密码</hg:trans>") });
+        changePasswordModal.show();
+    }
+    function doOpenCustomerServiceCenter() {
+        var customerServiceModal = new redgle.modal({ width: 750, height: 500, type: "iframe", content: "/Account/CustomerServiceCenter", title: translate.format("<hg:trans><font style='font-size:15px;font-weight:700'>客服中心</font><font style='font-size:13px;'>（点击按钮可通过QQ进行沟通，请确认已启动QQ）</font></hg:trans>") });
+        customerServiceModal.show();
+    }
+</script>
+
+<script language="javascript" type="text/javascript">
+    $("#ulTopMenu > li").each(function () {
+        $(this).hover(
+            function () {
+                $(this).children("div").show();
+                $(this).addClass("active");
+            },
+            function () {
+                $(this).children("div").hide();
+                $(this).removeClass("active");
+            }
+        );
+    });
+</script>
+ <div class="left_panel"  style="margin-top:40px"> 
+ 
+   <div style="clear:both"></div> 
+   <input id="hidCurrentTypeMenuCode" name="hidCurrentTypeMenuCode" type="hidden" value="erp_product" /> 
+   <ul> 
+    {notempty   name='$list'}
+    {volist  name="$list"  id="lis"}
+    <li> <span> <i class="glyphicon glyphicon-th"></i> {$lis.classify_name} </span> 
+     <ul class="submenu"> 
+      {notempty   name='$lis.list'}
+     {volist name="$lis.list"  id="li"}
+      <li> <a href="{:url($li.url,'id='.$li.classify_id,'')}" itemid="erp_product_manage" class="{if condition='$li.classify_id eq $classify_id'}active{/if}  "> <i class="menu-item-ico"> </i> {$li.classify_name}<span class="hide"></span> </a> </li> 
+      {/volist}
+      {/notempty}
+     </ul>  
+   
+
+   </li> 
+   {/volist}
+   {/notempty}
+   </ul> 
+   <div style="clear:both"></div> 
+  </div> 
+
+
+  <div class="menucontrol"> 
+   <span hgtrans="true" title="隐藏/显示菜单"> <i class="glyphicon glyphicon-chevron-left" style="line-height:50px;"></i> </span> 
+  </div> 
+  <div class="content_panel"> 
+   <div class="position-bar"> 
+    <div style="float:left; padding:0px 5px;">
+     <i class="glyphicon glyphicon-menu-right"></i>
+    </div> 
+    <div style="float:left;"> 
+     <ul style="float:left;" class="position"> 
+      <hg:trans>
+       您的位置
+      </hg:trans>： 
+      <li>产品</li> 
+      <li>本地产品</li> 
+      <li>产品管理</li> 
+     </ul> 
+    </div> 
+    <div style="float:right; padding-right:10px;"> 
+     <ul style="float:left;" class="position"> 
+      <li><a href="{:url('Common/logout')}" hgtrans="true" title="退出当前登陆的帐号">
+        <hg:trans>
+         退出
+        </hg:trans></a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div style="clear:both"></div> 
+   <div style="margin-left:20px;"> 
+
+  
+    <style>
+    .hide {
+        display: none;
+    }
+</style> 
+  

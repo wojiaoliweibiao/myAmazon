@@ -1,0 +1,660 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>仓库设置</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodest" style="float:right; margin-right:5px;">
+            <button type="button" class="btn btn-info btn-sm" onclick="p599253368doEditData()"><i class="glyphicon glyphicon-plus"></i><hg:trans>添加仓库</hg:trans></button>
+        </div>
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/Store?Length=5" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p599253368divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest" style="max-width:300px;">
+                    <div class="input-group input-group-sm">
+                        <input type="text" hgtrans="true" name="txtSearchKey" id="txtSearchKey" placeholder="仓库名称" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                 <input type="hidden" id="hidStoreType" name="hidStoreType" value="" />
+</form>        </div>
+        <div class="status-group">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="1"><a><hg:trans>本地仓</hg:trans></a><span></span></label>
+            <label itemid="0"><a><hg:trans>第三方仓</hg:trans></a><span></span></label>
+        </div>
+        <div id="p599253368divDataList">
+            <link href="static/css/bootstrap-switch.min.css" rel="stylesheet"/>
+
+<script src="static/js/bootstrap-switch.min.js"></script>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th><hg:trans>仓库名称</hg:trans></th>
+            <th><hg:trans>仓库状态</hg:trans></th>
+            <th><hg:trans>仓库类型</hg:trans></th>
+            <th><hg:trans>库存管理</hg:trans></th>
+            <th><hg:trans>库存设置</hg:trans></th>
+            <th style="width:25%"><hg:trans>已授权人员</hg:trans></th>
+            <th style="width:20%"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr ondblclick="p599253368doEditData('1')">
+                <td>默认仓库</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>自有仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('1','默认仓库')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="苗贵鹏,苗小云,郝军龙,张飞" style="line-height:25px">苗贵鹏,苗小云,郝军龙,张飞</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('1')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('1')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('1','isActive')">&nbsp;&nbsp;<hg:trans>停用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('1')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('5')">
+                <td>深圳仓</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>自有仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('5','深圳仓')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('5')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('5')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('5','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('5')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('7')">
+                <td>11(us)</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('7','11(us)')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('7')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('7')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('7','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('7')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('8')">
+                <td>睿盛达美洲店</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('8','睿盛达美洲店')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('8')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('8')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('8','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('8')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('9')">
+                <td>欧洲</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('9','欧洲')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('9')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('9')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('9','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('9')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('11')">
+                <td>李洋</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('11','李洋')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('11')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('11')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('11','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('11')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('12')">
+                <td>海峰日本</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('12','海峰日本')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('12')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('12')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('12','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('12')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('13')">
+                <td>日本</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('13','日本')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('13')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('13')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('13','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('13')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('14')">
+                <td>海峰美国</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('14','海峰美国')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('14')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('14')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('14','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('14')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('15')">
+                <td>家居家装1</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('15','家居家装1')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('15')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('15')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('15','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('15')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('16')">
+                <td>家具欧洲2</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('16','家具欧洲2')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('16')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('16')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('16','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('16')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('18')">
+                <td>薛龙 </td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('18','薛龙 ')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('18')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('18')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('18','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('18')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('19')">
+                <td>glj</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('19','glj')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('19')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('19')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('19','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('19')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('20')">
+                <td>dsx6688</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('20','dsx6688')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('20')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('20')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('20','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('20')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('21')">
+                <td>wangqian</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('21','wangqian')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('21')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('21')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('21','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('21')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('22')">
+                <td>Obenhimmer556</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('22','Obenhimmer556')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('22')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('22')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('22','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('22')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('23')">
+                <td>郭荣梅(uk)</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('23','郭荣梅(uk)')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('23')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('23')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('23','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('23')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('24')">
+                <td>ggshop(uk)</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('24','ggshop(uk)')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('24')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('24')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('24','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('24')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('25')">
+                <td>高永军(uk)</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('25','高永军(uk)')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('25')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('25')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('25','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('25')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p599253368doEditData('26')">
+                <td>Hyxshop</td>
+                <td>
+                        <label class="text-danger"><hg:trans>停用</hg:trans></label>
+                </td>
+                <td>FBA仓</td>
+                <td>
+                        <label class="text-success"><hg:trans>启用</hg:trans></label>
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p599253368doShowShellPosition('26','Hyxshop')"><hg:trans>货架位管理</hg:trans></a>
+                </td>
+                <td title="" style="line-height:25px"></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p599253368doEditData('26')"><hg:trans>基础信息</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doEditAddressData('26')">&nbsp;&nbsp;<hg:trans>地址设置</hg:trans></a>
+                        <a href="javascript:void(0)" onclick="p599253368doSaveStore('26','isActive')">&nbsp;&nbsp;<hg:trans>启用仓库</hg:trans></a>
+                    <a href="javascript:void(0)" onclick="p599253368doStoreRole('26')" hgtrans="true" title="分配仓库权限"><hg:trans>分配权限</hg:trans></a>&nbsp;
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p599253368divDataList" data-maxpages="10" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Store?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/Store?pageIndex=2&amp;pagesize=20">2</a>  <a data-pageindex="3" href="/Store?pageIndex=3&amp;pagesize=20">3</a>  <a data-pageindex="4" href="/Store?pageIndex=4&amp;pagesize=20">4</a>  <a data-pageindex="5" href="/Store?pageIndex=5&amp;pagesize=20">5</a>  <a data-pageindex="6" href="/Store?pageIndex=6&amp;pagesize=20">6</a>  <a data-pageindex="7" href="/Store?pageIndex=7&amp;pagesize=20">7</a>  <a data-pageindex="8" href="/Store?pageIndex=8&amp;pagesize=20">8</a>  <a data-pageindex="9" href="/Store?pageIndex=9&amp;pagesize=20">9</a>  <a data-pageindex="10" href="/Store?pageIndex=10&amp;pagesize=20">10</a>  <a data-pageindex="2" href="/Store?pageIndex=2&amp;pagesize=20">下一页</a>  <a data-pageindex="10" href="/Store?pageIndex=10&amp;pagesize=20">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 182 条数据</span></div><div style="clear:both"></div></div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+        //分组类型绑定事件
+        $(".status-group>label").each(function () {
+            $(this).click(function () {
+                var itemid = $(this).attr("itemid");
+                $("#hidStoreType").val(itemid);
+                $(".status-group>label").removeClass("active");
+                $(".status-group>label[itemid='" + itemid + "']").addClass("active");
+                $("#searchForm").submit();
+            });
+        });
+    });
+    function p599253368doEditData(storeId) {
+        if (storeId == null || storeId == "")
+            storeId = "";
+
+        var url = "/Store/Edit/" + storeId;
+        redgle.tab.create("liStoreEdit", url, translate.format("<hg:trans>仓库编辑</hg:trans>"));
+    }
+
+    function p599253368doEditAddressData(storeId) {
+        if (storeId == null || storeId == "")
+            storeId = "";
+        var url = "/Store/StoreSettingIndex?storeId=" + storeId;
+        redgle.tab.create("tabContent_liTabSysSetting", url, translate.format("<hg:trans>仓库地址设置</hg:trans>"));
+    }
+    function p599253368doDeleteData(id) {
+        if (!window.confirm(translate.format("删除之后仓库信息将不可恢复,您确认要删除吗？</hg:trans>")))
+            return false;
+        $.ajax({
+            type: "POST",
+            url: "/Store/Delete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p599253368doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function p599253368doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/Store",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p599253368divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p599253368doSaveStore(id, type) {
+        $.ajax({
+            url: "/Store/EnableStore",
+            type: "post",
+            data: { id: id, type: type },
+            success: function (data) {
+                if (data.HasError) {
+p599253368doReloadData();
+                    redgle.showMessage(data.Message);
+                }
+                else {
+                    var repeatList = data.MapData.RepeatList;
+                    if (typeof (repeatList) != "undefined" && repeatList != "") {
+                        redgle.showMessage(translate.format("<hg:trans>启用失败！</hg:trans>"));
+                    } else {
+                        //alert("保存成功！");
+                    }
+p599253368doReloadData()
+                }
+            }
+        })
+    }
+    function dochanggeInstore() {
+
+    }
+    function p599253368doShowShellPosition(storeId, storeName) {
+        var url = "/Store/ShelfPosition?isFirst=1&storeId=" + storeId + "&pageSize=" + $("select[data-pagesizebox='true']").find($("option[selected='selected']")).val();
+        redgle.tab.create("liShelfPosition", url, translate.format("<hg:trans>{0}货架位信息</hg:trans>", [storeName]));
+    }
+
+
+    //分配仓库权限
+    function p599253368doStoreRole(id) {
+        if (id == null || id == "")
+            return;
+
+        var url = "/Store/SetStoreRole/" + id;
+        redgle.tab.create("liSetStoreRole", url, translate.format("<hg:trans>分配仓库权限</hg:trans>"));
+    }
+
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/08f901f496354390bf931367cabec370.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

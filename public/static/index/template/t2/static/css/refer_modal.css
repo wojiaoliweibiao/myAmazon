@@ -1,0 +1,81 @@
+﻿/*refer css*/
+.loading-refer{
+    display: none;
+    text-align: center;
+    padding: 140px 0 20px 0;
+}
+.loading-refer img{
+    width: 32px;
+    height: 32px;
+}
+.no-refer-tip{
+    display: none;
+    color: #8e8e8e;
+    font-size: 18px;
+    text-align: center;
+    padding: 140px 0 20px 0
+}
+#refer-info-modal .no-refer-tip, #refer-info-modal .loading-refer{
+    padding: 30px 0 20px 0 !important;
+}
+.refer-content{
+    height: 450px;
+    overflow-y: auto;
+}
+.refer-table{
+    margin-top: 15px;
+}
+.refer-image img{
+    width: 100%;
+    height: 100%;
+}
+.refer-image{
+    width: 60px;
+    height: 60px;
+}
+.refer-btn-td{
+    text-align: center;
+}
+.refer-btn{
+    vertical-align: -20px;
+}
+.refer-footer{
+    display: none;
+    padding: 0 5px;
+    text-align: center;
+}
+.important{
+    color: #eb3c00;
+    font-weight: bold;
+    margin: 4px;
+}
+.content-manage{
+    margin: 15px 0 0 0;
+    background: #fffaee;
+    border: 1px solid #ffe3b8;
+    padding: 0 20px 0 0;
+}
+.manage-control{
+    float:right;
+    margin-right: -21px;
+}
+.manage-control li{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    border-right: 1px solid #ffe3b8;
+}
+.manage-control li a{
+    vertical-align: top;
+}
+.page-num-control{
+    padding: 0 4px;
+    border: 1px solid #888;
+    color: #333;
+    margin-left: 4px;
+}
+.page-num-control.on{
+    color: #fff;
+    background-color: #888;
+}

@@ -1,0 +1,740 @@
+{:widget('Blog/header')}
+<html>
+ <head>
+ 
+  <script src="__STATIC__/index/js/c6102531548c4f988e485ab0333845b4.js"></script> 
+  <script src="__STATIC__/index/js/74c4de9c7b314e3287f3b215e15b5158.js"></script> 
+  <script src="__STATIC__/index/js/hg.common.js"></script> 
+  <script src="__STATIC__/index/js/jquery.fancybox.js"></script> 
+ 
+ </head> 
+ <body> {:widget('Blog/left')}
+                
+<style>
+    .breadcrumbs a {
+        cursor: pointer;
+    }
+    /*图片缩略效果图 start*/ /*图片缩略效果图 end*/
+</style>
+
+<div class="row">
+    <ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+        <li id="liTabCatalogPhotoBank" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>图片银行管理</hg:trans></a></li>
+    </ul>
+
+    <div id="divTabContentPanel" class="tab-content ">
+        <div id="tabContent_liTabCatalogPhotoBank" role="tabpanel" class="tab-pane fade active in">
+            <p class="alert bg-info" style="padding: 8px;line-height:25px">
+                PS：<hg:trans>图片银行是系统特别提供的图片存储空间，方便您对常用图片的存储、管理。</hg:trans>
+            </p>
+<form action="/PhotoBank?Length=9" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p144136852divDataList" id="searchForm" method="post">                <div class="col-md-6">
+                    <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" />
+                    <input type="hidden" id="txtCatalogId" name="txtCatalogId" />
+
+                    <div class="input-group input-group-sm col-xs-4">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" hgtrans="true" placeholder="请输入图片名称">
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary">
+                        </span>
+                    </div>
+
+                </div>
+                <div class="text-right col-md-6 highlight">
+                    <div class="btn-group false">
+                        <button type="button" onclick="p144136852doImportData()" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-log-in"></i> <hg:trans>导入网络图片</hg:trans></button>
+                    </div>
+                    <div class="btn-group false">
+                        
+                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon-log-in"></i> <hg:trans>导出</hg:trans><span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li><a href="javascript:void(0)" onclick="p144136852doExportImg()"><hg:trans>导出图片路径</hg:trans></a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)" onclick="p144136852doExportImgZip()"><hg:trans>导出图片压缩包</hg:trans></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group false">
+                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><hg:trans>批量操作</hg:trans><span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li><a href="javascript:void(0)" onclick="p144136852MoreRename()"><hg:trans>批量重命名</hg:trans></a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)" onclick="p144136852doMoreDel()"><hg:trans>批量删除</hg:trans></a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)" onclick="p144136852doMoveToCatalog()"><hg:trans>批量移动目录</hg:trans></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group false">
+                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><hg:trans>图片上传</hg:trans><span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li><a href="javascript:void(0)" onclick="p144136852doUpload()"><hg:trans>本地上传</hg:trans></a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)" onclick="p144136852doNetUrlUpload()"><hg:trans>网络上传</hg:trans></a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)" onclick="p144136852doGzipUpload()"><hg:trans>批量上传</hg:trans></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="parents-nodes" style="width:100%;float:left;">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;text-align:right"><hg:trans>引用状态</hg:trans></label>
+                    <div id="divStatus" class="input-group para-items">
+                        <span itemid="" class="active"><hg:trans>全部</hg:trans></span>
+                        <span itemid="Use"><hg:trans>引用</hg:trans></span>
+                        <span itemid="NoUse"><hg:trans>未引用</hg:trans></span>
+                        <input type="hidden" id="hidStatus" name="hidStatus" value="" />
+                    </div>
+                </div>
+</form>            <div id="divCatalogSearchPanel" class=" col-md-12">
+                
+<div id="f905divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f905divCatalogContentPanel" class="tree" contentgroup="#divCatalogSearchPanel #f905divCatalogContentPanel" navigategroup="#divCatalogSearchPanel .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divCatalogSearchPanel #f905divCatalogContentPanel" navigategroup="#divCatalogSearchPanel .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+//         var f905treeObject = new redgle.tree({
+//             contentPanelExpr:"#divCatalogSearchPanel #f905divCatalogContentPanel"
+//             , navigatePanelExpr:"#divCatalogSearchPanel .breadcrumb"
+//             , fnLoadChildren:function(catalogId){
+//                 $.ajax({
+//                     type: "POST",
+//                     url: "/CatalogTree/LoadCatalog",
+//                     data: { catalogId: catalogId },
+//                     datatype: "json",
+//                     global:false,
+//                     success: function (data) {
+//                         if (typeof data === "string")
+//                             data = jQuery.parseJSON(data);
+
+//                         data = f905treeObject.convertCatalogToData(data);
+// f905treeObject.AddElementItem(data);
+//                     },
+//                     error: function (xhr) {
+//                         alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+//                     }
+//                 });
+//             }
+//             ,fnNodeClick: function(data){
+//                 data = f905treeObject.convertDataToCatalog(data);
+//                 if(typeof(p144136852onCatalogSelected) == "function") p144136852onCatalogSelected(data);;
+//             }
+//         });
+
+//         $.ajax({
+//             type: "POST",
+//             url: "/CatalogTree/LoadRoot",
+//             data: {catalogType:"photobank"},
+//             datatype: "json",
+//             global:false,
+//             success: function (data) {
+//                 if (typeof data === "string")
+//                     data = jQuery.parseJSON(data);
+//                 data = f905treeObject.convertCatalogToData(data);
+
+//                 if (typeof(data.length) != "undefined"){
+// f905treeObject.addItemsToNavigate(data);
+// f905treeObject.AddElementItem(data[0]);
+//                 }
+//                 else {
+// f905treeObject.addItemsToNavigate([data]);
+// f905treeObject.AddElementItem(data);
+//                 }
+//             },
+//             error: function (xhr) {
+//                 alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+//             }
+//         });
+
+        $("#f905divSelect").hover(
+            function () {
+                $("#f905divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f905divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+            </div>
+
+            <div id="p144136852divDataList" class="col-md-12">
+
+                
+<p class="bg-info" style="padding: 5px;">
+    <button type="button" class="btn btn-info btn-sm dropdown-toggle" id="checkImg" onclick="p144136852checkImg(this)">
+        <hg:trans>全选</hg:trans>
+</button>
+    <hg:trans>已使用空间</hg:trans>：250MB 536KB
+
+</p>
+<div class="row-fluid">
+    <div class="breadcrumbs">
+        <div class="row-fluid"> 
+            <ul class="th-thumbnails">
+                    <li style="width: 120px; height: 120px;">
+                        <div style=" height: 110px;" onclick="p144136852Check(this)">
+                            <a data-rel="colorbox">
+                                <img title="QV}`J341YDG8P_Q6[US`MUR.png" src="picture/d04c1ffc4da04b2ea02cef781ea6bf28.png" data-holder-rendered="true" style="max-width: 110px;max-height:120px" >
+                                <!-- onerror='this.src = "/Content/img/nophoto.png"' -->
+                            </a>
+                            <div class="tags">
+                                <span class="label-holder">
+
+                                    <span class="label  label-primary arrowed-in displayName" nameinfo="QV}`J341YDG8P_Q6[US`MUR.png" id="8840">QV}`J341…</span>
+                                    <span class="label  label-warning arrowed-in ">1</span>
+                                </span>
+                            </div>
+                        </div> 
+                        <div class="tools tools-right">
+                            <a href="/UploadFiles/yhjm/hgPhotoBank/d04c1ffc4da04b2ea02cef781ea6bf28.png" target="_blank" title="查看大图"> <i class="glyphicon glyphicon-paperclip"></i></a>
+
+                            <a onclick="p144136852DoRename(8840,'QV}`J341YDG8P_Q6[US`MUR.png')" title="编辑"><i class=" glyphicon glyphicon-pencil"></i></a>
+                            
+                            <a onclick="p144136852DoDel(8840)" title="删除"> <i class="glyphicon glyphicon-remove"></i> </a>
+                            <a target="_blank" href="../Meitu/Index?photoBankId=8840" title="美图"> <i class="glyphicon glyphicon-asterisk"></i> </a>
+
+                           
+                        </div>
+                    </li>
+                    <li style="width: 120px; height: 120px;">
+                        <div style=" height: 110px;" onclick="p144136852Check(this)">
+                            <a data-rel="colorbox">
+                                <img title="06.jpg" src="picture/7c668b037c8343b590494238d269393d.jpg" data-holder-rendered="true" style="max-width: 110px;max-height:120px" >
+                                <!-- onerror='this.src = "/Content/img/nophoto.png"' -->
+                            </a>
+                            <div class="tags">
+                                <span class="label-holder">
+
+                                    <span class="label  label-primary arrowed-in displayName" nameinfo="06.jpg" id="8823">06.jpg</span>
+                                    <span class="label  label-warning arrowed-in ">1</span>
+                                </span>
+                            </div>
+                        </div> 
+                        <div class="tools tools-right">
+                            <a href="/UploadFiles/yhjm/hgPhotoBank/7c668b037c8343b590494238d269393d.jpg" target="_blank" title="查看大图"> <i class="glyphicon glyphicon-paperclip"></i></a>
+
+                            <a onclick="p144136852DoRename(8823,'06.jpg')" title="编辑"><i class=" glyphicon glyphicon-pencil"></i></a>
+                            
+                            <a onclick="p144136852DoDel(8823)" title="删除"> <i class="glyphicon glyphicon-remove"></i> </a>
+                            <a target="_blank" href="../Meitu/Index?photoBankId=8823" title="美图"> <i class="glyphicon glyphicon-asterisk"></i> </a>
+
+                           
+                        </div>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row col-sm-12">
+    <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p144136852divDataList" data-maxpages="442" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/PhotoBank?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right;"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/PhotoBank?pageIndex=2&amp;pagesize=20">2</a>  <a data-pageindex="3" href="/PhotoBank?pageIndex=3&amp;pagesize=20">3</a>  <a data-pageindex="4" href="/PhotoBank?pageIndex=4&amp;pagesize=20">4</a>  <a data-pageindex="5" href="/PhotoBank?pageIndex=5&amp;pagesize=20">5</a>  <a data-pageindex="6" href="/PhotoBank?pageIndex=6&amp;pagesize=20">6</a>  <a data-pageindex="7" href="/PhotoBank?pageIndex=7&amp;pagesize=20">7</a>  <a data-pageindex="8" href="/PhotoBank?pageIndex=8&amp;pagesize=20">8</a>  <a data-pageindex="9" href="/PhotoBank?pageIndex=9&amp;pagesize=20">9</a>  <a data-pageindex="10" href="/PhotoBank?pageIndex=10&amp;pagesize=20">10</a>  <a data-pageindex="11" href="/PhotoBank?pageIndex=11&amp;pagesize=20">...</a>  <a data-pageindex="2" href="/PhotoBank?pageIndex=2&amp;pagesize=20">下一页</a>  <a data-pageindex="442" href="/PhotoBank?pageIndex=442&amp;pagesize=20">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 8840 条数据</span></div><div style="clear:both"></div></div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal 移动目录窗口-->
+<div class="modal fade" id="syncProductModalCatalog" tabindex="-1" role="dialog" aria-labelledby="syncProductModalCatalog" aria-hidden="true" style="padding-top:100px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><hg:trans>移动目录</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            <hg:trans>选择需要移动到的目标目录，点击【确定】即可。</hg:trans><br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" style="width:120px !important;margin-right:5px;"><hg:trans>目标目录</hg:trans>:</label>
+                        <div class="input-group para-items">
+                            <select class="form-control" id="ddlProductPhotoBank" name="ddlProductPhotoBank"><option value="2">图片银行目录</option>
+</select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="p144136852doMoveToPhotoBankOk()"><hg:trans>确定</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    /*------------------------------------------------------------------------------------------------------------------------*/
+    function p144136852onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#txtCatalogId").val(catalog.CatalogId);
+        $("#searchForm").submit();
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------*/
+    //全选
+    function p144136852checkImg(obj) {
+        if ($(obj).has("i").length == 0) {
+            $(obj).html("<i class='glyphicon glyphicon-ok'></i> <hg:trans>取消</hg:trans>");
+            $(".th-thumbnails li .displayName").each(function () {
+                $(this).html($(this).text() + " <i class='glyphicon glyphicon-ok'></i>").addClass("add");
+            });
+        }
+        else {
+            $(obj).html("<hg:trans>全选</hg:trans>");
+            $(".th-thumbnails li .displayName").each(function () {
+                $(this).html($(this).text()).removeClass("add");
+            });
+        }
+    }
+
+    //单选
+    function p144136852Check(obj) {
+        var objinfo = $(obj).find(" .displayName");
+        if (objinfo.has("i").length == 0) {
+            $(objinfo).html($(objinfo).text()+ "<i class='glyphicon glyphicon-ok'></i>").addClass("add");
+        }
+        else {
+            $(objinfo).html($(objinfo).text()).removeClass("add");
+        }
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------*/
+    //删除
+    function p144136852ConfirmDel(id) {
+        $.ajax({
+            type: "POST",
+            url: "/PhotoBank/Delete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p144136852doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //批量删除
+    function p144136852ConfirmMoreDel(jsonStr) {
+        $.ajax({
+            type: "POST",
+            url: "/PhotoBank/MoreDelete",
+            data: { idstr: "" + jsonStr + "" },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError && data.ErrorCode != "-1") {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    if (data.ErrorCode == "-1") {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    }
+                    else
+p144136852doReloadData();
+                }
+            },
+            error: function () {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //批量删除
+    function p144136852doMoreDel() {
+        var info = [];
+        $(".th-thumbnails li .add").each(function () {
+            info.push($(this).attr("id"));
+        });
+        if (info.length <= 0) {
+            redgle.showMessage(translate.format("<hg:trans>请先选择（点击）图片，然后修改</hg:trans>"), translate.format("<hg:trans>警告提示</hg:trans>"));
+            return;
+        }
+        redgle.showConfirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>"), 'p144136852ConfirmMoreDel(' + JSON.stringify(info) + ')', '', translate.format('<hg:trans>确认</hg:trans>'))
+    }
+
+    function p144136852doMoveToCatalog() {
+        var info = [];
+        $(".th-thumbnails li .add").each(function () {
+            info.push($(this).attr("id"));
+        });
+        if (info.length <= 0) {
+            redgle.showMessage(translate.format("<hg:trans>请先选择（点击）图片，然后修改</hg:trans>"), translate.format("<hg:trans>警告提示</hg:trans>"));
+            return;
+        }
+        $("#syncProductModalCatalog").modal("show")
+    }
+
+    //删除图片银行
+    function p144136852DoDel(id) {
+        redgle.showConfirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>"), 'p144136852ConfirmDel(' + id + ')', '', translate.format('<hg:trans>确认</hg:trans>'))
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------*/
+
+    //单个重命名
+    function p144136852DoRename(id, name) {
+        var htmlContent = "<div class='form-group'><label class='col-sm-3 control-label'><hg:trans>图片名称</hg:trans>：</label><div class='col-sm-8'><input type='text' class='form-control' id='pname_" + id + "' idinfo='" + id + "'  value='" + name + "' maxlength='64' /></div></div>";
+        var title = "编辑图片名称";
+p144136852ReName(htmlContent, title);
+    }
+
+    //多选重命名
+    function  p144136852MoreRename() {
+        var htmlContent = "";
+        $(".th-thumbnails li .add").each(function () {
+            var content = $(this).attr("nameinfo");
+            if (typeof (content) == "undefined") {
+                content = "";
+            }
+            htmlContent += "<div class='form-group'><label class='col-sm-3 control-label'><hg:trans>图片名称</hg:trans>：</label><div class='col-sm-8'><input type='text' class='form-control' maxlength='64' id='pname_" + $(this).attr("id") + "' idinfo='" + $(this).attr("id") + "'  value='" + content + "' /></div></div>";
+        });
+        if (htmlContent == "") {
+            redgle.showMessage(translate.format("<hg:trans>请先选择（点击）图片，然后修改</hg:trans>"), translate.format("<hg:trans>警告提示</hg:trans>"));
+            return;
+        }
+        var title = translate.format("<hg:trans>批量编辑图片名称</hg:trans>");
+p144136852ReName(htmlContent, title);
+    }
+
+    //弹出加载编辑重命名
+    function  p144136852ReName(htmlContent, title) {
+        var Content = "<div class='form-horizontal' id='p144136852form'>";
+        Content += htmlContent;
+        Content += "<div class='form-group'><div class='col-md-12 text-right'><button  style='width:70px'  btnType='forClose' class='btn btn-primary btn-sm' onclick='p144136852doEditData()'  ><hg:trans>提交</hg:trans></button> <button style='width:70px' class='btn btn-default btn-sm' btnType='forClose'><hg:trans>关闭</hg:trans></button></div> </div>";
+        Content += "</div>";
+        var messageModal = new redgle.modal({ type: "html", title: title, content: Content, width: 450, height: 245, isShowMessage: true });
+        messageModal.show();
+    }
+
+    //重命名-提交数据库
+    function  p144136852doEditData() {
+        //获取数据，验证数据不能为空
+        error = {};
+        datalist = [];
+        var hasError = false;
+        $("#p144136852form input[type='text']").each(function () {
+            var pname = $(this).val();
+            debugger;
+            if (pname.length == 0) {
+                hasError = true;
+                error[$(this).attr("id")] = translate.format("<hg:trans>名称不允许为空</hg:trans>");
+            }
+            else {
+                var pdata = { PhotoBankId: $(this).attr("idinfo"), DisplayName: $(this).val() };
+                datalist.push(pdata);
+            }
+        });
+        if (hasError) {
+p144136852doShowError(error);
+            return;
+        }
+        datalist = JSON.stringify(datalist);
+        $.ajax({
+            type: "POST",
+            url: "/PhotoBank/ReName",
+            data: { jsonstr: datalist },
+            datatype: "JSON",
+            success: function (data) {
+
+p144136852doReloadData();
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p144136852doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).parent().addClass("has-error");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).parent().removeClass("has-error");
+            });
+        });
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------*/
+    //重新加载
+    function p144136852doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/PhotoBank",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p144136852divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //美图回传
+    function doMeiTuCallBack(imgurl)
+    {
+p144136852doReloadData();
+    }
+    /*---------------------------------------------上传图片弹出框------------参数 isfresh 是否刷新父页面，前提父页面有刷新--------------------------------------------------------------*/
+
+    //本地上传图片
+    function p144136852doUpload(id) {
+
+        var url = "/PhotoBank/Edit/?parentPageKey=p144136852" + "&isfresh=true&isGetData=false&catalogid=" + $("#txtCatalogId").val();
+        var title = translate.format("<hg:trans>本地图片上传</hg:trans>");
+        var messageModal = new redgle.modal({ type: "iframe", title: title, content: url, isShowMessage: true, height: 650 });
+        messageModal.show();
+    }
+    //网络图片上传
+    function p144136852doNetUrlUpload(id) {
+
+        var url = "/PhotoBank/Edit/?parentPageKey=p144136852" + "&isfresh=true&type=net&isGetData=false&catalogid=" + $("#txtCatalogId").val();
+        var title = translate.format("<hg:trans>网络图片上传</hg:trans>");
+        var messageModal = new redgle.modal({ type: "iframe", title: title, content: url, isShowMessage: true });
+        messageModal.show();
+    }
+    //批量图片上传
+    function p144136852doGzipUpload(id) {
+
+        var url = "/PhotoBank/Edit/?parentPageKey=p144136852" + "&isfresh=true&type=gzip&isGetData=false&catalogid=" + $("#txtCatalogId").val();
+        var title = translate.format("<hg:trans>批量图片上传</hg:trans>");
+        var messageModal = new redgle.modal({ type: "iframe", title: title, content: url, isShowMessage: true });
+        messageModal.show();
+    }
+    //导入网络图片
+    function p144136852doImportData() {
+        var url = "/PhotoBank/Import";
+        redgle.tab.create("PhotoBankImport", url, translate.format("<hg:trans>导入网络图片</hg:trans>"));
+    }
+
+    //导出图片路径
+    function p144136852doExportImg() {
+        var orderIds = "";
+        var postData = {};
+        $(".th-thumbnails li .add").each(function () {
+            orderIds += $(this).attr("id") + ",";
+        });
+        if (orderIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last", window.parent.document).html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择导出图片，将导出符合当前搜索条件的图片，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");//查询条件
+        }
+        postData["photoBankId"] = orderIds;
+        $.ajax({
+            type: "POST",
+            url: "/PhotoBank/doExportImg",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //导出图片压缩包
+
+    function p144136852doExportImgZip() {
+        var totalNum = 0;//总条数
+        var orderIds = "";
+        var postData = {};
+        $(".th-thumbnails li .add").each(function () {
+            totalNum++;
+            orderIds += $(this).attr("id") + ",";
+        });
+        if (orderIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last", window.parent.document).html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择导出图片，将导出符合当前搜索条件的图片，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");//查询条件
+        }
+        //window.open("../PhotoBank/doExportImg?photoBankId=" + orderIds);
+        postData["photoBankId"] = orderIds;
+        $.ajax({
+            type: "POST",
+            url: "/PhotoBank/doExportImgZip",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>您共选择【{0}】张图片,已成功导出【{1}】张图片,失败【{2}】张图片</hg:trans>", [totalNum, data.MapData.successNum, data.MapData.errorNum]));
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //选择状态 1引用 0 没有引用
+    $("#divStatus >span").click(function () {
+        var cls = $(this).attr("class");
+        if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+            $("#divStatus > span").removeClass("active");
+            $(this).addClass("active");
+        }
+        else {
+            $(this).removeClass("active");
+        }
+        var selectedSatut = $(this).attr("itemid");
+        $("#hidStatus").val(selectedSatut);
+        if ($("#divStatus").find(".active").length == 0) {
+            $("#hidStatus").val("");
+        }
+        $("#searchForm").submit();
+    });
+
+    //确定移动
+    function  p144136852doMoveToPhotoBankOk() {
+        var ids = "";
+        $(".th-thumbnails li .add").each(function () {
+            ids += $(this).attr("id") + ",";
+        });
+        if (!ids) {
+            redgle.showMessage(translate.format("<hg:trans>请先选择需要移动的产品</hg:trans>"), translate.format("<hg:trans>提示</hg:trans>"));
+            return;
+        }
+        $.ajax({
+            url: "/PhotoBank/MoveToPhotoBank",
+            type: "post",
+            data: { PhotoBankIds: ids, cataLogId: $("#ddlProductPhotoBank").val() },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>成功修改{0}条商品目录</hg:trans>", [data.ResultObject]));
+p144136852doReloadData();
+                    $("#syncProductModalCatalog").modal("hide")
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        })
+    }
+</script>
+
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/112d80f2d3d54ff0b7670e246d3b371f.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

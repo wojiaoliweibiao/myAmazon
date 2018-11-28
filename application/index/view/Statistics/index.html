@@ -1,0 +1,1113 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabInStoreManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>本地产品销量统计</hg:trans></a></li>
+    <li id="liTabProductSalesReportHistogram"><a href="/Report/ErpProductSalesReportHistogram"><hg:trans>本地产品销量统计柱状图</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabInStoreManage" role="tabpanel" class="tab-pane fade active in">
+        <input type="hidden" id="hidStoreInfo" value="[{&quot;Selected&quot;:false,&quot;Text&quot;:&quot;默认仓库（自有仓）&quot;,&quot;Value&quot;:&quot;1&quot;}]" />
+        <input id="ConturyList" type="hidden" value="[{&quot;TextName&quot;:&quot;亚洲&quot;,&quot;listData&quot;:[{&quot;Text&quot;:&quot;中国(China)&quot;,&quot;Value&quot;:&quot;中国&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;中国台湾(Taiwan,China)&quot;,&quot;Value&quot;:&quot;中国台湾&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;香港(Hong Kong)&quot;,&quot;Value&quot;:&quot;香港&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;澳门(Macau)&quot;,&quot;Value&quot;:&quot;澳门&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;阿富汗(Afghanistan)&quot;,&quot;Value&quot;:&quot;阿富汗&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;阿联酋(United Arab Emirates)&quot;,&quot;Value&quot;:&quot;阿联酋&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;阿曼(Oman)&quot;,&quot;Value&quot;:&quot;阿曼&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;阿塞拜疆(Azerbaijan)&quot;,&quot;Value&quot;:&quot;阿塞拜疆&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;巴基斯坦(Pakistan)&quot;,&quot;Value&quot;:&quot;巴基斯坦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;巴勒斯坦(Palestine)&quot;,&quot;Value&quot;:&quot;巴勒斯坦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;巴林(Bahrain)&quot;,&quot;Value&quot;:&quot;巴林&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;不丹(Bhutan)&quot;,&quot;Value&quot;:&quot;不丹&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;朝鲜(North Korea)&quot;,&quot;Value&quot;:&quot;朝鲜&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;东帝汶(East Timor)&quot;,&quot;Value&quot;:&quot;东帝汶&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;菲律宾(Philippines)&quot;,&quot;Value&quot;:&quot;菲律宾&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;格鲁吉亚(Georgia)&quot;,&quot;Value&quot;:&quot;格鲁吉亚&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;哈萨克斯坦(Kazakhstan)&quot;,&quot;Value&quot;:&quot;哈萨克斯坦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;韩国(South Korea)&quot;,&quot;Value&quot;:&quot;韩国&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;吉尔吉斯斯坦(Kyrgyzstan)&quot;,&quot;Value&quot;:&quot;吉尔吉斯斯坦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;柬埔寨(Cambodia)&quot;,&quot;Value&quot;:&quot;柬埔寨&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;卡塔尔(Qatar)&quot;,&quot;Value&quot;:&quot;卡塔尔&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;科威特(Kuwait)&quot;,&quot;Value&quot;:&quot;科威特&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;老挝(Lao)&quot;,&quot;Value&quot;:&quot;老挝&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;黎巴嫩(Lebanon)&quot;,&quot;Value&quot;:&quot;黎巴嫩&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;马尔代夫(Maldives)&quot;,&quot;Value&quot;:&quot;马尔代夫&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;马来西亚(Malaysia)&quot;,&quot;Value&quot;:&quot;马来西亚&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;蒙古(Mongolia)&quot;,&quot;Value&quot;:&quot;蒙古&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;孟加拉国(Bangladesh)&quot;,&quot;Value&quot;:&quot;孟加拉国&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;缅甸(Myanmar)&quot;,&quot;Value&quot;:&quot;缅甸&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;尼泊尔(Nepal)&quot;,&quot;Value&quot;:&quot;尼泊尔&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;塞浦路斯(Cyprus)&quot;,&quot;Value&quot;:&quot;塞浦路斯&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;沙特阿拉伯(Saudi Arabia)&quot;,&quot;Value&quot;:&quot;沙特阿拉伯&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;斯里兰卡(Sri Lanka)&quot;,&quot;Value&quot;:&quot;斯里兰卡&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;塔吉克斯坦(Tajikistan)&quot;,&quot;Value&quot;:&quot;塔吉克斯坦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;泰国(Thailand)&quot;,&quot;Value&quot;:&quot;泰国&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;土耳其(Turkey)&quot;,&quot;Value&quot;:&quot;土耳其&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;土库曼斯坦(Turkmenistan)&quot;,&quot;Value&quot;:&quot;土库曼斯坦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;文莱(Brunei Darussalam)&quot;,&quot;Value&quot;:&quot;文莱&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;乌兹别克斯坦(Uzbekistan)&quot;,&quot;Value&quot;:&quot;乌兹别克斯坦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;新加坡(Singapore)&quot;,&quot;Value&quot;:&quot;新加坡&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;叙利亚(Syria)&quot;,&quot;Value&quot;:&quot;叙利亚&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;亚美尼亚(Armenia)&quot;,&quot;Value&quot;:&quot;亚美尼亚&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;也门(Yemen)&quot;,&quot;Value&quot;:&quot;也门&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;伊拉克(Iraq)&quot;,&quot;Value&quot;:&quot;伊拉克&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;伊朗(Iran)&quot;,&quot;Value&quot;:&quot;伊朗&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;以色列(Israel)&quot;,&quot;Value&quot;:&quot;以色列&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;印度(India)&quot;,&quot;Value&quot;:&quot;印度&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;印度尼西亚(Indonesia)&quot;,&quot;Value&quot;:&quot;印度尼西亚&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;约旦(Jordan)&quot;,&quot;Value&quot;:&quot;约旦&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;},{&quot;Text&quot;:&quot;越南(Viet Nam)&quot;,&quot;Value&quot;:&quot;越南&quot;,&quot;ContinentsName&quot;:&quot;亚洲&quot;}]},{&quot;TextName&quot;:&quot;欧洲&quot;,&quot;listData&quot;:[{&quot;Text&quot;:&quot;阿尔巴尼亚(Albania)&quot;,&quot;Value&quot;:&quot;阿尔巴尼亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;爱尔兰(Ireland)&quot;,&quot;Value&quot;:&quot;爱尔兰&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;爱沙尼亚(Estonia)&quot;,&quot;Value&quot;:&quot;爱沙尼亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;安道尔(Andorra)&quot;,&quot;Value&quot;:&quot;安道尔&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;奥地利(Austria)&quot;,&quot;Value&quot;:&quot;奥地利&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;白俄罗斯(Belarus)&quot;,&quot;Value&quot;:&quot;白俄罗斯&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;保加利亚(Bulgaria)&quot;,&quot;Value&quot;:&quot;保加利亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;比利时(Belgium)&quot;,&quot;Value&quot;:&quot;比利时&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;冰岛(Iceland)&quot;,&quot;Value&quot;:&quot;冰岛&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;波兰(Poland)&quot;,&quot;Value&quot;:&quot;波兰&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;波斯尼亚和黑塞哥维那(Bosnia and Herzegovina)&quot;,&quot;Value&quot;:&quot;波斯尼亚和黑塞哥维那&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;丹麦(Denmark)&quot;,&quot;Value&quot;:&quot;丹麦&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;法罗群岛(Faroe Islands)&quot;,&quot;Value&quot;:&quot;法罗群岛&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;梵蒂冈(Vatican)&quot;,&quot;Value&quot;:&quot;梵蒂冈&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;芬兰(Finland)&quot;,&quot;Value&quot;:&quot;芬兰&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;黑山(Montenegro)&quot;,&quot;Value&quot;:&quot;黑山&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;捷克(Czech Repoublic)&quot;,&quot;Value&quot;:&quot;捷克&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;克罗地亚(Croatia)&quot;,&quot;Value&quot;:&quot;克罗地亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;拉脱维亚(Latvia)&quot;,&quot;Value&quot;:&quot;拉脱维亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;立陶宛(Lithuania)&quot;,&quot;Value&quot;:&quot;立陶宛&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;列支敦士登(Liechtenstein)&quot;,&quot;Value&quot;:&quot;列支敦士登&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;卢森堡(Luxembourg)&quot;,&quot;Value&quot;:&quot;卢森堡&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;罗马尼亚(Romania)&quot;,&quot;Value&quot;:&quot;罗马尼亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;马耳他(Malta)&quot;,&quot;Value&quot;:&quot;马耳他&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;马其顿(Macedonia)&quot;,&quot;Value&quot;:&quot;马其顿&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;摩尔多瓦(Moldova)&quot;,&quot;Value&quot;:&quot;摩尔多瓦&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;摩纳哥(Monaco)&quot;,&quot;Value&quot;:&quot;摩纳哥&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;挪威(Norway)&quot;,&quot;Value&quot;:&quot;挪威&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;葡萄牙(Portugal)&quot;,&quot;Value&quot;:&quot;葡萄牙&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;瑞典(Sweden)&quot;,&quot;Value&quot;:&quot;瑞典&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;瑞士(Switzerland)&quot;,&quot;Value&quot;:&quot;瑞士&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;圣马力诺(San Marion)&quot;,&quot;Value&quot;:&quot;圣马力诺&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;斯洛伐克(Slovakia)&quot;,&quot;Value&quot;:&quot;斯洛伐克&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;斯洛文尼亚(Slovenia)&quot;,&quot;Value&quot;:&quot;斯洛文尼亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;乌克兰(Ukraine)&quot;,&quot;Value&quot;:&quot;乌克兰&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;西班牙(Spain)&quot;,&quot;Value&quot;:&quot;西班牙&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;希腊(Greece)&quot;,&quot;Value&quot;:&quot;希腊&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;匈牙利(Hungary)&quot;,&quot;Value&quot;:&quot;匈牙利&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;意大利(Italy)&quot;,&quot;Value&quot;:&quot;意大利&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;},{&quot;Text&quot;:&quot;塞尔维亚(Serbia)&quot;,&quot;Value&quot;:&quot;塞尔维亚&quot;,&quot;ContinentsName&quot;:&quot;欧洲&quot;}]},{&quot;TextName&quot;:&quot;非洲&quot;,&quot;listData&quot;:[{&quot;Text&quot;:&quot;阿尔及利亚(Algeria)&quot;,&quot;Value&quot;:&quot;阿尔及利亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;埃及(Egypt)&quot;,&quot;Value&quot;:&quot;埃及&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;埃塞俄比亚(Ethiopia)&quot;,&quot;Value&quot;:&quot;埃塞俄比亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;安哥拉(Angola)&quot;,&quot;Value&quot;:&quot;安哥拉&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;贝宁(Benin)&quot;,&quot;Value&quot;:&quot;贝宁&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;博茨瓦纳(Botswana)&quot;,&quot;Value&quot;:&quot;博茨瓦纳&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;布基纳法索(Burkina Faso)&quot;,&quot;Value&quot;:&quot;布基纳法索&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;布隆迪(Burundi)&quot;,&quot;Value&quot;:&quot;布隆迪&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;赤道几内亚(Equatorial Guinea)&quot;,&quot;Value&quot;:&quot;赤道几内亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;多哥(Togo)&quot;,&quot;Value&quot;:&quot;多哥&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;厄立特里亚(Eritrea)&quot;,&quot;Value&quot;:&quot;厄立特里亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;佛得角(Cape Verde)&quot;,&quot;Value&quot;:&quot;佛得角&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;冈比亚(Gambia)&quot;,&quot;Value&quot;:&quot;冈比亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;刚果（金）(Congo)&quot;,&quot;Value&quot;:&quot;刚果（金）&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;刚果（布）(Congo)&quot;,&quot;Value&quot;:&quot;刚果（布）&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;吉布提(Djibouti)&quot;,&quot;Value&quot;:&quot;吉布提&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;几内亚(Guinea)&quot;,&quot;Value&quot;:&quot;几内亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;几内亚比绍(Guine-bissau)&quot;,&quot;Value&quot;:&quot;几内亚比绍&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;加纳(Ghana)&quot;,&quot;Value&quot;:&quot;加纳&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;加蓬(Gabon)&quot;,&quot;Value&quot;:&quot;加蓬&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;津巴布韦(Zimbabwe)&quot;,&quot;Value&quot;:&quot;津巴布韦&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;喀麦隆(Cameroon)&quot;,&quot;Value&quot;:&quot;喀麦隆&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;科摩罗(Comoros)&quot;,&quot;Value&quot;:&quot;科摩罗&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;科特迪瓦(Cote d&#39;Ivoire)&quot;,&quot;Value&quot;:&quot;科特迪瓦&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;肯尼亚(Kenya)&quot;,&quot;Value&quot;:&quot;肯尼亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;莱索托(Lesotho)&quot;,&quot;Value&quot;:&quot;莱索托&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;利比里亚(Liberia)&quot;,&quot;Value&quot;:&quot;利比里亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;利比亚(Libya)&quot;,&quot;Value&quot;:&quot;利比亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;卢旺达(Rwanda)&quot;,&quot;Value&quot;:&quot;卢旺达&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;马达加斯加(Madagascar)&quot;,&quot;Value&quot;:&quot;马达加斯加&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;马拉维(Malawi)&quot;,&quot;Value&quot;:&quot;马拉维&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;马里(Mali)&quot;,&quot;Value&quot;:&quot;马里&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;毛里求斯(Mauritius)&quot;,&quot;Value&quot;:&quot;毛里求斯&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;毛里塔尼亚(Mauritania)&quot;,&quot;Value&quot;:&quot;毛里塔尼亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;摩洛哥(Morocco)&quot;,&quot;Value&quot;:&quot;摩洛哥&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;莫桑比克(Mozambique)&quot;,&quot;Value&quot;:&quot;莫桑比克&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;纳米比亚(Namibia)&quot;,&quot;Value&quot;:&quot;纳米比亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;南非(South Africa)&quot;,&quot;Value&quot;:&quot;南非&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;尼日尔(Niger)&quot;,&quot;Value&quot;:&quot;尼日尔&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;尼日利亚(Nigeria)&quot;,&quot;Value&quot;:&quot;尼日利亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;塞拉利昂(Sierra leone)&quot;,&quot;Value&quot;:&quot;塞拉利昂&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;塞内加尔(Senegal)&quot;,&quot;Value&quot;:&quot;塞内加尔&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;塞舌尔(Seychells)&quot;,&quot;Value&quot;:&quot;塞舌尔&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;圣赫勒拿(Saint helena)&quot;,&quot;Value&quot;:&quot;圣赫勒拿&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;斯威士兰(Swaziland)&quot;,&quot;Value&quot;:&quot;斯威士兰&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;苏丹(Sudan)&quot;,&quot;Value&quot;:&quot;苏丹&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;索马里(Somalia)&quot;,&quot;Value&quot;:&quot;索马里&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;坦桑尼亚(Tanzania)&quot;,&quot;Value&quot;:&quot;坦桑尼亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;突尼斯(Tunisia)&quot;,&quot;Value&quot;:&quot;突尼斯&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;乌干达(Uganda)&quot;,&quot;Value&quot;:&quot;乌干达&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;西撒哈拉(Western Sahara)&quot;,&quot;Value&quot;:&quot;西撒哈拉&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;赞比亚(Zambia)&quot;,&quot;Value&quot;:&quot;赞比亚&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;乍得(Chad)&quot;,&quot;Value&quot;:&quot;乍得&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;中非(Central Africa)&quot;,&quot;Value&quot;:&quot;中非&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;},{&quot;Text&quot;:&quot;南苏丹(South Sudan)&quot;,&quot;Value&quot;:&quot;南苏丹&quot;,&quot;ContinentsName&quot;:&quot;非洲&quot;}]},{&quot;TextName&quot;:&quot;南美洲&quot;,&quot;listData&quot;:[{&quot;Text&quot;:&quot;阿根廷(Argentina)&quot;,&quot;Value&quot;:&quot;阿根廷&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;巴拉圭(Paraguay)&quot;,&quot;Value&quot;:&quot;巴拉圭&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;玻利维亚(Bolivia)&quot;,&quot;Value&quot;:&quot;玻利维亚&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;厄瓜多尔(Ecuador)&quot;,&quot;Value&quot;:&quot;厄瓜多尔&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;法属圭亚那(French Guiana)&quot;,&quot;Value&quot;:&quot;法属圭亚那&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;哥伦比亚(Colombia)&quot;,&quot;Value&quot;:&quot;哥伦比亚&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;圭亚那(Guyana)&quot;,&quot;Value&quot;:&quot;圭亚那&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;秘鲁(Peru)&quot;,&quot;Value&quot;:&quot;秘鲁&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;苏里南(Suriname)&quot;,&quot;Value&quot;:&quot;苏里南&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;委内瑞拉(Venezuela)&quot;,&quot;Value&quot;:&quot;委内瑞拉&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;乌拉圭(Uruguay)&quot;,&quot;Value&quot;:&quot;乌拉圭&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;},{&quot;Text&quot;:&quot;智利(Chile)&quot;,&quot;Value&quot;:&quot;智利&quot;,&quot;ContinentsName&quot;:&quot;南美洲&quot;}]},{&quot;TextName&quot;:&quot;北美洲&quot;,&quot;listData&quot;:[{&quot;Text&quot;:&quot;阿鲁巴(Aruba)&quot;,&quot;Value&quot;:&quot;阿鲁巴&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;安圭拉(Anguilla)&quot;,&quot;Value&quot;:&quot;安圭拉&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;安提瓜和巴布达(Antigua and Barbuda)&quot;,&quot;Value&quot;:&quot;安提瓜和巴布达&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;巴巴多斯(Barbados)&quot;,&quot;Value&quot;:&quot;巴巴多斯&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;巴哈马(Bahamas)&quot;,&quot;Value&quot;:&quot;巴哈马&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;巴拿马(Panama)&quot;,&quot;Value&quot;:&quot;巴拿马&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;百慕大(Bermuda)&quot;,&quot;Value&quot;:&quot;百慕大&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;波多黎各(Puerto Rico)&quot;,&quot;Value&quot;:&quot;波多黎各&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;伯利兹(Belize)&quot;,&quot;Value&quot;:&quot;伯利兹&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;多米尼加(Dominican Republic)&quot;,&quot;Value&quot;:&quot;多米尼加&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;多米尼克(Dominica)&quot;,&quot;Value&quot;:&quot;多米尼克&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;哥斯达黎加(Costa Rica)&quot;,&quot;Value&quot;:&quot;哥斯达黎加&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;格林纳达(Grenada)&quot;,&quot;Value&quot;:&quot;格林纳达&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;格陵兰(Greenland)&quot;,&quot;Value&quot;:&quot;格陵兰&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;古巴(Cuba)&quot;,&quot;Value&quot;:&quot;古巴&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;瓜德罗普(Guadeloupe)&quot;,&quot;Value&quot;:&quot;瓜德罗普&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;海地(Haiti)&quot;,&quot;Value&quot;:&quot;海地&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;荷属安的列斯(Netherlands Antilles)&quot;,&quot;Value&quot;:&quot;荷属安的列斯&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;洪都拉斯(Honduras)&quot;,&quot;Value&quot;:&quot;洪都拉斯&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;开曼群岛(Cayman Islands)&quot;,&quot;Value&quot;:&quot;开曼群岛&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;马提尼克(Martinique)&quot;,&quot;Value&quot;:&quot;马提尼克&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;美属维尔京群岛(United States Virgin Is-lands)&quot;,&quot;Value&quot;:&quot;美属维尔京群岛&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;蒙特塞拉特(Montserrat)&quot;,&quot;Value&quot;:&quot;蒙特塞拉特&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;墨西哥(Mexico)&quot;,&quot;Value&quot;:&quot;墨西哥&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;尼加拉瓜(Nicaragua)&quot;,&quot;Value&quot;:&quot;尼加拉瓜&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;萨尔瓦多(El Salvador)&quot;,&quot;Value&quot;:&quot;萨尔瓦多&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;圣基茨和尼维斯(Saint Kitts and nevis)&quot;,&quot;Value&quot;:&quot;圣基茨和尼维斯&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;圣卢西亚(Saint lucia)&quot;,&quot;Value&quot;:&quot;圣卢西亚&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;圣文森特和格林纳丁斯(Saint Vincent and the Grenadines)&quot;,&quot;Value&quot;:&quot;圣文森特和格林纳丁斯&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;特立尼达和多巴哥(Trinidad and Tobago)&quot;,&quot;Value&quot;:&quot;特立尼达和多巴哥&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;危地马拉(Guatemala)&quot;,&quot;Value&quot;:&quot;危地马拉&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;牙买加(Jamaica)&quot;,&quot;Value&quot;:&quot;牙买加&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;},{&quot;Text&quot;:&quot;英属维尔京群岛(British Virgin Islands)&quot;,&quot;Value&quot;:&quot;英属维尔京群岛&quot;,&quot;ContinentsName&quot;:&quot;北美洲&quot;}]},{&quot;TextName&quot;:&quot;大洋洲&quot;,&quot;listData&quot;:[{&quot;Text&quot;:&quot;巴布亚新几内亚(Papua New Guinea)&quot;,&quot;Value&quot;:&quot;巴布亚新几内亚&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;北马里亚纳(Northern Marianas)&quot;,&quot;Value&quot;:&quot;北马里亚纳&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;帕劳(Palau)&quot;,&quot;Value&quot;:&quot;帕劳&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;法属波利尼西亚(French Polynesia)&quot;,&quot;Value&quot;:&quot;法属波利尼西亚&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;斐济(Fiji)&quot;,&quot;Value&quot;:&quot;斐济&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;关岛(Guam)&quot;,&quot;Value&quot;:&quot;关岛&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;基里巴斯(Kiribati)&quot;,&quot;Value&quot;:&quot;基里巴斯&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;库克群岛(Cook Islands)&quot;,&quot;Value&quot;:&quot;库克群岛&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;马绍尔群岛(Marshall Islands)&quot;,&quot;Value&quot;:&quot;马绍尔群岛&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;美属萨摩亚(American Samoa)&quot;,&quot;Value&quot;:&quot;美属萨摩亚&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;密克罗尼西亚(Micronesia)&quot;,&quot;Value&quot;:&quot;密克罗尼西亚&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;瑙鲁(Nauru)&quot;,&quot;Value&quot;:&quot;瑙鲁&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;纽埃(Niue)&quot;,&quot;Value&quot;:&quot;纽埃&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;所罗门群岛(Solomon Islands)&quot;,&quot;Value&quot;:&quot;所罗门群岛&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;汤加(Tonga)&quot;,&quot;Value&quot;:&quot;汤加&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;图瓦卢(Tuvalu)&quot;,&quot;Value&quot;:&quot;图瓦卢&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;托克劳(Tokelau)&quot;,&quot;Value&quot;:&quot;托克劳&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;瓦努阿图(Vanuatu)&quot;,&quot;Value&quot;:&quot;瓦努阿图&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;新喀里多尼亚(New Caledonia)&quot;,&quot;Value&quot;:&quot;新喀里多尼亚&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;},{&quot;Text&quot;:&quot;新西兰(New Zealand)&quot;,&quot;Value&quot;:&quot;新西兰&quot;,&quot;ContinentsName&quot;:&quot;大洋洲&quot;}]},{&quot;TextName&quot;:&quot;其他&quot;,&quot;listData&quot;:[{&quot;Text&quot;:&quot;布维岛(Bouvet Island)&quot;,&quot;Value&quot;:&quot;布维岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;法属南部领土(French Southern Territo-ries)&quot;,&quot;Value&quot;:&quot;法属南部领土&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;赫德岛和麦克唐纳岛(Heard islands and Mc Donald Islands)&quot;,&quot;Value&quot;:&quot;赫德岛和麦克唐纳岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;科科斯(基林,0)群岛(Cocos Keeling Islands)&quot;,&quot;Value&quot;:&quot;科科斯(基林,0)群岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;留尼汪(Reunion)&quot;,&quot;Value&quot;:&quot;留尼汪&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;马尔维纳斯群岛(福克兰群岛,0)(Malvinas islands (Falkland Islands,0))&quot;,&quot;Value&quot;:&quot;马尔维纳斯群岛(福克兰群岛,0)&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;马约特(Mayotte)&quot;,&quot;Value&quot;:&quot;马约特&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;南极洲(Antarctica)&quot;,&quot;Value&quot;:&quot;南极洲&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;南乔治亚岛和南桑德韦奇岛(South Georgia and South Sandwich Islands)&quot;,&quot;Value&quot;:&quot;南乔治亚岛和南桑德韦奇岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;南斯拉夫(Yugoslavia)&quot;,&quot;Value&quot;:&quot;南斯拉夫&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;诺福克岛(Norfolk Island)&quot;,&quot;Value&quot;:&quot;诺福克岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;皮特凯恩群岛(Pitcairn Islands Group)&quot;,&quot;Value&quot;:&quot;皮特凯恩群岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;圣诞岛(Christmas Island)&quot;,&quot;Value&quot;:&quot;圣诞岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;圣多美和普林西比(Sao Tome and Principe)&quot;,&quot;Value&quot;:&quot;圣多美和普林西比&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;圣皮埃尔和密克隆(Saint Pierre and Miquelon)&quot;,&quot;Value&quot;:&quot;圣皮埃尔和密克隆&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;斯瓦尔巴群岛(Svalbard and jan Mayen Islands)&quot;,&quot;Value&quot;:&quot;斯瓦尔巴群岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;特克斯科斯群岛(Turks and Caicos Islands)&quot;,&quot;Value&quot;:&quot;特克斯科斯群岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;瓦利斯和富图纳群岛(Wallis and Futuna Is-lands)&quot;,&quot;Value&quot;:&quot;瓦利斯和富图纳群岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;西萨摩亚(Western Samoa)&quot;,&quot;Value&quot;:&quot;西萨摩亚&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;英属印度洋领土(British indian Ocean Ter-ritory)&quot;,&quot;Value&quot;:&quot;英属印度洋领土&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;扎伊尔(Zaire)&quot;,&quot;Value&quot;:&quot;扎伊尔&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;直布罗陀(Gibraltar)&quot;,&quot;Value&quot;:&quot;直布罗陀&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;科索沃(Kosovo)&quot;,&quot;Value&quot;:&quot;科索沃&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;泽西岛（英属）(Jersey)&quot;,&quot;Value&quot;:&quot;泽西岛（英属）&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;美国本土外小岛屿(UNITED STATES MINOR OUTLYING ISLANDS)&quot;,&quot;Value&quot;:&quot;美国本土外小岛屿&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;},{&quot;Text&quot;:&quot;加罗林群岛(CAROLINE ISLANDS)&quot;,&quot;Value&quot;:&quot;加罗林群岛&quot;,&quot;ContinentsName&quot;:&quot;其他&quot;}]}]" />
+
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/Report/ErpProductSalesReport?Length=6" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <input type="hidden" id="hidStore" name="hidStore" value="" />
+                <input type="hidden" value="" name="hidCountrys" id="hidCountrys" />
+                <div id="J_selector" class="selector" style="border:none">
+                    <div id="DropListItem"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1" style="width:90px"><hg:trans>平台</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="txtShopFrom" class="input-group para-items" style="float:left">
+
+                            <div id="divapifromitemsall" class="input-group para-items" divapifromitems style="float:left">
+                                <span userform="All" class="active"><hg:trans>全部</hg:trans></span>
+                            </div>
+                                <div id="divapifromitemsAmazon" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Amazon">Amazon</span>
+                                </div>
+                                <div id="divapifromitemsOffline" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Offline">Offline</span>
+                                </div>
+                            <input type="hidden" id="hidApiForms" name="hidApiForms" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtUserForm" class="control-label col-sm-1" style="width:90px;"><hg:trans>平台账号</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divUserFormAndApiUserItems" class="input-group para-sales-items">
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935598329333161">11（US)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879160769857360">睿盛达美洲店</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164276593115232">欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872331625683483">李洋</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877209203576673">海峰日本</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878991458728662">日本</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873990262874254">海峰美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929742374010433">田晓雄（北美）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871372149985256">王彦杰（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933260676148507">薛龙 </span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874835077693896">glj</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875553155840876">dsx6688</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936672891264197">LION KING</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873053166056911">Obenhimmer556</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936669577641156">grmshop(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877230535004185">grmshop(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930702626234231">grmshop(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878192615025085">grmshop(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934087599387859">grmshop(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933202011332760">ggshop(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852611044485442">ggshop(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935765868013582">ggshop(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872310962740279">ggshop(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875668442666254">ggshop(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871459154902603">高永军(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931474098772316">高永军(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381876351137120821">高永军(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935600106992701">高永军(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936672925285739">高永军(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871431502836602">FanLiJun</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934938859637410">白艳明欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934110815992986">FanYanJun</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929762014533464">刘旭梅(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934113536717438">刘旭梅(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935734834047630">刘旭梅(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933011252319369">刘旭梅(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874891852216962">刘旭梅(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936534501583912">王庆（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873103584758564">GYLUS</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930456013780902">ZhaoYang</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874890305114411">1994</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934026355230045">1314</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878274329151910">田晓雄（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852578230852884">高峰峰</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879079149075501">美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164381488390993">欧洲1</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934084989634973">苗利军</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164250935883669"> Counting STar</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933071635903081">1561616</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932240873264777">闫斌（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931414463417633">ypshop(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931442120129847">ypshop(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929687497408401">ypshop(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929656430224457">ypshop(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381876493137650168">ypshop(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164384175838222">GuoJiFang</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879017079043346">zhangyanrong(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934804701554956">zhangyanrong(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871374816430689">zhangyanrong(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933071601795206">zhangyanrong(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164353859619107">zhangyanrong(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936424597877034">zhangshenggui</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932379323006848">李丽红店铺</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877346740968402">miaohoufeng(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936673090601768">miaohoufeng(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872276571703280">miaohoufeng(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929656434896773">miaohoufeng(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929735448736827">miaohoufeng(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934029221864929">刘晓瑶(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852471819071250">刘晓瑶(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877338784596606">刘晓瑶(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933063592838687">刘晓瑶(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873818829672950">刘晓瑶(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878062215737592">miaohaiyun123(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879074765987116">miaohaiyun123(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930676058299427">miaohaiyun123(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936447640922188">miaohaiyun123(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935651350518926">miaohaiyun123(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875721749398751">haodongyuan123(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936476015025896">haodongyuan123(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873874828288615">haodongyuan123(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164304070758648">haodongyuan123(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879074765833200">haodongyuan123(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932405831628797">邓恩惠（英国站）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930644084153479">李红霞（英国站）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852692752044756">haoyedongdian(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872143452796354">haoyedongdian(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929763732483403">haoyedongdian(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873189671662464">haoyedongdian(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878170455978643">haoyedongdian(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935711846565362">高晓琴(欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935739325126255">郭晓伟（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935819291916031">郭飞（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874037184179851">郭晓燕（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932163547860494">ggus(us)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879076459777333">ggus(ca)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871457353170757">ggus(mx)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871403042742796">郭泽民（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935684270345416">ynshop(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879073048199521">ynshop(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931473184637223">ynshop(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852584505226806">ynshop(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933179769069258">ynshop(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875503364326192">郭飞（北美）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875748460456160">白军庆(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930565983023271">白军庆(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874012447577579">白军庆(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381876356404143855">白军庆(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873844568236082">白军庆(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933896893288310">常国锋</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873982332486192">苗艳梅</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936565530936012">xiaoyan(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879073907197216">xiaoyan(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873983935956974">xiaoyan(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929792940447465">xiaoyan(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933071402312870">xiaoyan(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877208429720017">longlongqiao(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934111669353147">longlongqiao(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164387640017266">longlongqiao(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381876353739787475">longlongqiao(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929603930968428">longlongqiao(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929598771321981">Cuiyungao</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933865805807148">郭建珍美洲站</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933867550368197">王艳军美洲站</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935762487002457">WuHanYan</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871455407252277">马燕</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852689311935791">ZNF</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873825124418996">杜宝平</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877315596858240">唐逸超</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164409947728555">李文文美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933201841251175">苗润娥欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871374812615586">苗贵鹏</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873821745106667">薛小飞</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873048565018643">李文文</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930700050510080">贺青峰美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873818888836206">高洋洋</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930672656041373">武鹏鹏(欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931468662839369"> 白艳飞(欧洲站)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164387526603824">王燕香店铺</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933257898972954">grmshop(us)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874044367473164">grmshop(ca)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933201978854750">grmshop(mx)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873137278477837">xpshop(us)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871428039866623">xpshop(ca)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935793435178027">xpshop(mx)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932161940104772">苗小云</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872196611622153">苗小云美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875607294522575">刘焕明</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933869302353934">郭秋爱（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877264173446706">乔占孝</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877456701693491">张生贵美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874891108720001">李文忠</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872224013296500">薛燕</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933012997916318">刘艳斌店铺</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935762547954686">杨康（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879074884018992">李红霞（美国站）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936588555206542">邓恩惠宋晓慧 （美国站）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936669454784032">刘富珍</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878914046399171">刘旭东</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872201851532433">Weilitian</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877234140694410">武彤 （英国站）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875551353284463">刘瑞红（ 英国站）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872331602687744">zhanggaoping(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871259323631171">zhanggaoping(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877314788749624">zhanggaoping(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933098112180529">zhanggaoping(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873186982586373">zhanggaoping(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933066281356103">苗艾平</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875746744410884">gaowenli</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931415290917251">苗小娥（公司）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936426223541997">苗润娥美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873077042771786">郭高峰</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935570733538580">郭军军</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933922548843106">郝永红</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381876493824099471">杜艳飞</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934802032557257">王小平</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936422585676461">gaoping</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936612711781885">zhangxiaoying(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871486499608899">zhangxiaoying(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931417988524162">zhangxiaoying(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164303358719238">zhangxiaoying(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873880262346602">zhangxiaoying(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878164249140039">郭亚康(欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872172622121523">白旭斌欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852693723535031">白旭斌美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873027287360072">白旭斌日本</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381876547184904489">Bonana</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874676381602831">renyongqiang</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878997444274808">薛雅静</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874897314637871">马东东美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381851811626115150">马东东欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877368074122842">王燕香店铺</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871424458273165">刘旭东美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875666729680691">zxwuk(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874840457143143">zxwuk(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873054913421099">zxwuk(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929599686376572">zxwuk(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935822865888456">zxwuk(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932326956712766">baiyanlong </span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936509683055528">yzlshop(us)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874752480746189">yzlshop(ca)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929679539453855">yzlshop(mx)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164328292773349">LION KING A</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164250139958728">1314A</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935795357117507">cxyA</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381877429253663324">ZNFA</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="8624244559173571454">Bonana A</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930619318268602">周克嵩店铺</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878994124069785">美洲李洋</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931304384265728">郭晓伟（美洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874040821148737">白军庆美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930477405239081">高晓琴(美洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852502990740049">赵帅帅（美洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934743514564902">白艳飞（美洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310934826861566445">GYLUK</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930621235406779">武鹏鹏(美洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930642305450105">Leo</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874862763841267">Leo E</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935651578594784">贾保平欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936481311477265">Cfus</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872145911177544"> Counting STar a</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852639554469556">杨洋（英国站）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873873881801480">LGRUK</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872248837657412">fanlijunuk</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164275671384730">liucaiming(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878934516416973">liucaiming(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874041767609866">liucaiming(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852632508870216">liucaiming(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874870577812273">liucaiming(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871368489353761">高利军(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873793287881581">高利军(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935788080424484">高利军(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871266565910910">高利军(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872942059059862">高利军(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="9097164357495489351">王艳军英国站</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873022047959148">lxjingyuan</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873900588984287">LiXiang Wang</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878305270741900">WeiWei Zhang</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932157414815413">XinLu Ma</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929816953812576">DongMing Zhang</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879101282028915">QiongQiong Zhang</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381871259528537704">郭晓伟（日本）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874815495262166">赵帅帅(欧洲)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933091015011853">雷长平（欧洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932299363687045">雷长平（美洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="7457529948386091794">白艳明（美洲）</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872940203682265">郭亚康(美洲）(us)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936531867821128">青平欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874017773675208">Gpouzhou</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852501247989337">吴亮</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873157007682663">青平美洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310932301111822889">郭建珍欧洲站</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872972290639854">张</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874838798703129">Ghouzhou</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930646001587701">苗贵鹏美国</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878252885888184">zhangxiaorongdian(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381874042568455179">zhangxiaorongdian(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878137567721830">zhangxiaorongdian(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878220099009983">zhangxiaorongdian(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381851807131520228">zhangxiaorongdian(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310929686697901687">王新兴  欧洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381879127219083490">baijingshop(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381872284593382572">baijingshop(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381878166082152432">baijingshop(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310935788195952901">baijingshop(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381873107281587219">baijingshop(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381875609185123795">caocaihong(uk)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936561182105419">caocaihong(de)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310930509263223138">caocaihong(fr)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310936448438695625">caocaihong(it)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381852474390302701">caocaihong(es)</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310931419763529390">duguodong</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="1381876409648759022">李立红美洲</span>
+                                            <span userform="Amazon" class="Amazon-sales" apiuserid="5310933918057764203">刘马平</span>
+                                            <span userform="Offline" class="Offline-sales" apiuserid="8394965973522953076">offine</span>
+                            <input type="hidden" id="hidUserForms" name="hidUserForms" value="" />
+                            <input type="hidden" id="hidApiAccountItems" name="hidApiAccountItems" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtOrder" class="control-label col-sm-1" style="width:90px;"><hg:trans>包含订单</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divUserFormAndApiUserItems1" class="input-group para-items">
+                            <span userform="1" apiuserid="已作废"><hg:trans>已作废</hg:trans></span>
+                            <span userform="0" apiuserid="已退款"><hg:trans>已退款</hg:trans></span>
+                            
+                            <input type="hidden" id="hidStatusTypeOrder" name="hidStatusTypeOrder" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divChooseItems" class="input-group para-items">
+                            <span itemid="SKU" chooseid="Search" name="商品SKU" class="active"><hg:trans>商品SKU</hg:trans></span>
+                            <span itemid="ProductName" chooseid="Search" name="产品名称"><hg:trans>产品名称</hg:trans></span>
+                            <input type="hidden" id="hidChoose" name="hidChoose" value="SKU" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:540px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:90px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" />
+                            <span class="input-group-btn">
+                                <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div id="divDateChooseItems" class="input-group para-items">
+                            <span itemid="PaymentTime" chooseid="PaymentDate" name="付款时间" class="active"><hg:trans>付款时间</hg:trans></span>
+                            <span itemid="CreateTime" chooseid="CreateDate" name="产品创建时间"><hg:trans>产品创建时间</hg:trans></span>
+                            <span itemid="ThirtyTime" chooseid="NumDay" name="30天内销量区间"><hg:trans>30天内销量区间</hg:trans></span>
+                            <input type="hidden" id="hidDataChoose" name="hidDataChoose" value="PaymentTime" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group " id="PaymentDate">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:90px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-sm" style="max-width:450px;">
+                            <span class="date">
+                                <input type="text" class="form-control input-sm" hgtrans="true" id="txtPaymentDateBegin" name="txtPaymentDateBegin" onfocus="doInitWdatePickerEndDate('begin')" placeholder="开始时间" />
+                            </span>
+                            <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">To</span>
+                            <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtPaymentDateEnd" name="txtPaymentDateEnd" onfocus="doInitWdatePickerEndDate('end')" placeholder="结束时间" /></span>
+                            <span class="input-group-btn">
+                                &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group " id="CreateDate" style="display:none">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:90px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-sm" style="max-width:450px;">
+                            <span class="date">
+                                <input type="text" class="form-control input-sm" hgtrans="true" id="txtCreateDateBegin" name="txtCreateDateBegin" onfocus="doInitWdatePickerEndDate('begin')" placeholder="开始时间" />
+                            </span>
+                            <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">To</span>
+                            <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtCreateDateEnd" name="txtCreateDateEnd" onfocus="doInitWdatePickerEndDate('end')" placeholder="结束时间" /></span>
+                            <span class="input-group-btn">
+                                &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group " style="display:none" id="NumDay">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:90px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-sm" style="max-width:450px;">
+                            <span class="date">
+                                <input type="text" class="form-control input-sm" hgtrans="true" id="txtMinSales" name="txtMinSales" placeholder="最低销量" />
+                            </span>
+                            <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">To</span>
+                            <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtMaxSales" name="txtMaxSales" placeholder="最高销量" /></span>
+                            <span class="input-group-btn">
+                                &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="txtQuerySearch" name="txtQuerySearch" value="" />
+                <div class="form-group" id="Search" style="margin-bottom:15px">
+                    <label class="control-label col-sm-1" style="width:90px;"><hg:trans>排序方式</hg:trans></label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-sm">
+                            <div id="divSort" class="input-group para-items">
+                                <span itemid="AllSales" sorttype="DESC" class="active"><hg:trans>总销量</hg:trans><span id="AllSalesSortMark" class="glyphicon glyphicon-arrow-down"></span></span>
+                                <span itemid="Sku" sorttype=""><hg:trans>SKU</hg:trans><span id="SkuSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                                <span itemid="UseStork" sorttype=""><hg:trans>可用库存</hg:trans><span id="UseStorkSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                                <span itemid="TotalSaleAmount" sorttype=""><hg:trans>销售额</hg:trans><span id="TotalSaleAmountSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                                <span itemid="NearlySevenDays" sorttype=""><hg:trans>近七天销量</hg:trans><span id="NearlySevenDaysSortMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                                <input type="hidden" id="hidSort" name="hidSort" value="" />
+                                <input type="hidden" id="hidSortType" name="hidSortType" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" value="" />
+                <div id="J_crumbsBar" class="crumbs-bar" style="display:none">
+                    <div class="crumbs-nav">
+                        <div class="crumbs-nav-main clearfix">
+                            <div class="crumbs-nav-item">
+                                <div class="crumbs-first"><a href="javascript:;">全部结果</a></div>
+                            </div>
+                            <i class="crumbs-arrow">&gt;</i>
+                            <div style="float:left;width:90%" id="baritem">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</form>        </div>
+
+        <div id="divProductSearch">
+            <div style="float:right; margin-right:5px;">
+                <button type="button" class="btn btn-info btn-sm" onclick="p719186274doExportData()"><i class="glyphicon glyphicon-log-out"></i><hg:trans>导出Excel</hg:trans></button>
+            </div>
+            
+<div id="f311divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f311divCatalogContentPanel" class="tree" contentgroup="#divProductSearch #f311divCatalogContentPanel" navigategroup="#divProductSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divProductSearch #f311divCatalogContentPanel" navigategroup="#divProductSearch .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f311treeObject = new redgle.tree({
+            contentPanelExpr:"#divProductSearch #f311divCatalogContentPanel"
+            , navigatePanelExpr:"#divProductSearch .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f311treeObject.convertCatalogToData(data);
+f311treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f311treeObject.convertDataToCatalog(data);
+                if(typeof(p719186274onCatalogSelected) == "function") p719186274onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"product"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f311treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f311treeObject.addItemsToNavigate(data);
+f311treeObject.AddElementItem(data[0]);
+                }
+                else {
+f311treeObject.addItemsToNavigate([data]);
+f311treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f311divSelect").hover(
+            function () {
+                $("#f311divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f311divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="divDataList" style="padding-top:10px;">
+            <div class="alert bg-info" style="padding:8px">
+                <hg:trans>PS：请选择查询条件统计报表。</hg:trans>
+            </div>
+        </div>
+    </div>
+</div>
+<!--下拉国家模板 END-->
+<script type="text/x-dot-template" id="DropCountryTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        <hg:trans>搜索(S)</hg:trans>
+                    </span>
+                </div>
+            </div>
+            {{?}}
+            <div class="J_valueList">
+                <div class="OrderStatusTitle"> <b><hg:trans>常用国家</hg:trans></b></div>
+                <ul class=" clearfix {{=it.ClassName}}">
+                    {{  var datalist=it.data.CommonCountry; for(var j=0;j
+                    <datalist.length;j++){var textname=translate.format("
+                        <hg:trans>{0}</hg:trans>", [datalist[j].Text.trim()]);  }}
+                        <li id="{{=datalist[j].Value}}" style="display:block;">
+                            <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                        </li>
+                        {{ } }}
+                </ul>
+                {{  var objarray=it.data.CountryList;  for(var i=0;i<objarray.length;i++){ }}
+                    <div class="OrderStatusTitle"> <b>{{=objarray[i].TextName}}</b></div>
+                    <ul class=" clearfix {{=it.ClassName}}">
+                        {{  var continentcountry=objarray[i].listData;  for(var j=0;j
+                        <continentcountry.length;j++){var textname=translate.format("
+                            <hg:trans>{0}</hg:trans>", [continentcountry[j].Text.trim()]);  }}
+                            <li id="{{=continentcountry[j].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}"> <i></i>{{=textname}}  </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                    {{ } }}
+            </div>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel All" typeid="{{=it.TypeId}}">查看全部</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+
+<!--国家模板 END-->
+<script type="text/x-dot-template" id="DropItemTempl">
+    <div class="sl-tab-cont-item  {{=it.isMultioleStr}}" id="{{=it.TypeId}}" style="display: none;">
+        <div class="sl-v-list">
+            {{?it.hasSearch}}
+            <div style="margin:2px;">
+                <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                    <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="enterMenuSearch(this)">
+                    <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                        搜索(S)
+                    </span>
+                </div>
+            </div>
+            {{?}}
+            <ul class="J_valueList clearfix {{=it.ClassName}}">
+                {{  var objarray=it.data;  for(var i=0;i
+                <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                    <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                    <li id="{{=objarray[i].Value}}" style="display:block;">
+                        <a href="javascript:;" title="{{=textname}}">
+                            <i></i>{{=textname}}
+                        </a>
+                    </li>
+                    {{ } }}
+            </ul>
+        </div>
+        {{?it.isMultiple}}
+        <div class="sl-btns">
+            <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+            <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+            <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+        </div>
+        {{?}}
+    </div>
+</script>
+<script type="text/javascript">
+
+    //移除空白字符
+    function removeAllSpace(str) {
+        return str.replace(/\s+/g, "");
+    }
+
+    //定义常用国家
+    var CommonCountryConst = [
+        { Text: "美国（United States）", Value: "美国" },
+        { Text: "英国（United Kingdom）", Value: "英国" },
+        { Text: "法国（France）", Value: "法国" },
+        { Text: "德国（Germany）", Value: "德国" },
+        { Text: "日本（Japan）", Value: "日本" },
+        { Text: "俄罗斯（Russian Federation）", Value: "俄罗斯" },
+        { Text: "澳大利亚（Australia）", Value: "澳大利亚" },
+        { Text: "加拿大（Canada）", Value: "加拿大" },
+        { Text: "巴西（Brazil）", Value: "巴西" },
+        { Text: "荷兰（Netherlands）", Value: "荷兰" },
+        { Text: "其它(Other)", Value: "其它" }
+    ];
+
+    function LoadMenuInfo() {
+        //重置
+        $("#listItem,#DropListItem").html("");
+
+        var SearchOption = SearchOptonRedgle();//初始化方法
+        SearchOption.Droptempl = $("#DropItemTempl").html();
+        //处理国家信息
+        var CommonCountry = {
+            CommonCountry: CommonCountryConst,
+            CountryList: JSON.parse($("#ConturyList").val())
+        };
+        if (CommonCountry != null) {
+            SearchOption.BindDropDataUI(CommonCountry, translate.format("<hg:trans>收件国家</hg:trans>"), "CommonCountry", true, $("#DropCountryTempl").html(), true, true, "commonCountry");
+        }
+
+        //仓库
+        var storelist = $("#hidStoreInfo").val();
+        if (storelist.length > 0) {
+            storelist = JSON.parse(storelist)
+        }
+        if (storelist.length > 0) {
+            SearchOption.BindDropDataUI(storelist, "仓库", "StoreIdType", false, "", true, true, false);
+        }
+        //展开，收缩回调
+        SearchOption.CallExtendFun = function (typeid, isExtend) {
+            if (!isExtend) {
+                if ($("#" + typeid + " .MenuSearchInfo input").length > 0) {
+                    var text = $("#" + typeid + " .MenuSearchInfo input").val().trim();
+                    if (text.length > 0) {
+                        $("#" + typeid + " .MenuSearchInfo input").val("");
+                        $("#" + typeid + " .J_valueList li ").show();
+                    }
+                }
+
+            }
+        }
+        //删除类型模块的时候回调处理
+        SearchOption.CallDelFun = function (typeid) {
+            switch (typeid) {
+                case "StoreIdType":
+                    $("#hidStore").val("");
+                    break;
+                case "CommonCountry":
+                    $("#hidCountrys").val("");
+                    break;
+                default:
+                    break;
+            }
+            $("#searchForm").submit();
+        };
+
+        //查询所有国家
+        SearchOption.CallAllFun = function (typeid) {
+            switch (typeid) {
+                case "CommonCountry":
+                    $("#hidCountrys").val("true");
+                    break;
+                default:
+                    break;
+            }
+            $("#searchForm").submit();
+        };
+
+        SearchOption.CallUserFun = function (typeid, id, title) {
+            //获取到类型，与参数id
+            switch (typeid) {
+                case "StoreIdType":
+                    $("#hidStore").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "CommonCountry":
+                    $("#hidCountrys").val(id);
+                    $("#searchForm").submit();
+                    break;
+            }
+        }
+
+        SearchOption.CallTabFun = function (typeid) {
+            var Search = "";
+            var paramFiled = "";
+            switch (typeid) {
+                case "StoreIdType":
+                    paramFiled = "hidStore";
+                    break;
+                case "CommonCountry":
+                    paramFiled = "hidCountrys";
+                    break;
+            }
+
+            var data = $("#J_crumbsBar .crumb-select-item[typeid='" + typeid + "']");
+            if (data) {
+                Search = $(data).attr("atrrvalue");
+            }
+            $("#" + paramFiled).val(Search);
+            $("#searchForm").submit();
+        }
+        SearchOption.initEvent(false);//初始化事件绑定
+
+        //替换样式保持界面一致
+        $("#DropListItem .sl-key").each(function () {
+            $(this).css("color", "#333");
+            $(this).css("font-weight", "700");
+            $(this).css("padding-top", "6px");
+        })
+        $("#DropListItem .sl-wrap").each(function () {
+            $(this).css("border", "none");
+        })
+        $("#DropListItem .sl-tab-trigger").each(function () {
+            $(this).css("height", "32px");
+        })
+        $("#DropListItem .trig-item").each(function () {
+            $(this).css("height", "24px");
+            $(this).css("padding", "0px 3px 0 6px");
+        })
+        $("#DropListItem .sl-tab-cont-item").each(function () {
+            $(this).css("top", "28px");
+        })
+    }
+
+    jQuery(function () {
+        $(".chzn-select").chosen();
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+
+    function p719186274onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#searchForm").submit();
+    }
+    //复选框
+    function p719186274doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+
+    $(function () {
+
+        LoadMenuInfo();
+        $("#StoreId").change(function () {
+            $("#searchForm").submit();
+        })
+    })
+    function p719186274doExportData() {
+        var productIds = "";
+        var sku = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            sku += "'" + $(this).parent().parent().find("#hidSku").val() + "',";
+            productIds += $(this).val() + ",";
+        });
+        var postData = redgle.request.getFormData("searchForm");
+        postData["hidSort"] = $("#hidSort").val();
+        postData["hidSortType"] = $("#hidSortType").val();
+        postData["sku"] = sku;
+        postData["ProductId"] = productIds;
+        postData["StoreId"] = $("#hidStore").val();
+        postData["viewName"] = "productsales";
+        postData["pageKey"] = "Report/Export";
+        $.ajax({
+            type: "POST",
+            url: "/Report/ExportProductSalesExcel",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Tem/1//" + data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p719186274doProductViewUrl(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/Product/ProductInfo/" + id;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品编辑</hg:trans>"));
+    }
+
+    $(function () {
+        //单选选择平台账号
+        $("#divUserFormAndApiUserItems > span").each(function () {
+            $(this).click(function () {
+                var selectedItem = "";
+                var apiuserid = "";
+                var cls = $(this).attr("class");
+                debugger
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    //单选   $("#divUserFormAndApiUserItems > span").removeClass("active");
+                    $(this).addClass("active");
+                    selectedItem = $(this).attr("userform");
+
+                }
+                else {
+                    $(this).removeClass("active");
+                    //单选     $("#divUserFormAndApiUserItems > span").removeClass("active");
+                }
+                apiuserid = $("#divUserFormAndApiUserItems > span[class*='active']").map(function () {
+                    return $(this).attr("apiuserid");
+                }).get().join(",");
+                $("#hidUserForms").val(selectedItem);
+                $("#hidApiAccountItems").val(apiuserid);
+                //$("#searchForm").submit();
+            });
+        });
+
+        //包含订单
+        $("#divUserFormAndApiUserItems1").find("span").each(function () {
+            $(this).click(function () {
+                var selectedItem = "";
+                var apiuserid = "";
+                var cls = $(this).attr("class");
+                if (cls == "active") {
+                    $(this).removeClass("active");
+                } else {
+                    $(this).addClass("active");
+                }
+                var apiuserids = $("#divUserFormAndApiUserItems1 > span[class='active']").map(function () {
+                    return $(this).attr("apiuserid");
+                }).get().join(",");
+                $("#hidStatusTypeOrder").val(apiuserids);
+                //$("#searchForm").submit();
+            })
+
+        });
+
+
+        //支持多平台
+        $("[divapifromitems] > span").each(function () {
+            $(this).click(function () {
+                var selectedItem = $(this).attr("userform");
+                var apiuserid = "";
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0 && selectedItem != "All") {
+                    $("#divapifromitemsall > span").removeClass("active");
+                    $(this).addClass("active");
+                } else if (selectedItem == "All") {
+                    $("[divapifromitems] > span").removeClass("active");
+                    $(this).addClass("active");
+                }
+                else {
+                    $(this).removeClass("active");
+                    $("#divapifromitemsall > span").removeClass("active");
+                }
+                var selectValue = $("[divapifromitems] > span[class='active']").map(function () {
+                    var thisValue = $(this).attr("userform");
+                    return thisValue;
+                }).get().join(",");
+
+                $("#divUserFormAndApiUserItems > span").each(function () {
+                    $(this).removeClass("active");
+                    if (selectValue.indexOf($(this).attr("userform")) < 0) {
+                        if ($(this).attr("apiuserid") != "All")
+                            $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                })
+                if (selectValue == "All" || selectValue == "") {
+                    selectValue = "";
+                    $("#divapifromitemsall > span").addClass("active");
+                    $("#divUserFormAndApiUserItems span").css("display", "")
+                    $("#hidApiForms").val("");
+                }
+                $(this).parent().parent().find("#hidApiForms").val(selectValue);
+                $("#hidApiAccountItems").val("")
+                //$("#searchForm").submit();
+            });
+        });
+        //选择排序
+        $("#divSort > span").each(function () {
+            $(this).click(function () {
+                var selectedItems = "";
+                var sortType = "";
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("#divSort > span").removeClass("active");
+                    $("#divSort > span").attr("sorttype", "");
+                    $(this).addClass("active");
+                    $("#divSort > span > span").removeClass().addClass("glyphicon glyphicon-resize-vertical");
+                }
+                selectedItems = $(this).attr("itemid");
+                sortType = $(this).attr("sorttype");
+                if (sortType == "" || sortType == "DESC") {
+                    $(this).attr("sorttype", "ASC");
+                    $("#hidSortType").val("ASC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-up");
+                }
+                else {
+                    $(this).attr("sorttype", "DESC");
+                    $("#hidSortType").val("DESC");
+                    $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-down");
+                }
+                $("#hidSort").val(selectedItems);
+                $("#searchForm").submit();
+            });
+        });
+        
+        $("#divChooseItems > span").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                     $("#divChooseItems > span").removeClass("active");
+                    //清空搜索内容
+                    $("#txtSearchKey").val("");
+
+                    $(this).addClass("active");
+                }
+                else {
+
+                    $(this).removeClass("active");
+                }
+
+                var selectedItems = $(this).attr("itemid");
+                var chooseItems = $(this).attr("chooseid");
+                 $("#txtSearchKey").attr({ placeholder: $(this).attr("name") });
+                $("#hidChoose").val(selectedItems);
+            });
+        });
+        $("#divDateChooseItems > span").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                var selectedItems = $(this).attr("itemid");
+                var chooseItems = $(this).attr("chooseid");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    // $("#divChooseItems > span").removeClass("active");
+                    //清空搜索内容
+                    $(this).addClass("active");
+                    if (chooseItems == "CreateDate") {
+                        $("#CreateDate").css("display", "");
+                    }
+                    else if (chooseItems == "NumDay") {
+                        $("#NumDay").css("display", "");
+                    }
+                    else if (chooseItems == "PaymentDate") {
+                        $("#PaymentDate").css("display", "");
+                    }
+                }
+                else {
+                    $(this).removeClass("active");
+                    if (chooseItems == "CreateDate") {
+                        if ($("#txtCreateDateBegin").length > 0)
+                            $("#txtCreateDateBegin").val("");
+                        if ($("#txtCreateDateEnd").length > 0)
+                            $("#txtCreateDateEnd").val("");
+                        $("#CreateDate").css("display", "none");
+                    }
+                    else if (chooseItems == "NumDay") {
+                        if ($("#txtMinSales").length > 0)
+                            $("#txtMinSales").val("");
+                        if ($("#txtMaxSales").length > 0)
+                            $("#txtMaxSales").val("");
+                        $("#NumDay").css("display", "none");
+                    }
+                    else if (chooseItems == "PaymentDate") {
+                        if ($("#txtPaymentDateBegin").length > 0)
+                            $("#txtPaymentDateBegin").val("");
+                        if ($("#txtPaymentDateEnd").length > 0)
+                            $("#txtPaymentDateEnd").val("");
+                        $("#PaymentDate").css("display", "none");
+                    }
+                }
+            });
+        });
+    });
+
+    function doShowImgPreview(obj, id) {
+        var objDiv = $(obj).parent().find("#divImgView" + id + "");
+        $(objDiv).css("display", "block");
+        $(objDiv).css("top", $(obj).offset().top - 200);
+        $(objDiv).css("left", $(obj).offset().left - 100);
+    }
+
+    function doHideImgPreivew(obj, id) {
+        var objDiv = $(obj).parent().find("#divImgView" + id + "");
+        $(objDiv).css("display", "none");
+    }
+
+</script>
+<link href="static/css/chosen.css" rel="stylesheet"/>
+
+<script src="static/js/chosen.jquery.js"></script>
+
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/b39920b615c74601a887ae56204253b4.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

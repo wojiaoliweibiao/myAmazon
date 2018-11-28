@@ -1,0 +1,534 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/bootstrap.min.css" rel="stylesheet"/>
+
+
+    <script src="__STATIC__/index/js/b5fd31c8653449399b98d33819bf6bc8.js"></script>
+
+    <script src="__STATIC__/index/js/bc872c697d1146a99adc7d4c03414551.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+{:widget('Blog/left')}                
+<link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+
+<script src="js/wdatepicker.js"></script>
+
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabShopMove" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>店铺搬家</hg:trans></a></li>
+</ul>
+    <div class="alert bg-info" style="padding:8px">
+        PS：<hg:trans>把“来源店铺”的线上商品搬家到“目标店铺”待发布库,默认草稿状态。</hg:trans>
+    </div>
+    <form class="form-horizontal">
+        <input name="__RequestVerificationToken" type="hidden" value="yowQfqbSexOOc9tA7O8p7d5sZ5kbaIvT8THI15zvaZetjfkA1IAizImdw1iYhg_FZ69Q38bP57kI9ZHbPysG8bJvdXvsUj5ZvkOjoncYRlmfvtmvqQSFPwbgK7G5vJQhwLy4xfzqsAM2V4IBGV2nRH_cRHaKhOKv3kohXKFcenA1" />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">数据源</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label col-sm-1"><hg:trans>来源平台</hg:trans></label>
+                    <div class="col-sm-11 para-items">
+                        <div id="txtShopFrom" class="input-group para-items-sm" style="float:left">
+
+                            <div class="input-group para-items" divshopfromitems style="float:left">
+                                
+                            </div>
+                                <div class="input-group para-items" divshopfromitems style="float:left">
+                                    <span userform="Amazon">Amazon</span>
+                                </div>
+                            <input type="hidden" id="hidUserForms" name="hidUserForms" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtOrderNO" class="control-label col-sm-1"><hg:trans>来源店铺</hg:trans></label>
+                    <div class="col-sm-11 para-items-sm">
+                        <div id="txtShop">
+
+                                            <div id="divUserFormAndApiUserItemsAmazon5310935598329333161" divshopitems class="input-group para-sales-items" style="float:left">
+                                                <span userform="Amazon" class="" apiuserid="5310935598329333161">11(us)</span>
+                                            </div>
+                            <input type="hidden" id="hidApiAccountSourceItems" name="hidApiAccountSourceItems" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1"><hg:trans>商品状态</hg:trans></label>
+                    <div class="col-sm-11 para-items-sm">
+                        <div id="txtShopFrom" class="input-group para-items" style="float:left">
+                            <div class="input-group para-items" divstatusitems style="float:left">
+                                <span userform="" class="active"><hg:trans>全部</hg:trans></span>
+                            </div>
+                            <div class="input-group para-items" divstatusitems style="float:left">
+                                <span userform="onSelling">在售</span>
+                            </div>
+                            <div class="input-group para-items" divstatusitems style="float:left">
+                                <span userform="offline">下架</span>
+                            </div>
+                            <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">目标</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label col-sm-1"><hg:trans>目标平台</hg:trans></label>
+                    <div class="col-sm-11 para-items-sm">
+                        <div id="txtShopFrom">
+                            <div class="input-group para-items" style="float:left" divshoptofromitems>
+                                <span userform="All" class="active"><hg:trans>全部</hg:trans></span>
+                            </div>
+                                    <div class="input-group para-items" divshoptofromitems style="float:left">
+                                        <span userform="Amazon">Amazon</span>
+                                    </div>
+                            <input type="hidden" id="hidUserToForms" name="hidUserForms" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtOrderNO" class="control-label col-sm-1"><hg:trans>目标店铺</hg:trans></label>
+                    <div class="col-sm-11 para-items-sm">
+                        <div id="txtShop">
+
+                                            <div id="divUserFormAndApiUserItemsAmazon5310935598329333161" divshoptoitems class="input-group para-sales-items" style="float:left">
+                                                <span userform="Amazon" apiuserid="amazon814865874" class="">11(us)</span>
+                                            </div>
+                            <input type="hidden" id="hidApiNameItems" name="hidApiNemeItems" value="" />
+                            <input type="hidden" id="hidApiAccountItems" name="hidApiAccountItems" value="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<div style="text-align:center;">
+    <button type="button" id="btnTransfToLocal" class="btn btn-primary" onclick="javascript:doStartTransfToLocal();"><hg:trans>开始搬家</hg:trans></button>
+    <span id="outputContent"></span>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-body" style="line-height:25px">
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading"><hg:trans>店铺搬家</hg:trans></div>
+    <div class="panel-body" style="line-height:25px">
+        <div class="row col-sm-offset-1" style="font-size:13px">
+            <hg:trans>当前进度</hg:trans>：<span id="spanTotalStatus" class="hide"></span>
+        </div>
+    </div>
+</div>
+<div id="divSyncOrderMessage">
+</div>
+<div id="divSyncOrderErrorMessage" class="alert bg-danger hide" style="padding-left:15px;">
+</div>
+
+<script src="js/63d06432ff8e467a91086ba46937ad20.js"></script>
+
+<script>
+
+    //平台账号 （来源店铺只支持单选）
+    $("[divShopItems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = "";
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            apiuserid = $(this).attr("apiuserid")
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("[divShopItems] > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                if (apiuserid == "All") {
+                    $("[divShopItems] > span").removeClass("active")
+                } else {
+                    $(this).removeClass("active");
+                }
+            }
+            var selectValue = $("[divShopItems] > span[class='active']").not("span[apiuserid='All']").map(function () {
+                return $(this).attr("apiuserid");
+            }).get().join(",");
+            $(this).parent().parent().find("#hidApiAccountSourceItems").val(selectValue);
+            $("#searchForm").submit();
+        });
+    });
+
+    //支持多平台 （来源平台）
+    $("[divShopFromItems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = $(this).attr("userform");
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("[divShopFromItems] > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            var selectValue = $("[divShopFromItems] > span[class='active']").map(function () {
+                var thisValue = $(this).attr("userform");
+                $("[divShopItems] > span").each(function () {
+                    $(this).removeClass("active");
+                    if ($(this).attr("userform") != thisValue) {
+                        if ($(this).attr("apiuserid") != "All")
+                            $(this).parent().hide();
+                    } else {
+                        $(this).parent().show();
+                    }
+                })
+                return thisValue;
+            }).get().join(",");
+            if (selectValue == "All") {
+                selectValue = "";
+                $("[divShopItems]").show()
+                $("#hidApiAccountSourceItems").val("");
+            }
+            $(this).parent().parent().find("#hidUserForms").val(selectValue);
+            $("#searchForm").submit();
+        });
+    });
+
+    //支持多选选择平台账号 （目标店铺）
+    $("[divshoptoitems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = "";
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            apiuserid = $(this).attr("apiuserid")
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                if (apiuserid == "All") {
+                    $("[divshoptoitems] > span").each(function () {
+                        if ($(this).is(":visible")) {
+                            $("[divshoptoitems] > span").addClass("active")
+                        }
+                    })
+                } else {
+                    $(this).addClass("active");
+                }
+            }
+            else {
+                if (apiuserid == "All") {
+                    $("[divshoptoitems] > span").removeClass("active")
+                } else {
+                    $(this).removeClass("active");
+                }
+            }
+            var selectValue = $("[divshoptoitems] > span[class='active']").not("span[apiuserid='All']").map(function () {
+                return $(this).attr("apiuserid");
+            }).get().join(",");
+            var selectText = $("[divshoptoitems] > span[class='active']").not("span[apiuserid='All']").map(function () {
+                return $(this).text();
+            }).get().join(",");
+            $(this).parent().parent().find("#hidApiAccountItems").val(selectValue);
+            $(this).parent().parent().find("#hidApiNameItems").val(selectText);
+            $("#searchForm").submit();
+        });
+    });
+
+    //支持多平台 （目标平台）
+    $("[divshoptofromitems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = $(this).attr("userform");
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("[divshoptofromitems] > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            var selectValue = $("[divshoptofromitems] > span[class='active']").map(function () {
+                var thisValue = $(this).attr("userform");
+                $("[divshoptoitems] > span").each(function () {
+                    $(this).removeClass("active");
+                    if ($(this).attr("userform") != thisValue) {
+                        if ($(this).attr("apiuserid") != "All")
+                            $(this).parent().hide();
+                    } else {
+                        $(this).parent().show();
+                    }
+                })
+                return thisValue;
+            }).get().join(",");
+            if (selectValue == "All") {
+                selectValue = "";
+                $("[divshoptoitems]").show()
+                $("#hidApiAccountItems").val("");
+                $("#hidApiNameItems").val("");
+            }
+            $(this).parent().parent().find("#hidUserToForms").val(selectValue);
+        });
+    });
+
+    //选择商品状态
+    $("[divstatusitems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = $(this).attr("userform");
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("[divstatusitems] > span").removeClass("active");
+                $(this).addClass("active");
+                $("#txtStatusCode").val(selectedItem);
+            }
+        });
+    });
+
+    function doSetAllProductCatalog() {
+        var catalogId = $("#ddlProductCatalog").val();
+        $("select[id='CatalogId']").each(function () {
+            $(this).val(catalogId);
+        });
+    }
+
+    $("#divChangeStatusItems > span").each(function () {
+        $(this).click(function () {
+            var $this = $(this)
+            var cls = $this.attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $this.addClass("active");
+            } else {
+                $this.removeClass("active");
+            }
+            var endValue = $("#divChangeStatusItems > span[class='active']").map(function () {
+                return $(this).attr("itemid")
+            }).get().join(",");
+            $("#hidChangeStatus").val(endValue)
+        });
+    });
+
+    //单选选择平台账号
+    $("#divUserFormAndApiUserItems > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = "";
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divUserFormAndApiUserItems > span").removeClass("active");
+                $(this).addClass("active");
+                selectedItem = $(this).attr("userform")
+                apiuserid = $(this).attr("apiuserid");
+            }
+            else {
+                $(this).removeClass("active");
+                $("#divUserFormAndApiUserItems > span").removeClass("active");
+            }
+            $("#hidUserForms").val(selectedItem);
+            $("#hidApiAccountItems").val(apiuserid);
+            $("#hidApiNameItems").val(apiuserid);
+        });
+    });
+
+    var totalCount, apiUserIdArrayCount, isStatus, messageCount;
+    var apiUserArray = new Object();
+
+    function doStartTransfToLocal() {
+        totalCount = 0, apiUserIdArrayCount = 0, messageCount = 0;
+        isStatus = false;
+        $("#spanTotalStatus").empty().removeClass("hide");
+        $("#divSyncOrderMessage").empty().removeClass("hide");
+        $("#divSyncOrderErrorMessage").empty().removeClass("hide");
+        //开始搬家
+        $("#btnTransfToLocal").text(translate.format("<hg:trans>正在执行中...</hg:trans>")).attr("disabled", true);
+        Startimplement();
+    }
+
+    //开始执行
+    function Startimplement() {
+        var apiAccountArray = $("#hidApiAccountItems").val().split(',');
+        apiUserIdArrayCount = apiAccountArray.length;
+        var hidApiNameItems = $("#hidApiNameItems").val().split(',');//目标店铺名称 （用于显示）
+        var hidApiAccountSourceItems = $("#hidApiAccountSourceItems").val(); //来源店铺信息
+        if (hidApiAccountSourceItems.length <= 0 || $("#hidApiAccountItems").val() <= 0) {
+            alert("请先选择来源店铺和目标店铺");
+            $("#btnTransfToLocal").text(translate.format("<hg:trans>开始搬家</hg:trans>")).attr("disabled", false);
+            return;
+        }
+        $.each(apiAccountArray, function (index, item) {
+            debugger
+            doSubmitTransfToLocal(item, hidApiNameItems[index], hidApiAccountSourceItems);
+        })
+    }
+
+    //正在执行(查询数据)
+    function doSubmitTransfToLocal(hidApiAccountItems, hidApiNameItems, hidApiAccountSourceItems) {
+        var hidUserForms = $("#hidUserForms").val();
+        var txtStatusCode = $("#txtStatusCode").val();//商品状态
+        $.ajax({
+            type: "POST",
+            url: "../Crawl/GetOnlineProductSourceData",
+            data: { apiAccountSourceItems: hidApiAccountSourceItems, txtStatusCode: txtStatusCode },
+            datatype: "json",
+            global: false,
+            //async:false,
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    doMatchComplete();//操作按钮
+                } else {//查出原始商品信息
+                    if (!isStatus) {
+                        totalCount = data.MapData.totalCount;
+                        isStatus = true;
+                    }
+                    if (data.ResultObject.split(',').length < 1) {
+                        doMatchComplete();//操作按钮
+                        redgle.showMessage(translate.format("<hg:trans>当前店铺未查询到可搬家的商品</hg:trans>"));
+                        return;
+                    }
+                    if (apiUserArray[hidApiAccountItems] == undefined) {
+                        apiUserArray[hidApiAccountItems] = data.ResultObject.split(",");
+                        apiUserArray[hidApiAccountItems]["errorCount"] = 0;
+                        apiUserArray[hidApiAccountItems]["syncCount"] = 0;
+                    }
+                    doMatchOrder(hidApiAccountItems, hidApiNameItems, apiUserArray);
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>请求地址出错：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //执行搬家
+    function doMatchOrder(apiUserId, apiUserName, apiUserArray) {
+        var onlineProductIds = new Array();
+        onlineProductIds = apiUserArray[apiUserId].concat();
+        $.each(onlineProductIds, function (index, item) {
+            apiUserArray[apiUserId].splice(0, 1);
+            $.ajax({
+                type: "POST",
+                url: "../Crawl/MoveHouseProduct",
+                data: { onlineProductId: item, apiUserId: apiUserId },
+                datatype: "json",
+                //async: false,
+                success: function (data) {
+                    messageCount++;
+                    if (data.HasError) {
+                        apiUserArray[apiUserId]["errorCount"] += 1;
+                        var panel = $("#divSyncOrderMessage>p");
+                        panel.attr({ status: "error" }).find("span").attr({ "class": "text-danger" }).html();
+                        $("#divSyncOrderErrorMessage").removeClass("hide").append("<p><strong>店铺 ：" + apiUserName + "</strong>：" + data.Message + "</p>");
+                    } else {
+                        apiUserArray[apiUserId]["syncCount"] += 1;
+                    }
+
+                    $("#spanTotalStatus").removeClass("hide").html("<hg:trans>正在执行店铺" + apiUserName + "。已执行商品</hg:trans>：" + (apiUserArray[apiUserId]["errorCount"] + apiUserArray[apiUserId]["syncCount"]) + " / " + totalCount +
+                    "<hg:trans>其中成功</hg:trans>：<span style='color:green'>" + apiUserArray[apiUserId]["syncCount"] + "</span> 个，失败：<span style='color:red'>" + apiUserArray[apiUserId]["errorCount"] + "</span> 个");
+
+                    if (totalCount == apiUserArray[apiUserId]["errorCount"] + apiUserArray[apiUserId]["syncCount"]) {
+                        var panel = $("#divSyncOrderMessage>p");
+                        panel.attr({ status: "error" }).find("span").attr({ "class": "text-danger" }).html();
+                        $("#divSyncOrderErrorMessage").removeClass("hide").append("<p><strong>店铺 ：" + apiUserName + "</strong>：已成功" + apiUserArray[apiUserId]["syncCount"] + "，失败" + apiUserArray[apiUserId]["errorCount"] + "</p>");
+                    }
+
+                    if (totalCount * apiUserIdArrayCount == messageCount) {
+                        doMatchComplete();
+                        $("#divSyncOrderErrorMessage").removeClass("hide").append("<p>商品搬家执行完成。</p>");
+                    }
+                },
+                error: function (xhr) {
+                    redgle.showMessage(translate.format("<hg:trans>请求地址出错：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        });
+    }
+
+    function doMatchComplete() {
+        $("#btnTransfToLocal").text(translate.format("<hg:trans>开始搬家</hg:trans>")).attr("disabled", false);
+    }
+</script>
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/9c9d7f6797964a21a7e7301f44124cd1.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

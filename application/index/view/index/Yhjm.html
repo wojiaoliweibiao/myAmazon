@@ -1,0 +1,969 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+ <head> 
+  <meta charset="UTF-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Amazon跨境电商服务平台</title> 
+  <link href="__STATIC__/amazon/publish/css/bootstrap.min_1.css" rel="stylesheet" /> 
+  <link href="__STATIC__/amazon/publish/css/style.css" rel="stylesheet" /> 
+  <link href="__STATIC__/amazon/publish/css/layout.css" rel="stylesheet" /> 
+  <link href="__STATIC__/amazon/publish/css/alert.css" rel="stylesheet" /> 
+  <link href="__STATIC__/amazon/publish/css/inform.css" rel="stylesheet" /> 
+  <link href="__STATIC__/amazon/publish/css/popup.css" rel="stylesheet" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/huploadify.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/upload_pictures.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/frame.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/cropper.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/create.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/linio.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/check_valid.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/refer_modal.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/ztreestyle.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/bootstrap-datetimepicker.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/search_category.css" /> 
+  <link rel="stylesheet" href="__STATIC__/amazon/publish/css/jquery-ui.min.css" /> 
+  <!--[if lt IE 9]>
+<script src="__STATIC__/amazon/publish/js/html5shiv.min_1.js"></script>
+<script src="__STATIC__/amazon/publish/js/respond.min_1.js"></script>
+<![endif]--> 
+ </head> 
+ <!-- style="padding-right: 17px;"  class="modal-open" --> 
+ <body style="" class=""> 
+  <div class="header"> 
+   <div class="container-fluid"> 
+    <div class="row"> 
+     <div class="col-md-2"> 
+      <span class="logo"> <span style="color: #399">Amazon</span> </span> 
+     </div> 
+     <div class="col-md-10"> 
+      <div class="header-nav"> 
+       <ul class="nav pull-right"> 
+        <li> <a class="btn" href="/index.php/index/home"> <i class="glyphicon glyphicon-home"></i> 首页 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-search"></i> 采集 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-picture"></i> 图片 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-th-large"></i> 库存 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-list-alt"></i> 订单 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-menu-hamburger"></i> 统计 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-th"></i> Joom分析 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-euro"></i> 财务 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-envelope"></i> 客服 </a> </li> 
+        <li> <a class="btn" href="#"> <i class="glyphicon glyphicon-plane"></i> 物流 </a> </li> 
+        <li> <a class="btn" href="#" target=""> <i class="glyphicon glyphicon-question-sign"></i> 帮助 </a> </li> 
+        <li class="dropdown"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="glyphicon glyphicon-user"></i> 个人中心 <span class="caret"></span> </a> 
+         <ul class="dropdown-menu"> 
+          <li><a href="#">个人信息</a></li> 
+          <li><a href="#">授权管理</a></li> 
+          <li><a href="#">账户管理</a></li> 
+          <li><a href="#">SKU管理</a></li> 
+          <li><a href="#">历史反馈</a></li> 
+          <li><a href="#">邀请好友</a></li> 
+          <li><a href="javascript:void(0)" id="sign-out">退出</a></li> 
+         </ul> </li> 
+       </ul> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+    <style>
+        .fileinput-button {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .fileinput-button input{
+            position:absolute;
+            right: 0px;
+            top: 0px;
+            opacity: 0;
+            -ms-filter: 'alpha(opacity=0)';
+            font-size: 200px;
+        }
+    </style> 
+  <style>
+.editp {
+margin: -3px 5px;
+background-position: -261px 0;
+width: 20px !important;
+height: 18px;
+background-image:url(static/images/icons.png) !important;
+display:inline-block
+}
+.site-info-area {
+display: block;
+}
+.noPro {
+color: red;
+}
+.set-sku-order-block {
+cursor: pointer;
+}
+.groom{
+padding: 6px 10px;
+color:#337ab7;
+display: block;
+float: left;
+}
+.siteModel {
+display: none;
+}
+#choose-shop-area:after {
+clear: both;
+}
+.asterisk {
+word-wrap: break-word;
+}
+#data-list-title {
+border: 1px solid #ccc;
+border-radius: 3px;
+color: #555;
+padding-top: 3px;
+padding-bottom: 3px;
+line-height: 25px;
+font-size: 13px;
+}
+#data-list-title li {
+font-weight: 600;
+}
+#data-list-title li:hover {
+background-color: #e6e6e6;
+cursor: pointer;
+}
+.base-error{
+	color:red;
+}
+.base-null{
+	display:none;
+}
+</style> 
+  <div class="workspace" style="margin-left: 0 !important;margin-right: 0 !important;"> 
+  
+
+   <!--站点id--> 
+   <form class="form-horizontal"  action="/index.php/index/index/submit"  method="post" id="formsubmit"  enctype="multipart/form-data"> 
+    <div class="box" style="border: none;margin-left: auto;margin-right: auto;width: 85%"> 
+     <div>
+      <h3 class="multi-site-edit-title">站点与目录</h3>
+     </div> 
+     <div class=""> 
+      <div class="panel panel-info"> 
+       <div class="panel-heading"> 
+        <h3 class="panel-title"> 选择站点 <a role="button" class="pull-right collapsed toggle-panel" data-toggle="collapse" href="#choose-site" aria-expanded="false"> 收起 </a> </h3> 
+       </div> 
+       <div id="choose-site" class="panel-collapse collapse in" role="tabpanel"> 
+        <div class="panel-body"> 
+         <lable class="col-md-2 control-label">
+          <b>北美:</b>
+         </lable> 
+         <div class="col-md-10"> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="US" checked="" />美国站</label> 
+          </div> 
+          <!--["US", "美国站"]--> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="CA" />加拿大站</label> 
+          </div> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="MX" />墨西哥站</label> 
+          </div> 
+         </div> 
+        </div> 
+        <div class="panel-body"> 
+         <lable class="col-md-2 control-label">
+          <b>欧洲:</b>
+         </lable> 
+         <div class="col-md-10"> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="GB" />英国站</label> 
+          </div> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="FR" />法国站</label> 
+          </div> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="DE" />德国站</label> 
+          </div> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="IT" />意大利站</label> 
+          </div> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="ES" />西班牙站</label> 
+          </div> 
+         </div> 
+        </div> 
+        <div class="panel-body"> 
+         <lable class="col-md-2 control-label">
+          <b>其它:</b>
+         </lable> 
+         <div class="col-md-10"> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="JP" />日本站</label> 
+          </div> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="AU" />澳洲站</label> 
+          </div> 
+          <div class="checkbox-inline"> 
+           <label><input type="checkbox" value="IN" />印度站</label> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="panel panel-success"> 
+       <div class="panel-heading"> 
+        <h3 class="panel-title"> 设置分类 <a role="button" class="pull-right collapsed toggle-panel" data-toggle="collapse" href="#set-category" aria-expanded="false"> 收起 </a> </h3> 
+       </div> 
+       <div id="set-category" class="panel-collapse collapse in" role="tabpanel"> 
+        <div class="panel-body"> 
+         <div class="form-group" data-id="US"> 
+          <label for="" class="col-md-2 control-label v-required"> 美国站分类: </label> 
+          <div class="col-md-10"> 
+           <p class="full-category-name CategoryID form-control-static" id="site-us" data-id="" data-site="US"> 未设置分类 </p> 
+           <a class="btn btn-primary cate-modal-trigger" role="button" href="#" data-toggle="modal" data-id="US"> 选择分类 </a> 
+           <input type="hidden" id="itemType"  name="data[itemType]" class="base-value">
+             <div class="base-error">
+           		<p class="base-null">请选择分类</p>
+           </div>
+      
+          </div> 
+         </div> 
+         <!--["US", "美国站"]--> 
+       
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+     <div>
+      <h3 class="multi-site-edit-title">公用信息</h3>
+     </div> 
+     <div class=""> 
+
+      <div class="panel panel-success"> 
+       <div class="panel-heading"> 
+        <h3 class="panel-title"> 产品图片 <a role="button" class="pull-right collapsed toggle-panel" data-toggle="collapse" href="#product-image" aria-expanded="false"> 收起 </a> </h3> 
+       </div> 
+       <div id="product-image" class="panel-collapse collapse in" role="tabpanel"> 
+        <div class="panel-body"> 
+         <div class="form-group"> 
+          <label for="" class="col-md-2 control-label"> 上传图片 </label> 
+          <div class="col-md-10"> 
+           <div id="upload"></div> 
+           <div class="row" id="feed_img"  num="0"> 
+          		
+	           
+	             <!-- 图片 --> 
+	            <div class="col-lg-3 col-md-4 col-sm-4" style="border:none"> 
+	             	<div class="thumbnail" data-index="0" draggable="true" style="border:none"> 
+	             		<div style="display:none">
+	             			<img class="pic1" src="" style="cursor:pointer;width:174px;height:146px" alt="">
+		            	
+		            		 <div class="caption">
+		            		 	<a href="javascript:void(0)" class="btn btn-sm btn-warning del-pic" data-index="0">删除</a>
+		            		 </div>
+	             		</div>
+	             		<span class="btn btn-success fileinput-button"> 
+	             		 	<span>上传</span> 
+	             		 	<input type="file" name="file[]" id="doc" multiple="multiple" style="width:150px;" onchange="javascript:setImagePreviews();" accept="image/*" />
+	             		</span> 
+	             	</div> 
+	            </div>
+	           
+   
+	            <!-- 图片end --> 
+           </div> 
+           	<div class="base-error">
+           			<p class="base-null"  >请至少提交一张图片</p>
+            </div>
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+
+  <script src="__STATIC__/amazon/publish/js/jquery.min_1.js"></script> 
+
+ <!--     <div>
+
+      <h3 class="multi-site-edit-title">站点相关信息</h3>
+     </div>  -->
+     <div data-id="US" class="siteModel" style="display: block;"> 
+      <input type="hidden" id="item-type" data-site="US" value="childrens-dry-erase-markers" /> 
+      <div data-id="US" class="site-info-area"> 
+       <div class="panel panel-info"> 
+        <div class="panel-heading"> 
+         <h3 class="panel-title">模板</h3> 
+        </div> 
+        <div data-site="US" class="panel-body"> 
+         <div data-site="US" class="form-group" style=""> 
+          <label class="control-label col-md-2 v-required">ProductType</label> 
+          <div class="col-md-10 col-md-4"> 
+           <select id="ProductType" data-id="ProductType" name="ProductType" data-site="US" class="form-control amazon-data"><option>请选择</option><option data-name="ClothingAccessories.ClothingAccessories" selected="selected">ClothingAccessories.ClothingAccessories</option></select> 
+           <div class="value-tip" style="display: none;"> 
+            <p class="error-tip"></p> 
+           </div> 
+          </div> 
+         </div> 
+         <div data-site="US" class="form-group" value="" style="display: none;"> 
+          <label class="control-label col-md-2">变体模板</label> 
+          <div class="col-md-10 col-md-4"> 
+           <select id="changeModel" data-id="changeModel" data-site="US" class="form-control"></select> 
+           <div class="value-tip" style="display: none;"> 
+            <p class="error-tip"></p> 
+           </div> 
+          </div> 
+         </div> 
+      
+         <div data-site="US" class="form-group" value="" style="display: none;"> 
+          <label class="control-label col-md-2 v-required">必须属性</label> 
+          <div class="col-md-10"> 
+           <select id="special-upc" data-id="special-upc" data-site="US" class="form-control"><option>请选择</option> </select> 
+           <div class="value-tip" style="display: none;"> 
+            <p class="error-tip"></p> 
+           </div> 
+          </div> 
+         </div> 
+         <div data-site="US" class="form-group" value="" style="display: none;"> 
+          <label class="control-label col-md-2 v-required">产品编码类型</label> 
+          <div class="col-md-10"> 
+           <select id="product-id-type" data-id="product-id-type" data-site="US" class="form-control"><option>请选择</option> </select> 
+           <div class="value-tip" style="display: none;"> 
+            <p class="error-tip"></p> 
+           </div> 
+          </div> 
+         </div> 
+         <p data-site="US" class="noPro" style="cursor: pointer; display: none;">请选择产品分类</p> 
+        </div> 
+       </div> 
+       <div class="panel panel-warning"> 
+        <div class="panel-heading"> 
+         <h3 class="panel-title">基本信息</h3> 
+        </div> 
+        <div class="panel-body"> 
+         <div data-id="product-title" class="form-group" site-id="US" style=""> 
+          <label class="control-label col-md-2 v-required">产品标题</label> 
+          <div class="col-md-10"> 
+           <input id="product-title" data-value="" type="text" maxlength="200" placeholder="产品标题长度不能超过200个字符!" data-id="product-title" name="data[title]" class="form-control amazon-data base-value" />
+           <div class="base-error">
+           		<p class="base-null">请填写产品标题</p>
+           </div>
+           <div class="title-btns"> 
+            <a href="javascript: void(0)" id="t-upcase-btn" data-key="upCase" title="首字母大写"><span class="glyphicon glyphicon-text-size"></span></a> 
+           </div> 
+        
+          </div> 
+         </div> 
+         <div data-id="ParentSKU" class="form-group" site-id="US" style=""> 
+          <label class="control-label col-md-2 v-required">SKU</label> 
+          <div class="col-md-10 col-md-6"> 
+           <input id="ParentSKU" data-value="" type="text" maxlength="40" placeholder="如：BG0030BG 长度不超过40个字符" data-id="ParentSKU"  name="data[parentSKU]" class="form-control amazon-data base-value" /> 
+           <!----> 
+            <div class="base-error">
+           		<p class="base-null">请填写SKU</p>
+           </div>
+      
+            
+           <!----> 
+          </div> 
+         </div> 
+         <div class="form-group" totalnum="2000" placeholder="产品描述输入不能超过2000个字符。" style=""> 
+          <label class="control-label col-md-2 v-required">产品描述</label> 
+          <div data-site="US" class="col-md-10"> 
+          
+           <div id="detailHtml" style="display: none;"></div> 
+           <!----> 
+           <textarea style="width:100%;height:121px;resize:none"  name="data[description]" class="amazon-data base-value" id="description"></textarea>
+            <div class="base-error">
+           		<p class="base-null">请填写产品描述</p>
+           </div>
+          </div> 
+         </div> 
+         
+         <div data-id="Brand" class="form-group" site-id="US" style=""> 
+          <label class="control-label col-md-2 v-required">Brand</label> 
+          <div class="col-md-10 col-md-6"> 
+           <input id="Brand" type="input" maxlength="100" name="data[brand]" placeholder="Brand" data-id="Brand" class="form-control amazon-data base-value" /> 
+            <div class="base-error">
+           		<p class="base-null">请填写Brand</p>
+           </div>
+          </div> 
+         </div> 
+         <div data-id="Manufacture" class="form-group" site-id="US" style=""> 
+          <label class="control-label col-md-2 v-required ">产品生产商</label> 
+          <div class="col-md-10 col-md-6"> 
+           <input id="Manufacture" type="input" maxlength="100" placeholder="Manufacturer" data-id="Manufacturer" class="form-control amazon-data base-value" name='data[Manufacturer]' /> 
+           <!---->   
+           <div class="base-error">
+           		<p class="base-null">请填写产品生产商</p>
+           </div>
+           
+           <!----> 
+          </div> 
+         </div> 
+         <div data-id="UPC" class="form-group" site-id="US" style=""> 
+          <label class="control-label col-md-2 v-required">产品编码(UPC/EAN)</label> 
+          <div class="col-md-10"> 
+           <input id="UPC" type="input" name="data[upc]" placeholder="产品编码(UPC/EAN)" data-id="UPC" class="form-control amazon-data base-value" /> 
+           <!----> 
+            <div class="base-error">
+           		<p class="base-null">请填写产品编码(UPC/EAN)</p>
+           </div>
+           <!----> 
+           <!----> 
+          </div> 
+         </div> 
+         <div data-id="price" class="form-group" data-site="US" style=""> 
+          <label class="control-label col-md-2 v-required">价格</label> 
+          <div class="col-md-10"> 
+           <input id="price" data-value="None" type="Number" placeholder="价格" data-id="price" class="form-control amazon-data base-value"  name="data[price]" /> 
+           <!----> 
+         	<div class="base-error">
+           		<p class="base-null">请填写价格</p>
+           </div>
+           <!----> 
+           <!----> 
+          </div> 
+         </div> 
+         <div data-id="stock" class="form-group" data-site="US" style=""> 
+          <label class="control-label col-md-2 v-required">库存</label> 
+          <div class="col-md-10"> 
+           <input id="stock" type="Number" placeholder="库存" data-id="stock" class="form-control amazon-data base-value" name='data[quantity]'/> 
+           <!----> 
+          <div class="base-error">
+           		<p class="base-null">请填写库存</p>
+           </div>
+           <!----> 
+           <!----> 
+          </div> 
+         </div> 
+         <div data-id="keywords" data-site="US" class="form-group" style=""> 
+          <label class="col-md-2 control-label v-required">产品关键词</label> 
+          <div class="col-md-10"> 
+           <div site-id="US" class="material col-md-12" style="padding: 0px 0px 10px; float: left;"> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="200" name="searchTerms[]" value="" placeholder="请输入关键词!" class="form-control amazon-keywords base-value" /> 
+             <div class="base-error">
+           		<p class="base-null">请填写产品关键词</p>
+          	 </div>
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="200" name="searchTerms[]" value="" placeholder="请输入关键词!" class="form-control amazon-keywords" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="200" name="searchTerms[]" value="" placeholder="请输入关键词!" class="form-control amazon-keywords" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="200" name="searchTerms[]" value="" placeholder="请输入关键词!" class="form-control amazon-keywords" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="200" name="searchTerms[]" value="" placeholder="请输入关键词!" class="form-control amazon-keywords" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+         <div data-id="bulletPoint" data-site="US" class="form-group" style=""> 
+          <label class="col-md-2 control-label v-required">BulletPoint</label> 
+          <div site-id="US" class="col-md-10"> 
+           <div class="material col-md-12" style="padding: 0px 0px 10px; float: left;"> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="500" name="bulletPoint[]" value="" placeholder="BulletPoint长度现已支持500个字符!" class="form-control amazon-bullet base-value" /> 
+            <div class="base-error">
+           		<p class="base-null">请填写BulletPoint</p>
+          	 </div>
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="500" name="bulletPoint[]" value="" placeholder="BulletPoint长度现已支持500个字符!" class="form-control amazon-bullet" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="500" name="bulletPoint[]" value="" placeholder="BulletPoint长度现已支持500个字符!" class="form-control amazon-bullet" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="500" name="bulletPoint[]" value="" placeholder="BulletPoint长度现已支持500个字符!" class="form-control amazon-bullet" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+            <div class="col-md-12" site-id="US"> 
+             <input type="text" maxlength="500" name="bulletPoint[]" value="" placeholder="BulletPoint长度现已支持500个字符!" class="form-control amazon-bullet" /> 
+             <div class="value-tip"> 
+              <p class="error-tip"></p> 
+             </div> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+         <p data-site="US" class="noPro" style="cursor: pointer; display: none;">请选择产品分类</p> 
+        </div> 
+       </div> 
+       <div data-site="US" class="panel panel-danger" style="display: none;"> 
+        <div data-site="US" class="panel panel-success" style="display: none;"> 
+         <div class="panel-heading"> 
+          <h3 class="panel-title">产品变体</h3> 
+         </div> 
+         <sku-item-prop-tab ref="skuItem" :site-id="i" :price-unite="priceUnite"></sku-item-prop-tab> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div style="width: 85%;margin: 0 auto"> 
+     <div class="pull-right"> 
+      <div class="btn-group" role="group"> 
+       <button type="button" class="btn btn-primary" data-loading-text="处理中..." id="just-translate" autocomplete="off">一键翻译</button> 
+      </div> 
+      <div class="btn-group" role="group"> 
+       <button type="button" class="btn btn-primary" data-loading-text="处理中..." id="submit-btn" autocomplete="off">保存到待发布</button> 
+      </div> 
+      <div class="btn-group" role="group"> 
+       <button type="button" class="btn btn-primary" data-loading-text="处理中..." id="publish-choose-shop" autocomplete="off">直接发布</button> 
+      </div> 
+     </div> 
+     <div style="clear: both"></div> 
+    </div> 
+   </form> 
+  </div> 
+  <script>String.prototype.format= function(){var args = arguments;return this.replace(/\{(\d+)\}/g,function(s,i){return args[i]})};</script> 
+  <script src="__STATIC__/amazon/publish/js/jquery.min_1.js"></script> 
+  <script src="__STATIC__/amazon/publish/js/bootstrap.min_1.js"></script> 
+  <script>
+var alias = {};
+</script> 
+  <script src="__STATIC__/amazon/publish/js/vue.js"></script>     
+  
+  <!-- input type=file样式 --> 
+
+  <!-- 分类树模态框 -->
+  <div class="modal fade" id="category-tree" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none"> 
+   <div class="modal-dialog" disabled=""> 
+    <div class="modal-content"> 
+     <div class="modal-header"> 
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button> 
+      <h3 class="modal-title" id="myModalLabel"> 为产品选择分类 </h3> 
+     </div> 
+     <div class="modal-body"> 
+      <div id="cate-area"> 
+       <nav class="navbar navbar-default cate-navbar"> 
+        <div class="container-fluid"> 
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
+          <ul class="nav navbar-nav"> 
+           <li class=""><a data-target="#frequent-cate-content" data-toggle="tab" class="tab-a tab-to-fre">常用分类</a></li> 
+           <li class="active"><a data-target="#all-cate-content" data-toggle="tab" class="tab-a tab-to-all">所有分类</a></li> 
+          </ul> 
+          <div class="navbar-form navbar-right"> 
+           <div class="plug-search-div"> 
+            <input type="text" class="plug-search-input all-input-search" value="" placeholder="请输入英文产品关键词,如：mp3" /> 
+            <a href="javascript:void(0)" id="search-in-all-cate"><span class="glyphicon glyphicon-search search-icon"></span></a> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </nav> 
+       <div id="all-cate-content" class="active"> 
+        <div class="cate-select-wrap"> 
+         <div class="cate-search-result cate-list" style="display: none;"> 
+          <div class="cate-search-panel"> 
+           <span>为您匹配到</span> 
+           <span class="cate-search-total">0</span> 
+           <span>个类目</span> 
+           <a class="cancel-cate-search" href="javascript:;">返回类目</a> 
+          </div> 
+          <ul class="cate-search-ul cate-list-ul"></ul> 
+          <div class="status"> 
+           <span></span> 
+          </div> 
+         </div> 
+         <div class="cate-list-select"> 
+          <div class="cate-list"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="cate-list" style="display: none;"> 
+           <div class="cate-filter-wrap"> 
+            <span class="glyphicon glyphicon-search search-icon cate-search"></span> 
+            <input class="plug-search-input cate-filter" type="text" placeholder="请输入名称/拼音首字母" /> 
+           </div> 
+          </div> 
+          <div class="last-null-div"></div> 
+         </div> 
+        </div> 
+        <div class="selected-cate-banner clearfix"> 
+         <span class="plug-cate-tip"><strong>您当前选择的类目：</strong></span> 
+         <span class="selected-cate-displayer cate-content" id="selected-cate-displaye" data-id="" data-root=""></span> 
+        </div> 
+       </div> 
+       <div id="frequent-cate-content" class=""> 
+        <p class="no-fre-tip">您暂时没有可选的常用分类</p> 
+       </div> 
+      </div> 
+     </div> 
+     <div class="modal-footer"> 
+      <input type="hidden" name="" id="itemType_try" >
+      <button type="button" class="btn btn-default " data-dismiss="modal">关闭 </button> 
+      <button type="button" class="btn btn-primary" disabled="" id="choose-category">提交 </button> 
+     </div> 
+    </div> 
+
+   </div> 
+  </div> 
+  <!-- 分类树模态框end -->
+  <script type="text/javascript">
+
+	function closemodel()
+	{
+		$('body').attr('style','').removeClass('modal-open');
+		$('#category-tree').removeClass('in').attr('aria-hidden','true');
+		setTimeout(function(){
+		  $('#category-tree').attr('style','display:none');
+		},90);
+
+		$('#category-tree').find('.cate-list-ul').remove();
+		$('.cate-list-select').children().hide();
+		$('.selected-cate-displayer').html('');
+		$('#choose-category').attr('disabled','');
+	}
+	// style="padding-right: 17px;"  class="modal-open" 
+	$('.close,.btn-default').on('click',function(){
+		closemodel();
+	})
+
+	function chooseCategory()
+	{
+		// 所有被选中分类名称
+		var category=$('#category-tree').find('.selected');
+		// 遍历
+		var categoryName='';
+		category.each(function()
+		{
+			if(categoryName)
+			{
+				categoryName=categoryName+' > '+$(this).attr('data-en');
+			}else{
+
+				categoryName=$(this).attr('data-en');
+			}
+		})
+		// console.dir(categoryName);
+		return categoryName;
+		
+	}
+	// 提交
+	$('#choose-category').click(function(){
+
+		var categoryName=chooseCategory();
+		$('#site-us').html(categoryName);
+		$('#itemType').attr('value',$('#itemType_try').val());
+		closemodel();
+
+	})
+
+
+	
+
+	$('.cate-modal-trigger').on('click',function(){ 	
+		$('body').attr('style','padding-right:17px;').addClass('modal-open');
+		$('#category-tree').addClass('in').attr('aria-hidden','false');
+		setTimeout(function(){
+		  $('#category-tree').attr('style','display:block;padding-right:17px;');
+		},90);
+		// ajax 获取分类
+
+        $.ajax({
+            type: "GET",
+            url: "/index.php/index/index/category",
+            data: {parent_id:'0'},
+            dataType: "json",
+            success:function(data){
+                // console.dir(data['categories']);
+               var	list1='<ul class="cate-list-ul"></ul>';
+               var	list2='';
+                $.each(data['categories'],function(key,val){
+                	var	categorylist='<li><a class="plug-has-leaf category-list" data-id="'+val['id']+'" data-leaf="'+val['leaf']+'" data-py="'+val['name']+'" data-level="'+val['level']+'" data-en="'+val['name']+'" title="'+val['name']+'">'+val['name']+'('+val['chinese']+')</a></li>';
+                	list2=list2+categorylist;
+                	
+				})
+				categorylist='<ul class="cate-list-ul">'+list2+'</ul>';
+				// console.dir(categorylist);
+				$('.cate-list-select>.cate-list:first').append(categorylist).show();
+
+            }
+        });
+
+ 
+	
+	})
+
+
+	$(document).on('click','.category-list',function(){
+		// 已经被选中，不进行任何操作
+		if($(this).hasClass('selected'))
+		{
+			return false;
+		}
+
+		$(this).addClass('selected');
+		$(this).parent().siblings().find('.selected').removeClass('selected');
+		var categoryName=chooseCategory();
+		$('.selected-cate-displayer').html(categoryName);
+
+		if(!$(this).hasClass('plug-has-leaf'))
+		{
+			$('#choose-category').removeAttr('disabled');
+
+			$('#itemType_try').attr('value',$(this).attr('data-en'));
+            return false;
+		}
+		
+		$('#choose-category').attr('disabled','');
+		// 寻找下一个列表的节点
+		var	obj=$(this).parent().parent().parent();
+		// 删除所有子类列表
+		obj.nextAll().hide().find('.cate-list-ul').remove();
+		// 当前选中分类id
+		var	parent_id=$(this).attr('data-id');
+		
+		// ajax 获取分类
+        $.ajax({
+            type: "GET",
+            url: "/index.php/index/index/category",
+            data: {parent_id:parent_id},
+            dataType: "json",
+            success:function(data){
+                // console.dir(data['categories']);
+               var	list1='<ul class="cate-list-ul"></ul>';
+               var	list2='';
+                $.each(data['categories'],function(key,val){
+                	if(!val['leaf']){
+                		var	leaf='plug-has-leaf';
+                	}
+                	var	categorylist='<li><a class="'+leaf+' category-list" data-id="'+val['id']+'" data-leaf="'+val['leaf']+'" data-py="'+val['name']+'" data-level="'+val['level']+'" data-en="'+val['name']+'" title="'+val['name']+'">'+val['name']+'('+val['chinese']+')</a></li>';
+                	list2=list2+categorylist;
+                	
+				})
+		
+				categorylist='<ul class="cate-list-ul">'+list2+'</ul>';
+				
+				// alert(1);
+				obj.next().show().append(categorylist);
+				
+
+            }
+        });
+
+	})
+
+	$('#publish-choose-shop').on('click',function(){
+		
+		var flag=false;
+		var $basevalue=$('.base-value');
+		$basevalue.each(function(){
+			if($(this).val()==''){
+				// alert(1);
+				$(this).parent().find('.base-error').find('.base-null').show();
+				flag=true;
+			}else{
+				$(this).parent().find('.base-error').find('.base-null').hide();
+			}
+		})
+		// 看是否提交了图片
+		var $num=$('#feed_img').attr('num');
+		if($num==0){
+			$('#feed_img').parent().find('.base-null').show();
+		}else{
+			$('#feed_img').parent().find('.base-null').hide();
+		}
+
+		if(flag){
+			return false;
+		}
+
+		 var form=document.getElementById("formsubmit");
+    	 var formdata=new FormData(form);
+		 // var formdata=new FormData($("#form1").[0]);//获取文件法一
+		 // alert(12);
+		 console.dir(formdata);
+    	  $.ajax({
+            type: "POST",
+            url: "/index.php/index/home/submit",
+            data:formdata,
+            cache: false,
+            contentType: false,        /*不可缺*/
+            processData: false,         /*不可缺*/
+
+            success:function(data){
+               
+				console.dir(data);	
+
+            }
+        });
+
+	})
+	 // $('html,body').animate({scrollTop:$('#product-title').offset().top}, 200);、
+</script> 
+
+ <!-- 图片 --> 
+	    
+	          <script type="text/javascript">
+
+    //下面用于多图片上传预览功能
+
+    function setImagePreviews(avalue) {
+
+
+        var docObj = document.getElementById("doc");
+
+       
+        
+
+        var fileList = docObj.files;
+      
+		var obj=$('#doc');
+		obj.attr('name','file[]');
+
+        for (var i = 0; i < fileList.length; i++) {            
+
+        	
+
+            if (docObj.files && docObj.files[i]) {
+
+                var srr=window.URL.createObjectURL(docObj.files[i]);
+             	// console.dir(srr);
+                var type=fileList['0'].type;
+                var name=fileList['0'].name;
+                var  picmodel1='<div class="col-lg-3 col-md-4 col-sm-4" style="border:none"><div class="thumbnail" data-index="0" draggable="true" style="border:none"><div style="display:none"><img class="pic1" src="" style="cursor:pointer;width:174px;height:146px" alt=""><div class="caption"><a href="javascript:void(0)" class="btn btn-sm btn-warning del-pic" data-index="0">删除</a></div></div><span class="btn btn-success fileinput-button"><span>上传</span><input type="file" name="" id="doc" multiple="multiple" style="width:150px;" onchange="javascript:setImagePreviews();" accept="image/*" /></span></div></div>'
+                // imgObjPreview.src = window.URL.createObjectURL(docObj.files[i]);
+
+                // var picmodel1='<div class="col-lg-3 col-md-4 col-sm-4"><div class="thumbnail" data-index="0" draggable="true"><img class="pic1" src="'+srr+'"  style="cursor:pointer;width:200px;height:150px" alt=""  /><input class="amazon-picture" type="hidden" name="file"  data-name="'+name+'"data-type="'+type+'"  data-src="'+srr+'"/> <div class="caption"><a href="javascript:void(0)" class="btn btn-sm btn-warning del-pic"data-index="0">删除</a></div></div></div>';
+                obj.attr('id','');
+                obj.parent().parent().attr('style','').parent().attr('style','');
+                obj.parent().hide().prev().show().find('.pic1').attr('src',srr);
+				
+       		    $('#feed_img').append(picmodel1);
+       		    var $num=$('#feed_img').attr('num');
+       		    $num++;
+       		    $('#feed_img').attr('num',$num);
+
+            }
+
+
+            else {
+
+                //IE下，使用滤镜
+                docObj.select();
+
+                var imgSrc = document.selection.createRange().text;
+
+                alert(imgSrc)
+
+
+
+                try {
+
+                    // localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+
+                    // localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+
+                }
+
+                catch (e) {
+
+                    alert("您上传的图片格式不正确，请重新选择!");
+
+                    return false;
+
+                }
+
+                // imgObjPreview.style.display = 'none';
+
+                document.selection.empty();
+
+            }
+
+        }  
+
+
+
+        return true;
+
+    }
+    
+   
+   
+    $(document).on('click','.btn-sm',function(){
+    	$(this).parent().parent().parent().parent().remove();
+    	var $num=$('#feed_img').attr('num');
+       	$num--;
+       	$('#feed_img').attr('num',$num);
+    	
+    })
+
+
+
+</script>    
+	            <!-- 图片end --> 
+
+ </body>
+</html>

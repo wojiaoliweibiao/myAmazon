@@ -1,0 +1,539 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabInStoreManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>扫描验货</hg:trans></a></li>
+</ul>
+<div style="margin-bottom:20px;">
+    <p class="alert bg-info" style="line-height:25px">
+        <hg:trans>温馨提示：</hg:trans><br />
+        <hg:trans>1、不启用SKU扫描时，可一次扫描完所有订单号或跟踪号再提交；提交或重置可直接扫描提供的条码。
+        </hg:trans><a target="_blank" href="/Content/img/scan_bar_code.jpg"><hg:trans>下载条码</hg:trans></a><br />
+        <font id="fontForIsScanSku"><hg:trans>2、启用SKU扫描后，先扫描订单号或跟踪号，然后再扫描该订单包裹中商品SKU条码；如果同一商品有多件则需要多次扫描该商品SKU条码。</hg:trans></font><br />
+        <hg:trans>3、请将输入法切换至英文进行扫描，如果扫描后未带换行，请联系扫描枪卖家进行设置。</hg:trans>
+    </p>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-horizontal" style="margin-left:10px">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <textarea style="width:100%;height:160px;resize:none;font-size:18px;" id="textareaScan" class="form-control scan_textarea_deactive"></textarea>
+                </div>
+                <div class="col-sm-2" style="text-align:left !important">
+                    <div class="checkbox" style="height:20px">
+                        <label><input type="checkbox" id="IsScanSKU" /><hg:trans>启用SKU扫描</hg:trans></label>
+                    </div>
+                    <div style="margin-top:100px !important">
+                        <button type="button" class="btn btn-info btn-sm" onclick="p1503458854doReset()"><hg:trans>重置</hg:trans></button>
+                        <button type="button" class="btn btn-info btn-sm" onclick="p1503458854doSubmitScanOrder()"><hg:trans>提交</hg:trans></button>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <span id="spMessage" style="font-size:12px;font-weight:700"></span>
+                </div>
+            </div>
+        </div>
+        <div id="rightDIV"></div>
+        <div id="errorDIV"></div>
+        <div id="warningDIV"></div>
+        <div id="divOrder" style="margin-left:10px;margin-top:20px">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function showPic(obj) {
+        var urlPic = $(obj).attr("src");
+        var html = "<div name ='mainPicShow' style='position: absolute; border: 1px solid silver; background: #ffffff;width:300px;height:300px; line-height:300px'><img   style='width:100%;' src='" + urlPic + "' /></div>";
+        var objDiv = $(html).appendTo($(obj).parent());
+        objDiv.css("top", $(obj).offset().top - 200);
+        objDiv.css("left", $(obj).offset().left - 100);
+    }
+
+    function hidePic(obj) {
+        var objDiv = $(obj).parent().find("[name=mainPicShow]");
+        if (objDiv != undefined) {
+            objDiv.remove();
+        }
+    }
+
+    jQuery(function () {
+        $("#textareaScan").focus(function () {
+            $("#textareaScan").removeClass().addClass("form-control");
+        });
+        $("#textareaScan").blur(function () {
+            $("#textareaScan").addClass("scan_textarea_deactive");
+        });
+        //绑定点击“启用SKU扫描”事件
+        $("#IsScanSKU").bind("click", function () {
+            if ($("#IsScanSKU").is(":checked"))
+                $("#fontForIsScanSku").css("color", "red");
+            else
+                $("#fontForIsScanSku").css("color", "");
+        });
+
+        var scanHasError = false;
+        $("#textareaScan").keydown(function (e) {
+            if (e.keyCode == 13) {
+                var text = $("#textareaScan").val().replace(/\n/g, "|");
+                var isScanSKU = $("#IsScanSKU").is(":checked");
+                //如果启用扫描SKU则需要查询出订单信息
+                if (isScanSKU) {
+                    if (text.split("|").length == 1) {
+                        $.ajax({
+                            type: "POST",
+                            url: "../Order/GetScanOrder",
+                            data: {
+                                scanNos: text
+                            },
+                            datatype: "json",
+                            global: false,
+                            success: function (data) {
+                                if (data.HasError == false) {
+                                    var order = data.MapData.order;//订单
+                                    var orderDetailList = data.MapData.orderDetailList;//产品列表
+                                    var thisUser = data.MapData.thisUser;//当前登录用户
+                                    var hasMoreOrder = data.MapData.hasMoreOrder;//查出多条信息
+                                    var checkMessage = data.MapData.checkMessage;//已验货
+                                    if (checkMessage == undefined)
+                                        checkMessage = "";
+                                    var htmlContent = "";
+                                    if (orderDetailList != null && orderDetailList.length > 0 && checkMessage == "") {
+                                        htmlContent += '<table class="table table-bordered">';
+                                        htmlContent += '<thead>';
+                                        htmlContent += '    <tr>';
+                                        htmlContent += '        <th style="width:20%"><hg:trans>订单号</hg:trans></th>';
+                                        htmlContent += '        <th style="width:45%"><hg:trans>商品信息</hg:trans></th>';
+                                        htmlContent += '        <th style="width:20%"><hg:trans>已扫描商品信息</hg:trans></th>';
+                                        htmlContent += '        <th style="width:15%"><hg:trans>质检人</hg:trans></th>';
+                                        htmlContent += '    </tr>';
+                                        htmlContent += '</thead>';
+                                        htmlContent += '<tbody>';
+                                        htmlContent += '    <tr>';
+                                        if (order == null) {
+                                            htmlContent += '        <td style="text-align:center !important"><input type="hidden" id="hidOrderId" value="0"/><span class="text-danger"><hg:trans>订单不存在！</hg:trans></span></td>';
+                                        }
+                                        else {
+                                            htmlContent += '        <td style="text-align:center !important"><input type="hidden" id="hidOrderId" value="' + order.OrderId + '"/>' + order.OrderNo + '</td>';
+                                        }
+                                        htmlContent += '        <td style="text-align:left !important" id="tdProduct">';
+                                        if (order != null) {
+                                            $(orderDetailList).each(function (i, product) {
+                                                htmlContent += '            <table id="' + i + '">';
+                                                htmlContent += '                <tr>';
+                                                htmlContent += '                    <td><img onmouseover="showPic(this)" onmouseout="hidePic(this)" onmouseover="showPic(this)" onmouseout="hidePic(this)"  class="img-thumbnail" style="width:50px; height:50px;" src="' + product.ProductPictureUrl + '"></td>';
+                                                htmlContent += '                    <td style="text-align:left !important">';
+                                                htmlContent += '                        <div style="color:#337ab7;width:270px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="' + product.ProductName + '">' + product.ProductName + '</div>';
+                                                htmlContent += '                    </td>';
+                                                htmlContent += '                    <td>';
+                                                htmlContent += '                        SKU：<span id="spSKU">' +(product.ProductRealSku.length>0?product.ProductRealSku:product.Sku)+ '</span> 　　　　<hg:trans>数量</hg:trans>：<span class="badge" id="spNum">' + product.Num + '</span>';
+                                                htmlContent += '                    </td>';
+                                                htmlContent += '                </tr>';
+                                                htmlContent += '            </table>';
+                                            })
+                                        }
+                                        htmlContent += '        </td>';
+                                        htmlContent += '        <td id="tdScan">';
+                                        if (order != null) {
+                                            $(orderDetailList).each(function (i, product) {
+                                                htmlContent += '            <table id="tbScan' + i + '" style="width:100%">';
+                                                htmlContent += '                <tr>';
+                                                htmlContent += '                    <td style="height:50px;text-align:center !important">';
+                                                htmlContent += '                        <input type="hidden" id="hidScanHasError" value="Y" /><span id="spScanNum" class="text-danger">（未配齐）</span>';
+                                                htmlContent += '                    </td>';
+                                                htmlContent += '                </tr>';
+                                                htmlContent += '            </table>';
+                                            })
+                                        }
+                                        htmlContent += '        </td>';
+                                        htmlContent += '        <td>' + thisUser + '</td>';
+                                        htmlContent += '    </tr>';
+                                        htmlContent += '</tbody>';
+                                        htmlContent += '</table>';
+                                    }
+                                    $("#divOrder").html("");
+                                    $(htmlContent).appendTo("#divOrder");
+
+                                    //如果有多个订单，给出提示
+                                    if (hasMoreOrder) {
+p1503458854doSetMessage(2, translate.format("<hg:trans>提示：根据当前扫描单号查询有多条记录，现处理的是订单号为：{0}的订单！</hg:trans>",[order.OrderNo]));
+                                    }
+                                    //订单不存在
+                                    if (order == null || order.length == 0) {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：未验货订单中不存在该订单！</hg:trans>"));
+                                    }
+                                    //已经验过货的
+                                    if (checkMessage != "") {
+p1503458854doSetMessage(2, translate.format("<hg:trans>提示：{0}</hg:trans>",[checkMessage]));
+                                    }
+                                }
+                                else {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：获取订单失败：</hg:trans>",[data.Message]));
+                                }
+                            },
+                            error: function () {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：获取订单失败。</hg:trans>"));
+                            }
+                        });
+                        //请求完后有时候会是去焦点，需重新设置焦点
+                        $("#textareaScan").focus();
+                        $("#textareaScan").removeClass().addClass("form-control");
+                    }
+                    else {
+                        //第二次或后续扫描处理
+                        var thisScanText = text.substring(text.lastIndexOf("|") + 1);//当前扫描的SKU条码
+                        if (thisScanText == "R_S_0") {
+                            if (scanHasError == true) {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：验货失败，禁止提交！</hg:trans>"));
+                                scanHasError = false;
+                                return;
+                            }
+                            else {
+p1503458854doSubmitScanOrder();
+                                scanHasError = false;
+                                return false;
+                            }
+                        }
+                        else if (thisScanText == "R_S_1") {
+                            scanHasError = false;
+p1503458854doReset();
+                            return false;//清空后不允许在输入，否则会多出一个换行导致后续扫描有问题
+                        }
+                        else {
+                            var hasThisSKU = false;
+                            //循环商品信息列表中所有商品
+                            if ($("#hidOrderId").val() != "0") {
+                                $("#tdProduct table").each(function () {
+                                    if ($(this).find("#spSKU").text() == thisScanText) {
+                                        hasThisSKU = true;
+                                        var spNum = $(this).find("#spNum").text();
+                                        var thisTableId = $(this).attr("id");//获取当前商品列表表格ID序号
+                                        //获取已扫描商品信息列中的内容
+                                        var spScanNum = $("#tbScan" + thisTableId).find("#spScanNum").text();
+                                        if (spScanNum == "（未配齐）")
+                                            $("#tbScan" + thisTableId).find("#spScanNum").text("1");
+                                        else
+                                            $("#tbScan" + thisTableId).find("#spScanNum").text(parseInt(spScanNum) + 1);
+
+                                        var nowScanNum = parseInt($("#tbScan" + thisTableId).find("#spScanNum").text());//扫描后多少件
+
+                                        //扫描的数量和实际数量相等时将该商品标识的隐藏变量更改过来
+                                        if (spNum == nowScanNum)
+                                            $("#tbScan" + thisTableId).find("#hidScanHasError").val("N");
+                                        if (nowScanNum > spNum) {
+                                            scanHasError = true;
+                                            messageText = translate.format("<hg:trans>提示：验货失败，多出SKU为：</hg:trans>")+thisScanText+translate.format("<hg:trans>的商品！</hg:trans>");
+p1503458854doSetMessage(0, messageText);
+                                        }
+                                    }
+                                })
+                            }
+                            if (hasThisSKU == false) {
+                                var messageText = "";
+                                if ($("#hidOrderId").val() == "0")//订单不存在
+                                {
+                                    scanHasError = true;
+                                    messageText = translate.format("<hg:trans>提示：验货失败，订单不存在！</hg:trans>");
+                                }
+                                else {
+                                    messageText = translate.format("<hg:trans>提示：验货失败，多出SKU为：</hg:trans>")+thisScanText+translate.format("<hg:trans>的商品！</hg:trans>");
+                                    scanHasError = true;
+                                }
+p1503458854doSetMessage(0, messageText);
+                            }
+                        }
+                    }
+                }
+                else {
+                    text = text.substring(text.lastIndexOf("|") + 1);
+                    if (text == "R_S_1") {
+p1503458854doReset();
+                        return false;
+                    }
+                   else if (text == "R_S_0") {
+p1503458854doSubmitScanOrder();
+                        return false;
+                   } else {
+                       $.ajax({
+                           type: "POST",
+                           url: "../Order/GetScanOrder",
+                           data: {
+                               scanNos: text
+                           },
+                           datatype: "json",
+                           global: false,
+                           success: function (data) {
+                               if (data.HasError == false) {
+                                   var order = data.MapData.order;//订单
+                                   var orderDetailList = data.MapData.orderDetailList;//产品列表
+                                   var thisUser = data.MapData.thisUser;//当前登录用户
+                                   var hasMoreOrder = data.MapData.hasMoreOrder;//查出多条信息
+                                   var checkMessage = data.MapData.checkMessage;//已验货
+                                   if (checkMessage == undefined)
+                                       checkMessage = "";
+                                   var htmlContent = "";
+                                   if (orderDetailList != null && orderDetailList.length > 0 && checkMessage == "") {
+                                       htmlContent += '<table class="table table-bordered">';
+                                       htmlContent += '<thead>';
+                                       htmlContent += '    <tr>';
+                                       htmlContent += '        <th style="width:20%"><hg:trans>订单号</hg:trans></th>';
+                                       htmlContent += '        <th style="width:50%"><hg:trans>商品信息</hg:trans></th>';
+                                       htmlContent += '        <th style="width:10%"><hg:trans>质检人</hg:trans></th>';
+                                       htmlContent += '    </tr>';
+                                       htmlContent += '</thead>';
+                                       htmlContent += '<tbody>';
+                                       htmlContent += '    <tr>';
+                                       if (order == null) {
+                                           htmlContent += '        <td style="text-align:center !important"><input type="hidden" id="hidOrderId" value="0"/><span class="text-danger"><hg:trans>订单不存在！</hg:trans></span></td>';
+                                       }
+                                       else {
+                                           htmlContent += '        <td style="text-align:center !important"><input type="hidden" id="hidOrderId" value="' + order.OrderId + '"/>' + order.OrderNo + '</td>';
+                                       }
+                                       htmlContent += '        <td style="text-align:left !important" id="tdProduct">';
+                                       if (order != null) {
+                                           $(orderDetailList).each(function (i, product) {
+                                               htmlContent += '            <table id="' + i + '">';
+                                               htmlContent += '                <tr>';
+                                               htmlContent += '                    <td><img onmouseover="showPic(this)" onmouseout="hidePic(this)" onmouseover="showPic(this)" onmouseout="hidePic(this)" class="img-thumbnail" style="width:50px; height:50px;" src="' + product.ProductPictureUrl + '"></td>';
+                                               htmlContent += '                    <td style="text-align:left !important">';
+                                               htmlContent += '                        <div style="color:#337ab7;width:270px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="' + product.ProductName + '">' + product.ProductName + '</div>';
+                                               htmlContent += '                    </td>';
+                                               htmlContent += '                    <td style="font-size:18px;font-weight:700">';
+                                               htmlContent += '                        SKU：<span id="spSKU">' +(product.ProductRealSku.length>0?product.ProductRealSku:product.Sku)+ '</span> 　　　　<hg:trans>数量</hg:trans>：<span class="badge" id="spNum" style="font-size:22px">' + product.Num + '</span>';
+                                               htmlContent += '                    </td>';
+                                               htmlContent += '                </tr>';
+                                               htmlContent += '            </table>';
+                                           })
+                                       }
+                                       htmlContent += '        </td>';
+                                       htmlContent += '        <td>' + thisUser + '</td>';
+                                       htmlContent += '    </tr>';
+                                       htmlContent += '</tbody>';
+                                       htmlContent += '</table>';
+                                   }
+                                   $("#divOrder").html("");
+                                   $(htmlContent).appendTo("#divOrder");
+
+                                   //如果有多个订单，给出提示
+                                   if (hasMoreOrder) {
+p1503458854doSetMessage(2, translate.format("<hg:trans>提示：根据当前扫描单号查询有多条记录，现处理的是订单号为：{0}的订单！</hg:trans>",[order.OrderNo]));
+                                   }
+                                   //订单不存在
+                                   if (order == null || order.length == 0) {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：未验货订单中不存在该订单！</hg:trans>"));
+                                   }
+                                   //已经验过货的
+                                   if (checkMessage != "") {
+p1503458854doSetMessage(2, translate.format("<hg:trans>提示：{0}</hg:trans>",[checkMessage]));
+                                   }
+                               }
+                               else {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：获取订单失败：</hg:trans>",[data.Message]));
+                               }
+                           },
+                           error: function () {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：获取订单失败。</hg:trans>"));
+                           }
+                       });
+                   }
+                }
+            }
+        });
+        //加载声音文件
+        $('<audio id="errorAudio"><source src="../../Content/sounds/order_error.wav" type="audio/ogg"></audio>').appendTo('#errorDIV');
+        $('<audio id="rightAudio"><source src="../../Content/sounds/order_right.wav" type="audio/ogg"></audio>').appendTo('#rightDIV');
+        $('<audio id="warningAudio"><source src="../../Content/sounds/order_warning.wav" type="audio/ogg"></audio>').appendTo('#warningDIV');
+    })
+
+    function p1503458854doReset() {
+        $("#textareaScan").val("");
+        $("#spMessage").text("");
+        $("#divOrder").html("");
+        $("#spMessage").removeClass();
+    }
+
+    //除了提示语，其余清空掉
+    function p1503458854doClear() {
+        $("#textareaScan").val("");
+        $("#divOrder").html("");
+    }
+
+    //设置提示消息
+    function p1503458854doSetMessage(type, text) {
+        $("#spMessage").html(text);
+        if (type == 0) {
+            $('#errorAudio')[0].play(); //播放声音
+            $("#spMessage").removeClass().addClass("text-danger");
+        }
+        else if (type == 1) {
+            $('#rightAudio')[0].play();
+            $("#spMessage").removeClass().addClass("text-success");
+        }
+        else {
+            $('#warningAudio')[0].play();
+            $("#spMessage").removeClass().addClass("text-warning");
+        }
+    }
+
+    function p1503458854doSubmitScanOrder() {
+        var scanText = $("#textareaScan").val().trim();
+        //先判断文本框有没有值
+        if (scanText == "" || scanText == undefined) {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：请扫描订单！</hg:trans>"));
+            //清空内容
+p1503458854doClear();
+            return;
+        }
+
+        var scanNos = $("#textareaScan").val().replace(/\n/g, "|");
+        var isScanSKU = $("#IsScanSKU").is(":checked");
+
+        //启用SKU扫描
+        if (isScanSKU) {
+            scanNos = $("#hidOrderId").val();
+            //订单不存在
+            if (scanNos == undefined || scanNos == "0") {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：验货失败，订单不存在！</hg:trans>"));
+                //清空内容
+                $("#textareaScan").val("");
+                return;
+            }
+            var hasNotScan = false;//查询是否还有没有扫描的
+            $("#tdScan table").each(function () {
+                if ($(this).find("#hidScanHasError").val() == "Y")
+                    hasNotScan = true;
+            })
+            if (hasNotScan) {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：验货失败，请核对包裹中商品数量！</hg:trans>"));
+                //清空内容
+                $("#textareaScan").val("");
+                return;
+            }
+        }
+        else {
+            var lastScan = scanNos.substring(scanNos.lastIndexOf("|") + 1);
+            if (lastScan == "R_S_0")
+                scanNos = scanNos.substring(0, scanNos.lastIndexOf("|"));
+            if (scanNos == "") {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：扫描有误！</hg:trans>"));
+                return false;
+            }
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "../Order/SubmitScanOrder",
+            datatype: "json",
+            data: { scanNos: scanNos, isScanSKU: isScanSKU },
+            global: false,
+            success: function (data) {
+                if (data.HasError) {
+p1503458854doSetMessage(0, translate.format("<hg:trans>提示：订单验货失败！</hg:trans>") + data.Message);
+                } else {
+p1503458854doSetMessage(1, data.Message);
+p1503458854doClear();
+                }
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>",[XMLHttpRequest.status,XMLHttpRequest.statusText]));
+            }
+        });
+    }
+    function doDownLoadScanBarCode() {
+        var url = "/DownLoad/DownLoadFile/?filePath=/Content/img/scan_bar_code.jpg&fileName=扫描条码.jpg";
+        window.open(url);
+    }
+</script>
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

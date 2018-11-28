@@ -1,0 +1,1122 @@
+{:widget('Blog/header')}
+
+
+
+
+    <script src="__STATIC__/index/js/99ceb706dfe446e4b01dcb2c6c39b327.js"></script>
+
+    <script src="__STATIC__/index/js/86301531ce674dd9add7e9eb961e6576.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>用户管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div>
+<form action="/Account?Length=7" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p184163570divDataList" id="searchForm" method="post">                <div style="padding-left:20px;margin-bottom:20px;" class="panel panel-default">
+                    <input type="hidden" id="hidDeptId" name="hidDeptId" />
+                    <div class="parents-nodes">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" placeholder="登陆名/姓名" class="form-control" />
+                        <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary btn-sm" />
+                        
+                    </div>
+                    
+                    <div id="divMoreSearach" role="form" style="display:none; margin-bottom:18px">
+                        <input type="hidden" id="txtDeptIdPath" name="txtDeptIdPath" />
+                        <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                            <label for="txtUserCode"><hg:trans>用户编号</hg:trans></label>
+                            <input type="text" class="form-control" style="width:220px;margin-left: 12px;" id="txtUserCode" name="txtUserCode" hgtrans="true" placeholder="请输入用户编号">
+                        </div>
+                        <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                            <label for="txtEmail"><hg:trans>电子邮件</hg:trans></label>
+                            <input type="text" class="form-control" style="width:220px;margin-left: 12px;" id="txtEmail" name="txtEmail" hgtrans="true" placeholder="请输入电子邮件">
+                        </div>
+                        <div class="form-group" style="margin-left:10px; margin-right:10px; ">
+                            <label for="txtUserStatus"><hg:trans>状态</hg:trans></label>
+                            <select class="form-control" style="width:220px;margin-left: 12px;" id="txtUserStatus" name="txtUserStatus">
+                                <option value=""></option>
+                                <option value="1"><hg:trans>正常</hg:trans></option>
+                                <option value="-1"><hg:trans>禁用</hg:trans></option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-default"><hg:trans>查询</hg:trans></button>
+                        <br/>
+                        <div class="form-group" id="Search" style="margin-left:-5px">
+                            <label class="control-label col-sm-1" style="padding-top:12px;width:auto"><hg:trans>排序方式</hg:trans></label>
+                                <div id="divSort" class="input-group para-items-sm">
+                                    <span itemid="UserCode" sorttype="" style="margin-top:8px"><hg:trans>用户编码</hg:trans><span id="UserCodeMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                                    <span itemid="LoginName" sorttype="" style="margin-top:8px"><hg:trans>登录名</hg:trans><span id="LoginNameMark" class="glyphicon glyphicon-resize-vertical"></span></span>
+                                    <input type="hidden" id="hidSort" name="hidSort" value="" />
+                                    <input type="hidden" id="hidSortType" name="hidSortType" value="" />
+                                </div>
+                        </div>
+                    </div>
+                    <span onclick="javascript:p184163570doShowMoreSearchPanel(event);" class="search-more search-down"><hg:trans>高级筛选</hg:trans></span>
+                </div>
+</form>        </div>
+        <div id="divDeptSearch">
+            <div class="button_panel">
+                <button type="button" class="btn btn-info btn-sm" onclick="p184163570doEditData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加用户</hg:trans></button>
+                <button type="button" class="btn btn-info btn-sm" onclick="p184163570doImportData()"><i class="glyphicon glyphicon-log-in"></i> <hg:trans>导入</hg:trans></button>
+                <button type="button" class="btn btn-info btn-sm" onclick="p184163570doExportUser()"><i class="glyphicon glyphicon-log-out"></i> <hg:trans>导出</hg:trans></button>
+            </div>
+            
+<div id="f563divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择组织架构</hg:trans>:</span>
+    <div id="f563divDeptContentPanel" class="tree" contentgroup="#divDeptSearch #f563divDeptContentPanel" navigategroup="#divDeptSearch .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 35px;" contentgroup="#divDeptSearch #f563divDeptContentPanel" navigategroup="#divDeptSearch .breadcrumb"></ol>
+
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f563treeObject = new redgle.tree({
+            contentPanelExpr:"#divDeptSearch #f563divDeptContentPanel"
+            , navigatePanelExpr:"#divDeptSearch .breadcrumb"
+            , fnLoadChildren:function(deptId){
+                $.ajax({
+                    type: "POST",
+                    url: "/DeptTree/LoadDept",
+                    data: { deptId: deptId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f563treeObject.convertDeptToData(data);
+f563treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f563treeObject.convertDataToDept(data);
+                if(typeof(p184163570onDeptSelected) == "function") p184163570onDeptSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/DeptTree/LoadRoot",
+            data: {},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f563treeObject.convertDeptToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f563treeObject.addItemsToNavigate(data);
+f563treeObject.AddElementItem(data[0]);
+                }
+                else {
+f563treeObject.addItemsToNavigate([data]);
+f563treeObject.AddElementItem(data);
+                }
+            },
+            error: function () {
+
+            }
+        });
+
+        $("#f563divSelect").hover(
+            function () {
+                $("#f563divDeptContentPanel").show();
+            },
+            function () {
+                $("#f563divDeptContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="p184163570divDataList" class="parents-nodes">
+            <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="10" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Account?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/Account?pageIndex=2&amp;pagesize=20">2</a>  <a data-pageindex="3" href="/Account?pageIndex=3&amp;pagesize=20">3</a>  <a data-pageindex="4" href="/Account?pageIndex=4&amp;pagesize=20">4</a>  <a data-pageindex="5" href="/Account?pageIndex=5&amp;pagesize=20">5</a>  <a data-pageindex="6" href="/Account?pageIndex=6&amp;pagesize=20">6</a>  <a data-pageindex="7" href="/Account?pageIndex=7&amp;pagesize=20">7</a>  <a data-pageindex="8" href="/Account?pageIndex=8&amp;pagesize=20">8</a>  <a data-pageindex="9" href="/Account?pageIndex=9&amp;pagesize=20">9</a>  <a data-pageindex="10" href="/Account?pageIndex=10&amp;pagesize=20">10</a>  <a data-pageindex="2" href="/Account?pageIndex=2&amp;pagesize=20">下一页</a>  <a data-pageindex="10" href="/Account?pageIndex=10&amp;pagesize=20">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 191 条数据</span></div><div style="clear:both"></div></div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                <hg:trans>登陆名</hg:trans>
+            </th>
+            <th>
+                <hg:trans>用户编码</hg:trans>
+            </th>
+            <th>
+                <hg:trans>姓名</hg:trans>
+            </th>
+            <th>
+                <hg:trans>所在部门</hg:trans>
+            </th>
+            <th>
+                <hg:trans>电子邮件</hg:trans>
+            </th>
+            <th>
+                <hg:trans>手机号码</hg:trans>
+            </th>
+            <th>
+                <hg:trans>角色名称</hg:trans>
+            </th>
+            <th>
+                <hg:trans>状态</hg:trans>
+            </th>
+            <th>
+                <hg:trans>操作</hg:trans>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr ondblclick="p184163570doEditData('214')">
+                <td>
+                    chenqian
+                </td>
+                <td>
+                    chenqian
+                </td>
+                <td>
+                    陈倩
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('214')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('214')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('214')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('213')">
+                <td>
+                    zhangjin01
+                </td>
+                <td>
+                    zhangjin01
+                </td>
+                <td>
+                    张晋
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('213')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('213')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('213')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('212')">
+                <td>
+                    gaoxiong
+                </td>
+                <td>
+                    gaoxiong
+                </td>
+                <td>
+                    高雄
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('212')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('212')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('212')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('211')">
+                <td>
+                    duyanping1
+                </td>
+                <td>
+                    duyanping1
+                </td>
+                <td>
+                    杜艳萍
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('211')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('211')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('211')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('210')">
+                <td>
+                    wangjianhua
+                </td>
+                <td>
+                    wangjianhua
+                </td>
+                <td>
+                    王建华
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('210')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('210')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('210')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('209')">
+                <td>
+                    wangyue
+                </td>
+                <td>
+                    wangyue
+                </td>
+                <td>
+                    wangyue
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('209')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('209')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('209')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('208')">
+                <td>
+                    wenyanbo
+                </td>
+                <td>
+                    wenyanbo
+                </td>
+                <td>
+                    温彦博
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('208')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('208')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('208')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('207')">
+                <td>
+                    duyanjie
+                </td>
+                <td>
+                    duyanjie
+                </td>
+                <td>
+                    duyanjie
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('207')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('207')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('207')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('206')">
+                <td>
+                    guoyanzhen
+                </td>
+                <td>
+                    guoyanzhen
+                </td>
+                <td>
+                    郭燕珍
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('206')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('206')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('206')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('205')">
+                <td>
+                    dongdong
+                </td>
+                <td>
+                    dongdong
+                </td>
+                <td>
+                    东东
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('205')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('205')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('205')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('204')">
+                <td>
+                    yanjunhan
+                </td>
+                <td>
+                    yanjunhan
+                </td>
+                <td>
+                    闫君函
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('204')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('204')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('204')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('203')">
+                <td>
+                    wangyizhi
+                </td>
+                <td>
+                    wangyizhi
+                </td>
+                <td>
+                    王一指
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('203')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('203')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('203')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('202')">
+                <td>
+                    duguodong
+                </td>
+                <td>
+                    duguodong
+                </td>
+                <td>
+                    杜国栋
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('202')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('202')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('202')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('201')">
+                <td>
+                    gaolifeng
+                </td>
+                <td>
+                    gaolifeng
+                </td>
+                <td>
+                    高李峰
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    1031110455@qq.com
+                </td>
+                <td>
+                    18581541114
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('201')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('201')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('201')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('200')">
+                <td>
+                    guoyangyang
+                </td>
+                <td>
+                    guoyangyang01
+                </td>
+                <td>
+                    郭阳阳
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('200')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('200')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('200')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('199')">
+                <td>
+                    zhaozhuoyue
+                </td>
+                <td>
+                    zhaozhuoyue
+                </td>
+                <td>
+                    赵卓玥
+                </td>
+                <td>
+                    组织架构
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('199')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('199')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('199')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('198')">
+                <td>
+                    liuyanyuan
+                </td>
+                <td>
+                    liuyanyuan
+                </td>
+                <td>
+                    刘彦远
+                </td>
+                <td>
+                    樊艳军
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('198')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('198')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('198')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('197')">
+                <td>
+                    guoyanyang
+                </td>
+                <td>
+                    guoyangyang
+                </td>
+                <td>
+                    郭阳阳
+                </td>
+                <td>
+                    樊艳军
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('197')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('197')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('197')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('196')">
+                <td>
+                    chaoxiaonan
+                </td>
+                <td>
+                    chaoxiaonan
+                </td>
+                <td>
+                    钞晓楠
+                </td>
+                <td>
+                    樊艳军
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('196')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('196')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('196')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p184163570doEditData('195')">
+                <td>
+                    lianghaojie
+                </td>
+                <td>
+                    lianghaojie
+                </td>
+                <td>
+                    梁豪杰
+                </td>
+                <td>
+                    樊艳军
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                
+                <td>
+                    客服
+                </td>
+                <td>
+                        <label class="text-success">正常</label>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-edit" onclick="p184163570doEditData('195')" hgtrans="true" title="编辑"></a>&nbsp;&nbsp; 
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-user" onclick="p184163570doUserRole('195')" hgtrans="true" title="角色"></a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove" onclick="p184163570doDeleteData('195')" hgtrans="true" title="删除"></a>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="20" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p184163570divDataList" data-maxpages="10" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Account?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/Account?pageIndex=2&amp;pagesize=20">2</a>  <a data-pageindex="3" href="/Account?pageIndex=3&amp;pagesize=20">3</a>  <a data-pageindex="4" href="/Account?pageIndex=4&amp;pagesize=20">4</a>  <a data-pageindex="5" href="/Account?pageIndex=5&amp;pagesize=20">5</a>  <a data-pageindex="6" href="/Account?pageIndex=6&amp;pagesize=20">6</a>  <a data-pageindex="7" href="/Account?pageIndex=7&amp;pagesize=20">7</a>  <a data-pageindex="8" href="/Account?pageIndex=8&amp;pagesize=20">8</a>  <a data-pageindex="9" href="/Account?pageIndex=9&amp;pagesize=20">9</a>  <a data-pageindex="10" href="/Account?pageIndex=10&amp;pagesize=20">10</a>  <a data-pageindex="2" href="/Account?pageIndex=2&amp;pagesize=20">下一页</a>  <a data-pageindex="10" href="/Account?pageIndex=10&amp;pagesize=20">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10">10</option><option value="20" selected="selected">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 191 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<!--导入用户窗口-->
+<div class="modal fade" id="ImportAccountModal" tabindex="-1" role="dialog" aria-labelledby="ImportAccountModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:550px">
+        <div class="modal-content">
+            <div class="modal-header" style="cursor:move;background:#438EB9 none repeat scroll 0% 0%;color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ImportAccountModalLabel"><hg:trans>导入用户和权限</hg:trans></h4>
+            </div>
+            <div class="modal-body" style="height:250px;overflow:auto">
+                <p><hg:trans>导入模板</hg:trans>：<a href="../FileData/ImportUser/ImportAccount.xls"><hg:trans>下载模板</hg:trans></a></p>
+                <div class="col-sm-8">
+                    <div class="fileList"></div>
+                    <div group="upload" itemid="IdPhotoFront" style="float:left; height:100%; width:100%;margin-right:10px;">
+                        <div style="margin-left: 5px;margin-right: 5px;">
+                        </div>
+                        <div id="divPhotoButton">
+                            <input id="fileupload" type="file" style="display:none;">
+                            <label for="fileupload" class="btn btn-primary" style="margin:10px 15px;">导入文件</label>
+                        </div>
+                        <div id="divPhotoProgress" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="static/js/jquery.ui.widget.js"></script>
+<script src="static/js/jquery.iframe-transport.js"></script>
+<script src="static/js/jquery.fileupload.js"></script>
+
+<script language="javascript" type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+
+    //高级筛选
+    function p184163570doShowMoreSearchPanel(event) {
+        $("#divMoreSearach").toggle("slow");
+        var src = event.target || window.event.srcElement;
+        if ($(src).hasClass("search-down")) {
+            $(src).removeClass("search-down").addClass("search-up").text(translate.format("<hg:trans>收起</hg:trans>"));
+        }
+        else {
+            $(src).removeClass("search-up").addClass("search-down").text(translate.format("<hg:trans>高级筛选</hg:trans>"));
+        }
+    }
+
+
+    function p184163570onDeptSelected(dept) {
+        $("#txtDeptIdPath").val(dept.DeptIdPath);
+        $("#hidDeptId").val(dept.DeptId);
+        $("#searchForm").submit();
+    }
+    function p184163570doEditData(userId) {
+        if (userId == null || userId == "")
+            userId = "";
+        var url = "/Account/Edit/" + userId + "?DeptId=" + $("#hidDeptId").val();
+        redgle.tab.create("liUserEdit", url, translate.format("<hg:trans>用户编辑</hg:trans>"));
+    }
+    function p184163570doDeleteData(userId) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/Account/Delete",
+            data: { userId: userId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    alert(data.Message);
+                }
+                else {
+p184163570doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p184163570doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/Account",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p184163570divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p184163570doUserRole(userId) {
+        if (userId == null || userId == "")
+            return;
+
+        var url = "/Account/SetUserRole/" + userId;
+        redgle.tab.create("liSetUserRole", url, translate.format("<hg:trans>设置用户角色</hg:trans>"));
+    }
+    //导入
+    function  p184163570doImportData() {
+        $("#ImportAccountModal").modal('show');
+        loadfy();
+    };
+    var ASPSESSID = "qb5h1lwpcegzh2r35hlfw340";
+    function loadfy() {
+        $("div[group='upload']").each(function () {
+            var $self = $(this);
+            $self.find("input[type='file']").fileupload({
+                url: "/Account/AccountImportFile",
+                autoUpload: true,
+                dataType: 'json',
+                formData: {
+                    ASPSESSID: ASPSESSID,
+                    isRename: false
+                },
+                done: function (e, data) {
+                    $self.find("#divPhotoProgress").css("display", "none");
+                    if (data.result.HasError == true) {
+                        alert("上传文件错误：" + data.result.Message);
+                    }
+                    else {
+                        var postData = {};
+                        postData["fileName"] = data.result.ResultObject;
+                        $.ajax({
+                            type: "POST",
+                            url: "/Account/AccountImport",
+                            data: postData,
+                            datatype: "json",
+                            success: function (data) {
+                                redgle.showMessage(data.Message);
+                                if (!data.HasError) {
+                                    $("#ImportAccountModal").modal('hide');
+p184163570doReloadData();
+                                }
+                            },
+                            error: function (xhr) {
+                                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                            }
+                        });
+                    }
+                }
+            })
+        });
+    }
+
+    $("#divSort > span").click(function () {
+        debugger
+        var selectedItems = $(this).attr("itemid");
+        var sortType = $(this).attr("sorttype");
+        var cls = $(this).attr("class");
+        if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+            $("#divSort > span").removeClass("active");
+            $("#divSort > span").attr("sorttype", "");
+            $(this).addClass("active");
+            $("#divSort > span > span").removeClass().addClass("glyphicon glyphicon-resize-vertical");
+        }
+        if (sortType == "" || sortType == "DESC") {
+            $(this).attr("sorttype", "ASC");
+            $("#hidSortType").val("ASC");
+            $("#" + selectedItems + "Mark").removeClass().addClass("glyphicon glyphicon-menu-up");
+        }
+        else {
+            $(this).attr("sorttype", "DESC");
+            $("#hidSortType").val("DESC");
+            $("#" + selectedItems + "Mark").removeClass().addClass("glyphicon glyphicon-menu-down");
+        }
+        $("#hidSort").val(selectedItems);
+        $("#searchForm").submit();
+    });
+
+    //导出用户信息
+    function p184163570doExportUser() {
+        //var codeList = $("input[name=chk_list]:checked").map(function () {
+        //    return $(this).val();
+        //}).get().join(",");
+        var postData = redgle.request.getFormData("searchForm");
+        //postData["codeList"] = codeList;
+        $.ajax({
+            type: "POST",
+            url: "/Account/ExportUser",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min_6.js"></script>
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/b2a48d9f720e483ba7d14f58b5ec29d6.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,915 @@
+{:widget('Blog/header')}
+<html>
+ <head>
+
+  <script src="__STATIC__/index/js/c6102531548c4f988e485ab0333845b4.js"></script> 
+  <script src="__STATIC__/index/js/74c4de9c7b314e3287f3b215e15b5158.js"></script> 
+  <script src="__STATIC__/index/js/hg.common.js"></script> 
+  <script src="__STATIC__/index/js/jquery.fancybox.js"></script> 
+ 
+ </head> 
+ <body> 
+{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabOnlineProductManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>商品映射管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabOnlineProductManage" role="tabpanel" class="tab-pane fade active in">
+        <p class="alert bg-info" style="padding: 8px;line-height:25px">
+            PS：<hg:trans>在这里可以看到所有店铺有订单的商品，商品SKU与产品库SKU建立映射关系，订单商品会自动匹配本地产品</hg:trans>
+        </p>
+        <input id="userfromlist" type="hidden" value="[&quot;Amazon&quot;,&quot;Offline&quot;]" />
+        <input id="AccountUser" type="hidden" value="[{&quot;Value&quot;:&quot;5310935598329333161&quot;,&quot;Text&quot;:&quot;11(us)&quot;,&quot;item&quot;:&quot;Amazon&quot;}]" />
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/OnlineProduct?Length=13" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1654108928divDataList" id="searchForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="GHdqTuuqhZoCNt7vy-DmoifQPBNjRXIkiu2LdMoO2hb-EuglcsICVOFR1frrC7QR3WR4h9huql4FAbzFo1oNTowcW1PLP01pFzH2v5hJ1NLRxrcPPnBWtFmNNn1xZXgi-P_xm7XyQkoGK9nLuDThO9YJPmTRDm8RoE9O97xXxyQ1" />                <div id="J_selector" class="selector" style="border:none">
+                    <div id="listItem"></div>
+                </div>
+                <input type="hidden" id="hidApiForms" name="hidApiForms" value="" />
+                <input type="hidden" id="hidApiAccountItems" name="hidApiAccountItems" value="" />
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px !important;margin-right:20px;"><hg:trans>产品状态</hg:trans></label>
+                    <div id="divChooseProductTypeItems" class="input-group para-items-sm">
+                        <span data-value="" class="active"><hg:trans>全部</hg:trans></span>
+                        <span data-value="onSelling"><hg:trans>在售</hg:trans></span>
+                        <span data-value="offline"><hg:trans>已下架</hg:trans></span>
+                        <span data-value="approved"><hg:trans>已审核</hg:trans></span>
+                        <span data-value="auditing,pending"><hg:trans>审核中</hg:trans></span>
+                        <span data-value="editingRequired,rejected"><hg:trans>审核不通过</hg:trans></span>
+                        <input type="hidden" id="hidProductStatus" name="hidProductStatus" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px !important;margin-right:20px;"><hg:trans>映射状态</hg:trans></label>
+                    <div id="divStateItems" class="input-group para-items-sm">
+                        <span data-value="isMatch"><hg:trans>已映射</hg:trans></span>
+                        <span data-value="notMatch"><hg:trans>未映射</hg:trans></span>
+                        <span data-value="partMatch"><hg:trans>部分映射</hg:trans></span>
+                        <span data-value="waitMatch"><hg:trans>待确认</hg:trans></span>
+                        <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:90px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items-sm">
+                        <span itemid="proSuk" class="active" chooseid="Search" hgtrans="true" name="请输入SKU"><hg:trans>SKU</hg:trans></span>
+                        <span itemid="proRelationId" chooseid="Search" hgtrans="true" name="请输入商品编号"><hg:trans>商品编号</hg:trans></span>
+                        <span itemid="proName" chooseid="Search" hgtrans="true" name="请输入商品名称"><hg:trans>商品名称</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="proSuk" />
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:550px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:90px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" hgtrans="true" placeholder="请输入SKU" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+</form>        </div>
+        <div style="float:right;" id="divFollowButtons">
+            <button type="button" class="btn btn-info btn-sm" onclick="p1654108928doReFlashProduct()"><i class="glyphicon glyphicon-refresh"></i>&nbsp;<hg:trans>重新同步</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p1654108928doAutoMatchProduct()"><i class="glyphicon glyphicon-transfer"></i>&nbsp;<hg:trans>自动映射</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p1654108928doRemovePairProduct()"><i class="glyphicon glyphicon-remove-circle"></i>&nbsp;<hg:trans>清除映射</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p1654108928doExport()"><i class="glyphicon glyphicon-export"></i>&nbsp;<hg:trans>导出</hg:trans></button>
+            
+        </div>
+        <div id="p1654108928divDataList">
+            
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:2%"><input type="checkbox" name="chk_all" id="chk_all" onclick="p1654108928doSetCheckBox(this)" /></th>
+            <th style="width:7%;"><hg:trans>商品图片</hg:trans></th>
+            <th style="width:14%;"><hg:trans>商品编号</hg:trans><br /><hg:trans>[店铺]</hg:trans></th>
+            <th style="width:20%;"><hg:trans>商品名称</hg:trans></th>
+            <th style="width:8%;"><hg:trans>状态</hg:trans></th>
+            <th style="width:22%;"><hg:trans>商品变参</hg:trans></th>
+            <th style="width:27%;"><hg:trans>映射产品库SKU</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="101004" />
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/519hch1+5el._sl75_.jpg'  onmouseover='showPic(this)' onmouseout='hidePic(this)'/>
+                </td>
+                <td style="line-height:22px">
+                    B07BTY7WZW <br /> 
+                    <span class="sales-item"><a class="Amazon-sales">11(us)</a></span>
+                </td>
+                <td style='max-width:300px; text-align:left !important;line-height:22px'>
+                    <a href='https://www.amazon.com/gp/product/B07BTY7WZW' target='_blank' class='text-overflow' style='max-width:95%; float:left;' title='Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶'>Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶</a> <br /><hg:trans>父SKU</hg:trans>：693099576013611<br /><br/><hg:trans>价格</hg:trans>：76.00<br />
+                </td>
+                <td>
+                    onSelling
+                </td>
+                <td colspan="2" style="line-height:22px">
+                            <div class="col-md-6"><hg:trans>无</hg:trans></div>
+                            <div class="col-md-6" style="height:100%;border-left:1px solid #ddd; height:50px">
+                                        <a href="javascript:void(0);" hgtrans="true" title="映射本地库存SKU" onclick='javascript:p1654108928doSelectProduct("693099576013611")'><hg:trans>建立映射</hg:trans></a>
+                            </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="100923" />
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/41wvcgcb+ol._sl75_.jpg'  onmouseover='showPic(this)' onmouseout='hidePic(this)'/>
+                </td>
+                <td style="line-height:22px">
+                    B00QR7L3CO <br /> 
+                    <span class="sales-item"><a class="Amazon-sales">11(us)</a></span>
+                </td>
+                <td style='max-width:300px; text-align:left !important;line-height:22px'>
+                    <a href='https://www.amazon.com/gp/product/B00QR7L3CO' target='_blank' class='text-overflow' style='max-width:95%; float:left;' title='16&#x4EF6;&#x5957;&#x4E0D;&#x9508;&#x94A2;&#x897F;&#x9910;&#x5177; &#x9152;&#x5E97;4&#x4EBA;&#x4EFD;&#x5200;&#x53C9;&#x52FA; &#x793C;&#x76D2;&#x5957;&#x88C5;'>16&#x4EF6;&#x5957;&#x4E0D;&#x9508;&#x94A2;&#x897F;&#x9910;&#x5177; &#x9152;&#x5E97;4&#x4EBA;&#x4EFD;&#x5200;&#x53C9;&#x52FA; &#x793C;&#x76D2;&#x5957;&#x88C5;</a> <br /><hg:trans>父SKU</hg:trans>：15431313<br /><br/><hg:trans>价格</hg:trans>：40.40<br />
+                </td>
+                <td>
+                    onSelling
+                </td>
+                <td colspan="2" style="line-height:22px">
+                            <div class="col-md-6"><hg:trans>无</hg:trans></div>
+                            <div class="col-md-6" style="height:100%;border-left:1px solid #ddd; height:50px">
+                                        <a href="javascript:void(0);" hgtrans="true" title="映射本地库存SKU" onclick='javascript:p1654108928doSelectProduct("15431313")'><hg:trans>建立映射</hg:trans></a>
+                            </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_OnlineProductId" value="1" />
+                </td>
+                <td>
+                    <img class='img-thumbnail' style='width:50px; height:50px;' src='picture/519hch1+5el._sl75_.jpg'  onmouseover='showPic(this)' onmouseout='hidePic(this)'/>
+                </td>
+                <td style="line-height:22px">
+                    B07BTY7WZW <br /> 
+                    <span class="sales-item"><a class="Amazon-sales">11(us)</a></span>
+                </td>
+                <td style='max-width:300px; text-align:left !important;line-height:22px'>
+                    <a href='https://www.amazon.com/gp/product/B07BTY7WZW' target='_blank' class='text-overflow' style='max-width:95%; float:left;' title='Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶'>Pu'er tea in Yunnan 2017 Yellow tea in Chinese tea Pu'er tea Cooked tea 357g Cake tea Yunnan Pu'er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶</a> <br /><hg:trans>父SKU</hg:trans>：6930995760136<br /><br/><hg:trans>价格</hg:trans>：76.00<br />
+                </td>
+                <td>
+                    offline
+                </td>
+                <td colspan="2" style="line-height:22px">
+                            <div class="col-md-6"><hg:trans>无</hg:trans></div>
+                            <div class="col-md-6" style="height:100%;border-left:1px solid #ddd; height:50px">
+6930995760136<a style="margin-left:10px; cursor:pointer" href="javascript:void(0)" onclick='p1654108928doSelectProduct("6930995760136")' hgtrans="true" title="更换映射的本地库存SKU"><hg:trans>更换映射</hg:trans></a><br />
+                                    <a class='text-overflow' style='max-width:200px; cursor:pointer' href="javascript:void(0)" onclick="p1654108928doEditData('23')" title="Pu&#39;er tea in Yunnan 2017 Yellow tea in Chinese tea Pu&#39;er tea Cooked tea 357g Cake tea Yunnan Pu&#39;er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶">
+                                        Pu&#39;er tea in Yunnan 2017 Yellow tea in Chinese tea Pu&#39;er tea Cooked tea 357g Cake tea Yunnan Pu&#39;er Tea Tea 云南普洱茶 2017年 臻品黄印 中茶 普洱茶 熟茶 357g 饼茶 云南普洱茶 茶叶
+                                    </a>
+                            </div>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1654108928divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/OnlineProduct?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 3 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal 同步库存窗口-->
+<div class="modal fade" id="syncProductModal" tabindex="-1" role="dialog" aria-labelledby="syncProductModalLabel" aria-hidden="true" style="padding-top:50px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="syncProductModalLabel"><hg:trans>同步亚马逊线上产品</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            1.<hg:trans>同步亚马逊线上产品时通过报表进行同步，同步时系统会提交周期为1天的可售商品报告生成计划，请勿取消该计划。</hg:trans><br />
+                            2.<hg:trans>如果您之前已经主动提交了周期小于1天的可售商品报告生成计划则会保留之前提交的。</hg:trans><br />
+                            3.<hg:trans>相同平台同样的商品编号的在线商品有且仅可有一个。</hg:trans><br />
+                            4.<hg:trans>系统每周自动同步一次所有亚马逊账户的在线产品。</hg:trans>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtUserForm" class="control-label col-sm-1" style="width:60px !important;margin-right:10px;"><hg:trans>账号</hg:trans></label>
+                        <div id="divStoreItemsSync" class="input-group para-items-sm">
+                                <span data-value="7">11(us)</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-left:70px">
+                        <div class="radio">
+                            <label><input type="radio" name="syncType" value="change" checked onclick="changeSyncType()" /><hg:trans>基本同步</hg:trans></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="syncType" value="all" onclick="changeSyncType()" /><hg:trans>高级同步</hg:trans></label>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-left:70px;display:none" group="syncAll">
+                        <input class="form-control input-sm" id="pskus" style="width:660px" hgtrans="true" placeholder="输入你要同步的产品SKU，多个SKU以逗号隔开" />
+                    </div>
+                    <div style="margin-left:20px; margin-bottom:20px;max-height:450px;overflow:auto">
+                        <div id="divSyncMessage" class="bg-info" style="padding: 15px; "></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnStartSyncStock" onclick="p1654108928doSyncProduct()"><hg:trans>同步</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<script type="text/x-dot-template" id="CommonAccountUserTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}} " menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list ">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                            <input type="text" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                <hg:trans>搜索(S)</hg:trans>
+                            </span>
+                        </div>
+                    </div>
+                    {{?}}
+                    <ul class="J_valueList {{=it.ClassName}}">
+                        {{ var objarray=it.listItem;  for(var i=0;i
+                        <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                            <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                            <li id="{{=objarray[i].Value}}" style="display:block;" class="para-item">
+                                <a class="{{=objarray[i].item}}-sales" href="javascript:;" title="{{=textname}}">
+                                    <i></i>{{=textname}}
+                                </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                </div>
+                {{?it.isMultiple}}
+                <div class="sl-btns">
+                    <a class="btn btn-primary J_btnsConfirm disabled" href="javascript:;">确定</a>
+                    <a class="btn btn-default J_tabCancel" href="javascript:;">取消</a>
+                    <a class="btn btn-danger J_tabCancel JClear" typeid="{{=it.TypeId}}">清空</a>
+                </div>
+                {{?}}
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;"><hg:trans>更多</hg:trans><i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+<script type="text/x-dot-template" id="CommonTempl">
+    <div class="J_selectorLine s-brand {{=it.SingleLineStr}} ">
+        <div class="sl-wrap {{=it.isMultioleStr}}" menutype="{{=it.isEdit}}">
+            <div class="sl-key" typeid="{{=it.TypeId}}"><hg:trans>{{=it.TypeName}}</hg:trans></div>
+            <div class="sl-value" id="{{=it.TypeId}}">
+                <div class="clr"></div>
+                <div class="sl-v-list">
+                    {{?it.hasSearch}}
+                    <div style="margin:2px;" class="MenuSearchInfo">
+                        <div class="input-group  input-group-sm  col-sm-5 col-xs-5">
+                            <input type="text" id="hhhhh" class="form-control" placeholder="搜索内容(支持模糊搜索)" hgtrans="true" onkeydown="        enterMenuSearch(this)">
+                            <span class="input-group-addon MenuSearchInfoBtn" id="SearchInfoBtn">
+                                <hg:trans>搜索(S)</hg:trans>
+                            </span>
+                        </div>
+                    </div>
+                    {{?}}
+                    <ul class="J_valueList {{=it.ClassName}}">
+                        {{ var objarray=it.listItem;  for(var i=0;i
+                        <objarray.length;i++){var textname=removeAllSpace(translate.format("
+                            <hg:trans>{0}</hg:trans>", [objarray[i].Text]));  }}
+                            <li id="{{=objarray[i].Value}}" style="display:block;">
+                                <a href="javascript:;" title="{{=textname}}">
+                                    <i></i>{{=textname}}
+                                </a>
+                            </li>
+                            {{ } }}
+                    </ul>
+                </div>
+            </div>
+            {{?it.isMoreLine}}
+            <div class="sl-ext" style="display: block;" type="{{=it.isMultioleStr}}">
+                <a class="sl-e-more J_extMore " href="javascript:;" style="visibility: visible;"><hg:trans>更多</hg:trans><i></i></a>
+            </div>
+            {{?}}
+        </div>
+    </div>
+</script>
+<script src="js/e7608afa48de459199bb12e976309dda.js"></script>
+
+<script language="javascript" type="text/javascript">
+    function changeSyncType() {
+        var syncType = $('input[name="syncType"]:checked').val();
+        if (syncType == "all") {
+            $('div[group="syncAll"]').css("display", "");
+        } else {
+            $('div[group="syncAll"]').css("display", "none");
+        }
+    }
+    $(function () {
+        //状态筛选
+        $("#divStateItems>span").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                $("#txtStatusCode").val("");
+                $this.removeClass();
+            } else {
+                $("#txtStatusCode").val($this.attr("data-value"));
+                $("#divStateItems>span").removeClass();
+                $this.addClass("active");
+            };
+            $("#searchForm").submit();
+        });
+
+        $("#divChooseProductTypeItems>span").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                $("#hidProductStatus").val("");
+                $this.removeClass();
+            } else {
+                $("#hidProductStatus").val($this.attr("data-value"));
+                $("#divChooseProductTypeItems>span").removeClass();
+                $this.addClass("active");
+            };
+            $("#searchForm").submit();
+        });
+        LoadMenuInfo();
+    })
+
+    /*BEGIN：特殊搜索条件样式处理*/
+    function removeAllSpace(str) {
+        return str.replace(/\s+/g, "");
+    }
+    function LoadMenuInfo() {
+        //重置
+        $("#listItem").html("");
+        var SearchOption = SearchOptonRedgle();//初始化方法
+        SearchOption.templ = $("#CommonTempl").html();
+        var userformlist = $("#userfromlist").val();
+        var userfromlists = [];
+        if (userformlist.length > 0) {
+            userfromlist = JSON.parse(userformlist);
+            for (var i = 0; i < userfromlist.length; i++) {
+                userfromlists.push({
+                    Text: userfromlist[i],
+                    Value: userfromlist[i]
+                });
+            }
+        }
+        //debugger;
+        //平台账户　AccountUser
+        var AccountUser = $("#AccountUser").val();
+        if (AccountUser.length > 0)
+            AccountUser = JSON.parse(AccountUser);
+
+        if (userfromlists.length > 0)
+            SearchOption.BindDataUI(userfromlists, translate.format("<hg:trans>平台类型</hg:trans>"), "userfromlist", false, true, "", false, false);//PlatformTypeTempl
+
+        if (AccountUser.length > 0) {
+            //SearchOption.BindDropDataUI(AccountUser, "平台账户", "StoreIdType", true);
+            SearchOption.BindDataUI(AccountUser, translate.format("<hg:trans>平台账户</hg:trans>"), "AccountUser", true, true, $("#CommonAccountUserTempl").html(), true);
+        }
+        SearchOption.CallExtendFun = function (typeid, isExtend) {
+            if (!isExtend) {
+                if ($("#" + typeid + " .MenuSearchInfo input").length > 0) {
+                    var text = $("#" + typeid + " .MenuSearchInfo input").val().trim();
+                    if (text.length > 0) {
+                        $("#" + typeid + " .MenuSearchInfo input").val("");
+                        $("#" + typeid + " .J_valueList li ").show();
+                    }
+                }
+
+            }
+        }
+       
+        SearchOption.CallUserFun = function (typeid, id, title) {
+            //获取到类型，与参数id
+            //alert("自定义方法：" + typeid + id);
+            console.log("自定义方法：" + typeid + "|" + id);
+            switch (typeid) {
+                case "userfromlist":
+                    $("#hidApiForms").val(id);
+                    $("#searchForm").submit();
+                    break;
+                case "AccountUser":
+                    $("#hidApiAccountItems").val(id);
+                    $("#searchForm").submit();
+                    break;
+            }
+
+            //用于特殊处理方法，譬如对某些数据处理, 重新绑定
+            //处理账户类型 与账户隐藏 通过js 添加hide 去掉hide
+            if (typeid == "userfromlist") {
+                if ($("#listItem").find("[typeid='userfromlist']").parents(".sl-wrap").find(".J_valueList li[class*='selected']").length == 0) {
+                    $("#listItem").find("[typeid='AccountUser']").parents(".sl-wrap").find(".J_valueList li").show();
+                    return;
+                }
+                var ArraryFromAccount = id.split(',');
+                $("#listItem").find("[typeid='AccountUser']").parents(".sl-wrap").find(".J_valueList li").hide();
+                for (var i = 0; i < ArraryFromAccount.length; i++) {
+                    $("#listItem").find("[typeid='AccountUser']").parents(".sl-wrap").find(".J_valueList li a[class*='" + ArraryFromAccount[i] + "']").each(function () {
+                        $(this).parent().show();
+                    });
+                }
+            }
+        }
+        SearchOption.CallTabFun = function (typeid) {
+            var Search = "";
+            console.log("自定义方法：" + typeid);
+            var paramFiled = "";
+            switch (typeid) {
+                case "userfromlist":
+                    paramFiled = "hidApiForms";
+                    break;
+                case "AccountUser":
+                    paramFiled = "hidApiAccountItems";
+                    break;
+            }
+
+            var data = $("#J_crumbsBar .crumb-select-item[typeid='" + typeid + "']");
+            if (data) {
+                Search = $(data).attr("atrrvalue");
+            }
+
+            $("#" + paramFiled).val(Search);
+            $("#searchForm").submit();
+
+        }
+        SearchOption.initEvent(false);//初始化事件绑定　
+        //替换样式保持界面一致
+        $("#listItem .sl-key").each(function () {
+            $(this).css("color", "#333");
+            $(this).css("font-weight", "700");
+        })
+       
+    }
+    /*BEGIN：特殊搜索条件样式处理*/
+
+
+    /*同步亚马逊线上产品*/
+    function  p1654108928doSyncAmazonProduct() {
+        $("#syncProductModal").modal('show');
+        $('#divSyncMessage').html("");
+    }
+    function p1654108928doSyncProduct() {
+        var storeList = $("#divStoreItemsSync").find(".active");
+        var pskus = $("#pskus").val();
+        var ishight = 0;
+        if ($('div[group="syncAll"]').is(":visible")) {
+            ishight = 1;
+            if (pskus == "") {
+                alert(translate.format("<hg:trans>请填写需要同步的SKU</hg:trans>"));
+                return;
+            }
+            if (storeList.length > 1) {
+                alert(translate.format("<hg:trans>高级同步只能选择一个账号</hg:trans>"));
+                return;
+            } else if (storeList.length == 0) {
+                alert(translate.format("<hg:trans>请选择填写的SKU所在账号</hg:trans>"));
+                return;
+            }
+        }
+        $('#divSyncMessage').html("");
+        $('<p><hg:trans>开始同步</hg:trans>...</p>').appendTo("#divSyncMessage");
+
+        var index = 0;
+        if (storeList.length == 0) {
+            $('<p><hg:trans>未选择同步账号</hg:trans></p>').appendTo("#divSyncMessage");
+            return;
+        }
+        $("#btnStartSyncStock").text(translate.format("<hg:trans>正在同步...</hg:trans>")).attr("disabled", true);
+        doLoadSyncProduct(index, storeList.length, ishight, pskus);
+    }
+    function doLoadSyncProduct(index, totalIndex, ishight, pskus) {
+        var $this = $("#divStoreItemsSync").find(".active:eq(" + index + ")")
+        $('<p><hg:trans>开始同步</hg:trans>[' + $this.html() + ']<hg:trans>线上产品</hg:trans>...</p>').appendTo("#divSyncMessage");
+        $.ajax({
+            type: "post",
+            url: "/OnlineProduct/SyncOnlineProduct",
+            data: { apiUserId: $this.attr("data-value"), ishight: ishight, pskus: pskus },
+            success: function (data) {
+                if (data.HasError) {
+                    $('<p><hg:trans>同步</hg:trans>[' + $this.html() + ']<hg:trans>产品出现错误</hg:trans>：' + data.Message + '</p>').appendTo("#divSyncMessage");
+                } else {
+                    $('<p><hg:trans>同步</hg:trans>[' + $this.html() + ']<hg:trans>产品完成.同步产品数</hg:trans>：' + data.ResultObject + '</p>').appendTo("#divSyncMessage");
+                }
+            },
+            error: function () {
+                $('<p><hg:trans>同步</hg:trans>[' + $this.html() + ']<hg:trans>产品出现错误</hg:trans>：</p>').appendTo("#divSyncMessage");
+            },
+            complete: function () {
+                index++;
+                if (index >= totalIndex) {
+                    $("#btnStartSyncStock").text(translate.format("<hg:trans>同步</hg:trans>")).attr("disabled", false);
+                    $('<p><hg:trans>同步结束</hg:trans>。</p>').appendTo("#divSyncMessage");
+p1654108928doReloadData();
+                } else
+                    doLoadSyncProduct(index, totalIndex, ishight, pskus);
+            }
+        })
+    }
+    $("#divStoreItemsSync>span").click(function () {
+        var $this = $(this)
+        if ($this.attr("class") == "active") {
+            if ($("#divStoreItemsSync").find(".active").length == 1) {
+                alert(translate.format("<hg:trans>至少选择一个账号</hg:trans>"))
+            } else {
+                $this.prop("class", "")
+            }
+        } else {
+            $this.prop("class", "active")
+        }
+    });
+    /*处理同步库存 end*/
+
+
+    /*同步亚马逊线上产品*/
+    function doTest() {
+        var userId = $("#txtUserId").val();
+        var productId = $("#txtProductId").val();
+        if (userId.length == 0) {
+            alert(translate.format("<hg:trans>请正确填写信息</hg:trans>"));
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct/TestSync",
+            datatype: "text",
+            data: { userId: userId, productId: productId },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    var errorMessage = "";
+                    $.each(data.MapData, function (key, value) {
+                        errorMessage += "<li>" + key + "：" + value + "</li>";
+                    });
+                    if (errorMessage.length > 0) {
+                        errorMessage = "<div class=\"alert alert-warning\"><hg:trans>成功同步</hg:trans>[" + data.ResultObject + "] <hg:trans>个线上商品, 但是出现以下错误</hg:trans>：</div><ol>" + errorMessage + "</ol>";
+                        var showMessageModal = new redgle.modal({ type: "html", content: errorMessage, title: translate.format("<hg:trans>操作提示</hg:trans>"), width: "640px", height: "420px" });
+                        showMessageModal.show();
+                    }
+                    else {
+                        redgle.showMessage(translate.format("<hg:trans>您所做的操作已成功</hg:trans>"));
+                    }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1654108928doReFlashProduct() {
+        var strOnlineProductIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            strOnlineProductIds += $(this).val() + ",";
+        });
+        if (strOnlineProductIds.length == 0) {
+            alert(translate.format("<hg:trans>请选择线上商品</hg:trans>"));
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct/ReflashProducts",
+            datatype: "text",
+            data: { onlineProductIds: strOnlineProductIds },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下</hg:trans>：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    var errorMessage = "";
+                    $.each(data.MapData, function (key, value) {
+                        errorMessage += "<li>" + key + "：" + value + "</li>";
+                    });
+                    if (errorMessage.length > 0) {
+                        errorMessage = "<div class=\"text-warning\"><hg:trans>成功同步</hg:trans> [" + data.ResultObject + "] <hg:trans>个线上商品, 但是出现以下错误</hg:trans>：</div><ol>" + errorMessage + "</ol>";
+                        redgle.showMessage(errorMessage);
+                    }
+                    else {
+                        redgle.showMessage(translate.format("<hg:trans>操作成功，成功同步 [{0}] 个线上商品</hg:trans>", [data.ResultObject]));
+                    }
+p1654108928doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1654108928doRemovePairProduct() {
+        var strOnlineProductIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            strOnlineProductIds += $(this).val() + ",";
+        });
+        if (strOnlineProductIds.length == 0) {
+            alert(translate.format("<hg:trans>请选择线上商品</hg:trans>"));
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct/RemovePairProduct",
+            datatype: "text",
+            data: { onlineProductIds: strOnlineProductIds },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>操作成功，成功清除[{0}] 个映射关系</hg:trans>", [(strOnlineProductIds.split(',').length - 1)]));
+p1654108928doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1654108928doEditData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/Product/ProductInfo/" + id;
+        redgle.tab.create("liProductEdit", url, translate.format("<hg:trans>产品详情</hg:trans>"));
+    }
+    var thisOnLineSKU = "";
+    function p1654108928doSelectProduct(onLineSKU) {
+        var url = "/Product/SelectProduct?selectType=single&productType=change&containCombined=true";
+        var selectOrderModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择产品</hg:trans>"), width: 950, height: 560 });
+        selectOrderModal.show();
+        thisOnLineSKU = onLineSKU;
+        thisOnLineSKU = onLineSKU.replace("&#34;", "\"").replace("&#39;", "'");
+    }
+    //确认保存映射
+    function p1654108928confirmMatch(onLineSKU, localSKU) {
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct/ConfirmMatchSKU",
+            data: { onLineSKU: onLineSKU, localSKU: localSKU, __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val() },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的操作已成功</hg:trans>"));
+                    try { p1654108928doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function doGetSelectedProduct(products) {
+        var product = products[0];
+        if (product.ProductStyle == null || product.ProductStyle == "" || thisOnLineSKU == "") {
+            redgle.showMessage(translate.format("<hg:trans>线上SKU和本地SKU都不能为空。</hg:trans>"));
+            return;
+        }
+        //提交数据
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct/SaveMatch",
+            data: { localSku: product.ProductStyle, onLineSku: thisOnLineSKU, __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val() },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的操作已成功</hg:trans>"));
+                    try { p1654108928doReloadData(); } catch (e) { }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function p1654108928doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1654108928divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1654108928doShowTransfToLocal(onlineProductId) {
+        var strOnlineProductIds = "";
+        if (typeof (onlineProductId) != "undefined" && onlineProductId > 0) {
+            strOnlineProductIds = onlineProductId;
+        }
+        else {
+            $('input[name="chk_list"]:checked').each(function () {
+                strOnlineProductIds += $(this).val() + ",";
+            });
+        }
+        if (strOnlineProductIds.length == 0) {
+            alert(translate.format("<hg:trans>请选择要进行转为本地的线上商品</hg:trans>"));
+            return;
+        }
+
+        var url = "/OnlineProduct/TransfToLocal?onlineProductIds=" + strOnlineProductIds;
+        redgle.tab.create("liTransfToLocal", url, translate.format("<hg:trans>转为本地产品</hg:trans>"));
+    }
+    function  p1654108928doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+
+    function p1654108928doAutoMatchProduct() {
+        var postData = {};
+        var strOnlineProductIds = "";
+        $('input[name="chk_list"]:checked').each(function () {
+            strOnlineProductIds += $(this).val() + ",";
+        });
+        if (strOnlineProductIds.length > 0) {
+            postData["onlineProductIds"] = strOnlineProductIds;
+        }
+        else {
+            postData = redgle.request.getFormData("searchForm");
+        }
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct/AutoMatch",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                var msg = "";
+                if (typeof (data.ResultObject) != "undefind") {
+                    msg = translate.format("<hg:trans>已成功匹配【{0}】个线上商品</hg:trans>", [data.ResultObject]);
+                }
+                if (data.HasError) {
+                    if (msg.length > 0)
+                        msg += translate.format("<hg:trans>，但是在执行这程中出错错误：{0}</hg:trans>", [data.Message]);
+                    else
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(msg, translate.format("<hg:trans>操作提示</hg:trans>"));
+p1654108928doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //导出sku
+    function p1654108928doExport() {
+        var exportmode = "";
+        var width = 950;
+        var height = 560;
+        var viewName = "OnlineProduct";
+        var pageKey = "OnlineProduct/Export";
+        var url = "../Order/Export?viewName=OnlineProduct&pagekey=OnlineProduct/Export&exportmode=" + exportmode + "&functionName=doExportSku";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+    function doExportSku(fieldName) {
+        var itemIds = "";
+        $(' input[name=chk_list]:checked').each(function () {
+            itemIds += $(this).val() + ",";
+        });
+        var postData = {};
+        if (itemIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择导出项，将导出符合当前搜索条件的项，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");
+        }
+        postData["viewName"] = "OnlineProduct";
+        postData["pageKey"] = "OnlineProduct/Export";
+        postData["itemIds"] = itemIds;
+        postData["fieldName"] = fieldName;
+        $.ajax({
+            type: "POST",
+            url: "/OnlineProduct/Export",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/a3e02c4a62194177bb5d100fbc19aa3b.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

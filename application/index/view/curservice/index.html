@@ -1,0 +1,532 @@
+{:widget('Blog/header')}
+   
+
+    <script src="__STATIC__/index/js/a6ebffc3b6504e51bcae37b98f976409.js"></script>
+
+    <script src="__STATIC__/index/js/40cf7b22a4964fb99dd7aeefa8072132.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+{:widget('Blog/left')}     
+<script src="__STATIC__/index/js/wdatepicker.js"></script>
+
+<script src="__STATIC__/index/js/873359cccef84795a80ff52a4a2e9d36.js"></script>
+
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabFeedbackManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>亚马逊Feedback管理</hg:trans></a></li>
+    <li id="liTabRevieweManage" role="presentation"><a href="/OrderMessage/AmazonBadReview"><hg:trans>亚马逊Review管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabFeedbackManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="alert bg-info" style="padding: 8px;">
+            <hg:trans>PS：差评信息系统每天会自动同步一次,此处差评为店铺的feedback信息非产品review</hg:trans>
+        </div>
+        <div class="parents-nodest" style="float:right; margin-right:5px">
+            <div class="btn-group">
+                <button type="button" class="btn btn-info btn-sm" onclick="p294554153doOpenSyncWindow()">&nbsp;<hg:trans>同步差评信息</hg:trans></button>
+            </div>
+        </div>
+<form action="/OrderMessage/AmazonBadFeedBack?Length=12" class="form-horizontal" data-ajax="true" data-ajax-complete="doCompleteSearchData()" data-ajax-mode="replace" data-ajax-update="#divOrderDataList" id="searchForm" method="post" style="margin-bottom:12px">            <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+                <div class="form-group parents-nodest">
+                    <label for="txtOrderNO" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台账号</hg:trans></label>
+                    <div id="divUserFormAndApiUserItems" class="input-group para-items">
+                                        <span userform="Amazon" apiuserid="5310935598329333161">11(us) (Amazon)</span>
+                        <input type="hidden" id="hidUserForms" name="hidUserForms" value="" />
+                        <input type="hidden" id="hidApiAccountItems" name="hidApiAccountItems" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span itemid="OrderNO" chooseid="Search"><hg:trans>订单号</hg:trans></span>
+                        <span itemid="FeedBackTime" chooseid="Date"><hg:trans>评价时间</hg:trans></span>
+                        
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="" />
+                    </div>
+                </div>
+                <div class="form-group " style="display:none;margin-bottom: 16px" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索日期</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span>
+                            <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                        <span>
+                            <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" onfocus="WdatePicker({ lang: 'zh-cn',dateFmt: 'yyyy-MM-dd' })" placeholder="结束时间" />
+                        </span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" hgtrans="true" name="txtSearchKey" id="txtSearchKey" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <input type="hidden" id="txtQuerySearch" name="txtQuerySearch" value="" />
+            </div>
+            <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+</form>        <div class="status-group" id="divStateItems">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="1"><a><hg:trans>已联系</hg:trans></a><span></span></label>
+            <label itemid="0"><a><hg:trans>未联系</hg:trans></a><span></span></label>
+        </div>
+        <div id="divOrderDataList" style="margin-top:0px">
+            
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:30px;"><input type="checkbox" name="chk_all" id="chk_all" onclick="doSetCheckBox(this)" /></th>
+            <th style="width:15%;"><hg:trans>订单号</hg:trans><br /><hg:trans>[店铺]</hg:trans></th>
+            <th style="width:20%;">商品信息</th>
+            <th style="width:10%;">评价时间</th>
+            <th style="width:10%;"><hg:trans>评价星级</hg:trans></th>
+            <th style="width:30%;"><hg:trans>评价内容</hg:trans></th>
+            <th style="width:10%;"><hg:trans>是否已联系</hg:trans></th>
+            <th style="width:10%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/OrderMessage/AmazonBadFeedBack?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal 同步窗口-->
+<div class="modal fade" id="syncProductModal" tabindex="-1" role="dialog" aria-labelledby="syncProductModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="syncProductModalLabel"><hg:trans>同步亚马逊差评信息</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PS：</div>
+                        <div class="panel-body" style="line-height:25px">
+                            <hg:trans>此处同步为手动同步,可以自主选择同步多少天内的差评信息</hg:trans>。<br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" style="width:80px !important;margin-right:5px;"><hg:trans>时间</hg:trans></label>
+                        <div class="input-group para-items" id="divSyncTime">
+                            <span itemid="7" class="active"><hg:trans>7天</hg:trans></span>
+                            <span itemid="15"><hg:trans>15天</hg:trans></span>
+                            <span itemid="30"><hg:trans>30天</hg:trans></span>
+                            <span itemid="60"><hg:trans>60天</hg:trans></span>
+                            <span itemid="90"><hg:trans>90天</hg:trans></span>
+                        </div>
+                        <input type="hidden" id="syncDays" value="7" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtUserForm" class="control-label col-sm-1" style="width:80px !important;margin-right:5px;"><hg:trans>平台账号</hg:trans></label>
+                        <div id="divStoreItemsSync" class="input-group para-items">
+                            <span userform="" data-value="">全部</span>
+                            <span userform="Amazon" data-value="amazon814865874">11(us) (Amazon)</span>
+                        </div>
+                        <input type="hidden" id="hidAccountUserId" name="hidAccountUserId" value="" />
+                    </div>
+                    <div style="margin-left:20px; margin-bottom:20px;max-height:450px;overflow:auto">
+                        <div id="divSyncMessage" class="bg-info" style="padding: 15px; "></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnStartSyncStock" onclick="p294554153doSyncProduct()"><hg:trans>同步</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ReplyEmaiModal" tabindex="-1" role="dialog" aria-labelledby="ReplyEmaiModalbel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ReplyEmaiModalLabel"><hg:trans>联系买家</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div id="divReplyEmailPanel">
+                        <div style="border:1px solid #ccc; border-radius:4px;padding-left:10px; padding-right:10px;padding-top:10px;">
+                            <input type="hidden" id="txtAmazonFeedBackId" value="" />
+                            <input type="hidden" id="hidAttachmentPath" value="UploadFiles/yhjm/Temp/MessagePhoto" />
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon" id="basic-addon1"><hg:trans>邮件标题</hg:trans></span>
+                                <input type="text" class="form-control" id="txtEmailTitle" value="">
+                            </div>
+                            <div>
+                                <textarea class="form-control" id="txtEmailContent" style="border-radius:0px;" placeholder="请输入邮件内容" rows="4"></textarea>
+                                <div id="divEmailAttachmentPanel" style="margin-top: -3px;border:1px solid #ccc; border-top:0px;padding:5px;">
+                                    <p class="text-warning" style="margin:0px;"><hg:trans>图片要求：您可以上传文本文件、PDF、Word、及.jpg/.gif/.png图片。附件大小必须小于10MB</hg:trans>。</p>
+                                    <div id="divAttachmentView"></div>
+                                    <input id="fileAttachmentdata" type="file" name="Filedata" />
+                                </div>
+                            </div>
+                            <div>
+
+                                <select class="btn btn-info btn-sm" style="text-align:left !important; margin-left:10px;" id="TemplateEmailSelect" name="TemplateEmailSelect" ><option value="" >请选择消息模板</option><option value='' disabled>----------未分类模板----------</option><option value="1" >运输状态订单信息模板</option><option value="2" >订单到货待取件信息模板</option><option value="3" >订单退件信息模板</option><option value="4" >订单已签收求好评信息模板</option><option value="5" >订单启运信息模板</option><option value="6" >订单已签收信息模板</option><option value="7" >催付信息模板</option><option value="8" >评价信息模板</option><option value="9" >启运通知</option></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" id="btnReplyAmazonMessage"><hg:trans>发送</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__STATIC__/index/js/9fac9c1a78284f49b8468b1d9c68fc5e.js"></script>
+
+<script src="__STATIC__/index/js/f48c74575f784310928241c14d702017.js"></script>
+
+<script src="__STATIC__/index/js/8ce139e47c6747679fab16994f89b841.js"></script>
+
+<script language="javascript" type="text/javascript">
+    var ASPSESSID = "ga1bizutq0jtwo3paaabigke";
+    SWFUpload.movieCount = $(".uploadify").length;
+    jQuery(function () {
+        $('#fileAttachmentdata').uploadify({
+            swf: '/Content/uploadify/uploadify.swf',
+            uploader: '/Upload/UploadFile',
+            multi: false,
+            auto: true,
+            method: "post",
+            fileObjName: 'Filedata',
+            buttonText: '<i class="glyphicon glyphicon-plus"></i><hg:trans>添加附件</hg:trans>',
+            buttonClass: 'upload-button',
+            fileTypeDesc: "添加附件",
+            fileTypeExts: "*.jpg;*.gif;*.png;*.txt;*.doc;*.docx;*.pdf",
+            formData: {
+                ASPSESSID: ASPSESSID,
+                isRename: false,
+                extNames: ".jpg|.gif|.png|.txt|.doc|.docx|.pdf",
+                targetFolder: "~/" + $("#hidAttachmentPath").val()
+            },
+            onUploadStart: function () {
+            },
+            onUploadSuccess: function (file, data, response) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>文件名称: {0} 上传出错 {1} </hg:trans>", [file.name, data.Message]));
+                } else {
+                    var data = JSON.parse(data);
+                    var fileName = data.MapData.FileName;
+                    var filePanel = $("<div></div>").attr({ filename: fileName }).appendTo($("#divAttachmentView"));
+                    filePanel.append("<i class=\"glyphicon glyphicon-paperclip\"></i> <span style=\"padding-right:10px\">" + fileName + "</span>");
+                    filePanel.append("<a href=\"javascript:void(0)\" onclick=\"javascript:doRemoveEmailAttachment('" + fileName + "')\"><hg:trans>删除</hg:trans></a>");
+                }
+            }
+        });
+
+        $("#TemplateEmailSelect").change(function () {
+            var $this = $(this);
+            if ($this.val() == "") {
+                $("#txtEmailContent").val("");
+            } else {
+                $.ajax({
+                    url: "/SyncCommon/GetTemplateOrderMessage",
+                    type: "post",
+                    data: { orderId: 0, TemplateId: $this.val() },
+                    success: function (data) {
+                        if (data.hasError) {
+                            alert(translate.format("<hg:trans>获取模板信息失败！</hg:trans>"))
+                        } else {
+                            $("#txtEmailContent").val(data.MapData.Content);
+                        }
+                    }
+                });
+            }
+        });
+             $("#btnReplyAmazonMessage").click(function () {
+            var content = $.trim($("#txtEmailContent").val());
+            if (content.length == 0) {
+                alert(translate.format("<hg:trans>请输入邮件内容</hg:trans>"));
+                return;
+            }
+            var subject = $.trim($("#txtEmailTitle").val());
+            if (subject.length == 0) {
+                alert(translate.format("<hg:trans>请输入邮件标题</hg:trans>"));
+                return;
+            }
+
+            //附件列表
+            var attaList = [];
+            $("#divAttachmentView>div").each(function () {
+                attaList.push($(this).attr("filename"));
+            });
+
+            var postData = {
+                AmazonFeedBackId: $("#txtAmazonFeedBackId").val(),
+                subject: subject,
+                content: content,
+                attachments: attaList.join(",")
+            };
+            $.ajax({
+                type: "POST",
+                url: "/OrderMessage/SendMsgToFeedBacker",
+                data: postData,
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    }
+                    else {
+                        redgle.showMessage("发送成功！");
+                        $("#ReplyEmaiModal").modal("hide");
+p294554153doReloadData();
+                    }
+                },
+                error: function (hrt) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        });
+    });
+
+
+
+
+
+
+    //打开联系窗口
+    function  p294554153doOpenReplyEmaiWindow(AmazonFeedBackId) {
+        $("#txtAmazonFeedBackId").val(AmazonFeedBackId);
+        $("#ReplyEmaiModal").modal("show");
+    }
+    //打开同步窗口
+    function  p294554153doOpenSyncWindow() {
+        $("#syncProductModal").modal("show")
+    }
+
+    $(function () {
+        $("#starDiv>b").click(function () {
+            var $this = $(this);
+            $this.prop("class", "glyphicon glyphicon-star");
+            $this.prevAll().prop("class", "glyphicon glyphicon-star");
+            $this.nextAll().prop("class", "glyphicon glyphicon-star-empty");
+        })
+
+        //联系状态
+        $("#divStateItems>label").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                $("#txtStatusCode").val("");
+                $this.removeClass();
+            } else {
+                $("#txtStatusCode").val($this.attr("itemid"));
+                $("#divStateItems>label").removeClass();
+                $this.addClass("active");
+            };
+            $("#searchForm").submit();
+        });
+        //选择同步时间
+        $("#divSyncTime > span").each(function () {
+            $(this).click(function () {
+                var $this = $(this)
+                if (typeof ($this.attr("class")) == "undefined" || $this.attr("class").indexOf("active") < 0) {
+                    $("#divSyncTime > span").removeClass("active");
+                    $this.addClass("active");
+                    $("#syncDays").val($this.attr("itemid"));
+                }
+            });
+        });
+        $("#divStoreItemsSync>span").click(function () {
+            var $this = $(this);
+            if ($this.attr("class") == "active") {
+                if ($this.attr("userform") == "") {
+                    $("#divStoreItemsSync>span").removeClass("active")
+                } else {
+                    $this.removeClass();
+                }
+
+            } else {
+                if ($this.attr("userform") == "") {
+                    $("#divStoreItemsSync>span").removeClass("active")
+                    $("#divStoreItemsSync>span").addClass("active")
+                } else {
+                    $this.addClass("active");
+                }
+            };
+        })
+
+    })
+    //重新加载订单列表
+    function p294554153doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+        //把查询条件传递给本页面
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/OrderMessage/AmazonBadFeedBack",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#divOrderDataList").html(data);
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [XMLHttpRequest.status, XMLHttpRequest.statusText]));
+            }
+        });
+    }
+
+    function p294554153doSyncProduct() {
+        $('#divSyncMessage').html("");
+        $('<p><hg:trans>开始同步</hg:trans></p>').appendTo("#divSyncMessage");
+        var storeList = $("#divStoreItemsSync").find(".active").not("span[userform='']");
+        var index = 0;
+        if (storeList.length == 0) {
+            $('<p><hg:trans>未选择平台账号</hg:trans></p>').appendTo("#divSyncMessage");
+            return;
+        }
+        $("#btnStartSyncStock").text(translate.format("<hg:trans>正在同步差评信息...</hg:trans>")).attr("disabled", true);
+        doLoadSyncProduct(index, storeList.length);
+    }
+
+    function doLoadSyncProduct(index, totalIndex) {
+        var $this = $("#divStoreItemsSync").find(".active:eq(" + index + ")")
+        if ($this.attr("userform") == "") {
+            index++;
+            $this = $("#divStoreItemsSync").find(".active:eq(" + index + ")")
+        }
+        if ($this) {
+            $('<p>' + translate.format("<hg:trans>开始同步 【{0}】 差评信息...</hg:trans>", [$this.html()]) + '</p>').appendTo("#divSyncMessage");
+            $.ajax({
+                type: "post",
+                url: "/OrderMessage/SyncAmazonBadFeedBack",
+                data: { userId: $this.attr("data-value"), day: $("#syncDays").val() },
+                datatype: "json",
+                success: function (result) {
+                    if (result.HasError) {
+                        $('<p>' + translate.format("同步【{0}】差评信息出现错误:{1}", [$this.html(), result.Message]) + '</p>').appendTo("#divSyncMessage");
+                    } else {
+                        debugger
+                        $('<p>' + translate.format("同步【{0}】差评信息完成", [$this.html()]) + '</p>').appendTo("#divSyncMessage");
+                    }
+                },
+                errey: function (date) {
+                    console.log(date);
+                },
+                complete: function () {
+                    index++;
+                    if (index >= totalIndex) {
+                        $("#btnStartSyncStock").text(translate.format("<hg:trans>同步</hg:trans>")).attr("disabled", false);
+                        $('<p><hg:trans>同步差评信息完成</hg:trans></p>').appendTo("#divSyncMessage");
+                    } else
+                        doLoadSyncProduct(index, totalIndex);
+                }
+            })
+        }
+    }
+</script>
+<script src="__STATIC__/index/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="__STATIC__/index/js/218500870531458dbfd51f196c3da5d7.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

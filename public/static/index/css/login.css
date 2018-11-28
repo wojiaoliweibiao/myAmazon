@@ -1,0 +1,340 @@
+  .mainen {
+            background: url(../images/erp-bg.jpg);
+            min-height: 602px;
+        }
+
+        .regform1 {
+            background: #fff;
+            border-radius: 10px;
+            margin-top: 78px;
+        }
+
+        .regform_rt {
+            text-align: center;
+            padding-top: 40px;
+            border-bottom: 1px solid #2f6ee1;
+        }
+
+        #loginName, #loginPassword {
+            width: 93%;
+            height: 40px;
+        }
+
+        .form-control {
+            border-radius: 0px;
+            height: 40px;
+            margin-top: 20px;
+            width: 80%;
+            margin-right: 10px;
+        }
+
+        .res {
+            float: left;
+            margin-left: 15px;
+            border: 1px solid #ccc;
+            width: 40px;
+            height: 40px;
+        }
+
+            .res img {
+                margin-left: 8px;
+                margin-top: 10px;
+            }
+
+        .logse {
+            margin-top: 20px;
+            margin-left: 15px;
+        }
+
+        .denglu {
+            background: #ff1d33;
+            width: 40%;
+            border: 1px solid #ff1d33;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-radius: 8px;
+            color: #fff !important;
+        }
+
+            .denglu:Hover {
+                background: #ff1d33;
+                width: 40%;
+                border: 1px solid #ff1d33;
+                margin-bottom: 20px;
+                font-size: 20px;
+                color: #fff !important;
+            }
+
+        .zhuce {
+            background: #3378ea;
+            margin-left: 40px;
+            width: 40%;
+            border: 1px solid #3378ea;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-radius: 8px;
+            color: #fff !important;
+        }
+
+            .zhuce:hover {
+                background: #3378ea;
+                margin-left: 40px;
+                width: 40%;
+                border: 1px solid #3378ea;
+                margin-bottom: 20px;
+                font-size: 20px;
+                color: #fff !important;
+            }
+
+        .regform_rt a {
+            color: #2f6ee1;
+            font-size: 23px;
+        }
+
+        .f_l {
+            width: 100%;
+            height: 3px;
+            border-bottom: 1px solid #ccc;
+            bottom: 50px;
+            position: absolute;
+        }
+
+        .footerte { /*width: 960px;margin: 0 auto;*/
+        }
+
+            .footerte p {
+                font-size: 14px;
+                color: #828282;
+                line-height: 40px;
+                font-family: "微软雅黑";
+                text-align: center;
+            }
+
+        .common { /*margin:0 auto; width:1200px;position: relative;*/
+            margin-top: 81px;
+        }
+
+            .common ul li { /*margin-left:20px;*/
+            }
+
+        .clear {
+            clear: both;
+        }
+
+        .summary {
+            background: #696969;
+            height: 140px;
+            margin-top: -14px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .listbox {
+            float: left;
+            margin-bottom: 10px;
+            background: #f6f6f6;
+            width: 186px;
+            height: 125px;
+            border-radius: 10px;
+            box-shadow: 1px 2px 15px #002268;
+            position: relative;
+        }
+
+        .listimg {
+            overflow: hidden;
+        }
+
+            .listimg img {
+                top: 0;
+                left: 0;
+                position: absolute;
+                padding-top: 30px;
+            }
+
+        .summary {
+            top: 165px;
+            left: 0;
+            position: relative;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .summarytxt {
+            height: 25px;
+            width: 186px;
+            height: auto;
+            line-height:30px;
+            font-size: 14px;
+            padding-left: 10px;
+            color: #fff;
+            /*font-weight: 600;*/
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .atest {
+            margin-left: 15px;
+        }
+
+        .ateste {
+            margin-left: 8px;
+        }
+
+        .atests {
+            margin-left: 25px;
+        }
+
+        .atestb {
+            margin-left: 12px;
+        }
+
+        .eteata {
+            margin-left: 13px;
+        }
+
+        .ateati {
+            margin-left: 10px;
+        }
+
+        .eteatg {
+            margin-left: 16px;
+        }
+
+        .eteatm {
+            margin-left: 18px;
+        }
+
+        .eteatl {
+            margin-left: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            border: none;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .headert {
+            width: 100%;
+            border-bottom: #9ad7ff solid 1px;
+            margin: 0 auto;
+        }
+
+        .headert_logo { /*margin-left: 40px;*/
+            float: left;
+        }
+
+            .headert_logo a {
+                float: right;
+                margin-top: 40px;
+                color: #3081c5;
+                text-decoration: none;
+                margin-right: 40px;
+            }
+
+        @media(max-width:1366px) {
+            .mainen {
+                background: url(../images/erp-bg.jpg);
+                min-height: 533px;
+            }
+
+            .f_l {
+                width: 100%;
+                height: 3px;
+                border-bottom: 1px solid #ccc;
+                bottom: 0px;
+                position: absolute;
+            }
+        }
+
+        @media(max-width:1280px) {
+            .mainen {
+                background: url(../images/erp-bg.jpg);
+                min-height: 602px;
+            }
+
+            .f_l {
+                width: 100%;
+                height: 3px;
+                border-bottom: 1px solid #ccc;
+                bottom: 40px;
+                position: absolute;
+            }
+        }
+
+        @media(max-width:1024px) {
+            .mainen {
+                background: url(../images/erp-bg.jpg) no-repeat;
+                min-height: 602px;
+            }
+
+            .f_l {
+                width: 100%;
+                height: 3px;
+                border-bottom: 1px solid #ccc;
+                bottom: -20px;
+                position: absolute;
+            }
+
+            .listbox {
+                float: left;
+                margin-bottom: 10px;
+                background: #f6f6f6;
+                width: 160px;
+                height: 125px;
+                border-radius: 10px;
+                box-shadow: 1px 2px 15px #002268;
+                position: relative;
+            }
+
+            .listimg img {
+                width: 140px;
+            }
+
+            .atest {
+                margin-left: 10px;
+            }
+
+            .ateste {
+                margin-left: 10px;
+            }
+
+            .atests {
+                margin-left: 12px;
+            }
+
+            .atestb {
+                margin-left: 9px;
+            }
+
+            .eteata {
+                margin-left: 10px;
+            }
+
+            .eteati {
+                margin-left: 11px;
+            }
+
+            .eteatg {
+                margin-left: 10px;
+            }
+
+            .eteatm {
+                margin-left: 10px;
+            }
+
+            .eteatl {
+                margin-left: 10px;
+            }
+        }
+.FloatAd{ width:291px; height:219px;background:#D8D8D8; background-image:url(../images/ad.png);position:fixed; right:-262px; bottom:10px;}
+.FloatAd .close{ width:30px; height:22px; line-height:22px;display:block; float:right;font-size:22px; color:#666; text-decoration:none;}
+.FloatAd .goto{width: 250px;height: 220px;display: block;text-decoration: none;} 

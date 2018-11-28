@@ -1,0 +1,799 @@
+{:widget('Blog/header')}
+<html>
+ <head>
+ 
+  <script src="__STATIC__/index/js/c6102531548c4f988e485ab0333845b4.js"></script> 
+  <script src="__STATIC__/index/js/74c4de9c7b314e3287f3b215e15b5158.js"></script> 
+  <script src="__STATIC__/index/js/hg.common.js"></script> 
+  <script src="__STATIC__/index/js/jquery.fancybox.js"></script> 
+ 
+ </head> 
+ <body>
+{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabCatalogManage" role="presentation" class="active">
+        <a href="javascript:void(0);">
+            <hg:trans>目录分类管理</hg:trans>
+        </a>
+    </li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabCatalogManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodes">
+<form action="/catalog/Product?Length=7" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p275788013divDataList" id="searchForm" method="post">                <input type="hidden" id="hidCatalogTypeCode" name="hidCatalogTypeCode" value="Product" />
+                <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" value="12/" />
+                <input type="hidden" id="txtParentCatalogId" name="txtParentCatalogId" value="12" />
+                <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                    <label for="txtCatalogName"><hg:trans>名称</hg:trans></label>
+                    <input type="text" class="form-control" style="width:220px;" id="txtCatalogName" name="txtCatalogName" hgtrans="true" placeholder="请输入名称">
+                </div>
+                <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                    <label for="txtContainsChild"><hg:trans>包含子级</hg:trans></label>
+                    <select class="form-control" style="width:220px;" id="txtContainsChild" name="txtContainsChild">
+                        <option value=""></option>
+                        <option value="1"><hg:trans>是</hg:trans></option>
+                        <option value="-1"><hg:trans>否</hg:trans></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default"><hg:trans>查询</hg:trans></button>
+</form>        </div>
+        <div id="divCatalogSearchPanel">
+            <div style="float:right; margin-right:5px; margin-top:0px;">
+                <button type="button" class="btn btn-info btn-sm" onclick="p275788013doEditData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加目录</hg:trans></button>
+            </div>
+            
+<div id="f124divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f124divCatalogContentPanel" class="tree" contentgroup="#divCatalogSearchPanel #f124divCatalogContentPanel" navigategroup="#divCatalogSearchPanel .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divCatalogSearchPanel #f124divCatalogContentPanel" navigategroup="#divCatalogSearchPanel .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f124treeObject = new redgle.tree({
+            contentPanelExpr:"#divCatalogSearchPanel #f124divCatalogContentPanel"
+            , navigatePanelExpr:"#divCatalogSearchPanel .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f124treeObject.convertCatalogToData(data);
+f124treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f124treeObject.convertDataToCatalog(data);
+                if(typeof(p275788013onCatalogSelected) == "function") p275788013onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"Product"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f124treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f124treeObject.addItemsToNavigate(data);
+f124treeObject.AddElementItem(data[0]);
+                }
+                else {
+f124treeObject.addItemsToNavigate([data]);
+f124treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                // alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f124divSelect").hover(
+            function () {
+                $("#f124divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f124divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="p275788013divDataList" class="parents-nodes">
+            
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                <hg:trans>目录编码</hg:trans>
+            </th>
+            <th>
+                <hg:trans>名称</hg:trans>
+            </th>
+            <th>
+                <hg:trans>排序号</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建时间</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建者</hg:trans>
+            </th>
+            <th>
+                <hg:trans>操作</hg:trans>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr class="info">
+                <td>
+                    
+                </td>
+                <td>
+                    产品分类
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                </td>
+            </tr>
+                    <tr ondblclick="p275788013doEditData('114')">
+                <td>
+                    nv
+                </td>
+                <td>
+                    女装
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    2018/5/10 10:19:16
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('114')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('114')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('117')">
+                <td>
+                    men
+                </td>
+                <td>
+                    男装
+                </td>
+                <td>
+                    2
+                </td>
+                <td>
+                    2018/5/15 13:12:01
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('117')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('117')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('118')">
+                <td>
+                    xiexue
+                </td>
+                <td>
+                    鞋靴
+                </td>
+                <td>
+                    3
+                </td>
+                <td>
+                    2018/5/15 13:13:10
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('118')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('118')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('119')">
+                <td>
+                    box
+                </td>
+                <td>
+                    箱包
+                </td>
+                <td>
+                    4
+                </td>
+                <td>
+                    2018/5/15 13:13:56
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('119')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('119')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('120')">
+                <td>
+                    pei
+                </td>
+                <td>
+                    配饰
+                </td>
+                <td>
+                    5
+                </td>
+                <td>
+                    2018/5/15 13:14:27
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('120')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('120')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('121')">
+                <td>
+                    yun
+                </td>
+                <td>
+                    运动服饰
+                </td>
+                <td>
+                    6
+                </td>
+                <td>
+                    2018/5/15 13:14:51
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('121')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('121')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('122')">
+                <td>
+                    yd
+                </td>
+                <td>
+                    运动装备
+                </td>
+                <td>
+                    7
+                </td>
+                <td>
+                    2018/5/15 13:15:25
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('122')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('122')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('123')">
+                <td>
+                    mu
+                </td>
+                <td>
+                    母婴用品
+                </td>
+                <td>
+                    8
+                </td>
+                <td>
+                    2018/5/15 13:15:48
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('123')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('123')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('124')">
+                <td>
+                    to
+                </td>
+                <td>
+                    童装
+                </td>
+                <td>
+                    9
+                </td>
+                <td>
+                    2018/5/15 13:16:06
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('124')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('124')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('125')">
+                <td>
+                    toy
+                </td>
+                <td>
+                    玩具
+                </td>
+                <td>
+                    10
+                </td>
+                <td>
+                    2018/5/15 13:16:26
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('125')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('125')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('126')">
+                <td>
+                    gy
+                </td>
+                <td>
+                    工艺品
+                </td>
+                <td>
+                    11
+                </td>
+                <td>
+                    2018/5/15 13:17:03
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('126')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('126')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('127')">
+                <td>
+                    yy
+                </td>
+                <td>
+                    园艺
+                </td>
+                <td>
+                    12
+                </td>
+                <td>
+                    2018/5/15 13:17:18
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('127')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('127')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('128')">
+                <td>
+                    bg
+                </td>
+                <td>
+                    办公文教
+                </td>
+                <td>
+                    13
+                </td>
+                <td>
+                    2018/5/15 13:17:41
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('128')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('128')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('129')">
+                <td>
+                    ry
+                </td>
+                <td>
+                    日用百货
+                </td>
+                <td>
+                    14
+                </td>
+                <td>
+                    2018/5/15 13:18:04
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('129')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('129')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('130')">
+                <td>
+                    car
+                </td>
+                <td>
+                    汽车用品
+                </td>
+                <td>
+                    15
+                </td>
+                <td>
+                    2018/5/15 13:18:35
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('130')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('130')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('131')">
+                <td>
+                    hom
+                </td>
+                <td>
+                    家纺家饰
+                </td>
+                <td>
+                    16
+                </td>
+                <td>
+                    2018/5/15 13:19:04
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('131')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('131')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('132')">
+                <td>
+                    jj
+                </td>
+                <td>
+                    家装建材
+                </td>
+                <td>
+                    17
+                </td>
+                <td>
+                    2018/5/15 13:19:21
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('132')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('132')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('133')">
+                <td>
+                    hz
+                </td>
+                <td>
+                    美容化妆
+                </td>
+                <td>
+                    18
+                </td>
+                <td>
+                    2018/5/15 13:19:49
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('133')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('133')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('134')">
+                <td>
+                    gh
+                </td>
+                <td>
+                    个护家清
+                </td>
+                <td>
+                    19
+                </td>
+                <td>
+                    2018/5/15 13:20:12
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('134')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('134')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('135')">
+                <td>
+                    ph
+                </td>
+                <td>
+                    3C手机家电
+                </td>
+                <td>
+                    20
+                </td>
+                <td>
+                    2018/5/15 13:20:42
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('135')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('135')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('136')">
+                <td>
+                    gj
+                </td>
+                <td>
+                    电工 电气 照明 仪表
+                </td>
+                <td>
+                    21
+                </td>
+                <td>
+                    2018/5/15 13:21:26
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('136')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('136')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('137')">
+                <td>
+                    jx
+                </td>
+                <td>
+                    机械 五金工具
+                </td>
+                <td>
+                    22
+                </td>
+                <td>
+                    2018/5/15 13:22:32
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('137')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('137')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+            <tr ondblclick="p275788013doEditData('140')">
+                <td>
+                    pet
+                </td>
+                <td>
+                    宠物
+                </td>
+                <td>
+                    23
+                </td>
+                <td>
+                    2018/5/23 17:47:28
+                </td>
+                <td>
+                    管理员
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="p275788013doEditData('140')" class="glyphicon glyphicon-edit" hgtrans="true" title="编辑"></a>
+                    <a href="javascript:void(0)" onclick="p275788013doDeleteData('140')" class="glyphicon glyphicon-remove" hgtrans="true" title="删除"></a>&nbsp;
+                </td>
+            </tr>
+    </tbody>
+</table>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+
+    function p275788013onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#txtParentCatalogId").val(catalog.CatalogId);
+        $("#searchForm").submit();
+    }
+    function p275788013doEditData(catalogId) {
+        if (catalogId == null || catalogId == "")
+            catalogId = "";
+
+        var url = "/Catalog/Product/Edit/" + catalogId;
+        if (catalogId == "")
+            url = url + "?parentCatalogId=" + $("#txtParentCatalogId").val();
+        redgle.tab.create("liCatalogEdit", url, translate.format("<hg:trans>编辑目录</hg:trans>"));
+    }
+    function p275788013doDeleteData(catalogId) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/catalog/Product/Delete",
+            data: { catalogId: catalogId, catalogType: "Product" },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p275788013doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p275788013doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/catalog/Product",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p275788013divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/26cfe6ac916a41548b101bd09f3df053.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

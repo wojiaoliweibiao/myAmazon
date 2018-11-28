@@ -1,0 +1,213 @@
+﻿.ware-tip{
+    margin-left: 25%;
+    position: fixed;
+    width: 50%;
+    z-index: 9999;
+    top: 300px;
+    display: none;
+}
+.opt-loading{
+    width: 15px;
+    height: 15px;
+    background-image: url(../images/spinner.gif);
+    background-size: cover;
+    display: inline-block;
+    vertical-align: -2px;
+}
+.modal-tip-icon{
+    display: inline-block;
+    font-size: 57px;
+    vertical-align: middle;
+    height: 70px;
+    border-radius: 50%;
+    border: 5px solid orange;
+    color: orange;
+    width: 70px;
+    position: relative;
+}
+.modal-tip-icon:after{
+    position: absolute;
+    left: 50%;
+}
+.warning-icon:after{
+    content: "!";
+    margin-left: -9px;
+    top: -11px;
+}
+.ensure-icon:after{
+    content: "?";
+    margin-left: -13px;
+    top: -11px;
+}
+/* fixed menu */
+.fixed-menu {
+    position: fixed;
+    right: 10px;
+    bottom: 300px;
+    z-index: 1000;
+}
+.fixed-btn {
+    width: 30px;
+    height: 30px;
+    padding: 2px 3px;
+    font-size: 17px;
+    text-align: center;
+    border: 2px dotted cadetblue;
+    line-height: 25px;
+    margin-top: 3px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: white;
+    background-color: cadetblue;
+}
+.fixed-btn:hover{
+    color: cadetblue;
+    background-color: white;
+}
+.fixed-btn:before {
+    font-family: "Glyphicons Halflings";
+}
+.fixed-btn.feed-back{
+    line-height: initial;
+    font-size: 12px;
+    height: 74px;
+}
+.fixed-btn.to-top {
+    display: none;
+}
+.fixed-btn.to-top:before {
+    content: "\e113"
+}
+.fixed-btn.to-bottom:before {
+    content: "\e114"
+}
+.fixed-input-content {
+    border: 1px solid cadetblue;
+    width: 350px;
+    position: absolute;
+    height: 350px;
+    top: -350px;
+    right: -350px;
+    background-color: white;
+    overflow: hidden;
+    line-height: 30px !important;
+}
+.fixed-input-content .control-label{
+    padding-right: 0;
+    color: cadetblue;
+}
+.fixed-input-content-head {
+    font-size: 15px;
+    padding: 5px;
+    color: cadetblue;
+    border-bottom: 1px solid cadetblue;
+    background-color: rgba(95, 158, 160, 0.2);
+    line-height: 20px;
+}
+.fixed-cancel-input{
+    margin-right: 10px;
+    float: right;
+    margin-top: 4px;
+    cursor: pointer;
+}
+.fixed-input-content-footer {
+    padding: 5px;
+    border-top: 1px solid cadetblue;
+    background-color: rgba(95, 158, 160, 0.2);
+    text-align: center;
+}
+.fixed-input-content-body {
+    height: 276px;
+    padding: 0 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.fixed-input-content-body input{
+    border: 0;
+    border-bottom: 1px solid cadetblue;
+    color: cadetblue;
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+.fixed-input-content-body textarea{
+    border-radius: 0;
+    border: 1px solid cadetblue;
+    color: cadetblue;
+    min-height: 115px;
+    margin-top: 11px;
+}
+.fixed-input-content-body textarea:focus{
+    border-color: cadetblue;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px cadetblue;
+}
+.fixed-input-content-body input:focus{
+    box-shadow: none;
+    border-bottom: 1px solid cadetblue;
+}
+.fixed-input-cancel-btn{
+    outline: 1px solid cadetblue;
+    outline-offset: -1px;
+    color: cadetblue;
+    background-color: white;
+    padding: 3px 25px;
+    line-height: initial;
+    border: 0;
+}
+.fixed-input-ensure-btn {
+    color: white;
+    background-color: cadetblue;
+    padding: 3px 25px;
+    border: 0;
+    line-height: initial;
+    margin-left: 20px;
+}
+#fixed-add-pic{
+    background-color: cadetblue;
+    color: white;
+    border: 0;
+    width: 120px;
+    line-height: initial;
+    padding: 4px 2px;
+}
+#fixed-img-content{
+    width: 300px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#fixed-img-content tr{
+    border-top: 3px solid white;
+}
+.fixed-img-content {
+    width: 40px;
+    height: 40px;
+    border-right: 1px solid white;
+}
+.fixed-img{
+    width: 40px;
+    height: 40px;
+}
+.fixed-img-name {
+    background-color: rgba(95, 158, 160, 0.3);
+    width: 230px;
+    max-width: 230px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.remove-fixed-img {
+    background-color: rgba(95, 158, 160, 0.3);
+    border-left: 1px solid white;
+    text-align: center;
+    cursor: pointer;
+}
+.fixed-input-content-body::-webkit-scrollbar{
+    width: 5px;
+}
+.fixed-input-content-body::-webkit-scrollbar-track{
+    background-color: #fff;
+}
+.fixed-input-content-body::-webkit-scrollbar-thumb{
+    background-color: cadetblue;
+}
+/* fixed menu end */

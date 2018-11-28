@@ -1,0 +1,324 @@
+{:widget('Blog/header')}
+   
+
+    <script src="__STATIC__/index/js/a6ebffc3b6504e51bcae37b98f976409.js"></script>
+
+    <script src="__STATIC__/index/js/40cf7b22a4964fb99dd7aeefa8072132.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+>{:widget('Blog/left')}
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabCatalogManage" role="presentation" class="active">
+        <a href="javascript:void(0);">
+            <hg:trans>目录分类管理</hg:trans>
+        </a>
+    </li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabCatalogManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodes">
+<form action="/catalog/Customer?Length=7" class="form-inline" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p275788013divDataList" id="searchForm" method="post">                <input type="hidden" id="hidCatalogTypeCode" name="hidCatalogTypeCode" value="Customer" />
+                <input type="hidden" id="txtCatalogIdPath" name="txtCatalogIdPath" value="14/" />
+                <input type="hidden" id="txtParentCatalogId" name="txtParentCatalogId" value="14" />
+                <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                    <label for="txtCatalogName"><hg:trans>名称</hg:trans></label>
+                    <input type="text" class="form-control" style="width:220px;" id="txtCatalogName" name="txtCatalogName" hgtrans="true" placeholder="请输入名称">
+                </div>
+                <div class="form-group" style="margin-left:10px; margin-right:10px;">
+                    <label for="txtContainsChild"><hg:trans>包含子级</hg:trans></label>
+                    <select class="form-control" style="width:220px;" id="txtContainsChild" name="txtContainsChild">
+                        <option value=""></option>
+                        <option value="1"><hg:trans>是</hg:trans></option>
+                        <option value="-1"><hg:trans>否</hg:trans></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default"><hg:trans>查询</hg:trans></button>
+</form>        </div>
+        <div id="divCatalogSearchPanel">
+            <div style="float:right; margin-right:5px; margin-top:0px;">
+                <button type="button" class="btn btn-info btn-sm" onclick="p275788013doEditData()"><i class="glyphicon glyphicon-plus"></i> <hg:trans>添加目录</hg:trans></button>
+            </div>
+            
+<div id="f478divSelect" class="breadcrumb_title">
+    <span><hg:trans>选择分类目录</hg:trans>：</span>
+    <div id="f478divCatalogContentPanel" class="tree" contentgroup="#divCatalogSearchPanel #f478divCatalogContentPanel" navigategroup="#divCatalogSearchPanel .breadcrumb" style="position:absolute; z-index:2000;min-height:260px; max-height:560px; width:460px; overflow:auto;margin-left:-15px; display:none;"></div>
+</div>
+<ol class="breadcrumb" style="margin-left:120px;height: 32px;" contentgroup="#divCatalogSearchPanel #f478divCatalogContentPanel" navigategroup="#divCatalogSearchPanel .breadcrumb"></ol>
+ 
+<script type="text/javascript" language="javascript">
+    jQuery(function () {
+        var f478treeObject = new redgle.tree({
+            contentPanelExpr:"#divCatalogSearchPanel #f478divCatalogContentPanel"
+            , navigatePanelExpr:"#divCatalogSearchPanel .breadcrumb"
+            , fnLoadChildren:function(catalogId){
+                $.ajax({
+                    type: "POST",
+                    url: "/CatalogTree/LoadCatalog",
+                    data: { catalogId: catalogId },
+                    datatype: "json",
+                    global:false,
+                    success: function (data) {
+                        if (typeof data === "string")
+                            data = jQuery.parseJSON(data);
+
+                        data = f478treeObject.convertCatalogToData(data);
+f478treeObject.AddElementItem(data);
+                    },
+                    error: function (xhr) {
+                        alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                    }
+                });
+            }
+            ,fnNodeClick: function(data){
+                data = f478treeObject.convertDataToCatalog(data);
+                if(typeof(p275788013onCatalogSelected) == "function") p275788013onCatalogSelected(data);;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/CatalogTree/LoadRoot",
+            data: {catalogType:"Customer"},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (typeof data === "string")
+                    data = jQuery.parseJSON(data);
+                data = f478treeObject.convertCatalogToData(data);
+
+                if (typeof(data.length) != "undefined"){
+f478treeObject.addItemsToNavigate(data);
+f478treeObject.AddElementItem(data[0]);
+                }
+                else {
+f478treeObject.addItemsToNavigate([data]);
+f478treeObject.AddElementItem(data);
+                }
+            },
+            error: function (xhr) {
+                // alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+
+        $("#f478divSelect").hover(
+            function () {
+                $("#f478divCatalogContentPanel").show();
+            },
+            function () {
+                $("#f478divCatalogContentPanel").hide();
+            }
+        );
+    });
+</script>
+        </div>
+        <div id="p275788013divDataList" class="parents-nodes">
+            
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                <hg:trans>目录编码</hg:trans>
+            </th>
+            <th>
+                <hg:trans>名称</hg:trans>
+            </th>
+            <th>
+                <hg:trans>排序号</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建时间</hg:trans>
+            </th>
+            <th>
+                <hg:trans>创建者</hg:trans>
+            </th>
+            <th>
+                <hg:trans>操作</hg:trans>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr class="info">
+                <td>
+                    
+                </td>
+                <td>
+                    客户分类
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                </td>
+            </tr>
+            </tbody>
+</table>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+
+    function p275788013onCatalogSelected(catalog) {
+        $("#txtCatalogIdPath").val(catalog.CatalogIdPath);
+        $("#txtParentCatalogId").val(catalog.CatalogId);
+        $("#searchForm").submit();
+    }
+    function p275788013doEditData(catalogId) {
+        if (catalogId == null || catalogId == "")
+            catalogId = "";
+
+        var url = "/Catalog/Customer/Edit/" + catalogId;
+        if (catalogId == "")
+            url = url + "?parentCatalogId=" + $("#txtParentCatalogId").val();
+        redgle.tab.create("liCatalogEdit", url, translate.format("<hg:trans>编辑目录</hg:trans>"));
+    }
+    function p275788013doDeleteData(catalogId) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "/catalog/Customer/Delete",
+            data: { catalogId: catalogId, catalogType: "Customer" },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p275788013doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p275788013doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/catalog/Customer",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p275788013divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min_1.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/e87c98f2c50543a098e99fc39c3e5f33.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

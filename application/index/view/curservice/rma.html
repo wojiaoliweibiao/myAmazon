@@ -1,0 +1,908 @@
+{:widget('Blog/header')}
+   
+
+    <script src="__STATIC__/index/js/a6ebffc3b6504e51bcae37b98f976409.js"></script>
+
+    <script src="__STATIC__/index/js/40cf7b22a4964fb99dd7aeefa8072132.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+{:widget('Blog/left')}      
+<script src="js/e1504df9cf824c6492c42577e58dd7a0.js"></script>
+
+<link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>售后管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/RMA?Length=3" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1368773806divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>状态</hg:trans></label>
+                    <div id="divStatus" class="input-group para-items" style="float:left">
+                        <span itemid="" class="active"><hg:trans>全部</hg:trans></span>
+                        <span itemid="0"><hg:trans>待提交</hg:trans></span>
+                        <span itemid="1"><hg:trans>待审批</hg:trans></span>
+                        <span itemid="2"><hg:trans>审批通过</hg:trans></span>
+                        <input type="hidden" id="hidStatus" name="hidStatus" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台</hg:trans></label>
+                    <div class="input-group para-items">
+                        <div id="txtShopFrom" class="input-group para-items" style="float:left">
+
+                            <div id="divapifromitemsall" class="input-group para-items" divapifromitems style="float:left">
+                                <span userform="All" class="active"><hg:trans>全部</hg:trans></span>
+                            </div>
+                                <div id="divapifromitemsAmazon" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Amazon">Amazon</span>
+                                </div>
+                                <div id="divapifromitemsOffline" class="input-group para-items" divapifromitems style="float:left">
+                                    <span userform="Offline">Offline</span>
+                                </div>
+                            <input type="hidden" id="hidApiForms" name="hidApiForms" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtAccount" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台账号</hg:trans></label>
+
+                                    <div id="divUserFormAndApiUserItemsAmazon5310935598329333161" divuserformandapiuseritems class="input-group para-items" style="float:left">
+                                        <span userform="Amazon" apiuserid="5310935598329333161">11(us) (Amazon)</span>
+                                        <input type="hidden" id="hidUserFormsAmazon" name="hidUserFormsAmazon" value="" />
+                                        <input type="hidden" id="hidApiAccountItems5310935598329333161" name="hidApiAccountItems5310935598329333161" value="" />
+                                    </div>
+                    <input type="hidden" id="hidUserForms" name="hidUserForms" value="Amazon," />
+                    <input type="hidden" id="hidApiAccountItems" name="hidApiAccountItems" value="5310935598329333161," />
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span data-value="RMANo" chooseid="Search" class="active"><hg:trans>售后单号</hg:trans></span>
+                        <span data-value="OrderNo" chooseid="Search"><hg:trans>订单号</hg:trans></span>
+                        <span data-value="BuyerId" chooseid="Search"><hg:trans>买家账号</hg:trans></span>
+                        <span data-value="ProductSKU" chooseid="Search"><hg:trans>SKU</hg:trans></span>
+                        <span data-value="Submitter" chooseid="Search"><hg:trans>提交人</hg:trans></span>
+                        <span data-value="SubmitTime" chooseid="Data"><hg:trans>提交时间</hg:trans></span>
+                        <span data-value="Approver" chooseid="Search"><hg:trans>审批人</hg:trans></span>
+                        <span data-value="ApproveTime" chooseid="Data"><hg:trans>审批时间</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="RMANo" />
+                    </div>
+                </div>
+                <div class="form-group " style="width:70%; margin-bottom: 16px;display:none;" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span class="date">
+                            <input type="text" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" hgtrans="true" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                        <span class="date"><input type="text" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" hgtrans="true" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" placeholder="请输入搜索内容,多个单号用逗号隔开" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+</form>        </div>
+        <div id="p1368773806divDataList">
+            <div class="datalist-top">
+    <div class="button-area parents-nodes">
+        <button type="button" class="btn btn-success btn-sm" onclick="p1368773806doShowCheckInOrder()"> <i class="glyphicon glyphicon-plus"></i><hg:trans>新增售后单</hg:trans></button>
+        <div class="btn-group false">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><hg:trans>批量操作</hg:trans>&nbsp;<span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" style="min-width:93px">
+                <li><a href="javascript:void(0)" onclick="p1368773806doBatchInsertData()"><hg:trans>批量添加</hg:trans></a></li>
+                <li role="separator" class="divider"></li>
+                    <li><a href="javascript:void(0)" onclick="p1368773806doBatchSubmitData('Submit')"><hg:trans>提交审批</hg:trans></a></li>
+                    <li><a href="javascript:void(0)" onclick="p1368773806doShowBatchApproveIns('Approve')"><hg:trans>审批通过</hg:trans></a></li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="glyphicon glyphicon glyphicon-print"></i><hg:trans>导出EXCEL</hg:trans><span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                <li><a href="javascript:void(0)" onclick="p1368773806doExportData()"><hg:trans>导出售后单</hg:trans></a></li>
+                <li class="divider"></li>
+                <li><a href="javascript:void(0)" onclick="p1368773806doExportDataDetail()"><hg:trans>导出售后单明细</hg:trans></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1368773806divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/RMA?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+</div>
+<table class="table table-bordered table-hover" id="rmaTable">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p1368773806doSetCheckBox(this)" />
+            </th>
+            <th><hg:trans>售后单号</hg:trans></th>
+            <th><hg:trans>订单号</hg:trans></th>
+            <th><hg:trans>买家账号</hg:trans><br /><hg:trans>收件人国家</hg:trans></th>
+            <th><hg:trans>退款</hg:trans></th>
+            <th><hg:trans>退货</hg:trans></th>
+            <th><hg:trans>补发</hg:trans></th>
+            <th><hg:trans>提交人</hg:trans></th>
+            <th><hg:trans>状态</hg:trans></th>
+            <th><hg:trans>审批人</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1368773806divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/RMA?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#rmaTable").find("span[groupkey='popoverReson']").each(function () {
+            $(this).popover();
+        });
+    });
+</script>
+        </div>
+    </div>
+</div>
+<!--新增售后单 前先填写订单号-->
+<div class="modal fade" id="checkInOrder" tabindex="-1" role="dialog" aria-labelledby="checkInOrderLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:600px">
+        <div class="modal-content">
+            <div class="modal-header" style="cursor:move;background:#438EB9 none repeat scroll 0% 0%;color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="checkInOrderLabel"><hg:trans>新增售后单</hg:trans></h4>
+            </div>
+            <div class="modal-body" style="height:250px;overflow:auto">
+                <div class="form-group" style="max-width:450px;padding-top:20px;" id="Search">
+                    <label for="txtOrderNo" class="control-label col-sm-1" style="width:120px;padding-top:5px"><hg:trans>订单号/跟踪号</hg:trans>:</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtOrderNo" id="txtOrderNo" hgtrans="true" placeholder="请输入订单号/跟踪号" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="button" value="确定" hgtrans="true" accesskey="S" onclick="p1368773806doCheckInOrder()" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div id="dodatalists">  </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--审批售后单 填写审批批示-->
+<div class="modal fade" id="divApproveInstruction" tabindex="-1" role="dialog" aria-labelledby="divApproveInstructionLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:550px">
+        <div class="modal-content">
+            <div class="modal-header" style="cursor:move;background:#438EB9 none repeat scroll 0% 0%;color:white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="divApproveInstructionLabel"><hg:trans>审批售后单</hg:trans></h4>
+            </div>
+            <div class="modal-body" style="height:200px;overflow:auto">
+                <span style="padding-left:20px;"><hg:trans>批示</hg:trans></span>
+                <div class="form-group" style="max-width:500px;padding-left:20px;padding-top:5px;" id="Search">
+                    <textarea class="form-control input-sm" cols="25" id="approveInstruction" name="approveInstruction" rows="4"></textarea>
+                </div>
+                <div class="button-area" style="float:right;padding-right:40px;">
+                    <button type="button" class="btn btn-primary" id="btnApprove" onclick="p1368773806doApproveIns()"><hg:trans>审批通过</hg:trans></button>
+                    <button type="button" class="btn btn-primary" onclick="p1368773806doHideApproveIns()"><hg:trans>取消</hg:trans></button>
+                </div>
+                <input type="hidden" id="hidIsBatch" value="" />
+                <input type="hidden" id="hidApproveRMAId" value="" />
+                <input type="hidden" id="hidApproveOperateType" value="" />
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        var datalist = new Array();
+        $('.date input').datepicker();
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+    //选择售后单状态
+    $("#divStatus >span").click(function () {
+        var cls = $(this).attr("class");
+        if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+            $("#divStatus > span").removeClass("active");
+            $(this).addClass("active");
+        }
+        else {
+            $(this).removeClass("active");
+        }
+        var selectedSatut = $(this).attr("itemid");
+        $("#hidStatus").val(selectedSatut);
+        if ($("#divStatus").find(".active").length == 0) {
+            $("#hidStatus").val("");
+        }
+        $("#searchForm").submit();
+    });
+    //搜索类型筛选
+    $("#divChooseItems>span").click(function () {
+        var $this = $(this);
+        $("#divChooseItems>span").removeClass();
+        $this.addClass("active");
+        $("#hidChoose").val($this.attr("data-value"))
+        if ($this.attr("chooseid") == "Search") {
+            $("#Date").css("display", "none");
+            $("#Search").css("display", "");
+        } else {
+            $("#Date").css("display", "");
+
+            $("#Search").css("display", "none");
+        }
+    });
+
+    //支持多平台
+    $("[divapifromitems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = $(this).attr("userform");
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0 && selectedItem != "All") {
+                $("#divapifromitemsall > span").removeClass("active");
+                $(this).addClass("active");
+            } else if (selectedItem == "All") {
+                $("[divapifromitems] > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+                $("#divapifromitemsall > span").removeClass("active");
+            }
+            var selectValue = $("[divapifromitems] > span[class='active']").map(function () {
+                var thisValue = $(this).attr("userform");
+                return thisValue;
+            }).get().join(",");
+            $("#divUserFormAndApiUserItems > span").each(function () {
+                $(this).removeClass("active");
+                if (selectValue.indexOf($(this).attr("userform")) < 0) {
+                    if ($(this).attr("apiuserid") != "All")
+                        $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            })
+            if (selectValue == "All" || selectValue == "") {
+                selectValue = "";
+                $("#divapifromitemsall > span").addClass("active");
+                $("#divUserFormAndApiUserItems span").css("display", "")
+                $("#hidApiForms").val("");
+            }
+            $(this).parent().parent().find("#hidApiForms").val(selectValue);
+            $("#searchForm").submit();
+        });
+    });
+
+    //支持多选选择平台账号
+    $("[divUserFormAndApiUserItems] > span").each(function () {
+
+        $(this).click(function () {
+            var selectedItem = "";
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                selectedItem = $(this).attr("userform")
+                apiuserid = $(this).attr("apiuserid")
+                $("#hidUserForms" + selectedItem + "").val(selectedItem);
+                $("#hidApiAccountItems" + apiuserid + "").val(apiuserid);
+
+                $("#divUserFormAndApiUserItems" + selectedItem + apiuserid + " > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                selectedItem = $(this).attr("userform")
+                apiuserid = $(this).attr("apiuserid")
+                $("#hidUserForms" + selectedItem + "").val("");
+                $("#hidApiAccountItems" + apiuserid + "").val("");
+
+                $(this).removeClass("active");
+                $("#divUserFormAndApiUserItems" + selectedItem + apiuserid + " > span").removeClass("active");
+            }
+            $("#searchForm").submit();
+        });
+    });
+
+    //详情
+    function p1368773806doViewData(id) {
+        if (id == null || id == "")
+            id = "0";
+        var url = "/RMA/Edit/" + id + "?view=true";
+        redgle.tab.create("liRmaEdit", url, translate.format("<hg:trans>售后单详情</hg:trans>"));
+    }
+
+    //编辑
+    function p1368773806doEditData(id) {
+        if (id == undefined)
+            id = "";
+        var url = "/RMA/Edit?id=" + id + "";
+        redgle.tab.create("liRmaEdit", url, translate.format("<hg:trans>编辑售后单</hg:trans>"));
+    }
+    //创建
+    function p1368773806doCreate(orderId) {
+        var url = "/RMA/Edit/0?orderId=" + orderId;
+        redgle.tab.create("liRmaEdit", url, translate.format("<hg:trans>创建售后单</hg:trans>"));
+    }
+
+    function p1368773806doBatchInsertData() {
+        var url = "/RMA/BatchInsert";
+        redgle.tab.create("liRmaEdit", url, translate.format("<hg:trans>批量创建售后单</hg:trans>"));
+    }
+
+    //新增售后单填写订单号
+    function  p1368773806doShowCheckInOrder() {
+        $("#checkInOrder").find("#txtOrderNo").val("");
+        if ($("#checkdiv")) {
+            $('#dodatalists>div[id="checkdiv"]').remove();
+            $('#dodatalists>div[id="btnSubmit"]').remove();
+        }
+        $("#checkInOrder").modal('show');
+    };
+
+    //判断订单号或者跟踪号是否存在
+    function p1368773806LabelType(event) {
+        var selectedType = $('#dodatalists input:radio:checked').val();
+        $("#txtOrderNo").val("")
+p1368773806doCheckInOrder(selectedType);
+    }
+
+    //判断订单号或者跟踪号是否存在
+    function p1368773806doCheckInOrder(orderId) {
+        var error = {};
+        var hasError = false;
+        var orderNo = $("#txtOrderNo").val().trim();
+        var searchNo = orderId;
+        if (searchNo == null) {
+            searchNo = orderNo;
+        }
+        if (orderNo.length == 0 && orderId.length == 0) {
+            hasError = true;
+            error["txtOrderNo"] = translate.format("<hg:trans>【{0}】的值不允许为空</hg:trans>", ["订单号/跟踪号"]);
+        }
+        if (!hasError) {
+            $.ajax({
+                type: "POST",
+                url: "/RMA/CheckInOrder",
+                data: { orderNo: orderNo, orderId: orderId },
+                datatype: "json",
+                success: function (data) {
+                    datalist = data.ResultObject;
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    }
+                    else if (data.ResultObject!=null&&data.ResultObject.length > 0) {
+                        OperationOrder();
+                        //redgle.showConfirm(translate.format("<hg:trans>该订单可以创建售后单是否继续?</hg:trans>"), "OperationOrder()", "", translate.format("<hg:trans>新增售后单</hg:trans>"));
+                    }
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+        else {
+p1368773806doShowError(error);
+        }
+    }
+
+    //确定帅选的订单号或者跟踪号
+    function OperationOrder() {
+        var RMAOrderList = new Array();
+        for (var i = 0; i < datalist.length;i++)
+        {
+            var RMAOrder = {
+                PaymentStatus: datalist[i].PaymentStatus,
+                OrderMark: datalist[i].OrderMark,
+                ReimbursementType: datalist[i].ReimbursementType,
+                OrderId: datalist[i].OrderId
+            };
+            RMAOrderList.push(RMAOrder);
+        }
+        var RMAOrderList = JSON.stringify(RMAOrderList);
+        var orderNo = $("#txtOrderNo").val().trim();
+        var orderId = $('#dodatalists input:radio:checked').val();
+        var searchNo = orderId;
+        if (searchNo == null || searchNo=="") {
+            searchNo = orderNo;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/RMA/OperationOrder",
+            data: { RMAOrderList: RMAOrderList, searchNo: searchNo },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    if (data.ResultObject != null && data.ResultObject.length >= 2) {
+                        var dodatalists = document.getElementById("dodatalists");
+                        for (var i = 0; i < data.ResultObject.length; i++) {
+                            var content = "<div id=\"checkdiv\" class=\"form-group\">";
+                            content += " <div id=\"divChooseItemss\"  class=\"input-group para-items\" style=\"width:100%\"> ";
+                            if (i == 0) {
+                                content += " <hg:trans><input class=\"col-md-1\" type=\"radio\" id=\"LabelTypeid\" name=\"LabelType\" value=" + data.ResultObject[i].OrderId + " checked =\"checked\"></hg:trans>";
+                            }
+                            else {
+                                content += "<hg:trans><input class=\"col-md-1\" type=\"radio\" id=\"LabelType\" name=\"LabelType\"  value=" + data.ResultObject[i].OrderId + "></hg:trans>";
+                            }
+                            // content += "<label class=\"col-md-1\" ><hg:trans>" + data.ResultObject[i].OrderId + "</hg:trans></label>";
+                            content += "<label class=\"col-md-2 \" ><hg:trans>" + data.ResultObject[i].RelationType + "</hg:trans></label>";
+                            content += "<label class=\"col-md-5\" ><hg:trans>" + "订单号：" + data.ResultObject[i].OrderNo + "</hg:trans></label>";
+                            content += "<label class=\"col-md-4\" ><hg:trans>" + "跟踪号：" + data.ResultObject[i].LogisticTransitNo + "</hg:trans></label>";
+                            $("#dodatalists").append(content);
+                        }
+                        $("#dodatalists").append("<div id=\"btnSubmit\"><button class=\"btn btn-primary\" style=\"margin-left:45%\" type=\"button\" onclick=\"OperationOrder()\"><hg:trans>确定</hg:trans></button></div>");
+                    }
+                    else {
+                        $("#checkInOrder").modal('hide');
+p1368773806doCreate(data.ResultObject);
+                    }
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //显示错误
+    function p1368773806doShowError(error) {
+        $.each(error, function (key, value) {
+            $("#" + key).tooltip({ title: value });
+            $("#" + key).tooltip("show");
+            $("#" + key).parent().addClass("has-error");
+            $("#" + key).change(function () {
+                $("#" + key).tooltip("destroy");
+                $("#" + key).parent().removeClass("has-error");
+            });
+        });
+    }
+    function p1368773806doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/RMA/Index",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1368773806divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //审批要加上批示内容
+    function p1368773806doApproveData(rmaId, operateType) {
+        var error = {};
+        var hasError = false;
+        var approveInstruction = $("#approveInstruction").val();
+        if (approveInstruction.trim().length == 0) {
+            hasError = true;
+            error["approveInstruction"] = translate.format("<hg:trans>【{0}】的值不允许为空</hg:trans>", ["批示内容"]);
+        }
+        if (!hasError) {
+            $.ajax({
+                type: "POST",
+                url: "/RMA/Approval",
+                data: { RMAId: rmaId, operateType: operateType, approveInstruction: approveInstruction },
+                datatype: "json",
+                success: function (data) {
+                    if (data.HasError) {
+                        redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                    }
+                    else {
+                        if (operateType == "Approve")
+                            redgle.showMessage(translate.format("<hg:trans>审批通过！</hg:trans>"));
+                        else
+                            redgle.showMessage(translate.format("<hg:trans>成功退回修改，等待修改完成再次提交！</hg:trans>"));
+p1368773806doHideApproveIns();
+p1368773806doReloadData();
+                    }
+                },
+                error: function (xhr) {
+                    alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+                }
+            });
+        }
+        else {
+p1368773806doShowError(error);
+        }
+    }
+    function p1368773806doSubmitData(rmaId, operateType) {
+        $.ajax({
+            type: "POST",
+            url: "/RMA/Submit",
+            data: { RMAId: rmaId, operateType: operateType },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    if (operateType == "Submit") {
+                        redgle.showMessage(translate.format("<hg:trans>提交成功等待审批！</hg:trans>"));
+                    }
+                    else if (operateType == "Approve")
+                    { redgle.showMessage(translate.format("<hg:trans>完成审批！</hg:trans>")); }
+p1368773806doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function p1368773806doDeleteData(rmaId) {
+        $.ajax({
+            type: "POST",
+            url: "/RMA/Delete",
+            data: { RMAId: rmaId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的修改已保存成功</hg:trans>！"))
+p1368773806doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //复选框
+    function p1368773806doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+    //导出选择数据列
+    function p1368773806doExportData() {
+        var exportmode = "";
+        var width = 950;
+        var height = 560;
+        var url = "../Order/Export?viewName=Export&pagekey=RMA/Export&exportmode=" + exportmode + "&functionName=p1368773806doExport";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+    //导出
+    function p1368773806doExport(fieldName) {
+        var rmaIds = "";
+        $(' input[name=chk_list]:checked').each(function () {
+            rmaIds += $(this).val() + ",";
+        });
+        var postData = {};
+        if (rmaIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择售后单导出，将导出符合当前搜索条件的售后单，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");
+        }
+        if (rmaIds.length > 0) {
+            rmaIds = rmaIds.substr(0, rmaIds.length - 1);
+        }
+        postData["viewName"] = "Export";
+        postData["pageKey"] = "RMA/Export";
+        postData["RMAIds"] = rmaIds;
+        postData["fieldName"] = fieldName;
+        $.ajax({
+            type: "POST",
+            url: "/RMA/Export",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open(data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    //导出选择数据列
+    function p1368773806doExportDataDetail() {
+        var exportmode = "";
+        var width = 950;
+        var height = 560;
+        var url = "../Order/Export?viewName=Export&pagekey=RMA/ExportDetail&exportmode=" + exportmode + "&functionName=p1368773806doExportDetail";
+        var DownsTemplateModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>选择要导出的数据列</hg:trans>"), width: width, height: height });
+        DownsTemplateModal.show();
+    }
+    //导出
+    function p1368773806doExportDetail(fieldName) {
+        var rmaIds = "";
+        $(' input[name=chk_list]:checked').each(function () {
+            rmaIds += $(this).val() + ",";
+        });
+        var postData = {};
+        if (rmaIds.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+            if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择售后单导出，将导出符合当前搜索条件的售后单，数据较多，请耐心等候！</hg:trans>")))
+                return;
+            postData = redgle.request.getFormData("searchForm");
+        }
+        if (rmaIds.length > 0) {
+            rmaIds = rmaIds.substr(0, rmaIds.length - 1);
+        }
+        postData["viewName"] = "Export";
+        postData["pageKey"] = "RMA/ExportDetail";
+        postData["RMAIds"] = rmaIds;
+        postData["fieldName"] = fieldName;
+        $.ajax({
+            type: "POST",
+            url: "/RMA/ExportDetail",
+            data: postData,
+        datatype: "json",
+        success: function (data) {
+            if (data.HasError) {
+                redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+            } else {
+                window.open(data.ResultObject);
+            }
+        },
+        error: function (xhr) {
+            alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+        }
+    });
+    }
+
+    //显示订单详情
+    function doViewOnlineOrder(orderId) {
+        if (orderId == null || orderId < 1)
+            return;
+
+        var url = "/Order/ViewOnlineOrder/" + orderId;
+        redgle.tab.create("liOrderDetail", url, translate.format("<hg:trans>订单详情</hg:trans>"));
+    }
+    function p1368773806doHideApproveIns() {
+        $("#divApproveInstruction").modal('hide');
+    }
+    //新增售后单填写订单号
+    function  p1368773806doShowApproveIns(rmaId, operateType) {
+        $("#divApproveInstruction").find("#approveInstruction").val("");
+        $("#divApproveInstruction").modal('show');
+        $("#hidApproveRMAId").val(rmaId);
+        $("#hidIsBatch").val("false");
+        $("#hidApproveOperateType").val(operateType);
+        if (operateType == "Approve") {
+            $("#btnApprove").text(translate.format("<hg:trans>审批通过</hg:trans>"));
+        }
+        else if (operateType == "Return") {
+            $("#btnApprove").text(translate.format("<hg:trans>退回修改</hg:trans>"));
+        }
+    };
+    function  p1368773806doShowBatchApproveIns(operateType) {
+        $("#divApproveInstruction").find("#approveInstruction").val("");
+        $("#divApproveInstruction").modal('show');
+        $("#hidApproveRMAId").val("");
+        $("#hidIsBatch").val("true");
+        $("#hidApproveOperateType").val(operateType);
+        if (operateType == "Approve") {
+            $("#btnApprove").text(translate.format("<hg:trans>审批通过</hg:trans>"));
+        }
+        else if (operateType == "Return") {
+            $("#btnApprove").text(translate.format("<hg:trans>退回修改</hg:trans>"));
+        }
+    };
+    function p1368773806doApproveIns() {
+        var isBatch = $("#hidIsBatch").val();
+        if (isBatch == null || isBatch.length == 0) {
+            return;
+        }
+
+        var operateType = $("#hidApproveOperateType").val();
+        if (isBatch == "false") {
+            var rmaId = $("#hidApproveRMAId").val();
+p1368773806doApproveData(rmaId, operateType);
+        }
+        else {
+p1368773806doBatchApproveIns(operateType);
+        }
+    }
+
+    function p1368773806doBatchSubmitData(operateType) {
+        if (operateType == null || operateType.length == 0) {
+            return;
+        }
+
+        var selectedList = [];
+        $("#rmaTable input[name='chk_list']:checked").each(function () {
+            var value = $(this).val();
+            if (value != null && value.length > 0) {
+                selectedList.push(value);
+            }
+        });
+        if (selectedList.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请先选中需要操作的项，再进行此操作</hg:trans>"));
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/RMA/BatchSubmit",
+            data: { operateType: operateType, rmaIds: selectedList.join(',') },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError == true) {
+                    alert(data.Message);
+                }
+                else {
+                    debugger;
+                    if (data.MapData.errorCount != null && data.MapData.errorCount > 0) {
+                        var message = data.MapData.errorCount + "个售后单操作失败<br />";
+                        message += data.ResultObject.join("<br />");
+                        redgle.showMessage(message);
+
+                    }
+p1368773806doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1368773806doBatchApproveIns(operateType) {
+        if (operateType == null || operateType.length == 0) {
+            return;
+        }
+
+        var selectedList = [];
+        $("#rmaTable input[name='chk_list']:checked").each(function () {
+            var value = $(this).val();
+            if (value != null && value.length > 0) {
+                selectedList.push(value);
+            }
+        });
+        if (selectedList.length == 0) {
+            redgle.showMessage(translate.format("<hg:trans>请先选中需要操作的项，再进行此操作</hg:trans>"));
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/RMA/BatchApproval",
+            data: { operateType: operateType, rmaIds: selectedList.join(',') },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError == true) {
+                    alert(data.Message);
+                }
+                else {
+                    if (data.MapData.errorCount != null && data.MapData.errorCount > 0) {
+                        var message = data.MapData.errorCount + "个售后单操作失败<br />";
+                        message += data.ResultObject.join("<br />");
+                        redgle.showMessage(message);
+
+                    }
+p1368773806doReloadData();
+p1368773806doHideApproveIns();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="js/2343f8bd290c471b9298f4bdaae15848.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

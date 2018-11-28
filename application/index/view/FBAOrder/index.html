@@ -1,0 +1,294 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+     
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>BTG类目</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodest" style="float:right; margin-right:5px;">
+        <button type="button" class="btn btn-info btn-sm" onclick="p233768915doEditBtg(0)"><i class="glyphicon glyphicon-plus"></i><hg:trans>添加BTG</hg:trans></button>
+
+         <button type="button" class="btn btn-info btn-sm" onclick="p233768915doOpenImportBtg()"><i class="glyphicon glyphicon-log-in"></i>&nbsp;<hg:trans>导入BTG</hg:trans></button>
+    </div>
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/AmazonPublish/ProductBTG?Length=13" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p233768915divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <div class="form-group">
+                        <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>所属站点</hg:trans></label>
+                        <div id="divChooseItems" class="input-group para-items">
+                            <span data-value="US"><hg:trans>US</hg:trans></span>
+                            <span data-value="CA"><hg:trans>CA</hg:trans></span>
+                            <span data-value="MX"><hg:trans>MX</hg:trans></span>
+                            <span data-value="UK"><hg:trans>UK</hg:trans></span>
+                            <span data-value="FR"><hg:trans>FR</hg:trans></span>
+                            <span data-value="FR"><hg:trans>FR</hg:trans></span>
+                            <span data-value="IT"><hg:trans>IT</hg:trans></span>
+                            <span data-value="DE"><hg:trans>DE</hg:trans></span>
+                            <span data-value="ES"><hg:trans>ES</hg:trans></span>
+                            <span data-value="JP"><hg:trans>JP</hg:trans></span>
+                            <span data-value="AU"><hg:trans>AU</hg:trans></span>
+                            <input type="hidden" id="textSiteCode" name="textSiteCode" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group" style="max-width:450px;" id="Search">
+                        <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="txtSearchKey" id="txtSearchKey" placeholder="模板名称" class="form-control" />
+                            <span class="input-group-btn">
+                                <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" id="sb" class="btn btn-primary" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="hidStoreType" name="hidStoreType" value="" />
+</form>        </div>
+        <div id="p233768915divDataList">
+            <link href="static/css/bootstrap-switch.min.css" rel="stylesheet"/>
+
+<script src="static/js/bootstrap-switch.min.js"></script>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th><hg:trans>模板名称</hg:trans></th>
+            <th><hg:trans>所属站点</hg:trans></th>
+            <th><hg:trans>BTG分类</hg:trans></th>
+            <th><hg:trans>BTG描述</hg:trans></th>
+            <th><hg:trans>更新人</hg:trans></th>
+            <th><hg:trans>更新时间</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>家居。壁纸</td>
+                <td>US</td>
+                <td>wallpaper</td>
+                <td>家居建材</td>
+                <td>孙婷婷</td>
+                <td>2018/8/30 11:34:56</td>
+                <td><a href="javascript:void(0)" onclick="p233768915doEditBtg(8)">编辑</a></td>                 
+            </tr>
+            <tr>
+                <td>办公用品表_CA</td>
+                <td>CA</td>
+                <td>364322031</td>
+                <td>玩具/玩具类型/降临日历</td>
+                <td>苗利军</td>
+                <td>2018/8/30 10:25:51</td>
+                <td><a href="javascript:void(0)" onclick="p233768915doEditBtg(7)">编辑</a></td>                 
+            </tr>
+            <tr>
+                <td>睡衣_US</td>
+                <td>US</td>
+                <td>novelty-nightgowns</td>
+                <td>Clothing, Shoes &amp; Jewelry, Novelty &amp; More, Clothing, Novelty, Women, Sleep &amp; Lounge, Nightgowns &amp; Sleepshirts</td>
+                <td>薛雅静</td>
+                <td>2018/8/29 17:36:32</td>
+                <td><a href="javascript:void(0)" onclick="p233768915doEditBtg(6)">编辑</a></td>                 
+            </tr>
+            <tr>
+                <td>家居建材表_US</td>
+                <td>US</td>
+                <td>12345678</td>
+                <td>家居建材_US</td>
+                <td>管理员</td>
+                <td>2018/8/28 9:58:46</td>
+                <td><a href="javascript:void(0)" onclick="p233768915doEditBtg(5)">编辑</a></td>                 
+            </tr>
+            <tr>
+                <td>家居厨房表_US</td>
+                <td>US</td>
+                <td>1265459011</td>
+                <td>1265459011</td>
+                <td>管理员</td>
+                <td>2018/7/4 12:17:27</td>
+                <td><a href="javascript:void(0)" onclick="p233768915doEditBtg(4)">编辑</a></td>                 
+            </tr>
+            <tr>
+                <td>UK家居厨房表</td>
+                <td>UK</td>
+                <td>770057031</td>
+                <td>Home &amp; Garden/Kitchen &amp; Home/Categories/Kitchen &amp; Home Appliances/Vacuuming, Cleaning &amp; Ironing/Vacuums &amp; Floor Care/Vacuum Accessories/Brushes</td>
+                <td>管理员</td>
+                <td>2018/7/4 12:04:03</td>
+                <td><a href="javascript:void(0)" onclick="p233768915doEditBtg(3)">编辑</a></td>                 
+            </tr>
+            <tr>
+                <td>UK家居厨房表</td>
+                <td>UK</td>
+                <td>11052591</td>
+                <td>Home &amp; Garden</td>
+                <td>管理员</td>
+                <td>2018/7/4 12:04:03</td>
+                <td><a href="javascript:void(0)" onclick="p233768915doEditBtg(2)">编辑</a></td>                 
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p233768915divDataList" data-maxpages="1" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/AmazonPublish/ProductBtg?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 7 条数据</span></div><div style="clear:both"></div></div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+
+    function p233768915doOpenImportBtg()
+    {
+        var url = "/AmazonPublish/ImportBtg";
+        var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>BTG导入</hg:trans>") });
+        selectManageModal.show();
+    }
+    function p233768915doEditBtg(ids) {
+        //弹出管理页面
+        if (ids==0)
+        {
+            ids = $("#p233768915divDataList").find("input[name=chk_list]:checked").map(function () {
+                return $(this).val();
+            }).get().join(",");
+        } 
+        var url = "/AmazonPublish/BtgEdit?btgIds=" + ids;
+        redgle.tab.create("liBtgEdit", url, translate.format("<hg:trans>编辑BTG信息</hg:trans>"));
+    }
+
+
+    $(".para-items").not("#divChooseTypeItems").find("span").click(function () {
+        var $this = $(this)
+        if ($this.attr("class") == "active") {
+            $this.prop("class", "")
+            $this.parent().find("input").prop("value", "")
+        } else {
+            $this.parent().find("span").prop("class", "")
+            $this.prop("class", "active")
+            $this.parent().find("input").prop("value", $this.attr("data-value"))
+        }
+        $("#searchForm").submit();
+    });
+    function p233768915doUploadData() {
+        var url = "/AmazonPublish/ModelUpload";
+        var selectManageModal = new redgle.modal({ type: "iframe", content: url, title: translate.format("<hg:trans>模板导入</hg:trans>") });
+        selectManageModal.show();
+    }
+
+    function p233768915doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/AmazonPublish/ProductBTG",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p233768915divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+
+
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/35fbeb4c65d5458a97972f48bb7c4340.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

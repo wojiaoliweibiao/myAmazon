@@ -1,0 +1,20 @@
+﻿<html>
+<head>
+    <title>速猫...</title>
+</head>
+<body>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?4bc3c42dc77f96feb7ec1f6ce1213f1a";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script type="text/javascript" language="javascript">
+        window.location.href = '/login/login.htm';
+    </script>
+    速猫...
+</body>
+</html>

@@ -1,0 +1,597 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="__STATIC__/index/js/8895ed6319cc447aa04e5989ca97a646.js"></script>
+
+    <script src="__STATIC__/index/js/1ecb7d10c12242fb84b23998f92c7f19.js"></script>
+
+    <script src="__STATIC__/index/js/hg.common.js"></script>
+
+    <script src="__STATIC__/index/js/jquery.fancybox.js"></script>
+
+    <link href="__STATIC__/index/css/jquery.fancybox.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="__STATIC__/index/js/html5shiv.min.js"></script>
+      <script src="__STATIC__/index/js/respond.min.js"></script>
+    <![endif]-->
+{:widget('Blog/left')}         
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabSyncOrder" class="active"><a href="javascript:void(0);"><hg:trans>同步订单</hg:trans></a></li>
+    <li id="liTabSyncOrderById"><a href="javascript:void(0);"><hg:trans>同步指定订单</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabSyncOrder" role="tabpanel" class="form-horizontal tab-pane fade active in">
+        <div style="margin-left:20px; margin-bottom:20px;">
+                <div class="panel panel-info">
+                    <div class="panel-heading">提示：<span style="float:right"><a href="/ApiUser/Index"><hg:trans>添加店铺</hg:trans></a></span></div>
+                    <div class="panel-body" style="line-height:25px">
+                        <hg:trans>1、自动同步：系统会自动同步订单，第一次会同步7天以内等待卖家发货的订单</hg:trans>；
+                        <br />
+                        <hg:trans>2、高级同步：可根据实际需要同步指定状态1天、3天、7天、15天、30天、60天、90天以内的订单，Ebay只支持30天以内的订单</hg:trans>；
+                        <br />
+                            <hg:trans>3、已启用SKU管理：如果不需要管理本地产品。</hg:trans>
+                        <hg:trans>请移步到订单模块设置进行修改</hg:trans>：<a href="/Common/SysSetting/ErpOrderModule"><hg:trans>订单模块设置</hg:trans></a>。
+                    </div>
+                </div>
+                <div id="divSyncTaskStatus" class="alert alert-success hide" style="padding: 15px;">
+                    <p id="messageArea"></p>
+                    <p id="buttonArea" class="hide">
+                        <button type="button" class="btn btn-success btn-sm" id="btnCalcelSyncTask" onclick="javascript:doCalcelSyncTask();"><hg:trans>取消此次同步任务</hg:trans></button>
+                    </p>
+                </div>
+                <div class="form-group" style="padding-left:20px;">
+                    <div class="radio">
+                        <label><input type="radio" name="syncType" value="change" checked onclick="changeSyncType()" /><hg:trans>同步变更</hg:trans></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="syncType" value="all" onclick="changeSyncType()" /><hg:trans>高级同步</hg:trans></label>
+                    </div>
+                </div>
+                <input type="hidden" id="hidSyncOrderTime" value="7" />
+                <div class="panel panel-default" style="display:none" id="divSyncOrderTime">
+                    <div class="form-group" style="padding-left:20px;padding-top:5px;">
+                        <label class="control-label col-sm-2" style="text-align:left;width:160px; cursor:pointer"><hg:trans>时间</hg:trans></label>
+                        <div class="col-sm-10 para-items">
+                            <span group="SyncOrderTimeItems" itemid="1"><hg:trans>1天</hg:trans></span>
+                            <span group="SyncOrderTimeItems" itemid="3" class="active"><hg:trans>3天</hg:trans></span>
+                            <span group="SyncOrderTimeItems" itemid="7"><hg:trans>7天</hg:trans></span>
+                            <span group="SyncOrderTimeItems" itemid="15"><hg:trans>15天</hg:trans></span>
+                            <span group="SyncOrderTimeItems" itemid="30"><hg:trans>30天</hg:trans></span>
+                            <span group="SyncOrderTimeItems" itemid="60"><hg:trans>60天</hg:trans></span>
+                            <span group="SyncOrderTimeItems" itemid="90"><hg:trans>90天</hg:trans></span>
+                        </div>
+                    </div>
+                </div>
+ <div class="panel panel-default">
+                    <div style="padding-left:20px;">
+                        <div class="row col-sm-12" style="border-bottom:1px solid #ccc;padding-bottom: 5px;">
+                            <label class="control-label" style="text-align:left;width:160px; cursor:pointer"><input type="checkbox" group="AccountItems" platform="Amazon" checked="checked" /> Amazon <hg:trans>店铺</hg:trans></label>
+                        </div>
+                            <div class="row" itemid="7" platformid="amazon814865874" style="border-bottom:1px solid #ccc;padding-right:20px;width: 100%;">
+                                <div class="col-sm-2 para-items" style="width:160px;margin:4px 0;">
+                                    <span group="AccountItems" platform="Amazon" itemid="7" platformid="amazon814865874" username="11(us)" class="active"> 11(us)</span>
+                                </div>
+                                <div class="col-sm-10" id="divSyncMessage"></div>
+                            </div>
+                    </div>
+                    <div class="form-group" style="padding-left:20px;padding-top:5px;display:none;" group="syncAll">
+                        <label class="control-label col-sm-2" style="text-align:left; width:160px; cursor:pointer"><input type="checkbox" group="StatusItems" platform="Amazon" /> <hg:trans>状态</hg:trans></label>
+                        <div class="col-sm-10 para-items">
+                            <span group="StatusItems" platform="Amazon" itemid="Pending" class=""> 未付款</span>
+                            <span group="StatusItems" platform="Amazon" itemid="Unshipped,PartiallyShipped" class="active"> 未发货或已部分发货</span>
+                            <span group="StatusItems" platform="Amazon" itemid="Shipped" class=""> 已全部发货</span>
+                            <span group="StatusItems" platform="Amazon" itemid="InvoiceUnconfirmed" class=""> 已发货但未寄出发票</span>
+                            <span group="StatusItems" platform="Amazon" itemid="Canceled" class=""> 订单已取消</span>
+                            <span group="StatusItems" platform="Amazon" itemid="Unfulfillable" class=""> 订单无法配送</span>
+
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;" id="divSyncButtonArea"  style="">
+                    <button type="button" class="btn btn-primary" id="btnStartSyncOrder" onclick="doLoadSyncOrderData()"><i class="glyphicon glyphicon-refresh"></i><hg:trans>同步订单</hg:trans></button>
+
+                    <button type="button" class="btn btn-primary" style="display:none" id="btnStartSyncOrder" onclick="doTestSyncOrderData()"><i class="glyphicon glyphicon-refresh"></i><hg:trans>测试订单同步</hg:trans></button>
+              </div>
+                <div id="divSyncOrderMessage" class="alert bg-info" style="padding: 15px; display:none;"></div>
+        </div>
+    </div>
+    <div id="tabContent_liTabSyncOrderById" role="tabpanel" class="form-horizontal tab-pane fade">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="UserId" class="col-sm-1 control-label"><hg:trans>所属店铺</hg:trans></label>
+                <div class="col-sm-9">
+                    <select id="ddlAccountSelect" class="chzn-select orm-control input-sm">
+                            <option value="amazon814865874">11(us) ( Amazon )</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="UserId" class="col-sm-1 control-label"><hg:trans>订单编号</hg:trans></label>
+                <div class="col-sm-9">
+                    <textarea name="txtSyncOrderNos" class="form-control input-sm" id="txtSyncOrderNos" placeholder="输入订单编号，每条记录占一行" rows="10" hgtrans="true"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-offset-1">
+                <button class="btn btn-primary" id="btnStartSyncOrderByNo" type="button"><hg:trans>开始同步订单</hg:trans></button>
+            </div>
+        </div>
+        <div id="divOrderNoLogPanel" class="col-sm-offset-1 col-sm-9 search-panel hide"></div>
+    </div>
+</div>
+<link rel="stylesheet" href="__STATIC__/index/css/chosen.css" />
+<script src="__STATIC__/index/js/chosen.jquery.js"></script>
+<script language="javascript" type="text/javascript">
+    jQuery(function () {
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+
+        $("input[type='checkbox']").change(function () {
+            var group = $(this).attr("group"), platform = $(this).attr("platform");
+            var selectedItems = "";
+            if ($(this).prop("checked")) {
+                $("span[group^='" + group + "'][platform^='" + platform + "']").addClass("active");
+            }
+            else {
+                $("span[group^='" + group + "'][platform^='" + platform + "']").removeClass("active");
+            }
+        });
+
+        $("span[group^='AccountItems'],span[group^='StatusItems']").each(function () {
+            $(this).click(function () {
+                var group = $(this).attr("group"), platform = $(this).attr("platform");
+                var cls = $(this).attr("class");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $(this).addClass("active");
+                }
+                else {
+                    $(this).removeClass("active");
+                }
+                var checkAll = true;
+                $("span[group^='" + group + "'][platform^='" + platform + "']").each(function () {
+                    var cls = $(this).attr("class");
+                    if (typeof (cls) == "undefined" || cls.indexOf("active")<0) {
+                        checkAll = false;
+                        return false;
+                    }
+                });
+                $("input[type='checkbox'][group^='" + group + "'][platform^='" + platform + "']").prop("checked", checkAll);
+            });
+        });
+
+        //处理时间
+        $("span[group='SyncOrderTimeItems']").each(function () {
+            $(this).click(function () {
+                var cls = $(this).attr("class");
+                var thisValue=$(this).attr("itemid");
+                if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                    $("span[group='SyncOrderTimeItems']").removeClass("active");
+                    $(this).addClass("active");
+                    $("#hidSyncOrderTime").val(thisValue);
+                }
+            });
+        });
+
+        //获取订单同步状态
+        doLoadOrderSyncStatus();
+    });
+
+    //增量同步与全量同步的切换
+    function changeSyncType()
+    {
+        var syncType=$('input[name="syncType"]:checked').val();
+        if(syncType=="all")
+        {
+            $('div[group="syncAll"]').css("display","");
+            $("#divSyncOrderTime").css("display","");
+        }else{
+            $('div[group="syncAll"]').css("display","none");
+            $("#divSyncOrderTime").css("display","none");
+        }
+    }
+
+    //提交同步请求之前，获取同步订单的选项
+    function doGetSyncOrderOption(){
+        var syncData = {};
+        syncData.syncAllUser = false;
+        syncData.syncType = $('input[name="syncType"]:checked').val();
+        if(syncData.syncType=="all"){
+            syncData.dayNum = $("span[group='SyncOrderTimeItems'][class='active']").attr("itemid");
+        }
+
+        syncData.userList = [];
+        $("span[group='AccountItems']").each(function(){
+            if ($(this).hasClass("active") == false || $(this).hasClass("disabled") == true) {
+                return true;
+            }
+
+            var userItem = {
+                userId:$(this).attr("platformid"),
+                platform:$(this).attr("platform")
+            };
+            if(syncData.syncType=="all"){
+                var statusCode=[];
+                $("span[group='StatusItems'][platform='"+userItem.platform+"']").each(function(){
+                    if($(this).attr("class")!="active"){
+                        return true;
+                    }
+                    statusCode.push($(this).attr("itemid"));
+                });
+                userItem.statusCode = statusCode.join(",");
+            }
+            syncData.userList.push(userItem);
+        });
+
+        return syncData;
+    }
+
+    //向服务器发起请求，开始同步订单
+    function doLoadSyncOrderData(){
+
+        var syncData = doGetSyncOrderOption();
+        var strData = JSON.stringify(syncData);
+        $.ajax({
+            type: "POST",
+            url: "/Order/StartSyncOrder",
+            data: {option:strData},
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    var statusMessage = translate.format("<hg:trans>提交订单同步任务失败</hg:trans>");
+                    if(data.Message!=null && data.Message.length>0)
+                        statusMessage+="，"+translate.format("<hg:trans>错误信息为：</hg:trans>")+data.Message;
+                    $.each(data.MapData,function(index,item){
+                        var userName = $("span[group='AccountItems'][platformid='"+index+"']").text();
+                        statusMessage += "<br />【"+userName+"】："+item;
+                    });
+                    $("#divSyncTaskStatus").removeClass("hide").find("#messageArea").html(statusMessage);
+                    $("#divSyncTaskStatus").find("#buttonArea").addClass("hide");
+                }
+                else {
+                    doShowSyncTaskProgress(data.MapData);
+                }
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>",[XMLHttpRequest.status,XMLHttpRequest.statusText]));
+            }
+        });
+    }
+
+    //测试平台的同步数据
+    function doTestSyncOrderData(){
+        var syncData = doGetSyncOrderOption();
+        var strData = JSON.stringify(syncData);
+
+        $.ajax({
+            type: "POST",
+            url: "/Order/TestSync",
+            data: {option:strData},
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>同步完成！</hg:trans>"));
+                }
+            },
+            error: function (XMLHttpRequest) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>",[XMLHttpRequest.status,XMLHttpRequest.statusText]));
+            }
+        });
+    }
+
+    //页面打开时，加载订单同步状态
+    function doLoadOrderSyncStatus(){
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/Order/SyncStatus",
+        //     datatype: "json",
+        //     success: function (data) {
+        //         if (data.HasError) {
+        //             $("#divSyncButtonArea").css("display","none");
+        //             $("#divSyncOrderMessage").css("display","").text(data.Message);
+        //         }
+        //         else {
+        //             if (data.MapData == null || data.MapData.task == null) {
+        //                 return;
+        //             }
+        //             doShowSyncTaskProgress(data.MapData);
+        //         }
+        //     },
+        //     error: function (XMLHttpRequest) {
+        //         $("#divSyncButtonArea").css("display","none");
+        //         redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>",[XMLHttpRequest.status,XMLHttpRequest.statusText]));
+        //     }
+        // });
+    }
+
+    function doShowSyncTaskProgress(mapData){
+        var syncTask = mapData.task;
+        var taskRecordList = mapData.taskRecordList;
+        var waitingItems = []; //等待中的任务
+        var workingItems = []; //正在执行的任务
+        var otherItems = []; //正常状态的店铺
+
+        //显示每个店铺的同步状态
+        if (taskRecordList != null && taskRecordList.length > 0) {
+            for (var l = 0; l < taskRecordList.length; l++) {
+                var recordItem = taskRecordList[l];
+                var syncMessage="";
+                if (recordItem.StatusCode == 0) {
+                    waitingItems.push(recordItem);
+                    $("div[class='row'][platformid='" + recordItem.RelationId + "']").find("span[group='AccountItems']").addClass("disabled");
+                    syncMessage = "<span class='text-muted'>" + translate.format("<hg:trans>请稍后，订单同步任务已添加到任务队列，正等待任务执行...</hg:trans>") + "</span>";
+                }
+                else if (recordItem.StatusCode == 1) {
+                    workingItems.push(recordItem);
+                    $("div[class='row'][platformid='" + recordItem.RelationId + "']").find("span[group='AccountItems']").addClass("disabled");
+                    syncMessage = "<span class='text-primary'>" + translate.format("<hg:trans>系统正在执行订单同步任务...，已新增【{0}】，更新【{1}】，失败【{2}】。</hg:trans>", [recordItem.AddCount, recordItem.UpdateCount, recordItem.FailedCount]) + "</span>";
+                }
+                else {
+                    otherItems.push(recordItem);
+                    $("div[class='row'][platformid='" + recordItem.RelationId + "']").find("span[group='AccountItems']").removeClass("disabled");
+                    if (recordItem.ErrorString != null && recordItem.ErrorString.length > 0) {
+                        syncMessage = translate.format("<hg:trans>已新增【{0}】，更新【{1}】，失败【{2}】，计划执行：<span style='font-size:15px;' class='text-success'>{3}</span>。但是同步出现异常：</hg:trans>", [recordItem.AddCount, recordItem.UpdateCount, recordItem.FailedCount, (recordItem.NextRunTime == null) ? "即将开始" : redgle.datetime.formatMicrosoftDateTime(recordItem.NextRunTime)]);
+                        syncMessage = syncMessage + "<font color='red'>" + recordItem.ErrorString + "</font>";
+                    }
+                    else {
+                        var syncTime = "";
+                        if (recordItem.EndTime != null) {
+                            syncTime = redgle.datetime.formatMicrosoftDateTime(recordItem.EndTime);
+                        }
+                        syncMessage = translate.format("<hg:trans>同步于<span style='font-size:15px;' class='text-success'> {0} </span>完成，计划执行：<span style='font-size:15px;' class='text-success'> {1} </span>，共新增【{2}】，更新【{3}】，失败【{4}】。</hg:trans>", [syncTime, (recordItem.NextRunTime == null) ? "即将开始" : redgle.datetime.formatMicrosoftDateTime(recordItem.NextRunTime), recordItem.AddCount, recordItem.UpdateCount, recordItem.FailedCount]);
+                    }
+                }
+                $("div[class='row'][platformid='" + recordItem.RelationId + "']").find("#divSyncMessage").html(syncMessage);
+            }
+
+            if (otherItems.length == 0) {
+                $("#divSyncButtonArea").css("display", "none");
+            }
+            else {
+                $("#divSyncButtonArea").css("display", "");
+            }
+        }
+        else {
+            $("#divSyncButtonArea").css("display", "");
+        }
+
+        //显示总的同步状态
+        var statusMessage = "";
+        if (waitingItems.length > 0 || workingItems.length > 0) {
+            if (workingItems.length > 0) {
+                statusMessage += "<span>有【" + workingItems.length + "】个店铺正同步订单。</span>";
+            }
+            if (waitingItems.length > 0) {
+                statusMessage += "<span>有【" + waitingItems.length + "】个店铺已加入任务队列，正等待任务执行...</span>";
+                //if (workingItems.length == 0) {
+                //    $("#divSyncTaskStatus").find("#buttonArea").removeClass("hide");
+                //}
+            }
+            $("#divSyncTaskStatus").removeClass("hide").find("#messageArea").html(statusMessage);
+
+            //启动定时器
+            statusTimer = setTimeout("GetSyncTaskProgress()", 5000);
+        }
+        else {
+            if (syncTask.IsActive == true) {
+                statusMessage = "已启用自动同步订单服务。";
+                if (syncTask.LastRunTime != null) {
+                    var strDatetime = redgle.datetime.formatMicrosoftDateTime(syncTask.LastRunTime)
+                    statusMessage += "最后一次订单同步于 " + strDatetime + " 完成。";
+                }
+                $("#divSyncTaskStatus").removeClass("hide").find("#messageArea").html(statusMessage);
+            }
+            else {
+                $("#divSyncTaskStatus").addClass("hide").find("#messageArea").html("");
+            }
+        }
+    }
+
+    //获取订单同步任务进度
+    var statusTimer = null;
+    function GetSyncTaskProgress(){
+        $.ajax({
+            type: "POST",
+            url: "/Order/TaskProgress",
+            data:{},
+            datatype: "json",
+            global:false,
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    //显示同步进度
+                    doShowSyncTaskProgress(data.MapData);
+                }
+            },
+            error: function (hrt) {
+                redgle.showMessage(translate.format("<hg:trans>获取同步订单进度出错：{0} - {1}</hg:trans>", [hrt.status,hrt.statusText]));
+            }
+        });
+    }
+
+    function doCalcelSyncTask(){
+        if(!window.confirm(translate.format("<hg:trans>您确认要取消当前同步任务吗？</hg:trans>"))){
+            return;
+        }
+        //var syncTaskId = $("#hidSyncTaskId").val();
+        //if(syncTaskId.length==0){
+        //    redgle.showMessage(translate.format("<hg:trans>未发现当前的订单同步任务，请重新进行此操作</hg:trans>"));
+        //    return;
+        //}
+
+        $.ajax({
+            type: "POST",
+            url: "/Order/CancelTask",
+            data:{},
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    $("#divSyncButtonArea").css("display","none");
+                    $("#divSyncOrderMessage").css("display","").text(data.Message);
+                }
+                else {
+                    doShowSyncTaskProgress(data.MapData);
+                }
+            },
+            error: function (hrt) {
+                $("#divSyncButtonArea").css("display","none");
+                redgle.showMessage(translate.format("<hg:trans>请求地址出错：{0} - {1}</hg:trans>",[XMLHttpRequest.status,XMLHttpRequest.statusText]));
+            }
+        });
+    }
+
+    function doAddApiUser()
+    {
+        window.location.href="/ApiUser/Index";
+    }
+
+</script>
+<script language="javascript" type="text/javascript">
+    jQuery(function(){
+        $(".chzn-select").chosen();
+        $(".chosen-container").css("width", "100%");
+
+        $("#btnStartSyncOrderByNo").click(function(){
+            var orderNoList = $("#txtSyncOrderNos").val().split("\n");
+            $("#divOrderNoLogPanel").empty().removeClass("hide");
+            $.each(orderNoList, function (index, item) {
+                var orderNo = $.trim(this);
+                if (orderNo.length == 0)
+                    return true;
+
+                var logPanel = $("<div class=\"row bottom-line\"></div>").attr({ "orderno": orderNo, "status": "unload" }).appendTo($("#divOrderNoLogPanel"));
+                logPanel.append("<div class=\"col-sm-10\" style=\" overflow:hidden;text-overflow:ellipsis;\">" + orderNo + "</div>");
+                logPanel.append("<div id=\"divOrderNoStatus\" class=\"col-sm-2\" style=\"text-align:center\"><hg:trans>等待同步</hg:trans></div>");
+            });
+
+            if ($("#divOrderNoLogPanel>div").length > 0) {
+                $("#btnStartSyncOrderByNo").html("<hg:trans>订单同步中...</hg:trans>").prop("disabled", true);
+                doStartSyncOrderByNo();
+            }
+        });
+    });
+
+    function doStartSyncOrderByNo() {
+        var unloadList = $("#divOrderNoLogPanel>div[status='unload']");
+        if (unloadList.length == 0) {
+            $("#btnStartSyncOrderByNo").html("<hg:trans>开始同步订单</hg:trans>").prop("disabled", false);
+            return;
+        }
+
+        doSyncOrderByNo(unloadList.eq(0));
+    }
+
+    function doSyncOrderByNo(element) {
+        var orderNo = $(element).attr("orderno");
+        var userId = $("#ddlAccountSelect").val();
+        $(element).attr("status", "loading").children("#divOrderNoStatus").text(translate.format("<hg:trans>正在同步...</hg:trans>"));
+        $.ajax({
+            type: "POST",
+            url: "/Order/SyncOrderByNo",
+            data: { orderNo: orderNo, userId: userId },
+            datatype: "json",
+            global: false,
+            success: function (data) {
+                if (data.HasError) {
+                    $(element).attr("status", "error")
+                    $(element).children("#divOrderNoStatus").html("<span class=\"text-danger\" title=\"" + data.Message + "\"><i class=\"glyphicon glyphicon-info-sign\"></i> <hg:trans>同步失败</hg:trans></span>");
+                } else {
+                    $(element).attr("status", "loaded")
+                    $(element).children("#divOrderNoStatus").html("<span class=\"text-success\"><i class=\"glyphicon glyphicon-ok\"></i> <hg:trans>同步成功</hg:trans></span>")
+                }
+            },
+            error: function (XHR) {
+                $(element).attr("status", "error")
+                $(element).children("#divOrderNoStatus").html("<span class=\"text-danger\" title=\"" + "<hg:trans>同步订单出错</hg:trans>：" + XHR.status + " - " + XHR.statusText + "\"><i class=\"glyphicon glyphicon-info-sign\"></i> <hg:trans>同步失败</hg:trans></span>")
+            },
+            complete: function () {
+                doStartSyncOrderByNo();
+            }
+        });
+    }
+</script>
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

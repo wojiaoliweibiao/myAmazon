@@ -1,0 +1,335 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabUserManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>库存盘点</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabUserManage" role="tabpanel" class="tab-pane fade active in">
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/Stocktaking?Length=11" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p19612255divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                    <div id="divStoreItems" class="input-group para-items">
+
+                            <span data-value="1">默认仓库（自有仓）</span>
+                        <input type="hidden" id="txtStoreId" name="txtStoreId" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span data-value="BeginTime" chooseid="Data" class="active"><hg:trans>盘点时间</hg:trans></span>
+                        <span data-value="StocktakingNo" chooseid="Search"><hg:trans>盘点单号</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="BeginTime" />
+                    </div>
+                </div>
+                <div class="form-group " style="width:70%; margin-bottom: 16px" id="Date">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:450px;">
+                        <span class="date">
+                            <input type="text" hgtrans="true" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">to</span>
+                        <span class="date"><input type="text" hgtrans="true" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;display:none;" id="Search">
+                    <label for="txtDate" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" hgtrans="true" id="txtSearchKey" placeholder="盘点单号" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <input type="hidden" id="hidStatus" name="hidStatus" value="0" />
+</form>        </div>
+        <div class="status-group" id="divStatus">
+            <label itemid=""><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="0" class="active"><a><hg:trans>正在盘点</hg:trans></a><span></span></label>
+            <label itemid="1"><a><hg:trans>已经完成</hg:trans></a><span></span></label>
+            <label itemid="-1"><a><hg:trans>作废</hg:trans></a><span></span></label>
+        </div>
+        <div id="p19612255divDataList">
+            <div class="datalist-top">
+    <div class="button-area parents-nodes">
+        <button type="button" class="btn btn-success btn-sm" onclick="p19612255doCreate()"> <i class="glyphicon glyphicon-plus"></i> 新增盘点</button>
+    </div>
+    <div class="button-area parents-nodes">
+        <button type="button" class="btn btn-success btn-sm" onclick="p19612255doImportData()"> <i class="glyphicon glyphicon-log-in"></i> 导入盘点</button>
+    </div>
+    <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p19612255divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Stocktaking?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+</div>
+<table class="table table-bordered table-hover" id="PurPlanTable">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p19612255doSetCheckBox(this)" />
+            </th>
+            <th><hg:trans>盘点单号</hg:trans></th>
+            <th><hg:trans>盘点仓库</hg:trans></th>
+            <th><hg:trans>SKU个数</hg:trans></th>
+            <th><hg:trans>盘点开始时间</hg:trans></th>
+            <th><hg:trans>盘点结束时间</hg:trans></th>
+            <th><hg:trans>盘点人</hg:trans></th>
+            <th><hg:trans>状态</hg:trans></th>
+            <th><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p19612255divDataList" data-maxpages="0" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Stocktaking?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a disabled="disabled">下一页</a>  <a disabled="disabled">尾页</a><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 0 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        $('.date input').datepicker();
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+    });
+  
+    //搜索类型筛选
+    $("#divChooseItems>span").click(function () {
+        var $this = $(this);
+        $("#divChooseItems>span").removeClass();
+        $this.addClass("active");
+        $("#hidChoose").val($this.attr("data-value"))
+        if ($this.attr("chooseid") == "Search") {
+            $("#Date").css("display", "none");
+            $("#Search").css("display", "");
+        } else {
+            $("#Date").css("display", "");
+
+            $("#Search").css("display", "none");
+        }
+    });
+    //仓库
+    $("#divStoreItems>span").click(function () {
+        var $this = $(this);
+        if ($this.attr("class") == "active") {
+            $("#txtStoreId").val("");
+            $this.removeClass();
+        } else {
+            $("#txtStoreId").val($this.attr("data-value"));
+            $("#divStoreItems>span").removeClass();
+            $this.addClass("active");
+        };
+        $("#searchForm").submit();
+    });
+    //详情
+    function p19612255doViewData(id) {
+        if (id == null || id == "")
+            id = "0";
+        var url = "/StockTaking/Edit/" + id + "?view=true&isAjax=false";
+        redgle.tab.create("liStockTakingEdit", url, translate.format("<hg:trans>盘点单详情</hg:trans>"));
+    }
+
+    //编辑
+    function p19612255doEditData(id) {
+        if (id == undefined)
+            id = "";
+        var url = "/StockTaking/Edit?id=" + id + "&view=true&isAjax=false";
+        redgle.tab.create("liStockTakingEdit", url, translate.format("<hg:trans>编辑盘点单</hg:trans>"));
+    }
+    //创建
+    function p19612255doCreate() {
+        var url = "/StockTaking/Edit/0?isAjax=false";
+        redgle.tab.create("liStockTakingEdit", url, translate.format("<hg:trans>创建盘点单</hg:trans>"));
+    }
+
+
+    function p19612255doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/StockTaking/Index",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p19612255divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    //选择状态
+    $("#divStatus > label").each(function () {
+        $(this).click(function () {
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divStatus > label").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+            }
+            var selectedSatut = $(this).attr("itemid");
+            $("#hidStatus").val(selectedSatut);
+            if ($("#divStatus").find(".active").length == 0) {
+                $("#hidStatus").val("");
+            }
+            $("#searchForm").submit();
+        });
+    });
+    //复选框选中
+    function  p19612255doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+    //导出
+    function p19612255doExport(StocktakingId) {
+        var postData = {};      
+        postData["viewName"] = "DetailExport";
+        postData["pageKey"] = "Stocktaking/DetailExport";
+        postData["StocktakingId"] = StocktakingId;
+        $.ajax({
+            type: "POST",
+            url: "/Stocktaking/ExportDetailExcel",
+            data: postData,
+        datatype: "json",
+        success: function (data) {
+            if (data.HasError) {
+                redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+            } else {
+                window.open(data.ResultObject);
+            }
+        },
+        error: function (xhr) {
+            alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+        }
+    });
+    }
+    //导出
+    function p19612255doCancelData(StocktakingId) {
+        var postData = {};
+        postData["StocktakingId"] = StocktakingId;
+        $.ajax({
+            type: "POST",
+            url: "/Stocktaking/CancelData",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    redgle.showMessage(translate.format("<hg:trans>您所做的操作已成功</hg:trans>！"))
+p19612255doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p19612255doImportData() {
+        var url = "/Stocktaking/Import";
+        redgle.tab.create("liStocktakingEdit", url, translate.format("<hg:trans>导入库存盘点信息</hg:trans>"));
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/858f9b8011a54927a95d325d60c05de8.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

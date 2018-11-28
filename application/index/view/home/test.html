@@ -1,0 +1,586 @@
+{:widget('Blog/header')}
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/index/css/test1.css">
+	<script type="text/javascript"  src="__STATIC__/index/js/public/jquery.js"></script>
+	<script type="text/javascript"  src="__STATIC__/index/js/public/vue.js"></script>
+<body >
+
+	<div class='tag' style="background:url('__STATIC__/index/pict2ure/test1.png') no-repeat;width:70%;margin:0 auto">
+		<div style="height:10px"></div>
+		<!-- 测试距离 -->
+		<div style="margin-left:23px;width:1230px">
+			<!-- 公用信息 -->
+			<div class="tag1">
+				公用信息
+			</div>
+			<!--公用信息 end -->
+
+			<!-- 基本信息 -->
+			<div class="tag2 flex align-items-center tag2-bgcolor">
+				<div class='flex-1 tag2-1'>
+					基本信息
+				</div>
+				<div class="tag2-2" id='toggle'  >
+					收起
+				</div>
+			</div>
+			<!-- 基本信息end -->
+
+			<!-- 下拉 -->
+			<div class='tag3    '  id='tag3'>
+				<div class="tag3-1">
+					<div class="  flex align-items-center">
+						<b>货源链接:</b>
+						<input type="text" name=""  class="input-1">
+					</div>
+					<p class="tag3-p1">此链接记录货源链接,可用于订单采购功能,如果手工添加产品请务必填写货源链接</p>
+				</div>
+			
+				<div class="tag3-2">
+					<div class=" tag3-div1 flex align-items-center">
+						<span style="color:red">*&nbsp;</span><span>ParentSKU&nbsp;</span>
+						<input type="text" name=""  class="input-1">
+						<a href="JavaScript:;" style="color:#333"><div class="box-1">一键生成</div></a>
+					</div>
+				</div>
+
+
+				<div class="tag3-2">
+					<div class="tag3-div2  flex align-items-center">
+						<span style="color:red">*&nbsp;</span><span>Brand&nbsp;</span>
+						<input type="text" name=""  class="input-1">
+					
+					</div>
+				</div>
+
+				<div class="tag3-2">
+					<div class="tag3-div3  flex align-items-center">
+						<span style="color:red">*&nbsp;</span><span>产品生产商&nbsp;</span>
+						<input type="text" name=""  class="input-1">
+					
+					</div>
+				</div>
+				<div class="tag3-2">
+					<div class="tag3-div4  flex align-items-center">
+						<span style="color:red">*&nbsp;</span><span>价格&nbsp;</span>
+						<input type="text" name=""  class="input-1">
+					
+					</div>
+				</div>
+				<!-- 运费测试 -->
+				<div class='tag3-3'>
+					<div class=" flex align-items-center tag3-3-box">
+						<div style="margin-right: 20px;margin-bottom: 87px;">运费试算</div>
+						<div class="tag3-table tag3-table-width1">
+							<div class='tag3-td1 flex align-items-center'>
+								<div style="margin-left:10px">邮寄重量&nbsp;:&nbsp;</div>
+								<div style="margin-right:11px">
+									<input type="" name="" style="" >
+								</div>
+								<div style="margin-right:75px">
+									<select>
+										<option>KG</option>
+									</select>
+								</div>
+								<div>长&nbsp;:&nbsp;</div>
+								<div><input type="" name=""></div>
+								<div>CM</div>
+								<div style="margin-left:16px">宽&nbsp;:&nbsp;</div>
+								<div><input type="" name=""></div>
+								<div>CM</div>
+								<div style="margin-left:20px">高&nbsp;:&nbsp;</div>
+								<div><input type="" name=""></div>
+								<div>CM</div>
+							</div>
+							<div class='tag3-td2 flex'>
+								<div class="tag3-td2-1">美国</div>
+								<div class="tag3-td2-1">英国</div>
+								<div class="tag3-td2-1">德国</div>
+								<div class="tag3-td2-1">法国</div>
+								<div class="tag3-td2-1">西班牙</div>
+								<div class="tag3-td2-1">意大利</div>
+								<div class="tag3-td2-1">墨西哥</div>
+								<div class="tag3-td2-1">加拿大</div>
+								<div class="tag3-td2-2">日本</div>
+							</div>
+							<div class='tag3-td2 flex'>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-1"></div>
+								<div class="tag3-td2-2"></div>
+							</div>
+							<div style='color:#CCC'>
+								&nbsp;&nbsp;该功能仅作为参考,由于物流商价格变动及库房重新打包价格会有上下浮动
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 运费测试end -->
+				<!-- 产品标题模板 -->
+				<div class="tag3-4">
+					<div class="tag3-4-margin">
+						<div  class='flex tag3-4-top'>
+							<div class="tag3-4-border">英文</div>
+							<div class="tag3-4-border">中文</div>
+							<div class="tag3-4-border">法文</div>
+							<div class="tag3-4-border">德文</div>
+							<div class="tag3-4-border">西文</div>
+							<div class="tag3-4-border">意文</div>
+							<div class="tag3-4-border">日文</div>
+						</div>
+						<div style="" class="tag3-4-middle">
+							<span style="color:red">*</span>&nbsp;产品标题&nbsp;<input type="" name=""  placeholder="产品标题长度不能超过200个字符">
+						</div>
+						<div class="tag3-4-bottom">
+							<button>从英文翻译</button>
+						</div>
+
+					</div>
+				</div>
+
+
+				<!-- 产品标题模板end -->
+				<!-- 产品特点模板 -->
+				<div class="tag3-4">
+					<div class="tag3-4-margin2">
+						<div  class='flex tag3-4-top2'>
+							<div class="tag3-4-border">英文</div>
+							<div class="tag3-4-border">中文</div>
+							<div class="tag3-4-border">法文</div>
+							<div class="tag3-4-border">德文</div>
+							<div class="tag3-4-border">西文</div>
+							<div class="tag3-4-border">意文</div>
+							<div class="tag3-4-border">日文</div>
+						</div>
+						<div style="" class="tag3-4-middle flex">
+							<div style="margin-top:4px"><span style="color:red">*</span>&nbsp;产品特点&nbsp;</div>
+							<textarea></textarea>
+						</div>
+						<div class="tag3-4-bottom">
+							<button>从英文翻译</button>
+						</div>
+
+					</div>
+				</div>
+				<!-- 产品特点模板end -->
+				<!-- 产品特点模板 -->
+				<div class="tag3-4">
+					<div class="tag3-4-margin3">
+						<div  class='flex tag3-4-top3'>
+							<div class="tag3-4-border">英文</div>
+							<div class="tag3-4-border">中文</div>
+							<div class="tag3-4-border">法文</div>
+							<div class="tag3-4-border">德文</div>
+							<div class="tag3-4-border">西文</div>
+							<div class="tag3-4-border">意文</div>
+							<div class="tag3-4-border">日文</div>
+						</div>
+						<div style="" class="tag3-4-middle flex">
+							<div style="margin-top:4px"><span style="color:red">*</span>&nbsp;搜索关键词&nbsp;</div>
+							<textarea></textarea>
+						</div>
+						<div class="tag3-4-bottom">
+							<button class='button2'>从英文翻译</button>
+						</div>
+
+					</div>
+				</div>
+
+
+				<!-- 产品特点模板end -->
+				<!-- 产品描述模板 -->
+				<div class="tag3-4">
+					<div class="tag3-4-margin3">
+						<div  class='flex tag3-4-top3'>
+							<div class="tag3-4-border">英文</div>
+							<div class="tag3-4-border">中文</div>
+							<div class="tag3-4-border">法文</div>
+							<div class="tag3-4-border">德文</div>
+							<div class="tag3-4-border">西文</div>
+							<div class="tag3-4-border">意文</div>
+							<div class="tag3-4-border">日文</div>
+						</div>
+						<div style="" class="tag3-4-middle2 flex">
+							<div style="margin-top:12px"><span style="color:red">*</span>&nbsp;产品描述&nbsp;</div>
+							<textarea></textarea>
+						</div>
+						<div class="tag3-4-bottom">
+							<button class='button2'>从英文翻译</button>
+						</div>
+
+					</div>
+				</div>
+
+
+				<!-- 产品描述模板end -->
+
+
+			</div>
+			<!-- 下拉end -->
+			<!-- 产品图片 -->
+			<div class="tag2 flex align-items-center tag2-bgcolor2">
+				<div class='flex-1 tag2-1'>
+					产品图片
+				</div>
+				<div class="tag2-2" id="toggle2" >
+					收起
+				</div>
+			</div>
+			<!-- 基本信息end -->
+			<!-- tag4.... -->
+			<div class="tag4" id='tag4'>
+				<div class="flex tag4-1">
+					<div class='tag4-left'>
+						<button>从本地选择</button>
+					</div>
+					<div class='tag4-right'>	
+						<div class='flex '>
+							<div class="tag4-left-1 tag4-left-1-style">注意</div>
+							<div class="tag4-left-2 tag4-left-2-style" >支持jpg,bmp,gif,png等图片格式</div>
+						</div>	
+						<div class='flex'>
+							<div class="tag4-left-1 tag4-left-1-style2">提示</div>
+							<div class="tag4-left-2 tag4-left-2-style2">拖动图片可调节图片顺序,最多可添加8张图片</div>
+						</div>
+					</div>
+				</div>
+
+				<div class='flex tag4-2'>
+					<div>
+						<div class='flex flex-wrap-wrap' style="padding-left:16px;padding-top:6px">
+							<!-- 循环开始 -->
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+							<div   class="tag4-margin2">
+								<div><img src="__STATIC__/index/picture/example.png"></div>
+								<div class='flex tag4-margin'>
+									<a href="javascript:;"><div class="tag4-style1">
+										设置主图
+									</div></a>
+									<a href="javascript:;"><div class="tag4-style2">
+										移除
+									</div></a>
+								</div>
+							</div>
+							
+						
+							<!-- 循环结束 -->
+							
+						</div>
+					</div>
+					<div style="width:40%" >
+						<div class="tag4-margin3">
+							<img src="__STATIC__/index/picture/example2.png">
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			<!-- tag4 end ...... -->
+
+			
+			<div class="tag2 flex align-items-center tag2-bgcolor3">
+				<div class='flex-1 tag2-1'>
+					产品变体
+				</div>
+				<div class="tag2-2" id='toggle3'  >
+					收起
+				</div>
+			</div>
+			<!-- tag5开始 -->
+			<div class='tag5'  id="tag5">	
+				<div class="flex tag5-margin1">
+					<div class='tag5-margin2'>颜色&nbsp;:</div>
+					<div><input type="" name="" class="tag5-input1"></div>
+					<div><button class="tag5-button1">添加</button></div>
+				</div>
+				<div class="flex tag5-margin3 tag5-font1">
+					<div class="tag5-margin4">
+						颜色&nbsp;:
+					</div>
+					<div class="flex flex-wrap-wrap" id="colorSelect">
+						<!-- 颜色循环开始 -->
+						<div class='tag5-box2'  v-for="site in colors">
+							<label class='flex align-items-center  tag5-label1'>
+							<div><input type="checkbox" name="color"></div>
+							<div class="tag5-box1"  v-bind:style="site.color" ></div>
+							<div>{{site.name}}</div>
+							</label>
+						</div>
+						<!-- 颜色循环结束 -->
+
+					</div>
+				</div>
+
+				<div class="flex tag5-margin1">
+					<div class='tag5-margin2'>尺码&nbsp;:</div>
+					<div><input type="" name="" class="tag5-input1"></div>
+					<div><button class="tag5-button1">添加</button></div>
+				</div>
+				<div class="flex tag5-3">
+					<div class='flex  tag5-3-margin1'  id='clothes'>
+						<div class='tag5-3-margin5'>尺码类型&nbsp;:</div>
+						<div class='flex flex-wrap-wrap tag5-3-style2'  >
+							<a href="javascript:;" v-for='type in types'><div class="tag5-3-style1">{{type.name}}</div></a>
+						</div>
+					</div>
+					
+					<div>
+						
+					</div>
+				</div>
+
+				<div class="flex tag5-4 flex-wrap-wrap tag5-4-margin2"  id='sizeSelect'>
+					<div class="tag5-4-width1" v-for='size in sizes'>
+						<label class="flex align-items-center" >
+							<div><input type="checkbox" name="size"></div>
+							<div class="tag5-4-margin1">{{size.size}}</div>
+						</label>
+
+					</div>	
+				</div>
+
+
+				<div class="tag5-5 ">
+					<div class="tag5-5-top flex">
+						<div style="margin-right:12px">
+							<input type="" name=""  placeholder='输入产品的零售价' >
+							<a href="javascript:;">批量设置</a>
+						</div>
+						<div>
+							<input type="" name=""  placeholder='输入产品的促销价'>
+							<a href="javascript:;">批量设置</a>
+						</div>
+					</div>
+					<div class="tag5-5-table"  >
+						<table style="width:90%;margin-left:83px" >
+							<tr class="tag5-5-tr1">
+								<td>颜色</td>
+								<td>尺寸</td>
+								<td>SKU自动生成</td>
+								<td>零售价</td>
+								<td>促销价</td>
+								<td colspan="2">图片</td>
+								
+							</tr>
+							<tr class="tag5-5-tr2">
+								<td >Yellow</td>
+								<td>XXS</td>
+								<td><input type="" name=""></td>
+								<td class="tag5-5-td4"><input type="" name=""></td>
+								<td class="tag5-5-td5"><input type="" name=""></td>
+								<td class="tag5-5-td6">图片</td>
+								<td >图片</td>
+								
+							</tr><tr class="tag5-5-tr2">
+								<td >Yellow</td>
+								<td>XXS</td>
+								<td><input type="" name=""></td>
+								<td class="tag5-5-td4"><input type="" name=""></td>
+								<td class="tag5-5-td5"><input type="" name=""></td>
+								<td class="tag5-5-td6">图片</td>
+								<td >图片</td>
+								
+							</tr>
+						</table>
+					</div>
+				</div>
+
+			</div>
+			<!-- tag5结束 -->
+
+
+        </div>
+        <!-- 测试距离end -->
+
+	</div>
+
+
+
+</body>
+
+
+
+
+<script type="text/javascript">
+	
+	$('#toggle').click(function(){
+		$('#tag3').slideToggle(500)
+	})
+	$('#toggle2').click(function(){
+		$('#tag4').slideToggle(500)
+	})
+
+	$('#toggle3').click(function(){
+		$('#tag5').slideToggle(500)
+	})
+
+
+
+	// 颜色循环
+	new Vue({
+		el:'#colorSelect',
+		data:{
+			colors:[
+				{color:{background:"#F5F5DC"},name:'Beige(米色)'},
+				{color:{background:'#000'},name:'黑色(Black)'},
+				{color:{background:'#0000FF'},name:'蓝色(Blue)'},
+				{color:{background:'#A52A2A'},name:'棕色(Brown)'},
+				{color:{background:'#FFD700'},name:'金色(Gold)'},
+				{color:{background:'#808080'},name:'灰色(Gray)'},
+				{color:{background:'#008000'},name:'绿色(Green)'},
+				{color:{background:'#FFFFF0'},name:'象牙色(lvory)'},
+				{color:{background:'#F0E68C'},name:'黄褐色(Khaki)'},
+				{color:{background:'#FFA500'},name:'橙色(Orange)'},
+				{color:{background:'#FFC0CB'},name:'粉色(Pink)'},
+				{color:{background:'#800080'},name:'紫色(Purple)'},
+				{color:{background:'#FF0000'},name:'红色(Red)'},
+				{color:{background:'#C0C0C0'},name:'银色(Silver)'},
+				{color:{background:'#FFFFFF'},name:'白色(White)'},
+				{color:{background:'#FFFF00'},name:'黄色(Yellow)'},
+				{color:{background:'#FFFFFF'},name:'彩色(Multicoloured)'},
+				{color:{background:'#FFFFFF'},name:'透明色(Transparent)'},
+				{color:{background:'#D2B48C'},name:'褐色(Tan)'}				
+			]
+		
+		}
+	// 颜色循环结束
+
+	})
+// 衣服选择循环
+	new Vue({
+		el:'#clothes',
+		data:{
+			types:[
+			{name:'男士服装'},
+			{name:'女士服装'},
+			{name:'婴儿儿童'},
+			{name:'其他服装'},
+			{name:'数值尺寸'},
+			{name:'文胸'},
+			{name:'男士鞋子'},
+			{name:'女士鞋子'},
+			{name:'其他鞋子'},
+			{name:'苹果笔记本'},
+			{name:'智能手机/平板电脑'},
+			{name:'游戏'},
+			{name:'耳机'},
+			{name:'床上用品'},
+			{name:'存储容量'},
+			{name:'面积'},
+			{name:'长度'},
+			{name:'体积'},
+			{name:'电压'},
+			{name:'功率'},
+			{name:'重量'},
+			{name:'形状'},
+			{name:'其他'},
+
+
+
+			]
+		}
+	})
+	new Vue({
+		el:'#sizeSelect',
+		data:{
+			sizes:[
+				{size:'XXS'},
+				{size:'XS'},
+				{size:'S'},
+				{size:'M'},
+				{size:'L'},
+				{size:'XL'},
+				{size:'XXL'}
+			]
+		}
+	})
+	// 衣服选择循环end
+</script>

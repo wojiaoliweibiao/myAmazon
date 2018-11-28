@@ -1,0 +1,653 @@
+{:widget('Blog/header')}
+
+  
+
+<script src="__STATIC__/index/js/public/jquery.unobtrusive-ajax.min.js"></script> 
+<script src="__STATIC__/index/js/public/hgpager.js"></script> 
+  
+  
+
+
+<body>
+{:widget('Blog/left')}
+ 
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabProductPreview" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>自定义物流模板</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabProductPreview" role="tabpanel" class="tab-pane fade active in">
+        <div class="search-panel">
+<form action="/Logistics/Template?Length=9" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1101778354divDataList" id="searchForm" method="post">                <input type="hidden" id="hidIsCustomStatus" name="hidIsCustomStatus" value="" />
+                <input type="hidden" id="hidSort" name="hidSort" value="TemId" />
+                <input type="hidden" id="hidSortType" name="hidSortType" value="DESC" />
+                <div class="row bottom-line parents-nodes">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>模板类型</hg:trans></label>
+                    <div id="divTemplateTypeItems" class="search-item">
+                        <span itemtype="" class="active"><hg:trans>全部</hg:trans></span>
+                        <span itemtype="0"><hg:trans>面单</hg:trans></span>
+                        <span itemtype="1"><hg:trans>报关单</hg:trans></span>
+                        <span itemtype="2"><hg:trans>拣货单</hg:trans></span>
+                        <span itemtype="3"><hg:trans>商业发票</hg:trans></span>
+                        <input type="hidden" id="hidTemplateTypeItem" name="hidTemplateTypeItem" value="" />
+                    </div>
+                </div>
+                <div class="row ">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseItems" class="search-item">
+                        <span itemid="code" hgtrans="true" title="请输入模板编号" class="active"><hg:trans>模板编号</hg:trans></span>
+                        <span itemid="name" hgtrans="true" title="请输入模板名称"><hg:trans>模板名称</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="code" />
+                    </div>
+                </div>
+                <div class="row parents-nodes" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:10px;text-align:center;padding-top: 12px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm" style="max-width:360px;">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" hgtrans="true" placeholder="请输入模板编号" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+</form>        </div>
+        <div class="status-group" id="divIsCustomStatus">
+            <label itemid="" class="active"><a><hg:trans>全部</hg:trans></a><span></span></label>
+            <label itemid="sys"><a><hg:trans>系统内置</hg:trans></a><span></span></label>
+            <label itemid="user"><a><hg:trans>自定义</hg:trans></a><span></span></label>
+        </div>
+        <div class="list-order-panel">
+            <div class="order-title"><hg:trans>排序条件</hg:trans></div>
+            <div id="divSort" class="order-content">
+                <span itemid="TemId" sorttype="DESC" class="active"><hg:trans>默认排序</hg:trans><span id="TemIdSortMark" class="glyphicon glyphicon-arrow-down"></span></span>
+                <span itemid="TemCode" sorttype=""><hg:trans>模板编号</hg:trans><span id="TemCodeSortMark" class="glyphicon "></span></span>
+                <span itemid="Title" sorttype=""><hg:trans>模板名称</hg:trans><span id="TitleSortMark" class="glyphicon "></span></span>
+                <span itemid="CreateTime" sorttype="DESC"><hg:trans>录入时间</hg:trans> <span id="CreateTimeSortMark" class="glyphicon"></span></span>
+            </div>
+        </div>
+        <div class="datalist" id="p1101778354divDataList">
+            <div class="datalist-top">
+    <div class="button-area parents-nodes">
+        <a class="btn btn-success btn-sm" href="/Logistics/TemplateEdit" target="_blank"><i class="glyphicon glyphicon-plus"></i> <hg:trans>新增模板</hg:trans></a>
+        <a class="btn btn-success btn-sm" onclick="p1101778354ShowSetTemplate()"><i class="glyphicon"></i> <hg:trans>模板设置</hg:trans></a>
+    </div>
+    <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1101778354divDataList" data-maxpages="9" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Logistics/Template?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right;padding-right:5px;"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a data-pageindex="2" href="/Logistics/Template?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="9" href="/Logistics/Template?pageIndex=9&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 82 条数据</span></div><div style="clear:both"></div></div>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width:3%;">
+                <input type="checkbox" name="chk_all" id="chk_all" />
+            </th>
+            <th style="width:15%;"><hg:trans>模板编码</hg:trans></th>
+            <th style="width:20%;"><hg:trans>模板名称</hg:trans></th>
+            <th style="width:10%;"><hg:trans>类型</hg:trans></th>
+            <th style="width:10%;"><hg:trans>模板类型</hg:trans></th>
+            <th style="width:10%;"><hg:trans>创建时间</hg:trans></th>
+            <th style="width:10%;"><hg:trans>操作</hg:trans></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="280" />
+                </td>
+                <td>
+                    wish_post_PAll_AT
+                </td>
+                <td>
+                    wish平邮面单（所有国家）
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/7/20 16:11:07
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=280" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=280" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="275" />
+                </td>
+                <td>
+                    ChinaPost_XB_ZO_DT
+                </td>
+                <td>
+                    中邮小包中欧（五国）增强报关单
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    报关单
+                </td>
+                <td>
+                    2018/7/6 15:06:13
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=275" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=275" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="274" />
+                </td>
+                <td>
+                    ChinaPost_XB_ZO_AT
+                </td>
+                <td>
+                    中邮小包中欧（五国）增强面单
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/7/6 15:06:13
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=274" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=274" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="273" />
+                </td>
+                <td>
+                    ChinaPost_XB_DE_AT
+                </td>
+                <td>
+                    中邮小包德国增强面单
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/7/6 15:06:13
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=273" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=273" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="272" />
+                </td>
+                <td>
+                    ChinaPost_XB_FR_DT
+                </td>
+                <td>
+                    中邮小包法国增强报关单
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    报关单
+                </td>
+                <td>
+                    2018/7/6 15:06:13
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=272" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=272" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="271" />
+                </td>
+                <td>
+                    ChinaPost_XB_FR_AT
+                </td>
+                <td>
+                    中邮小包法国增强面单
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/7/6 15:06:13
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=271" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=271" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="270" />
+                </td>
+                <td>
+                    black_cat_AT
+                </td>
+                <td>
+                    黑猫宅配
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/6/1 0:40:08
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=270" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=270" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="269" />
+                </td>
+                <td>
+                    CNPOSTP_HK
+                </td>
+                <td>
+                    云途香港小包平邮面单
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/5/19 2:31:12
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=269" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=269" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="268" />
+                </td>
+                <td>
+                    ChinaPost_ZO_AT
+                </td>
+                <td>
+                    中邮中欧班列跟踪小包
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/5/3 15:31:36
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=268" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=268" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="chk_list" id="item_TemId" value="267" />
+                </td>
+                <td>
+                    ChinaPostshuilulu_JB_AT
+                </td>
+                <td>
+                    中邮水陆路简版面单
+                </td>
+                <td>
+<hg:trans>系统内置</hg:trans>
+                </td>
+                <td>
+                    地址标签
+                </td>
+                <td>
+                    2018/5/3 15:31:36
+                </td>
+                <td>
+                                        <a href="/Logistics/TemplatePreview/?source=data&temId=267" target="_blank"><hg:trans>预览</hg:trans></a>
+                        <a href="/Logistics/TemplateCopy?sourceId=267" target="_blank"><hg:trans>复制模板</hg:trans></a>
+                                    </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1101778354divDataList" data-maxpages="9" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/Logistics/Template?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/Logistics/Template?pageIndex=2&amp;pagesize=10">2</a>  <a data-pageindex="3" href="/Logistics/Template?pageIndex=3&amp;pagesize=10">3</a>  <a data-pageindex="4" href="/Logistics/Template?pageIndex=4&amp;pagesize=10">4</a>  <a data-pageindex="5" href="/Logistics/Template?pageIndex=5&amp;pagesize=10">5</a>  <a data-pageindex="6" href="/Logistics/Template?pageIndex=6&amp;pagesize=10">6</a>  <a data-pageindex="7" href="/Logistics/Template?pageIndex=7&amp;pagesize=10">7</a>  <a data-pageindex="8" href="/Logistics/Template?pageIndex=8&amp;pagesize=10">8</a>  <a data-pageindex="9" href="/Logistics/Template?pageIndex=9&amp;pagesize=10">9</a>  <a data-pageindex="2" href="/Logistics/Template?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="9" href="/Logistics/Template?pageIndex=9&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 82 条数据</span></div><div style="clear:both"></div></div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Applypayment -->
+<div class="modal fade" id="informationSet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:150px;">
+    <div class="modal-dialog" style="width:650px;height:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><hg:trans>设置打印报关信息</hg:trans></h4>
+                <input type="hidden" id="SupplierOfferId" />
+            </div>
+            <div class="modal-body">
+                <div class="panel-body" style="height:350px">
+                    <div style="margin-left:15px">
+                                <div style="display:inline" class="interfaceLogistic">
+                                    <div style="float:left;width:25%;margin-top: 20px;"><label class="control-label"><hg:trans>在报关单中打印拣货信息</hg:trans></label></div>
+                                    <input type="hidden" value="EUB" />
+                                        <div style="width:70%;float:left;margin-top: 20px;" class="form-group">
+                                            <select id="EUB" class="form-control  input-sm">
+                                                <option selected="selected" value="true">是</option>
+                                                <option value="false">否</option>
+
+                                            </select>
+                                            <div style="margin-top: 5px;">启用在报关中打印拣货信息，在打印报关单时系统会自动包含拣货信息(速猫模板和自定义模板打印生效)。</div>
+                                        </div>
+                                </div>
+                                <div style="display:inline" class="interfaceLogistic">
+                                    <div style="float:left;width:25%;margin-top: 20px;"><label class="control-label"><hg:trans>商业发票总金额是否加运费</hg:trans></label></div>
+                                    <input type="hidden" value="CommercialInvoice" />
+                                        <div style="width:70%;float:left;margin-top: 20px;" class="form-group">
+                                            <select id="CommercialInvoice" class="form-control  input-sm">
+                                                <option value="true">是</option>
+                                                <option selected="selected" value="false">否</option>
+
+                                            </select>
+                                            <div style="margin-top: 5px;">启用:商业发票的总金额会加上实际运费金额。实际运费（人民币），生成发票时会折合成美金</div>
+                                        </div>
+                                </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="p1101778354SubSaveSetTemplate()"><hg:trans>保存设置</hg:trans></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Applypayment -->
+
+<script type="text/javascript" language="javascript">
+    $("#chk_all").click(function () {
+        $("input[name='chk_list']").prop("checked", $(this).prop("checked"));
+    });
+
+    //选择项绑定事件
+    $("#divChooseItems>span").each(function () {
+        $(this).click(function () {
+            $("#divChooseItems>span").removeClass("active");
+            $(this).addClass("active");
+
+            $("#hidChoose").val($(this).attr("itemid"));
+            $("#txtSearchKey").attr("placeholder", $(this).attr("title"));
+        });
+    });
+
+    //分类事件
+    $("#divIsCustomStatus>label").each(function () {
+        $(this).click(function () {
+            $("#divIsCustomStatus>label").removeClass("active");
+            $(this).addClass("active");
+
+            $("#hidIsCustomStatus").val($(this).attr("itemid"));
+            $("#searchForm").submit();
+        });
+    });
+
+    //排序事件
+    $("#divSort > span").each(function () {
+        $(this).click(function () {
+            var selectedItems = "";
+            var sortType = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divSort > span").removeClass("active");
+                $("#divSort > span").attr("sorttype", "");
+                $(this).addClass("active");
+                $("#divSort > span > span").removeClass();
+            }
+            selectedItems = $(this).attr("itemid");
+            sortType = $(this).attr("sorttype");
+            if (sortType == "" || sortType == "DESC") {
+                $(this).attr("sorttype", "ASC");
+                $("#hidSortType").val("ASC");
+                $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-up");
+            }
+            else {
+                $(this).attr("sorttype", "DESC");
+                $("#hidSortType").val("DESC");
+                $("#" + selectedItems + "SortMark").removeClass().addClass("glyphicon glyphicon-arrow-down");
+            }
+            $("#hidSort").val(selectedItems);
+            $("#searchForm").submit();
+        });
+
+
+    });
+
+    //模板类型绑定事件
+    $("#divTemplateTypeItems>span").each(function () {
+        $(this).click(function () {
+            var templateType = $(this).attr("itemtype");
+            $("#hidTemplateTypeItem").val(templateType);
+            $("#divTemplateTypeItems>span").removeClass("active");
+            $("#divTemplateTypeItems>span[itemtype='" + templateType + "']").addClass("active");
+            $("#searchForm").submit();
+        });
+    });
+
+    function doReloadTemplateData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        //把查询条件传递给本页面
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/Template",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1101778354divDataList").html(data);
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function doDeleteLogisticTemplate(id) {
+        if (id == null || id == "")
+            return;
+
+        if (confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")) == false) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/TemplateDelete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    doReloadTemplateData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function SetDefaultInvoice(temId) {
+        if (temId == null || temId == "")
+            return;
+
+        if (confirm(translate.format("<hg:trans>您确定修改默认发票吗？</hg:trans>")) == false) {
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/SetDefaultInvoice",
+            data: { id: temId },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    doReloadTemplateData();
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1101778354ShowSetTemplate() {
+        $("#informationSet").modal('show');
+    }
+
+    function p1101778354SubSaveSetTemplate() {
+        var extengSettingList = new Array();
+        $(".interfaceLogistic").find(".form-group select").each(function () {
+            if ($.trim($(this).val()) != "") {
+                var extendSettingInfo = {
+                    ExtendGroup: "InformationSet",
+                    ExtendKey: $(this).attr('id'),
+                    PartType: 1,
+                    ExtendValue: $(this).val()
+                };
+                extengSettingList.push(extendSettingInfo);
+            }
+        });
+        var extendSettingJson = JSON.stringify(extengSettingList);
+        $.ajax({
+            type: "POST",
+            url: "/Logistics/SaveSetTemplate",
+            data: {ExtendSettingInfo: extendSettingJson},
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+                    redgle.showMessage(translate.format("<hg:trans>保存成功</hg:trans>"));
+                }
+            },
+            error: function (xhr) {
+                redgle.showMessage(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<!-- <script src="js/jquery.unobtrusive-ajax.min.js"></script> -->
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+ <!--    <script src="js/5c4fa69d604b41179b7270544285a7b8.js"></script> -->
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

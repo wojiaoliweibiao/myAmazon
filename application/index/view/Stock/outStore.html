@@ -1,0 +1,870 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabOutStoreManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>出库管理</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabOutStoreManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="parents-nodest" style="float:right;">
+            <button type="button" class="btn btn-info btn-sm" onclick="p1718611687doEditData()"><i class="glyphicon glyphicon-plus"></i><hg:trans>新增出库单</hg:trans></button>
+            <button type="button" class="btn btn-info btn-sm" onclick="p1718611687doExportData()"><i class="glyphicon glyphicon-log-out"></i> 导出Excel</button>
+        </div>
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/OutStore?Length=8" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1718611687divDataList" id="searchForm" method="post" style="margin-bottom:12px">                <div class="form-group parents-nodest">
+                    <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                    <div id="divStoreItems" class="input-group para-items">
+
+                            <span data-value="1">默认仓库（自有仓）</span>
+                        <input type="hidden" id="txtStoreId" name="txtStoreId" value="" />
+                    </div>
+                </div>
+                <div id="divMoreSearach" role="form" style="display:none">
+                    <div class="form-group">
+                        <label for="txtInStoreType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>出库类型</hg:trans></label>
+                        <div id="divInStoreTypeItems" class="input-group para-items">
+
+                                <span data-value="sale_out_store">销售出库</span>
+                                <span data-value="allocation_out_store">调拨出库</span>
+                                <span data-value="scrap_out_store">报废出库</span>
+                                <span data-value="pur_out_store">采购退货出库</span>
+                                <span data-value="other_out_store">其他出库</span>
+                                <span data-value="check_sub_out_store">盘亏出库</span>
+                                <span data-value="stockreturn_out_store">退换货出库</span>
+                            <input type="hidden" id="txtOutStoreType" name="txtOutStoreType" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>出库状态</hg:trans></label>
+                    <div id="divChooseItems" class="input-group para-items">
+                        <span data-value="-1"><hg:trans>待出库</hg:trans></span>
+                        <span data-value="1"><hg:trans>已出库</hg:trans></span>
+                        
+                        <input type="hidden" id="txtStatusCode" name="txtStatusCode" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divChooseTypeItems" class="input-group para-items">
+                        <span data-value="SKU" chooseid="SKU" class="active"><hg:trans>SKU</hg:trans></span>
+                        <span data-value="OutStoreNo" chooseid="OutStoreNo"><hg:trans>出库单号</hg:trans></span>
+                        <span data-value="RelationNo" chooseid="RelationNo"><hg:trans>关联单据</hg:trans></span>
+                        <span data-value="Remarks" chooseid="Remarks"><hg:trans>备注</hg:trans></span>
+                        <input type="hidden" id="hidChoose" name="hidChoose" value="SKU" />
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:450px;" id="Search">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="txtSearchKey" id="txtSearchKey" class="form-control" />
+                        <span class="input-group-btn">
+                            <input type="submit" value="搜索(S)" hgtrans="true" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索类型</hg:trans></label>
+                    <div id="divTimeTypeItems" class="input-group para-items" >
+                        <span data-value="CustomTime" chooseid="CustomTime" class="active"  ><hg:trans>出库时间</hg:trans></span>
+                        <input type="hidden" id="hidTime" name="hidTime" value="CustomTime" />
+                    </div>
+                </div>
+                <div class="form-group" style=" max-width:450px;" id="divDateDis">
+                    <label for="txtSearchContent" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>搜索内容</hg:trans></label>
+                    <div class="input-group input-group-sm">
+                        <span>
+                            <input type="text" class="form-control input-sm" id="txtDateBegin" name="txtDateBegin" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="" placeholder="开始时间" />
+                        </span>
+                        <span class="input-group-btn" style="background-color: #ccc;padding-left: 6px;padding-right: 5px;font-size: 14px;">TO</span>
+                        <span><input type="text" class="form-control input-sm" id="txtDateEnd" name="txtDateEnd" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" placeholder="结束时间" /></span>
+                        <span class="input-group-btn">
+                            &nbsp;<input type="submit" hgtrans="true" value="搜索(S)" accesskey="S" class="btn btn-primary" />
+                        </span>
+                    </div>
+                </div>
+                <span onclick="javascript:doShowMoreSearchPanel(event);" class="search-more search-down" style="margin-top:-7px"><hg:trans>高级筛选</hg:trans></span>
+</form>        </div>
+        <div id="p1718611687divDataList">
+            <div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#divOrderDataList" data-maxpages="2" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/OutStore?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/OutStore?pageIndex=2&amp;pagesize=10">2</a>  <a data-pageindex="2" href="/OutStore?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="2" href="/OutStore?pageIndex=2&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 12 条数据</span></div><div style="clear:both"></div></div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="">
+                <input type="checkbox" name="chk_all" id="chk_all" onclick="p1718611687doSetCheckBox(this)" />
+            </th>
+            <th>
+                <hg:trans>出库单号</hg:trans>
+            </th>
+            <th>
+                <hg:trans>关联单号</hg:trans>
+            </th>
+            <th>
+                <hg:trans>出库类型</hg:trans>
+            </th>
+            <th>
+                <hg:trans>产品数量</hg:trans>
+                <input type="hidden" id="hidOpenAllDetailType" value="false" />
+                <span class="glyphicon glyphicon-triangle-right" style="cursor:pointer" hgtrans="true" onclick="javascript: p1718611687doOpenAllDetail(event)" title="展开全部采购单明细"></span>
+            </th>
+            <th>
+                <hg:trans>仓库</hg:trans>
+            </th>
+            <th>
+                <hg:trans>状态</hg:trans>
+            </th>
+            <th>
+                <hg:trans>出库日期</hg:trans>
+            </th>
+            <th>
+                <hg:trans>操作</hg:trans>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr ondblclick="p1718611687doViewData('12')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="12" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201808200002" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201808200002
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('71','erporder')" class="view-link">026-2355068-9150754</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'12')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/8/20 8:53:41
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('12')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('11')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="11" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201808200001" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201808200001
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('5315','erporder')" class="view-link">407-6085075-7052323</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'11')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/8/20 8:53:40
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('11')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('10')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="10" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201808050004" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201808050004
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('1120','erporder')" class="view-link">701-4494294-1784246-R1</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'10')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/8/5 12:17:04
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('10')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('9')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="9" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201808050003" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201808050003
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('1121','erporder')" class="view-link">114-9280679-0379421-R1</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'9')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/8/5 12:17:04
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('9')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('8')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="8" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201808050002" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201808050002
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('1230','erporder')" class="view-link">405-4126056-8869901-R1</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'8')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/8/5 12:17:04
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('8')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('7')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="7" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201808050001" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201808050001
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('1308','erporder')" class="view-link">404-7941409-7209103-R1</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'7')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/8/5 12:17:04
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('7')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('6')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="6" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201807090001" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201807090001
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('692','erporder')" class="view-link">303-1343416-2577924-R1</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'6')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/7/9 16:39:18
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('6')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('5')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="5" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201807070002" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201807070002
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('75','erporder')" class="view-link">404-8441104-2370733</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'5')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/7/7 18:29:06
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('5')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('4')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="4" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201807070001" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201807070001
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('455','erporder')" class="view-link">403-7172799-8127563</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'4')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/7/7 18:29:05
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('4')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+            <tr ondblclick="p1718611687doViewData('3')">
+                <td>
+                    <input type="checkbox" name="chk_list" value="3" />
+                    <input id="item_OutStoreNo" name="item.OutStoreNo" type="hidden" value="OS-201806290002" />
+                    <input id="item_StatusCode" name="item.StatusCode" type="hidden" value="已出库" />
+                </td>
+                <td>
+                    OS-201806290002
+                </td>
+                <td>
+                        <a href="javascript:void(0)" onclick="p1718611687doViewDetailData('73','erporder')" class="view-link">206-7687975-4253147</a>
+
+                </td>
+                <td>
+                    销售出库
+                </td>
+                <td>
+                    1
+                    <span class="glyphicon glyphicon-triangle-right" name="spanForPurDetail" style="cursor:pointer" hgtrans="true" onclick="javascript: showPurOrderDetail(event,'3')" title="查看采购单明细"></span>
+                </td>
+                <td>
+                    默认仓库
+                </td>
+                <td>
+                    已出库
+                </td>
+
+                <td>
+                    2018/6/29 18:37:11
+                </td>
+                <td>
+                        <a href="javascript:void(0)" hgtrans="true" onclick="p1718611687doViewData('3')" class="glyphicon glyphicon-search" title="详情"></a>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<div class='hgdiv_fix'><div data-ajax="true" data-ajax-currentsize="10" data-ajax-dataformid="#searchForm" data-ajax-method="Post" data-ajax-update="#p1718611687divDataList" data-maxpages="2" data-mvcpager="true" data-pageparameter="pageIndex" data-showpapersize="true" data-urlformat="/OutStore?pageIndex=__pageIndex__&amp;pagesize=__pagesize__" id="flickrpager" style="float:right"><a disabled="disabled">首页</a>  <a disabled="disabled">上一页</a>  <a class="active">1</a>  <a data-pageindex="2" href="/OutStore?pageIndex=2&amp;pagesize=10">2</a>  <a data-pageindex="2" href="/OutStore?pageIndex=2&amp;pagesize=10">下一页</a>  <a data-pageindex="2" href="/OutStore?pageIndex=2&amp;pagesize=10">尾页</a>  <span>转到 <select data-pageindexbox="true" data-autosubmit="true"><option value="1" selected="selected">1</option><option value="2">2</option></select> 页</span><span>每页 <select data-pagesizebox="true" data-autosubmit="true"><option value="10" selected="selected">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select> 条</span><span style='line-height: 25px;'>共 12 条数据</span></div><div style="clear:both"></div></div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(function () {
+
+    })
+    //查看采购单明细
+    function showPurOrderDetail(event, id) {
+        var src = event.target || window.event.srcElement;
+        var hidNumber = 0;
+        if ($("#d_" + id + "").length > 0) {
+            if ($("#d_" + id + "").is(":visible")) {
+                $("#d_" + id + "").hide();
+                $(src).removeClass();
+                $(src).addClass("glyphicon glyphicon-triangle-right");
+            } else {
+                $("#d_" + id + "").show();
+                $(src).removeClass();
+                $(src).addClass("glyphicon glyphicon-triangle-bottom");
+            }
+        } else {
+            $.ajax({
+                url: "/OutStore/GetOutstoreDetailListUseStoreId",
+                data: { storeId: id },
+                success: function (data) {
+                    $(src).parent().parent().after("<tr id='d_" + id + "'><td colspan='5'></td><td colspan='8'><div style='float:right;width:100%;margin-top:0;'><table class='table table-condensed table-hover' onmouseover='doSetTbColor(" + id + ")' onmouseout='doSetTbColor(" + id + ")' style='float:right;height:20px'><thead><tr class='info'><th><hg:trans>产品图片</hg:trans></th><th><hg:trans>SKU<br />产品属性</hg:trans></th><th><hg:trans>产品名称</hg:trans></th><th><hg:trans>良品数量</hg:trans></th><th><hg:trans>不良品数量</hg:trans></th> <th><hg:trans>成本价</hg:trans></th></tr></thead><tbody></tbody></table></div></td></tr>");
+                    $.each(data, function (index, value) {
+                        hidNumber++;
+
+                        var sku = value.Sku == null ? "" : value.Sku
+                        var productAttr = value.Attr
+                        if (productAttr == null || productAttr.trim() == "") {
+                            productAttr = "无";
+                        }
+                        $("#d_" + id + " tbody").append("<tr><td><img onmouseover='showPic(this)' onmouseout='hidePic(this)' class='img-thumbnail' style='width:50px; height:50px;' src="static/picture/+ value.producturl +"></td><td>" + sku + "<br/>" + productAttr + "</td><td><span title='" + value.ProductName + "' class='text-overflow' style='max-width:250px;'>" + value.ProductName + "</span></td><td>" + value.Num + "</td><td>" + value.DefectiveNum + "</td> <td>" + value.Price + "</td></tr>")
+                    })
+                    if (hidNumber > 9)
+                        $("#d_" + id + " tbody").append("<tr><td colspan='8' style='text-align:left !important'> <span class='glyphicon glyphicon-triangle-bottom'  style='cursor:pointer' hgtrans='true' title='查看采购单明细'></span></td></tr>");
+                    $(src).removeClass();
+                    $(src).addClass("glyphicon glyphicon-triangle-bottom");
+                }
+            })
+        }
+    }
+
+    function doSetTbColor(id) {
+        if ($("#tr" + id).hasClass("tbcolor"))
+            $("#tr" + id).removeClass("tbcolor");
+        else
+            $("#tr" + id).addClass("tbcolor");
+    }
+    function showPic(obj) {
+        var urlPic = $(obj).attr("src");
+        var html = "<div name ='mainPicShow' style='position: absolute; border: 1px solid silver; background: silver;width:300px;height:300px'><img class='img-thumbnail' style='width:100%;' src='" + urlPic + "' /></div>";
+        var objDiv = $(html).appendTo($(obj).parent());
+        objDiv.css("top", $(obj).offset().top - 200);
+        objDiv.css("left", $(obj).offset().left - 100);
+    }
+
+    function hidePic(obj) {
+        var objDiv = $(obj).parent().find("[name=mainPicShow]");
+        if (objDiv != undefined) {
+            objDiv.remove();
+        }
+    }
+
+    //展开全部
+    function p1718611687doOpenAllDetail(event) {
+        var src = event.target || window.event.srcElement;
+        var isOpen = $("#hidOpenAllDetailType").val();
+        $('input[name="chk_list"]').each(function () {
+            var span = $(this).parent().parent().find("[name=spanForPurDetail]");
+            var cls = span.attr("class");
+            if (cls.indexOf("glyphicon glyphicon-triangle-right") >= 0 && isOpen == "false") {
+                span.click();
+            }
+            else if (cls.indexOf("glyphicon glyphicon-triangle-bottom") >= 0 && isOpen == "true") {
+                span.click();
+            }
+        });
+        if (isOpen == "true") {
+            $(src).removeClass();
+            $(src).addClass("glyphicon glyphicon-triangle-right");
+            $("#hidOpenAllDetailType").val("false");
+        }
+        else {
+            $(src).removeClass();
+            $(src).addClass("glyphicon glyphicon-triangle-bottom");
+            $("#hidOpenAllDetailType").val("true");
+        }
+    }
+
+
+    //时间筛选
+    $("#divChooseTypeItems>span").click(function () {
+        var selectedItems = "";
+        var value = "";
+        var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+                $("#divChooseTypeItems > span").removeClass("active");
+                $(this).addClass("active");
+                selectedItems = $(this).attr("chooseid");
+                $("#hidChoose").val(selectedItems);
+            } else {
+                $(this).removeClass("active");
+            }
+    });
+
+    $("#divTimeTypeItems>span").click(function () {
+        var selectedItems = "";
+        var value = "";
+        var cls = $(this).attr("class");
+        if (typeof (cls) == "undefined" || cls.indexOf("active") < 0) {
+            $("#divTimeTypeItems > span").removeClass("active");
+            $(this).addClass("active");
+            selectedItems = $(this).attr("chooseid");
+            $("#hidTime").val(selectedItems);
+        } else {
+            $(this).removeClass("active");
+        }
+    });
+
+    //高级筛选
+    function doShowMoreSearchPanel(event) {
+        $("#divMoreSearach").toggle("slow");
+        var src = event.target || window.event.srcElement;
+        if ($(src).attr("class").indexOf("search-down") > 0) {
+            $(src).removeClass("search-down").addClass("search-up").text(translate.format("<hg:trans>收起</hg:trans>"));
+        }
+        else {
+            $(src).removeClass("search-up").addClass("search-down").text(translate.format("<hg:trans>高级筛选</hg:trans>"));
+        }
+    }
+    
+    //处理勾选条件
+    $(function () {
+        $(".para-items").not("#divChooseTypeItems").find("span").click(function () {
+            var $this = $(this)
+            if ($this.attr("class") == "active") {
+                $this.prop("class", "")
+                $this.parent().find("input").prop("value", "")
+            } else {
+                $this.parent().find("span").prop("class", "")
+                $this.prop("class", "active")
+                $this.parent().find("input").prop("value", $this.attr("data-value"))
+            }
+        })
+        $("#divChooseTypeItems>span").click(function () {
+            var $this = $(this)
+            if ($this.attr("class") == "active") {
+            } else {
+                $this.parent().find("span").prop("class", "")
+                $this.prop("class", "active")
+                $this.parent().find("input").prop("value", $this.attr("data-value"))
+            }
+        });
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        $("#divInStoreTypeItems>span, #divStoreItems>span,#divChooseItems>span").click(function () {
+            $("#searchForm").submit();
+        });
+    })
+    function p1718611687doViewDetailData(id, RelationType) {
+        debugger
+        switch (RelationType) {
+            case "erptransfer":
+                var url = "/StockHandle/TransferEdit/" + id + "?operateType=view";
+                redgle.tab.create("liTransferEdit", url, translate.format("<hg:trans>查看库存调拨</hg:trans>"));
+
+                break;
+            case "erporder":
+                var url = "/Order/ViewOnlineOrder/" + id;
+                redgle.tab.create("liOrderEdit", url, translate.format("<hg:trans>查看订单信息</hg:trans>"));
+
+                break;
+            case "erppurreturnorder":
+                var url = "/PurOrder/PurReturnEdit?returnId=" + id;
+                redgle.tab.create("liPurReturnOrderEdit", url, translate.format("<hg:trans>查看采购退货单</hg:trans>"));
+
+                break;
+            case "erpstocktaking":
+                var url = "/StockTaking/Edit/" + id + "?view=true&isAjax=false";
+                redgle.tab.create("liStockTaking", url, translate.format("<hg:trans>盘点单详情</hg:trans>"));
+                break;
+            case "erpthirdstoreallocationplan":
+                var url = "/ThirdStoreAllocation/AllocationPlanEdit/" + id;
+                redgle.tab.create("liInStoreEdit", url, translate.format("<hg:trans>编辑调拨信息</hg:trans>"));
+                break;
+
+                //退换货入库
+            case "erpstockreturn":
+                var url = "/StockReturn/Edit/" + id + "?view=true";
+                redgle.tab.create("liStockReturnEdit", url, translate.format("<hg:trans>编辑退换货单</hg:trans>"));
+                break;
+            default:
+                var url = "/OutStore/Edit/" + id;
+                redgle.tab.create("liInStoreEdit", url, translate.format("<hg:trans>查看出库信息</hg:trans>"));
+        }
+    }
+
+    function p1718611687doShowMoreSearchPanel() {
+        $("#divMoreSearach").toggle("fast");
+    }
+    function p1718611687doEditData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/OutStore/Edit/" + id;
+        redgle.tab.create("liOutStoreEdit", url, translate.format("<hg:trans>编辑出库信息</hg:trans>"));
+    }
+    function p1718611687doViewData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/OutStore/Edit/" + id + "?operateType=view";
+        redgle.tab.create("liOutStoreEdit", url, translate.format("<hg:trans>查看出库信息</hg:trans>"));
+    }
+    function p1718611687doDeleteData(id) {
+        if (!window.confirm(translate.format("<hg:trans>删除您选择的信息之后将无法恢复，您确认要删除吗？</hg:trans>")))
+            return false;
+        $.ajax({
+            type: "POST",
+            url: "/OutStore/Delete",
+            data: { id: id },
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                }
+                else {
+p1718611687doReloadData();
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+    function p1718611687doConfirmData(id) {
+        if (id == null || id == "")
+            id = "";
+        var url = "/OutStore/Edit/" + id + "?operateType=confirm";
+        redgle.tab.create("liOutStoreEdit", url, translate.format("<hg:trans>审核出库信息</hg:trans>"));
+    }
+
+    function p1718611687doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+
+        $.ajax({
+            type: "POST",
+            url: "/OutStore",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1718611687divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+    function  p1718611687doSetCheckBox(obj) {
+        $("input[name=chk_list]").prop("checked", $(obj).prop("checked"));
+    }
+
+    function p1718611687doExportData() {
+        var postData = redgle.request.getFormData("searchForm");
+        var ExportOption = $("input[name=chk_list]:checked").map(function () {
+            return $(this).val();
+        }).get().join(",");
+        if (ExportOption.length == 0) {
+            var totalCount = parseInt($("#flickrpager span:last").html().replace(/[^0-9]/ig, ""));
+            if (totalCount > 5000) {
+                redgle.showMessage(translate.format("<hg:trans>导出的数据不能大于5000条！</hg:trans>"));
+                return;
+            }
+        }
+        if (totalCount > 500 && !window.confirm(translate.format("<hg:trans>没有选择数据导出，将导出符合当前搜索条件的数据，数据较多，请耐心等候！</hg:trans>")))
+            return;
+
+        postData["codeList"] = ExportOption;
+        $.ajax({
+            type: "POST",
+            url: "/OutStore/ExportOutStore",
+            data: postData,
+            datatype: "json",
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(translate.format("<hg:trans>您当前所做的操作没有成功，原因如下：{0}</hg:trans>", [data.Message]));
+                } else {
+                    window.open("http://yhjm.sumool.com/UploadFiles/yhjm/Tem/1//" + data.ResultObject);
+                }
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+<script src="static/js/wdatepicker.js"></script>
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/c9f5909be3d2466e97268085d90f466c.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿.value-tip{
+    margin: 5px 0 0 !important;
+    color: #8e8e8e;
+    font-size: 13px;
+}
+.value-tip>p{
+    margin: 0 !important;
+}
+.value-tip>.error-tip{
+    color: #eb3c00;
+}
+.v-required:before{
+    content: "* ";
+    color: #eb3c00;
+}
+.form-control.error{
+    border-color: #eb3c00 !important;
+}
+.form-control.error:focus{
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(237,60,0,.6) !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(237,60,0,.6) !important;
+}
+#sku-prop .checkbox{
+    height: 40px !important;
+}
+.checkbox span{
+    display: inline-block;
+    width: 100px;
+    word-wrap: break-word;
+    word-break: break-all;
+    vertical-align: top;
+}
+#free-shipping{
+    display: none;
+}
+label.v-required{
+    color: #333 !important;
+}
+#toggle-var:hover, .toggle-panel:hover{
+    text-decoration: underline;
+}
+.site-info-area{
+    display: none;
+}
+.site-info-area[data-id='cl']{
+    display: block;
+}
+.error-message{
+    position: fixed;
+    width: 100%;
+    background: #f2dede;
+    top: 0;
+    padding-left: 20px;
+    padding-top: 5px;
+    height: 42px;
+    display: none;
+}
+.error-message p{
+    color: #a94442;
+    text-align: center;
+}
+.error-message a{
+   position: absolute;
+    top: 5px;
+    cursor: pointer;
+    color: #a94442;
+    font-weight: bold;
+    font-size: 20px;
+    right: 20px;
+    text-decoration: none;
+}
+.error-message a:hover, .error-message a:visited,.error-message a:visited,.error-message a:active,.error-message a:focus{
+    text-decoration: none;
+}
+.error-message div{
+    clear: both;
+}
+.fixed-wrap-div{
+    background-color: #fff;
+}
+.fixed-wrap-div.fixed-on{
+    position: fixed;
+    z-index: 1000;
+    zoom: 1;
+    top: 0;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 35px;
+}
+.fixed-on #site-tab{
+    margin-bottom: 0;
+}
+#site-tab{
+    position: relative;
+    font-weight: 700;
+}
+.additional-cate .full-category-name{
+    display: inline-block;
+    margin-right: 10px;
+}
+.additional-cate a{
+    color: #eb3c00;
+}

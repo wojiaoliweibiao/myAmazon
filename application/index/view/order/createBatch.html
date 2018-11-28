@@ -1,0 +1,584 @@
+{:widget('Blog/header')}
+
+    <link href="__STATIC__/index/css/Logistics/bootstrap-switch.min.css" rel="stylesheet"/>
+  <link href="__STATIC__/index/css/common.css" rel="stylesheet" />
+
+
+ 
+ <script src="__STATIC__/index/js/classify/logistics/bootstrap-switch.min.js"></script>
+ <script src="__STATIC__/index/js/classify/logistics/jquery.unobtrusive-ajax.min.js"></script>
+
+<body>
+{:widget('Blog/left')}
+ 
+<ul id="divTabPanel" class="nav nav-tabs" role="tablist">
+    <li id="liTabInStoreManage" role="presentation" class="active"><a href="javascript:void(0);"><hg:trans>批次发货</hg:trans></a></li>
+</ul>
+<div id="divTabContentPanel" class="tab-content">
+    <div id="tabContent_liTabInStoreManage" role="tabpanel" class="tab-pane fade active in">
+        <div class="alert bg-info" style="padding:8px">
+            <hg:trans>PS：目前仅支持使用系统地址标签的物流方式进行批次发货。</hg:trans>
+        </div>
+        <div style="padding-left:20px; margin-bottom:20px;" class="panel panel-default">
+<form action="/OrderBathDelivery/CreateBatch?Length=17" class="form-horizontal" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#p1851950267divDataList" id="searchForm" method="post" style="margin-bottom:12px"><input name="__RequestVerificationToken" type="hidden" value="Ojk7TRVIA7-avE9eAOwgZ5FnAVHpNG_TD16ToPtEu8nFZQQHka2pFtj83NiFrcmPUaND7esW7yIkDCzb8uM_xQL9tLE6Ycf_82Vrp4VhjW4JmoskBv1Aj9zNR1BR-kdRJtbHQnCkb_Jf3pxWgPmJKvk2f4LUVvakYtjaTQPzXPc1" />                <div class="panel-body pa10">
+                    
+                    <div class="crumbs nolink table-block mb0">
+                        <ul class="mb0" id="divStep">
+                            <li class="active" data-value=""><a href="javascript:void(0)">生成批次<b></b></a></li>
+                            <li data-value="0"><a href="../OrderBathDelivery/BathDelivery?txtStage=0">拣货<b></b></a></li>
+                            <li data-value="1,2"><a href="../OrderBathDelivery/BathDelivery?txtStage=1,2">待包装<b></b></a></li>
+                            <li data-value="3"><a href="../OrderBathDelivery/BathDelivery?txtStage=3">待发货<b></b></a></li>
+                            <li data-value="4"><a href="../OrderBathDelivery/BathDelivery?txtStage=4">已发货<b></b></a></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="txtStage" name="txtStage" value="0">
+                </div>
+                <div style="margin-bottom:20px;" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><span></span><hg:trans>筛选条件</hg:trans></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>仓库</hg:trans></label>
+                            <div class="col-sm-3" style="margin-left:-18px">
+                                <select class='chzn-select' id='StoreId' name='StoreId' data-placeholder='Choose 仓库' multiple style='width:100%;' tabindex='1'>
+                                        <option value=""></option>
+                                        <option value="1">默认仓库（自有仓）</option>
+
+
+                                </select>
+                                <input type="hidden" id="hidStore" name="hidStore" value="" />
+                            </div>
+                            <label for="txtStore" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>物流方式</hg:trans></label>
+                            <div class="col-sm-3" style="margin-left:-18px">
+                                <select class='chzn-select' id='LogisticMode' name='LogisticMode' data-placeholder='Choose 物流方式' multiple style='width:100%;' tabindex='1'>
+                                        <option value=""></option>
+                                        <option value="159">Equick 国际快递-加拿大专线特惠线</option>
+                                        <option value="165">Equick 国际快递-EQ西班牙快速专线小包</option>
+                                        <option value="169">Equick 国际快递-EQ德国快速专线小包裹</option>
+                                        <option value="170">Equick 国际快递-Equick法国快速专线小包</option>
+                                        <option value="173">Equick 国际快递-EQ英国快速专线小包裹</option>
+                                        <option value="175">Equick 国际快递-Equick澳大利亚专线</option>
+                                        <option value="176">Equick 国际快递-Equick中欧专线</option>
+                                        <option value="177">Equick 国际快递-Equick中美专线</option>
+                                        <option value="180">Equick 国际快递-Equick加拿大专线</option>
+                                        <option value="181">Equick 国际快递-Equick新西兰专线</option>
+                                        <option value="182">Equick 国际快递-Equick中美专线(加急)</option>
+                                        <option value="183">Equick 国际快递-Equick欧洲专线促销价</option>
+                                        <option value="356">Equick 国际快递-意大利快速专线小包</option>
+                                        <option value="5">三态速递-德国邮政小包（挂号）</option>
+                                        <option value="6">三态速递-中欧-英国线</option>
+                                        <option value="7">三态速递-中欧-荷兰线</option>
+                                        <option value="11">三态速递-香港DHL1</option>
+                                        <option value="13">三态速递-中英快邮小包</option>
+                                        <option value="17">三态速递-快邮小包二级挂号</option>
+                                        <option value="18">三态速递-快邮三级小包（挂号）</option>
+                                        <option value="27">三态速递-加拿大专线</option>
+                                        <option value="29">三态速递-三态墨西哥专线</option>
+                                        <option value="32">三态速递-快邮德国小包挂号</option>
+                                        <option value="34">三态速递-快邮意大利小包挂号</option>
+                                        <option value="40">三态速递-法国专线</option>
+                                        <option value="44">三态速递-快邮西班牙小包挂号</option>
+                                        <option value="53">三态速递-西班牙专线</option>
+                                        <option value="54">三态速递-香港邮政专线服务</option>
+                                        <option value="188">三态速递-德国专线</option>
+                                        <option value="189">三态速递-中英快邮经济小包</option>
+                                        <option value="66">云途物流-HK DHL eCommerce挂号</option>
+                                        <option value="69">云途物流-中美专线(特惠)</option>
+                                        <option value="78">云途物流-云途中欧专线挂号</option>
+                                        <option value="84">云途物流-德国专线挂号</option>
+                                        <option value="86">云途物流-意大利专线挂号</option>
+                                        <option value="89">云途物流-特惠28国</option>
+                                        <option value="102">云途物流-加拿大专线</option>
+                                        <option value="109">云途物流-西班牙专线挂号</option>
+                                        <option value="127">云途物流-奥地利专线</option>
+                                        <option value="128">云途物流-日本专线挂号</option>
+                                        <option value="130">云途物流-英国专线挂号特惠</option>
+                                        <option value="134">云途物流-德国专线挂号特惠</option>
+                                        <option value="135">云途物流-荷比卢专线</option>
+                                        <option value="142">云途物流-丹麦专线挂号</option>
+                                        <option value="146">云途物流-巴西专线</option>
+                                        <option value="147">云途物流-法国专线挂号特惠</option>
+                                        <option value="1">自定义物流商-远华嘉贸物流</option>
+
+
+                                </select>
+                                <input type="hidden" id="hidLogisticMode" name="hidLogisticMode" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>平台类型</hg:trans></label>
+                            <div class="col-sm-10" style="margin-left:-18px;margin-bottom:0px">
+
+                                <div id="divapifromitemsall" class="input-group para-items" divapifromitems style="float:left;">
+                                    <span userform="All" class="active"><hg:trans>全部</hg:trans></span>
+                                </div>
+                                    <div id="divapifromitemsAmazon" class="input-group para-items" divapifromitems style="float:left;">
+                                        <span userform="Amazon">Amazon</span>
+                                    </div>
+                                    <div id="divapifromitemsOffline" class="input-group para-items" divapifromitems style="float:left;">
+                                        <span userform="Offline">Offline</span>
+                                    </div>
+                                <input type="hidden" id="hidApiForms" name="hidApiForms" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtSearchType" class="control-label col-sm-1" style="width:95px !important;margin-right:20px;"><hg:trans>订单类型</hg:trans></label>
+                            <div id="divPageType" class="input-group para-items">
+                                <span itemid="" chooseid="Search" class="active"><hg:trans>全部</hg:trans></span>
+                                <span itemid="0" chooseid="Search"><hg:trans>单品单数</hg:trans></span>
+                                <span itemid="1" chooseid="Search"><hg:trans>单品多数</hg:trans></span>
+                                <span itemid="2" chooseid="Search"><hg:trans>多品混装</hg:trans></span>
+                                <input type="hidden" id="hidPageType" name="hidPageType" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="txtQuerySearch" name="txtQuerySearch" value="" />
+                </div>
+</form>        </div>
+        <div id="p1851950267divDataList">
+            <div style="margin-bottom:20px;" class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title"><span></span><hg:trans>筛选结果</hg:trans></h4>
+    </div>
+    <div class="panel-body">
+        <div style="float:right;">
+        </div><br /><br />
+        <div style="margin-bottom:20px;">
+            <p class="bg-info" style="padding: 18px;line-height:25px">
+                订单数 0 <br />
+                SKU种类 0<br />
+                产品数量 0
+            </p>
+        </div>
+        <span onclick="javascript: doShowBatchTablePanel(event);" class="search-more search-down">展开查看明细</span>
+        <table class="table table-bordered table-hover batchtable" style="display:none">
+            <thead>
+                <tr>
+                    <th><hg:trans>订单号</hg:trans></th>
+                    <th><hg:trans>仓库</hg:trans></th>
+                    <th><hg:trans>物流商</hg:trans></th>
+                    <th><hg:trans>物流方式</hg:trans></th>
+                    <th><hg:trans>SKU</hg:trans></th>
+                    <th><hg:trans>商品数量</hg:trans></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal 生成批次的窗口-->
+<div class="modal fade" id="CreateBatchModal" tabindex="-1" role="dialog" aria-labelledby="CreateBatchModalLabel" aria-hidden="true" style="padding-top:100px;">
+    <div class="modal-dialog" style="width:850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="CreateBatchModalLabel"><hg:trans>生成批次</hg:trans></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div style="margin-bottom:5px;">
+                        <p class="bg-success" style="padding: 18px;line-height:25px">
+                            默认分批规则：单产品相同物流方式订单同批，多产品相同物流方式订单同批。
+                        </p>
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <p class="bg-info" style="padding: 18px;line-height:25px">
+                            <hg:trans>包裹数</hg:trans>：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<hg:trans>SKU种类</hg:trans>：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<hg:trans>产品数量</hg:trans>：0<br />
+                        </p>
+                    </div>
+                    <div class="setUpperLimitBox">
+                        <div style="margin:25px auto 0 auto;width: 400px;height: 40px;line-height: 40px">
+                            <span class="screenResult">设置每个批次订单上限：</span>
+                            <input class="screenResult form-control" id="maxProductNum" type="text" style="width:90px;height: 40px;text-align: center" value="800" onblur="CreateBatchPreview(1);">
+                            <span class="screenResult">（最大值为30000）</span>
+                            <a class="advSet screenResult" href="javascript:" onclick="advanceSet();">高级设置</a>
+                        </div>
+                        <div class="advSetT" style="display: none;">
+                            <label><input type="checkbox" onclick="CreateBatchPreview();" checked id="isAgent">&nbsp;允许不同物流商的订单进入同一拣货批次</label>
+                            <label><input type="checkbox" onclick="CreateBatchPreview();" checked id="isAgentAuth">&nbsp;允许同一物流商的不同物流渠道的订单进入同一拣货批次</label>
+                            <label><input type="checkbox" onclick="CreateBatchPreview();" id="isProductStatus">&nbsp;将单品单数订单和单品多数订单合并到同一拣货批次</label>
+                            <div></div>
+                        </div>
+                        <div class="fW600" style="width:180px;margin: 20px auto 0 auto;">预计生成拣货批次：<label id="batchCountLabel">0</label>个</div>
+                    </div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><label><hg:trans>批次预览</hg:trans></label></h4>
+                    </div>
+                    <div id="p1851950267divBatchDataList" style="max-height:450px;overflow:auto">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <hg:trans>序号</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>订单数</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>仓库</hg:trans>
+                                    </th>
+                                    <th><hg:trans>订单类型</hg:trans></th>
+                                    <th>
+                                        <hg:trans>SKU数</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>产品数量</hg:trans>
+                                    </th>
+                                    <th>
+                                        <hg:trans>操作</hg:trans>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><hg:trans>关闭</hg:trans></button>
+                <button type="button" class="btn btn-primary" onclick="p1851950267CreateBatch()"><hg:trans>确定生成</hg:trans></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<script>
+    $(function () {
+        CreateBatchPreview();
+        LoadOrderBatchStatusCodeNumList();
+    })
+    /*高级设置*/
+    var advanceSet = function () {
+        $(".advSetT").toggle();
+    };
+
+    //点击生成批次后执行生成批次预览
+    function CreateBatchPreview() {
+        if ($("#isAgent").is(":checked"))//如果支持不同物流商了，一定支持同一物流商不同物流方式啦
+        {
+            $("#isAgentAuth").prop("checked", true)
+        }
+        var isAgent = $("#isAgent").is(":checked") ? "1" : "0";//合并不同物流商
+        var isAgentAuth = $("#isAgentAuth").is(":checked") ? "1" : "0";//合并不同物流方式
+        var isProductStatus = $("#isProductStatus").is(":checked") ? "1" : "0";//单数和多数合并
+        var _hidPageType = $("#hidPageType").val();//订单类型
+        var _hidApiForms = $("#hidApiForms").val(); //平台类型
+        var _hidLogisticMode =$("#hidLogisticMode").val(); //物流方式
+        var _hidStore =$("#hidStore").val(); //倉庫
+        var maxOrderNum = $("#maxProductNum").val();//每个批次最大订单数量
+        $.ajax({
+            url: "/OrderBathDelivery/UseRuleCreateBatch",
+            type: "post",
+            data: { isAgent: isAgent, isAgentAuth: isAgentAuth, isProductStatus: isProductStatus, hidPageType: _hidPageType, hidApiForms: _hidApiForms, hidLogisticMode: _hidLogisticMode, hidStore: _hidStore, maxProductNum: maxOrderNum },
+            success: function (data) {
+                if (data.HasError) {
+                    redgle.showMessage(data.messge);
+                } else {
+                    $("#batchCountLabel").html(data.ResultObject.length)
+                    $("#p1851950267divBatchDataList>table>tbody").html("");
+                    $.each(data.ResultObject, function (index, value) {
+                        var tr = "<tr data-orderIds='" + value.OrderIds + "'><td>L" + index + "</td><td>" + value.OrderNum + "</td><td>" + value.StoreName + "</td><td>" + value.BatchType + "</td><td>" + value.SpecNum + "</td><td>" + value.ProductNum + "</td><td><a href='javascript:(seeOrderDetail(\"" + value.OrderIds + "\",\"L" + index + "\"))'>查看订单</a></td></tr>"
+                        $("#p1851950267divBatchDataList>table>tbody").append(tr)
+                    })
+                }
+            }
+        })
+    }
+    function ListComtais(list, array) {
+        var endList = new Array();
+        for (var j = 0; j < list.length; j++) {
+            for (var i = 0; i < array.length; i++) {
+                if (list[j].OrderId == array[i]) {
+                    endList.push(list[j]);
+                }
+            }
+        }
+        return endList;
+    }
+
+    function p1851950267CreateBatch() {
+        var list = new Array();
+        $("#p1851950267divBatchDataList>table>tbody>tr").each(function () {
+            list[list.length] = {
+                OrderBatchId: 0,
+                OrderIds: $(this).attr("data-orderIds")
+            }
+        })
+        if (list.length == 0) {
+            alert("批次信息丢失")
+            return;
+        }
+        var bl = JSON.stringify(list)
+        $.ajax({
+            type: "POST",
+            url: "/OrderBathDelivery/CreateOrderBatch",
+            data: { batchList: bl },
+            success: function (data) {
+                if (data.HasError) {
+                    alert(data.messge)
+                } else {
+p1851950267doReloadData();
+                    redgle.showMessage("成功生成发货批次");
+                }
+            },
+            error: function () {
+                alert("操作失败")
+            }
+        })
+    }
+
+    //查看批次订单
+    function seeOrderDetail(OrderIds, batchNO) {
+        debugger
+        var url = "../Order/Index?pageSize=1000&OrderIds=" + OrderIds;
+        redgle.tab.create("liOrderManage", url, translate.format("<hg:trans>查看批次" + batchNO + "订单</hg:trans>"));
+    }
+    //加载各个状态数量
+    function LoadOrderBatchStatusCodeNumList() {
+        $.ajax({
+            type: "POST",
+            global: false,
+            url: "/OrderBathDelivery/GetOrderBatchStatusCodeNumList",
+            success: function (data) {
+                if (!data.HasError) {
+                    var packingNum = 0;
+                    $.each(data.MapData.StatusCodeList, function (index, value) {
+                        if (value.StatusCode == 1 || value.StatusCode == 2) {
+                            packingNum += value.Num;
+                        } else {
+                            $("#divStep>li[data-value='" + value.StatusCode + "']").find("b").html("(" + value.Num + ")")
+                        }
+                    })
+                    $("#divStep>li[data-value='1,2']").find("b").html("(" + packingNum + ")")
+                }
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+    }
+</script>;
+        </div>
+    </div>
+</div>
+
+<a id="btnOpenWindow" href="#" class="btn btn-primary" style="display:none" target="_blank"><hg:trans>隐藏链接</hg:trans></a>
+<script src="static/js/linq.js"></script>
+
+<link href="static/css/chosen.css" rel="stylesheet"/>
+
+<script src="static/js/chosen.jquery.js"></script>
+
+<script>
+    $(".chzn-select").chosen();
+    //支持多平台
+    $("[divapifromitems] > span").each(function () {
+        $(this).click(function () {
+            var selectedItem = $(this).attr("userform");
+            var apiuserid = "";
+            var cls = $(this).attr("class");
+            if (typeof (cls) == "undefined" || cls.indexOf("active") < 0 && selectedItem != "All") {
+                $("#divapifromitemsall > span").removeClass("active");
+                $(this).addClass("active");
+            } else if (selectedItem == "All") {
+                $("[divapifromitems] > span").removeClass("active");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).removeClass("active");
+                $("#divapifromitemsall > span").removeClass("active");
+            }
+            var selectValue = $("[divapifromitems] > span[class='active']").map(function () {
+                var thisValue = $(this).attr("userform");
+                return thisValue;
+            }).get().join(",");
+
+            $("[divuserformandapiuseritems] > span").each(function () {
+                $(this).removeClass("active");
+                if (selectValue.indexOf($(this).attr("userform")) < 0) {
+                    if ($(this).attr("apiuserid") != "All") {
+                        $(this).hide();
+                    }
+                }
+                else {
+                    $(this).show();
+                    apiuserid = $(this).attr("apiuserid");
+                    $("#hidUserForms" + selectedItem + "").val("");
+                    $("#hidApiAccountItems" + apiuserid + "").val("");
+                }
+            })
+            if (selectValue == "All" || selectValue == "") {
+                selectValue = "";
+                $("#divapifromitemsall > span").addClass("active");
+                $("[divuserformandapiuseritems]>span").css("display", "")
+                $("#hidApiForms").val("");
+            }
+            $(this).parent().parent().find("#hidApiForms").val(selectValue);
+            $("#searchForm").submit();
+        });
+    });
+    //下拉框改变获取值（物流方式）
+    $(function () {
+        $('#LogisticMode').bind('change', function () {
+            $("#hidLogisticMode").val(chose_get_values("LogisticMode"));
+            $("#searchForm").submit();
+        })
+    })
+
+    //仓库
+    $(function () {
+        $('#StoreId').bind('change', function () {
+            $("#hidStore").val(chose_get_values("StoreId"));
+            $("#searchForm").submit();
+        })
+    })
+    //获取物流方式选择情况
+    function chose_get_values(countrol) {
+        //$.trim($(countrol).find("#SalerSKU").val())
+        return $("#" + countrol + " option:selected").map(function () {
+            return $(this).val();
+        }).get().join(",");
+    }
+
+    jQuery(function () {
+
+
+        redgle.tab.init({ tabPanel: "divTabPanel", contentPanel: "divTabContentPanel" });
+        $("#divPageType").find("span").click(function () {
+            $("#divPageType").find("span").removeClass("active");
+            $(this).addClass("active");
+            $("#hidPageType").val($(this).attr("itemid"))
+            $("#searchForm").submit();
+        })
+
+    });
+    //收缩展开面板
+    function doShowBatchTablePanel(event) {
+        $(".batchtable").toggle("slow");
+        var src = event.target || window.event.srcElement;
+        if ($(src).attr("class").indexOf("search-down") > 0) {
+            $(src).removeClass("search-down").addClass("search-up").text(translate.trans("收起明细"));
+        }
+        else {
+            $(src).removeClass("search-up").addClass("search-down").text(translate.trans("展开查看明细"));
+        }
+    }
+
+    //打开生成批次窗口
+    function p1851950267doShowCreateBatchWindow() {
+        //弹出管理页面
+        $("#CreateBatchModal").modal("show");
+    }
+
+    function p1851950267doReloadData() {
+        var pageIndex = $("#flickrpager").attr("data-ajax-currentpage");
+        if (typeof (pageIndex) == "undefined")
+            pageIndex = "1";
+        var postData = redgle.request.getFormData("searchForm");
+        postData["pageIndex"] = pageIndex;
+        $.ajax({
+            type: "POST",
+            url: "/OrderBathDelivery/CreateBatch",
+            data: postData,
+            datatype: "text",
+            success: function (data) {
+                $("#p1851950267divDataList").html(data);
+            },
+            error: function (xhr) {
+                alert(translate.format("<hg:trans>操作发生未知异常：{0} - {1}</hg:trans>", [xhr.status, xhr.statusText]));
+            }
+        });
+    }
+</script>
+<script src="static/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+            </div>
+    </div>
+    <div style="clear:both; height:10px;">
+    </div>
+
+    <script src="static/js/80de1e87c92c4ea18584de5f553532bc.js"></script>
+
+
+    
+    <div class="waitting" id="divAjaxLoadingPanel" style="display:none;" tabindex="-1">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div class="scroll-to-top" style="display:none;" title="返回顶部">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </div>
+    <div class="scroll-to-bottom" style="display:none;" title="滚动到底部">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                initScrollButtonState();
+            });
+
+            $(".scroll-to-top").click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $(".scroll-to-bottom").click(function () {
+                var h = $(document).height() - $(window).height();
+                $('html,body').animate({ scrollTop: h+'px' }, 200);
+            })
+        });
+
+        $(document).ready(function () {
+            initScrollButtonState();
+        });
+        
+        function initScrollButtonState() {
+            var scroll = $(document).scrollTop();
+            if (scroll < 10) {
+                $(".scroll-to-top").css("display", "none");
+            }
+            else {
+                $(".scroll-to-top").css("display", "");
+            }
+
+            var h = $(document).height() - $(window).height();
+            if (h < 10) {
+                $(".scroll-to-bottom").css("display", "none");
+            }
+            else {
+                if (h - scroll < 10) {
+                    $(".scroll-to-bottom").css("display", "none");
+                }
+                else {
+                    $(".scroll-to-bottom").css("display", "");
+                }
+            }
+        }
+
+        $(".menucontrol> span").click(function () {
+            var parentPenel = $(this).parents(".menucontrol");
+            if (parentPenel.attr("class").indexOf("menuhide") >= 0) {
+                $(".top_panel").removeClass("menuhide");
+                $(".left_panel").removeClass("menuhide");
+                $(".menucontrol").removeClass("menuhide");
+                $(".content_panel").removeClass("menuhide");
+            }
+            else {
+                $(".top_panel").addClass("menuhide");
+                $(".left_panel").addClass("menuhide");
+                $(".menucontrol").addClass("menuhide");
+                $(".content_panel").addClass("menuhide");
+            }
+        });
+    </script>
+</body>
+</html>
