@@ -8,6 +8,8 @@ use MarketplaceWebService\Samples\GetReportSample;
 use MarketplaceWebService\Samples\GetReportListSample;
 use MarketplaceWebService\Samples\RequestReportSample;
 use MarketplaceWebService\Samples\GetReportRequestListSample;
+use MarketplaceWebService\Samples\GetReportScheduleListSample;
+use MarketplaceWebService\Samples\ManageReportScheduleSample;
 class Report  extends Controller
 {
 
@@ -18,7 +20,8 @@ class Report  extends Controller
     Loader::import('MarketplaceWebService/Model/GetReportRequestListRequest', EXTEND_PATH);
     Loader::import('MarketplaceWebService/Model/GetReportRequest', EXTEND_PATH);
 
-
+    // parameters['ReportType'] 必须，明确请求报告类型
+    // parameters['StartDate'] ，请求报告开始时间
     $this->parameters=$parameters;
     $this->parameters['serviceUrl'] = 'https://mws.amazonservices.com';
   }
@@ -29,7 +32,7 @@ class Report  extends Controller
     // 递交请求报告，返回ReportRequestId，ReportProcessingStatus，ReportType
     $requestReport=$this->requestReport();
     $ReportRequestId=$requestReport['ReportRequestId'];
-    dump($requestReport);
+    // dump($requestReport);
     if($ReportRequestId)
     {
       $ReportRequestList=$this->GetReportRequestList($ReportRequestId);
@@ -62,8 +65,6 @@ class Report  extends Controller
     $parameters['serviceUrl'] = $this->parameters['serviceUrl'];
     $GetReportRequestList = new GetReportRequestListSample($parameters);
 
-
-
     $issuccess=true;
 
     while($issuccess) 
@@ -87,15 +88,20 @@ class Report  extends Controller
   //Step3:返回报告内容及所返回报告正文的 Content-MD5 标头。
   public function GetReport($ReportId)
   {
-    $parameters=$this->parameters;
-    $parameters['ReportId']=$ReportId;
+    $parameters = $this->parameters;
+    $parameters['ReportId'] = $ReportId;
 
-    $RequestReport=new GetReportSample($parameters);
+    $RequestReport = new GetReportSample($parameters);
 
     return $RequestReport->index();
   }
 
 
+  public function test()
+  {
+    
 
+  }
+ 
     
 }

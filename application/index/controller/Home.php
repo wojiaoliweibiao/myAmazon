@@ -8,7 +8,8 @@ use MarketplaceWebService\Samples\RequestReportSample;
 use MarketplaceWebService\Samples\GetReportRequestListSample;
 use MarketplaceWebService\Samples\GetReportSample;
 use app\index\model\SubmitFeed;
-
+use app\index\model\Orders;
+use app\index\model\Report;
 // Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
 // Loader::import('MarketplaceWebService/Model/RequestReportRequest', EXTEND_PATH);
 // Loader::import('MarketplaceWebService/Model/GetReportRequestListRequest', EXTEND_PATH);
@@ -28,7 +29,9 @@ class Home  extends Permission
 
     public function test(){
        
-    	return $this->fetch();
+      $orders = new Orders;
+      $data=$orders -> orderItems();
+      // dump($data);
     }
    
     public function submit()

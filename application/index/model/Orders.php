@@ -4,10 +4,13 @@ namespace app\index\model;
 use think\Db;
 use think\Loader;
 use think\Controller;
+use app\index\model\Report;
 use MarketplaceWebService\Samples\MarketplaceWebServiceOrders;
 use MarketplaceWebServiceOrders\Samples\ListOrdersSample;
 use MarketplaceWebServiceOrders\Samples\ListOrderItemsSample;
 use MarketplaceWebServiceOrders\Samples\GetOrderSample;
+//导入自定义模型类
+use app\index\model\Staff;
 class Orders extends Controller
 {
 
@@ -18,7 +21,10 @@ class Orders extends Controller
       Loader::import('MarketplaceWebServiceOrders/Client', EXTEND_PATH);
       Loader::import('MarketplaceWebServiceOrders/Model/ListOrdersRequest', EXTEND_PATH);
       Loader::import('MarketplaceWebServiceOrders/Model/ListOrderItemsRequest', EXTEND_PATH);
+
+      $parameters['CreatedAfter']=date('y-m-d',time()-3600*24*15);
       $this->parameters = $parameters;
+
     }
 
     public function ListOrders()
@@ -26,6 +32,7 @@ class Orders extends Controller
 
       // 请求信息
       $parameters=$this->parameters;
+      
 
       // 实例化 获取订单 类
       $listorder=new ListOrdersSample($parameters);
@@ -42,7 +49,6 @@ class Orders extends Controller
       
       // 订单信息
       $order=$orderMessage['ListOrdersResult']['Orders']['Order'];
-
 
       // 查找数据库订单
       $order_where['uid'] = $_SESSION['module']['user_id'];
@@ -114,42 +120,79 @@ class Orders extends Controller
       // dump($data);
       if(!empty($data))
       {
-        $this->listOrderItems($data);
+        $this->orderItems($data);
       }
 
 
 
     }
     //详情获取方式1： 获取订单详情的报告
-    public function orderItems()
+    // 吐槽:你直接详细地址弄出来会死啊
+    public function orderItems($data='')
     {
+            
+      // 请求参数
+      $parameters['ReportType']='_GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_';
+      $parameters['StartDate']=$this->parameters['CreatedAfter']; // 处理一天的
+
+      if(!empty(MARKETPLACEARRAY))
+      {
+        $parameters['MarketplaceIdList']['Id']=explode(',',MARKETPLACEARRAY);
+      }
+
+      $report = new Report($parameters);
+
+      // 获取报告结果
+      $reportdata = $report->reportFile();
+
+      // 将结果转为数组
+      $reportdata = xmlToarr($reportdata);
+
+      // 订单数据
+      $Message=$reportdata['Message'];
+
+      if(!empty($data)){
+        foreach ($Message as $key => $value) {
+
+          foreach ($data as $k => $v) {
+            if($value['Order']['AmazonOrderID'] == $v['AmazonOrderId'])
+            {
+
+            }
+          }
+          
+        }
+      }
       
+      dump($Message);
+
     }
 
 
     //详情获取方式2： 根据您指定的 AmazonOrderId 返回订单商品。
+    // 缺点：一次请求只能获取一个订单详情
     public function listOrderItems($AmazonOrderId)
     {
 
-      $parameters=$this->parameters;
+      $parameters = $this->parameters;
 
-      $listorder=new ListOrderItemsSample($parameters);
+      $listorder = new ListOrderItemsSample($parameters);
       
-      $i=0;
-      $list=0;
+      $i = 0;
+      $list = 0;
       // 查询每个订单的详情
-      $update=array();
+      $update = array();
       foreach ($AmazonOrderId as $key => $value) {
 
         // 根据订单对应的订单号，查找订单详情
-        $data[$i]=$listorder->Index($value['AmazonOrderId']);
+        $data[$i] = $listorder->Index($value['AmazonOrderId']);
 
         // 将数据转为数组
-        $arr=xmlToarr($data[$i]);
+        $arr = xmlToarr($data[$i]);
 
         // dump($arr);
         // 订单所有项信息
-        $update_data=$arr['ListOrderItemsResult']['OrderItems']['OrderItem'];
+        $update_data = $arr['ListOrderItemsResult']['OrderItems']['OrderItem'];
 
         // 简单验证是否是索引数组，如果是说明买了不同变体（款式），则
         if(_checkAssocArray($update_data))
