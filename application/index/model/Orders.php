@@ -22,7 +22,7 @@ class Orders extends Controller
       Loader::import('MarketplaceWebServiceOrders/Model/ListOrdersRequest', EXTEND_PATH);
       Loader::import('MarketplaceWebServiceOrders/Model/ListOrderItemsRequest', EXTEND_PATH);
 
-      $parameters['CreatedAfter']=date('y-m-d',time()-3600*24*15);
+      // $parameters['CreatedAfter']=date('y-m-d',time()-3600*24*1);
       $this->parameters = $parameters;
 
     }
@@ -47,6 +47,11 @@ class Orders extends Controller
         $NextToken=$orderMessage['ListOrdersResult']['NextToken'];
       }
       
+      if(empty($orderMessage['ListOrdersResult']['Orders']['Order'])){
+
+        // 没有订单
+        return 1;
+      }
       // 订单信息
       $order=$orderMessage['ListOrdersResult']['Orders']['Order'];
 
@@ -128,7 +133,7 @@ class Orders extends Controller
     }
     //详情获取方式1： 获取订单详情的报告
     // 吐槽:你直接详细地址弄出来会死啊
-    public function orderItems($data='')
+    public function orderItems($data)
     {
             
       // 请求参数
@@ -145,26 +150,81 @@ class Orders extends Controller
       // 获取报告结果
       $reportdata = $report->reportFile();
 
-      // 将结果转为数组
-      $reportdata = xmlToarr($reportdata);
+    
 
-      // 订单数据
-      $Message=$reportdata['Message'];
+      if(!empty($reportdata)){
 
-      if(!empty($data)){
+        // 将结果转为数组
+        $reportdata = xmlToarr($reportdata);
+
+        // 订单数据
+        $Message=$reportdata['Message'];
+        // dump($Message);
         foreach ($Message as $key => $value) {
 
           foreach ($data as $k => $v) {
+            $insert=array();
             if($value['Order']['AmazonOrderID'] == $v['AmazonOrderId'])
             {
+              
+             
 
+              // 如果是索引数组
+              // dump($value['Order']['OrderItem']);
+              if(!empty($value['Order']['OrderItem'][0]))
+              {
+                // dump($value);echo 1;
+                foreach ($value['Order']['OrderItem'] as $ke => $val) {
+                  $insert['oid']=$v['oid'];
+                  $insert['uid']=$v['uid'];
+                  $insert['ASIN']=$val['ASIN'];
+                  $insert['SellerSKU']=$val['SKU'];
+                  $insert['OrderItemId']=$val['AmazonOrderItemCode'];
+                  $insert['Title']=$val['ProductName'];
+                  $insert['QuantityOrdered']=$val['Quantity'];
+
+                  $insert['Amount']=$val['ItemPrice']['Component'][0]['Amount'];
+                  $insert['ShippingPrice']=$val['ItemPrice']['Component'][1]['Amount'];                  
+                   // 如果有折扣
+                  if(!empty($val['Promotion']))
+                  {
+                    $insert['ItemPromotionDiscount'] = $val['Promotion']['ItemPromotionDiscount'];
+                    $insert['PromotionIDs'] = $val['Promotion']['PromotionIDs'];
+                  }
+                  $insert['date']=time();
+
+                  Db::name('index_order_orderitems')->insert($insert);
+                }
+              }else{
+                // dump($value);echo 2;
+                $insert['oid']=$v['oid'];
+                $insert['uid']=$v['uid'];
+                $insert['ASIN']=$value['Order']['OrderItem']['ASIN'];
+                $insert['SellerSKU']=$value['Order']['OrderItem']['SKU'];
+                $insert['OrderItemId']=$value['Order']['OrderItem']['AmazonOrderItemCode'];
+                $insert['Title']=$value['Order']['OrderItem']['ProductName'];
+                $insert['QuantityOrdered']=$value['Order']['OrderItem']['Quantity'];
+
+                $insert['Amount']=$value['Order']['OrderItem']['ItemPrice']['Component'][0]['Amount'];
+                $insert['ShippingPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][1]['Amount'];
+                 // 如果有折扣
+                if(!empty($value['Order']['OrderItem']['Promotion']))
+                {
+                  $insert['ItemPromotionDiscount'] = $value['Order']['OrderItem']['Promotion']['ItemPromotionDiscount'];
+                  $insert['PromotionIDs'] = $value['Order']['OrderItem']['Promotion']['PromotionIDs'];
+                }
+
+                $insert['date']=time();
+                Db::name('index_order_orderitems')->insert($insert);
+              }
+              
             }
           }
           
         }
       }
       
-      dump($Message);
+      return true;
 
     }
 

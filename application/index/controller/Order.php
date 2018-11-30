@@ -21,7 +21,7 @@ class Order  extends Permission
         // 编辑请求信息
         $parameters=[
             'MarketplaceId'=>explode(',',MARKETPLACEARRAY),
-            'CreatedAfter'=>'2018-11-06',
+            'CreatedAfter'=>date('Y-m-d',time()-3600*24*2),   
             'serviceUrl'=>'https://mws.amazonservices.com/Orders/2013-09-01',
             'SellerId'=> MERCHANT_ID,
 
