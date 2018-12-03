@@ -7,16 +7,19 @@ namespace MarketplaceWebService\Samples;
 class GetReportSample 
 {
   
-  public function __construct($parameters)
+  public function __construct($parameters,$service)
   {
     $this->parameters=$parameters;
+    $this->service=$service;
   }
 
   public function index(){
 
     $parameters=$this->parameters;
 
-    $config = array (
+    $ser = $this->service;
+
+     $config = array (
       'ServiceURL' => $parameters['serviceUrl'],
       'ProxyHost' => null,
       'ProxyPort' => -1,
@@ -24,13 +27,16 @@ class GetReportSample
     );
 
     $service = new \MarketplaceWebService_Client(
-       AWS_ACCESS_KEY_ID, 
-       AWS_SECRET_ACCESS_KEY, 
-       $config,
-       APPLICATION_NAME,
-       APPLICATION_VERSION);
+        $ser['KEY_ID'], 
+        $ser['ACCESS_KEY'], 
+        $config,
+        $ser['NAME'],
+        $ser['VERSION']);
 
-    $parameters['Merchant'] = MERCHANT_ID;
+
+    // Merchant卖家
+    $parameters['Merchant'] = $parameters['SellerId'];
+
     $parameters['Report'] = @fopen('php://memory', 'rw+');
 
     $request = new \MarketplaceWebService_Model_GetReportRequest($parameters);

@@ -13,7 +13,7 @@ use MarketplaceWebService\Samples\ManageReportScheduleSample;
 class Report  extends Controller
 {
 
-  public function __construct($parameters = null)
+  public function __construct($parameters = null,$service)
   {
     Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
     Loader::import('MarketplaceWebService/Model/RequestReportRequest', EXTEND_PATH);
@@ -23,6 +23,7 @@ class Report  extends Controller
     // parameters['ReportType'] 必须，明确请求报告类型
     // parameters['StartDate'] ，请求报告开始时间
     $this->parameters=$parameters;
+    $this->service=$service;
     $this->parameters['serviceUrl'] = 'https://mws.amazonservices.com';
   }
 
@@ -50,8 +51,9 @@ class Report  extends Controller
   {
     // 请求参数
     $parameters = $this->parameters;
+    $service = $this->service;
 
-    $requestReport = new  RequestReportSample($parameters);
+    $requestReport = new  RequestReportSample($parameters,$service);
 
     // 获取ReportRequestId,52991017849
     return $requestReport->index();
@@ -60,10 +62,13 @@ class Report  extends Controller
   //Step2:返回可用于获取报告的 ReportRequestId 的报告请求列表。
   public function GetReportRequestList($ReportRequestId)
   {
-
+    $parameters = $this->parameters;
+    $service = $this->service;
+    
     $parameters['ReportRequestIdList']['Id'] = array($ReportRequestId);
-    $parameters['serviceUrl'] = $this->parameters['serviceUrl'];
-    $GetReportRequestList = new GetReportRequestListSample($parameters);
+
+    $service = $this->service;
+    $GetReportRequestList = new GetReportRequestListSample($parameters,$service);
 
     $issuccess=true;
 
@@ -89,9 +94,10 @@ class Report  extends Controller
   public function GetReport($ReportId)
   {
     $parameters = $this->parameters;
+    $service = $this->service;
     $parameters['ReportId'] = $ReportId;
 
-    $RequestReport = new GetReportSample($parameters);
+    $RequestReport = new GetReportSample($parameters,$service);
 
     return $RequestReport->index();
   }

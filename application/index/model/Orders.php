@@ -5,9 +5,11 @@ use think\Db;
 use think\Loader;
 use think\Controller;
 use app\index\model\Report;
+use app\index\model\Product;
 use MarketplaceWebService\Samples\MarketplaceWebServiceOrders;
 use MarketplaceWebServiceOrders\Samples\ListOrdersSample;
 use MarketplaceWebServiceOrders\Samples\ListOrderItemsSample;
+use MarketplaceWebServiceOrders\Samples\GetServiceStatusSample;
 use MarketplaceWebServiceOrders\Samples\GetOrderSample;
 //导入自定义模型类
 use app\index\model\Staff;
@@ -15,7 +17,7 @@ class Orders extends Controller
 {
 
 
-    public function __construct($parameters = null)
+    public function __construct($parameters = null,$service)
     {
 
       Loader::import('MarketplaceWebServiceOrders/Client', EXTEND_PATH);
@@ -24,18 +26,18 @@ class Orders extends Controller
 
       // $parameters['CreatedAfter']=date('y-m-d',time()-3600*24*1);
       $this->parameters = $parameters;
-
+      $this->service = $service;
     }
 
-    public function ListOrders()
+    public function ListOrders($uid)
     {
 
       // 请求信息
       $parameters=$this->parameters;
-      
+      $service=$this->service;
 
       // 实例化 获取订单 类
-      $listorder=new ListOrdersSample($parameters);
+      $listorder=new ListOrdersSample($parameters,$service);
 
       // 获取订单信息
       $orderMessage=$listorder->index();
@@ -53,10 +55,15 @@ class Orders extends Controller
         return 1;
       }
       // 订单信息
-      $order=$orderMessage['ListOrdersResult']['Orders']['Order'];
-
+      // 强行变为二维索引数组
+      if(!_checkAssocArray($orderMessage['ListOrdersResult']['Orders']['Order']))
+      {
+        $order[0]=$orderMessage['ListOrdersResult']['Orders']['Order'];
+      }else{
+        $order=$orderMessage['ListOrdersResult']['Orders']['Order'];
+      }
       // 查找数据库订单
-      $order_where['uid'] = $_SESSION['module']['user_id'];
+      $order_where['uid'] = $uid;
 
       $allOrders=Db::name('index_order')->where($order_where)->field('AmazonOrderId')->select();
 
@@ -65,6 +72,7 @@ class Orders extends Controller
         $allOrder[$key] = $value['AmazonOrderId'];
       }
       
+      // dump($order);
       foreach ($order as $k => $v) {
 
         $data[$k]['AmazonOrderId'] = $v['AmazonOrderId'];//订单编号
@@ -82,10 +90,15 @@ class Orders extends Controller
           $data[$k]['MarketplaceId'] = $v['MarketplaceId'];// 交易站点
 
           $data[$k]['LatestShipDate'] = $v['LatestShipDate'];// 最晚发货日期
+          $data[$k]['EarliestShipDate'] = $v['EarliestShipDate'];// 最早发货日期
 
           if(!empty($v['LatestDeliveryDate']))
           {
             $data[$k]['LatestDeliveryDate'] = $v['LatestDeliveryDate'];// 最晚收日期
+          }
+          if(!empty($v['EarliestDeliveryDate']))
+          {
+            $data[$k]['EarliestDeliveryDate'] = $v['EarliestDeliveryDate'];// 最早收日期
           }
           // 配送地址
           if(!empty($v['ShippingAddress']))
@@ -94,6 +107,11 @@ class Orders extends Controller
             // 处理返回数据
             $data[$k]['BuyerName'] = $v['ShippingAddress']['Name'];// 买家姓名
             $data[$k]['AddressLine1'] = $v['ShippingAddress']['AddressLine1'];// 市内地址
+
+            if(!empty($v['ShippingAddress']['AddressLine2']))
+            {
+              $data[$k]['AddressLine2'] = $v['ShippingAddress']['AddressLine2'];// 市内地址
+            }
             $data[$k]['City'] = $v['ShippingAddress']['City'];// 城市
             $data[$k]['StateOrRegion'] = $v['ShippingAddress']['StateOrRegion'];// 国家或区
             $data[$k]['PostalCode'] = $v['ShippingAddress']['PostalCode'];// 邮政编码
@@ -111,7 +129,7 @@ class Orders extends Controller
           }
           $data[$k]['NumberOfItemsShipped'] = $v['NumberOfItemsShipped'];// 订单数量
 
-          $data[$k]['uid'] = $_SESSION['module']['user_id'];// 订单对应用户
+          $data[$k]['uid'] = $uid;// 订单对应用户
 
           Db::name('index_order')->insert($data[$k]);
           $oid=Db::name('index_order')->getLastInsID();
@@ -123,12 +141,23 @@ class Orders extends Controller
 
       }
       // dump($data);
+      // die;
       if(!empty($data))
       {
-        $this->orderItems($data);
+        $ASIN=$this->orderItems($data);
       }
 
+      // if(!empty($ASIN))
+      // {
+      //   $Product = new Product($this->parameters,$this->service);
 
+      //   $ProductData['IdList']=$ASIN['ASIN'];
+      //   $ProductData['IdType']='ASIN';
+      //   $ProductData['MarketplaceId']=$this->parameters['MarketplaceId'];
+
+      //   $result = $Product->GetMatchingProductForId($ProductData);
+      //   dump($result);
+      // }
 
     }
     //详情获取方式1： 获取订单详情的报告
@@ -139,18 +168,19 @@ class Orders extends Controller
       // 请求参数
       $parameters['ReportType']='_GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_';
       $parameters['StartDate']=$this->parameters['CreatedAfter']; // 处理一天的
+      $parameters['SellerId']=$this->parameters['SellerId']; // 处理一天的
+
+      $service = $this->service;
 
       if(!empty(MARKETPLACEARRAY))
       {
         $parameters['MarketplaceIdList']['Id']=explode(',',MARKETPLACEARRAY);
       }
 
-      $report = new Report($parameters);
+      $report = new Report($parameters,$service);
 
       // 获取报告结果
       $reportdata = $report->reportFile();
-
-    
 
       if(!empty($reportdata)){
 
@@ -160,15 +190,14 @@ class Orders extends Controller
         // 订单数据
         $Message=$reportdata['Message'];
         // dump($Message);
+        $i = 0;
+        $ASIN=array();
         foreach ($Message as $key => $value) {
 
           foreach ($data as $k => $v) {
             $insert=array();
             if($value['Order']['AmazonOrderID'] == $v['AmazonOrderId'])
-            {
-              
-             
-
+            {    
               // 如果是索引数组
               // dump($value['Order']['OrderItem']);
               if(!empty($value['Order']['OrderItem'][0]))
@@ -183,8 +212,9 @@ class Orders extends Controller
                   $insert['Title']=$val['ProductName'];
                   $insert['QuantityOrdered']=$val['Quantity'];
 
-                  $insert['Amount']=$val['ItemPrice']['Component'][0]['Amount'];
-                  $insert['ShippingPrice']=$val['ItemPrice']['Component'][1]['Amount'];                  
+                  $insert['Amount']=$val['ItemPrice']['Component'][0]['Amount'];//价格
+                  $insert['ShippingPrice']=$val['ItemPrice']['Component'][1]['Amount'];  //运输费                
+                  $insert['GiftWrapPrice']=$val['ItemPrice']['Component'][2]['Amount']; //包装费                 
                    // 如果有折扣
                   if(!empty($val['Promotion']))
                   {
@@ -194,6 +224,12 @@ class Orders extends Controller
                   $insert['date']=time();
 
                   Db::name('index_order_orderitems')->insert($insert);
+
+                  $ASIN['sign'][$i]['id']=Db::name('index_order')->getLastInsID();
+                  $ASIN['sign'][$i]['ASIN']=$insert['ASIN'];
+                  $ASIN['ASIN'][$i]=$insert['ASIN'];
+
+                  $i++;
                 }
               }else{
                 // dump($value);echo 2;
@@ -205,8 +241,9 @@ class Orders extends Controller
                 $insert['Title']=$value['Order']['OrderItem']['ProductName'];
                 $insert['QuantityOrdered']=$value['Order']['OrderItem']['Quantity'];
 
-                $insert['Amount']=$value['Order']['OrderItem']['ItemPrice']['Component'][0]['Amount'];
-                $insert['ShippingPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][1]['Amount'];
+                $insert['Amount']=$value['Order']['OrderItem']['ItemPrice']['Component'][0]['Amount'];//价格
+                $insert['ShippingPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][1]['Amount'];//运输费
+                $insert['GiftWrapPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][2]['Amount']; //包装费
                  // 如果有折扣
                 if(!empty($value['Order']['OrderItem']['Promotion']))
                 {
@@ -216,15 +253,22 @@ class Orders extends Controller
 
                 $insert['date']=time();
                 Db::name('index_order_orderitems')->insert($insert);
+                $img=Db::name('index_order')->getLastInsID();
+
+                $ASIN['sign'][$i]['id']=Db::name('index_order')->getLastInsID();
+                $ASIN['sign'][$i]['ASIN']=$insert['ASIN'];
+                $ASIN['ASIN'][$i]=$insert['ASIN'];
+                $i++;
               }
               
             }
           }
           
         }
+
       }
       
-      return true;
+      return $ASIN;
 
     }
 
@@ -334,7 +378,14 @@ class Orders extends Controller
 
     }
 
+    public function GetServiceStatusSample()
+    { 
+      Loader::import('MarketplaceWebServiceOrders/Model/GetServiceStatusRequest', EXTEND_PATH);
+      $parameters = $this->parameters;
+      $service = $this->service;
 
-
+      $GetServiceStatusSample = new GetServiceStatusSample($parameters,$service);
+      $GetServiceStatusSample->index();
+    }
  
 }

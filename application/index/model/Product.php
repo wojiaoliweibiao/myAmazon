@@ -11,75 +11,36 @@ class Product extends Controller
 {
 
 
-     public function __construct($data = null)
+     public function __construct($parameters,$service)
     {
-     
-        parent::__construct();
-    }
- 
-
-    public function Index()
-    {           
-      
-    
-      
-    }
-
-
-
-    public function GetMatchingProductForId(){
-
 
       Loader::import('MarketplaceWebServiceProducts/Client', EXTEND_PATH);
       Loader::import('MarketplaceWebServiceProducts/Model/GetMatchingProductForIdRequest', EXTEND_PATH);
-      $getproduct=new GetMatchingProductForIdSample();
-      $data=$getproduct->index();
-      // var_dump($data);
+
+      $this->service = $service;
+      $this->parameters = $parameters;
+      $this->parameters['ServiceURL'] = "https://mws.amazonservices.com/Products/2011-10-01";
+
+    }
+ 
+
+
+    public function GetMatchingProductForId($data){
+
+
+      $parameters = $this->parameters;
+      $service = $this->service;
+     
+      $getproduct=new GetMatchingProductForIdSample($parameters,$service);
+
+      // $data['IdList']=$id;
+      // $data['IdType']='ASIN';
+      // $data['MarketplaceId']='ATVPDKIKX0DER';
+      $data=$getproduct->index($data);
+
       return $data; 
 
 
     }
-
-
-
-
-
-    public function ListMatchingProducts(){
-
-
-      Loader::import('MarketplaceWebServiceProducts/Client', EXTEND_PATH);
-      // Loader::import('MarketplaceWebServiceProducts/Mock', EXTEND_PATH);
-      Loader::import('MarketplaceWebServiceProducts/Model/ListMatchingProductsRequest', EXTEND_PATH);
-      $getproduct=new ListMatchingProductsSample();
-      $data=$getproduct->index();
-      // var_dump($data);
-      return $data; 
-
-
-    }
-
-
-
-    public function GetServiceStatus(){
-
-      Loader::import('MarketplaceWebServiceProducts/Client', EXTEND_PATH);
-      Loader::import('MarketplaceWebServiceProducts/Model/GetServiceStatusRequest', EXTEND_PATH);
-      $getproduct=new GetServiceStatusSample();
-      $data=$getproduct->index();
-
-       return $data; 
-    }
-
-
-
-
-
-
-
-
-
-
-
-
  
 }

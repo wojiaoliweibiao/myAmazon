@@ -9,36 +9,30 @@ namespace MarketplaceWebServiceOrders\Samples;
 
 class ListOrdersSample{
 
-  public function __construct($data = null)
+  public function __construct($parameters = null,$service=null)
   {
 
-    $this->parameters=$data;
+    $this->parameters=$parameters;
+    $this->service=$service;
     // parent::__construct($data);
   }
 
   public function index()
   {
-    $parameters=$this->parameters;
+    $parameters = $this->parameters;
   
-    $config = array (
-     'ServiceURL' => $parameters['serviceUrl'],
-     'ProxyHost' => null,
-     'ProxyPort' => -1,
-     'ProxyUsername' => null,
-     'ProxyPassword' => null,
-     'MaxErrorRetry' => 3,
-    );
-    // unset($parameters['serviceUrl']);
-    
+    $ser = $this->service;
+
     $service = new \MarketplaceWebServiceOrders_Client(
-          AWS_ACCESS_KEY_ID,
-          AWS_SECRET_ACCESS_KEY,
-          APPLICATION_NAME,
-          APPLICATION_VERSION,
-          $config);
+          $ser['KEY_ID'],
+          $ser['ACCESS_KEY'],
+          $ser['NAME'],
+          $ser['VERSION'],
+          $ser['config']
+        );
     
     $request = new \MarketplaceWebServiceOrders_Model_ListOrdersRequest($parameters);
-    $request->setSellerId(MERCHANT_ID);
+    $request->setSellerId($parameters['SellerId']);
     // object or array of parameters
     $data=$this->invokeListOrders($service, $request);
     // dump($data);

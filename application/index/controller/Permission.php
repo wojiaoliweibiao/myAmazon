@@ -20,7 +20,6 @@ class Permission  extends Controller
 				$this->redirect('/index.php/index/Common/login');
 			}else{
 
-
 				$data=Db::name('index_user')->where('user_id',$_SESSION['module']['user_id'])->find();
 				if(!defined('AWS_ACCESS_KEY_ID'))
 				{

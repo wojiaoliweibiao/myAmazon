@@ -7,15 +7,18 @@ namespace  MarketplaceWebService\Samples;
 class RequestReportSample
 {
 
-  public function __construct($parameters = null)
+  public function __construct($parameters,$service)
   {
     $this->parameters=$parameters;
+    $this->service=$service;
   }
 
   public function index()
   {    
     // 请求参数
     $parameters=$this->parameters;
+    // dump($parameters);
+    $ser = $this->service;
 
     $config = array (
       'ServiceURL' => $parameters['serviceUrl'],
@@ -25,15 +28,16 @@ class RequestReportSample
     );
 
     $service = new \MarketplaceWebService_Client(
-        AWS_ACCESS_KEY_ID, 
-        AWS_SECRET_ACCESS_KEY, 
+        $ser['KEY_ID'], 
+        $ser['ACCESS_KEY'], 
         $config,
-        APPLICATION_NAME,
-        APPLICATION_VERSION);
+        $ser['NAME'],
+        $ser['VERSION']);
+
 
     // Merchant卖家
-    $parameters['Merchant'] = MERCHANT_ID;
- 
+    $parameters['Merchant'] = $parameters['SellerId'];
+  
     $request = new \MarketplaceWebService_Model_RequestReportRequest($parameters);
 
     $result=$this->invokeRequestReport($service, $request);

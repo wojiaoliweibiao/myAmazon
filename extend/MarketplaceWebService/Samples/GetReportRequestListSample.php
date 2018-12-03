@@ -6,16 +6,19 @@ namespace  MarketplaceWebService\Samples;
 
 class  GetReportRequestListSample
 {
-  public function __construct($parameters)
+  public function __construct($parameters,$service)
   {
     $this->parameters=$parameters;
+    $this->service=$service;
   }
 
   public function index()
   {
     $parameters = $this->parameters;
     
-    $config = array (
+    $ser = $this->service;
+
+     $config = array (
       'ServiceURL' => $parameters['serviceUrl'],
       'ProxyHost' => null,
       'ProxyPort' => -1,
@@ -23,13 +26,15 @@ class  GetReportRequestListSample
     );
 
     $service = new \MarketplaceWebService_Client(
-       AWS_ACCESS_KEY_ID, 
-       AWS_SECRET_ACCESS_KEY, 
-       $config,
-       APPLICATION_NAME,
-       APPLICATION_VERSION);
-   
-    $parameters['Merchant'] = MERCHANT_ID;
+        $ser['KEY_ID'], 
+        $ser['ACCESS_KEY'], 
+        $config,
+        $ser['NAME'],
+        $ser['VERSION']);
+
+
+    // Merchant卖家
+    $parameters['Merchant'] = $parameters['SellerId'];
 
     $request = new \MarketplaceWebService_Model_GetReportRequestListRequest($parameters);
    

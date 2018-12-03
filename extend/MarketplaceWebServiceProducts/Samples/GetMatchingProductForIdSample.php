@@ -1,113 +1,54 @@
 <?php
-/*******************************************************************************
- * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- *
- * You may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
- * specific language governing permissions and limitations under the License.
- *******************************************************************************
- * PHP Version 5
- * @category Amazon
- * @package  Marketplace Web Service Products
- * @version  2011-10-01
- * Library Version: 2017-03-22
- * Generated: Wed Mar 22 23:24:40 UTC 2017
- */
 
-/**
- * Get Matching Product For Id Sample
- */
 namespace MarketplaceWebServiceProducts\Samples;
-
-
 
 
 class  GetMatchingProductForIdSample{
 
 
+  public function __construct($parameters,$service)
+  {
+    $this->parameters=$parameters;
+    $this->service=$service;
+  }
 
 
-  public function index(){
+  public function index($data){
 
 
-
-require_once('.config.inc.php');
-
-/************************************************************************
- * Instantiate Implementation of MarketplaceWebServiceProducts
- *
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
- * are defined in the .config.inc.php located in the same
- * directory as this sample
- ***********************************************************************/
-// More endpoints are listed in the MWS Developer Guide
-// North America:
-$serviceUrl = "https://mws.amazonservices.com/Products/2011-10-01";
-// Europe
-//$serviceUrl = "https://mws-eu.amazonservices.com/Products/2011-10-01";
-// Japan
-//$serviceUrl = "https://mws.amazonservices.jp/Products/2011-10-01";
-// China
-//$serviceUrl = "https://mws.amazonservices.com.cn/Products/2011-10-01";
+    $parameters = $this->parameters;
+    
+    $ser = $this->service;
 
 
- $config = array (
-   'ServiceURL' => $serviceUrl,
-   'ProxyHost' => null,
-   'ProxyPort' => -1,
-   'ProxyUsername' => null,
-   'ProxyPassword' => null,
-   'MaxErrorRetry' => 3,
- );
+   $config = array (
+     'ServiceURL' => $parameters['ServiceURL'],
+     'ProxyHost' => null,
+     'ProxyPort' => -1,
+     'ProxyUsername' => null,
+     'ProxyPassword' => null,
+     'MaxErrorRetry' => 3,
+   );
 
- $service = new \MarketplaceWebServiceProducts_Client(
-        AWS_ACCESS_KEY_ID,
-        AWS_SECRET_ACCESS_KEY,
-        APPLICATION_NAME,
-        APPLICATION_VERSION,
-        $config);
+   $service = new \MarketplaceWebServiceProducts_Client(
+          $ser['KEY_ID'],
+          $ser['ACCESS_KEY'],
+          $ser['NAME'],
+          $ser['VERSION'],
+          $config);
+ 
+  
 
-/************************************************************************
- * Uncomment to try out Mock Service that simulates MarketplaceWebServiceProducts
- * responses without calling MarketplaceWebServiceProducts service.
- *
- * Responses are loaded from local XML files. You can tweak XML files to
- * experiment with various outputs during development
- *
- * XML files available under MarketplaceWebServiceProducts/Mock tree
- *
- ***********************************************************************/
- // $service = new MarketplaceWebServiceProducts_Mock();
 
-/************************************************************************
- * Setup request parameters and uncomment invoke to try out
- * sample for Get Matching Product For Id Action
- ***********************************************************************/
- // @TODO: set request. Action can be passed as MarketplaceWebServiceProducts_Model_GetMatchingProductForId
-$data['IdList']=array('Id'=>array('B00QR7L3CO'));
-$data['IdType']='ASIN';
-$data['MarketplaceId']='ATVPDKIKX0DER';
-// die;
+   $request = new \MarketplaceWebServiceProducts_Model_GetMatchingProductForIdRequest($data);
+   $request->setSellerId($this->parameters['SellerId']);
+   // object or array of parameters
+   $data=$this->invokeGetMatchingProductForId($service, $request);
 
- $request = new \MarketplaceWebServiceProducts_Model_GetMatchingProductForIdRequest($data);
- $request->setSellerId(MERCHANT_ID);
- // object or array of parameters
- $data=$this->invokeGetMatchingProductForId($service, $request);
+   
+   return $data=xmltoarr($data);
+   
 
- $data=xmltoarr($data);
- dump($data);
-
-/**
-  * Get Get Matching Product For Id Action Sample
-  * Gets competitive pricing and related information for a product identified by
-  * the MarketplaceId and ASIN.
-  *
-  * @param MarketplaceWebServiceProducts_Interface $service instance of MarketplaceWebServiceProducts_Interface
-  * @param mixed $request MarketplaceWebServiceProducts_Model_GetMatchingProductForId or array of parameters
-  */
   }
 
  public  function invokeGetMatchingProductForId(\MarketplaceWebServiceProducts_Interface $service, $request)
@@ -116,15 +57,12 @@ $data['MarketplaceId']='ATVPDKIKX0DER';
         
         $response = $service->GetMatchingProductForId($request);
 
-        // echo ("Service Response\n");
-        // echo ("=============================================================================\n");
 
         $dom = new \DOMDocument();
         $dom->loadXML($response->toXML());
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
         return  $dom->saveXML();
-        // echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
      } catch (MarketplaceWebServiceProducts_Exception $ex) {
         echo("Caught Exception: " . $ex->getMessage() . "\n");
