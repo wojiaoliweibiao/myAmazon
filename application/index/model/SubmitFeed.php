@@ -13,21 +13,30 @@ use MarketplaceWebService\Samples\GetFeedSubmissionResultSample;
 class SubmitFeed  extends Controller
 {
 
-    public function __construct($data = null)
+    public function __construct($parameters,$service)
     {
         Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
         Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
         Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
         Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
 
-        $this->submitdata= $data;
-        $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
-        $this->submitdata['serviceUrl'] = "https://mws.amazonservices.com";
+        $config = array (
+          'ServiceURL' => "https://mws.amazonservices.com",
+          'ProxyHost' => null,
+          'ProxyPort' => -1,
+          'MaxErrorRetry' => 3,
+        );
+
+        $service = $this->service;
+        // $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
+        $this->submitdata= $parameters;
+        
     }
 
-    // 整合上传数据功能
+    // 整合上传数据功能(刊登)
 	public function submitFile($sconfig=array(),$submitdata=array())
 	{
+  
         // 提交数据
         $submitdata=$this->submitdata;
 

@@ -11,35 +11,31 @@ namespace MarketplaceWebService\Samples;
 class SubmitFeedSample
 {
 
-
+   public function __construct($parameters,$service)
+  {
+    $this->parameters=$parameters;
+    $this->service=$service;
+  }
 
 
   public function index($xml,$submitdata)
   {
 
-    $config = array (
-      'ServiceURL' => $submitdata['serviceUrl'],
-      'ProxyHost' => null,
-      'ProxyPort' => -1,
-      'MaxErrorRetry' => 3,
-    );
+    // $parameters = $this->parameters;
+
+    $ser = $this->service;
+
+
     $service = new \MarketplaceWebService_Client(
-       AWS_ACCESS_KEY_ID, 
-       AWS_SECRET_ACCESS_KEY, 
-       $config,
-       APPLICATION_NAME,
-       APPLICATION_VERSION);
-   
+           $ser['KEY_ID'], 
+           $ser['ACCESS_KEY'], 
+           $config,
+           $ser['NAME'],
+           $ser['VERSION']);
+
     $feed = $xml;
-    // Constructing the MarketplaceId array which will be passed in as the the MarketplaceIdList 
-    // parameter to the SubmitFeedRequest object.
-    // $marketplaceIdArray = array("Id" => array('ATVPDKIKX0DER'));
-         
-    // MWS request objects can be constructed two ways: either passing an array containing the 
-    // required request parameters into the request constructor, or by individually setting the request
-    // parameters via setter methods.
-    // Uncomment one of the methods below.
-    /********* Begin Comment Block *********/
+ 
+ 
     $feedHandle = @fopen('php://temp', 'rw+');
     fwrite($feedHandle, $feed);
     rewind($feedHandle);

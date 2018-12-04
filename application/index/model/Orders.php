@@ -77,6 +77,7 @@ class Orders extends Controller
 
         $data[$k]['AmazonOrderId'] = $v['AmazonOrderId'];//订单编号
         // 订单是否重复
+        dump($v);
         if(!in_array($v['AmazonOrderId'],$allOrder))
         {
           $data[$k]['OrderStatus'] = $v['OrderStatus'];//订单状态
@@ -211,10 +212,13 @@ class Orders extends Controller
                   $insert['OrderItemId']=$val['AmazonOrderItemCode'];
                   $insert['Title']=$val['ProductName'];
                   $insert['QuantityOrdered']=$val['Quantity'];
-
-                  $insert['Amount']=$val['ItemPrice']['Component'][0]['Amount'];//价格
-                  $insert['ShippingPrice']=$val['ItemPrice']['Component'][1]['Amount'];  //运输费                
-                  $insert['GiftWrapPrice']=$val['ItemPrice']['Component'][2]['Amount']; //包装费                 
+                  if(!empty($val['ItemPrice']))
+                  {
+                    $insert['Amount']=$val['ItemPrice']['Component'][0]['Amount'];//价格
+                    $insert['ShippingPrice']=$val['ItemPrice']['Component'][1]['Amount'];  //运输费                
+                    $insert['GiftWrapPrice']=$val['ItemPrice']['Component'][2]['Amount']; //包装费 
+                  }
+                                  
                    // 如果有折扣
                   if(!empty($val['Promotion']))
                   {
@@ -240,10 +244,12 @@ class Orders extends Controller
                 $insert['OrderItemId']=$value['Order']['OrderItem']['AmazonOrderItemCode'];
                 $insert['Title']=$value['Order']['OrderItem']['ProductName'];
                 $insert['QuantityOrdered']=$value['Order']['OrderItem']['Quantity'];
-
-                $insert['Amount']=$value['Order']['OrderItem']['ItemPrice']['Component'][0]['Amount'];//价格
-                $insert['ShippingPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][1]['Amount'];//运输费
-                $insert['GiftWrapPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][2]['Amount']; //包装费
+                if(!empty($val['ItemPrice']))
+                {
+                  $insert['Amount']=$value['Order']['OrderItem']['ItemPrice']['Component'][0]['Amount'];//价格
+                  $insert['ShippingPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][1]['Amount'];//运输费
+                  $insert['GiftWrapPrice']=$value['Order']['OrderItem']['ItemPrice']['Component'][2]['Amount']; //包装费
+                }
                  // 如果有折扣
                 if(!empty($value['Order']['OrderItem']['Promotion']))
                 {
@@ -378,12 +384,13 @@ class Orders extends Controller
 
     }
 
+  
     public function GetServiceStatusSample()
     { 
       Loader::import('MarketplaceWebServiceOrders/Model/GetServiceStatusRequest', EXTEND_PATH);
       $parameters = $this->parameters;
       $service = $this->service;
-
+      
       $GetServiceStatusSample = new GetServiceStatusSample($parameters,$service);
       $GetServiceStatusSample->index();
     }

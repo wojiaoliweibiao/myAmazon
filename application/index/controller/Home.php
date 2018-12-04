@@ -79,7 +79,19 @@ class Home  extends Permission
         // Db::name('amazon_public')->insert($submitdata);
         $submitdata['searchTerms']=$data['searchTerms'];
         $submitdata['bulletPoint']=$data['bulletPoint'];
-        $submitFeed=new SubmitFeed($submitdata);
+
+        $userIdentify=Db::name('index_user')->where('user_id',$_SESSION['user_id'])->find();
+
+        $parameters['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
+        // 身份信息
+        $service = array(
+                        'KEY_ID' => $userIdentify['awsAccessKeyId'],
+                        'ACCESS_KEY' => $userIdentify['awsSecretAcessKey'],
+                        'NAME' => $userIdentify['APPLICATION_NAME'],
+                        'VERSION' => APPLICATION_VERSION,
+                    );
+
+        $submitFeed=new SubmitFeed($parameters,$service);
      
         $submitFeed->submitFile($submitdata);
         
