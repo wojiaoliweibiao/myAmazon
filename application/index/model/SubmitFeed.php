@@ -13,7 +13,7 @@ use MarketplaceWebService\Samples\GetFeedSubmissionResultSample;
 class SubmitFeed  extends Controller
 {
 
-    public function __construct($parameters,$service)
+    public function __construct($parameters,$service,$submitdata)
     {
         Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
         Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
@@ -27,26 +27,38 @@ class SubmitFeed  extends Controller
           'MaxErrorRetry' => 3,
         );
 
-        $service = $this->service;
+        $this->service = $service;
+        $this->service['config'] = $config;
         // $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
-        $this->submitdata= $parameters;
+        $this->parameters = $parameters;
+
+        $this->submitdata = $submitdata;
         
     }
 
     // 整合上传数据功能(刊登)
-	public function submitFile($sconfig=array(),$submitdata=array())
+	public function submitFile($submitdata=array())
 	{
-  
+        
+        $parameters = $this->parameters;
         // 提交数据
-        $submitdata=$this->submitdata;
+        $submitdata = $this->submitdata;
+
+        dump($submitdata);
+
+        // 用户选择的模板
+        $xmlModel = str_replace('.','_',$submitdata['ProductType']);
 
         // 获取对应xml
-        $SubmitXml=new SubmitXml($submitdata);
-        $xml=$SubmitXml->clothingAccessories();
+        // 处理数据，转为xml
+        $SubmitXml = new SubmitXml($submitdata);
 
-        // 上传数据,new公用类
-        $submitFeed=new SubmitFeedSample();
-		$account = $this->submitFeed($submitFeed,$xml,$submitdata);  
+        // 找到对应模板
+        $xml = $SubmitXml->$xmlModel();
+        
+        // 上传数据
+        $submitFeed = new SubmitFeedSample($parameters,$submitdata);
+        $account = $this->submitFeed($submitFeed,$xml); 
         // 整合上传数据功能
         // Step1:判断是否提交成功并返回feedSubmissionId.
         if(!empty($account['feedSubmissionId']))
@@ -87,6 +99,7 @@ class SubmitFeed  extends Controller
 	{
 
         $submitdata=$this->submitdata;
+
 	    $submitdata['FeedType']='_POST_PRODUCT_DATA_';
 	    // $submitFeed=new SubmitFeedSample();
 	    $account=$submitFeed->index($xml,$submitdata);
@@ -99,26 +112,28 @@ class SubmitFeed  extends Controller
 	{
 
         // Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
+        $parameters = $this->parameters;
+        $service = $this->service;
 
-        $isSuccess=true;
+        $isSuccess = true;
         if(!is_array($feedSubmissionId))
         {
-          $feedSubmissionId=array($feedSubmissionId);
+          $feedSubmissionId = array($feedSubmissionId);
         }
         $k=0;
         while ($isSuccess)
         {
-	       $submitFeed=new GetFeedSubmissionListSample();  
+	       $submitFeed = new GetFeedSubmissionListSample($parameters,$service);  
            $result=$submitFeed->index($feedSubmissionId);
            $k++;
-           if($result['Status']=='_DONE_')
+           if($result['Status'] == '_DONE_')
            {
-               $isSuccess=false;
+               $isSuccess = false;
             
            }else
            {
             // 休息两分钟
-                if($k==10)
+                if($k == 10)
                 {
                     return true;
                 }else{

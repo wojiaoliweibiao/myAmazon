@@ -42,7 +42,7 @@ class Home  extends Permission
         
 
         // 50262017836
-
+         // dump($data);
          // dump($file);
        
          for ($i=0; $i <5 ; $i++) { 
@@ -79,10 +79,14 @@ class Home  extends Permission
         // Db::name('amazon_public')->insert($submitdata);
         $submitdata['searchTerms']=$data['searchTerms'];
         $submitdata['bulletPoint']=$data['bulletPoint'];
+        $submitdata['ProductType']=$data['ProductType'];
+    
+        $userIdentify=Db::name('index_user')->where('user_id',$_SESSION['module']['user_id'])->find();
 
-        $userIdentify=Db::name('index_user')->where('user_id',$_SESSION['user_id'])->find();
+        $parameters['MarketplaceIdList'] = array("Id" => array('ATVPDKIKX0DER'));
+        $parameters['Merchant'] = $userIdentify['merchantId'];
+        $parameters['PurgeAndReplace'] = false;
 
-        $parameters['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
         // 身份信息
         $service = array(
                         'KEY_ID' => $userIdentify['awsAccessKeyId'],
@@ -90,10 +94,12 @@ class Home  extends Permission
                         'NAME' => $userIdentify['APPLICATION_NAME'],
                         'VERSION' => APPLICATION_VERSION,
                     );
+       
 
-        $submitFeed=new SubmitFeed($parameters,$service);
+
+        $submitFeed=new SubmitFeed($parameters,$service,$submitdata);
      
-        $submitFeed->submitFile($submitdata);
+        $submitFeed->submitFile();
         
     }
 

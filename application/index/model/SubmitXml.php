@@ -36,7 +36,7 @@ class SubmitXml  extends Controller
             <MessageType>Product</MessageType>';
         return $xml;
     }
-	public function clothingAccessories()
+	public function clothingAccessories_clothingAccessories()
 	{
 		$submitdata=$this->submitdata;
                     // <StandardProductID>

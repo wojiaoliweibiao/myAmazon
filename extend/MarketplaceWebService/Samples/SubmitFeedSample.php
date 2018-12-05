@@ -11,7 +11,7 @@ namespace MarketplaceWebService\Samples;
 class SubmitFeedSample
 {
 
-   public function __construct($parameters,$service)
+  public function __construct($parameters,$service)
   {
     $this->parameters=$parameters;
     $this->service=$service;
@@ -21,7 +21,7 @@ class SubmitFeedSample
   public function index($xml,$submitdata)
   {
 
-    // $parameters = $this->parameters;
+    $parameters = $this->parameters;
 
     $ser = $this->service;
 
@@ -29,7 +29,7 @@ class SubmitFeedSample
     $service = new \MarketplaceWebService_Client(
            $ser['KEY_ID'], 
            $ser['ACCESS_KEY'], 
-           $config,
+           $ser['config'],
            $ser['NAME'],
            $ser['VERSION']);
 
@@ -39,15 +39,12 @@ class SubmitFeedSample
     $feedHandle = @fopen('php://temp', 'rw+');
     fwrite($feedHandle, $feed);
     rewind($feedHandle);
-    $parameters = array (
-     'Merchant' => MERCHANT_ID,
-     'MarketplaceIdList' => $submitdata['marketplaceIdArray'],
-     'FeedType' => $submitdata['FeedType'],
-     'FeedContent' => $feedHandle,
-     'PurgeAndReplace' => false,
-     'ContentMd5' => base64_encode(md5(stream_get_contents($feedHandle), true)),
-    // 'MWSAuthToken' => '<MWS Auth Token>', // Optional
-    );
+
+
+    $parameters['FeedType'] = $submitdata['FeedType'];
+    $parameters['FeedContent'] = $feedHandle;
+    $parameters['ContentMd5'] = $base64_encode(md5(stream_get_contents($feedHandle), true));
+
 
     rewind($feedHandle);
     $request = new \MarketplaceWebService_Model_SubmitFeedRequest($parameters);
