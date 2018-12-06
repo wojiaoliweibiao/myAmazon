@@ -7,6 +7,7 @@ use think\Controller;
 use MarketplaceWebService\Samples\RequestReportSample;
 use MarketplaceWebService\Samples\GetReportRequestListSample;
 use MarketplaceWebService\Samples\GetReportSample;
+use MarketplaceWebService\Samples\GetFeedSubmissionListSample;
 use app\index\model\SubmitFeed;
 use app\index\model\Orders;
 use app\index\model\Report;
@@ -28,10 +29,40 @@ class Home  extends Permission
     }
 
     public function test(){
-       
-      $orders = new Orders;
-      $data=$orders -> orderItems();
-      // dump($data);
+        Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
+        $userIdentify=Db::name('index_user')->where('user_id',$_SESSION['module']['user_id'])->find();
+
+        $parameters['MarketplaceIdList'] = array("Id" => array('ATVPDKIKX0DER'));
+        $parameters['FeedProcessingStatusList'] = array ('Status' => array ('_DONE_'));
+        $parameters['Merchant'] = $userIdentify['merchantId'];
+        $parameters['PurgeAndReplace'] = false;
+
+        // 身份信息
+        $service = array(
+                        'KEY_ID' => $userIdentify['awsAccessKeyId'],
+                        'ACCESS_KEY' => $userIdentify['awsSecretAcessKey'],
+                        'NAME' => $userIdentify['APPLICATION_NAME'],
+                        'VERSION' => APPLICATION_VERSION,
+                    );
+        $config = array (
+          'ServiceURL' => "https://mws.amazonservices.com",
+          'ProxyHost' => null,
+          'ProxyPort' => -1,
+          'MaxErrorRetry' => 3,
+        );
+        $service['config'] = $config;
+
+        $submitdata='';
+        $find = new GetFeedSubmissionListSample($parameters,$service);
+        $data=$find->index();
+        dump($data);
+        
+        $submitFeed=new SubmitFeed($parameters,$service,$submitdata);
+        
+        $submitFeed->getFeedSubmissionResult('54405017871');
+
     }
    
     public function submit()
@@ -94,7 +125,6 @@ class Home  extends Permission
                         'NAME' => $userIdentify['APPLICATION_NAME'],
                         'VERSION' => APPLICATION_VERSION,
                     );
-       
 
 
         $submitFeed=new SubmitFeed($parameters,$service,$submitdata);
@@ -344,10 +374,7 @@ class Home  extends Permission
     }
 
 
-    public function category()
-    {
-        
-    }
+    
 }
 	
 

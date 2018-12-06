@@ -15,6 +15,7 @@ class SubmitFeed  extends Controller
 
     public function __construct($parameters,$service,$submitdata)
     {
+
         Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
         Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
         Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
@@ -29,6 +30,7 @@ class SubmitFeed  extends Controller
 
         $this->service = $service;
         $this->service['config'] = $config;
+
         // $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
         $this->parameters = $parameters;
 
@@ -37,35 +39,37 @@ class SubmitFeed  extends Controller
     }
 
     // 整合上传数据功能(刊登)
-	public function submitFile($submitdata=array())
+	public function submitFile()
 	{
         
         $parameters = $this->parameters;
+        $service = $this->service;
         // 提交数据
         $submitdata = $this->submitdata;
 
-        dump($submitdata);
+        // dump($submitdata);
 
         // 用户选择的模板
         $xmlModel = str_replace('.','_',$submitdata['ProductType']);
 
         // 获取对应xml
         // 处理数据，转为xml
-        $SubmitXml = new SubmitXml($submitdata);
+        $SubmitXml = new SubmitXml($submitdata,$parameters);
 
         // 找到对应模板
         $xml = $SubmitXml->$xmlModel();
         
         // 上传数据
-        $submitFeed = new SubmitFeedSample($parameters,$submitdata);
+        $submitFeed = new SubmitFeedSample($parameters,$service);
         $account = $this->submitFeed($submitFeed,$xml); 
         // 整合上传数据功能
         // Step1:判断是否提交成功并返回feedSubmissionId.
+        // dump($account);
         if(!empty($account['feedSubmissionId']))
         {
         	// 上传记录
         	$account['date']=time();
-            // dump($account);
+
         	Db::name('amazon_log')->insert($account);
 
             $id = Db::name('user')->getLastInsID();
@@ -78,6 +82,7 @@ class SubmitFeed  extends Controller
                     $result=$this->inventoryFeed($submitFeed);
                     $result=$this->priceFeed($submitFeed,$result);
                     $result=$this->imageFeed($submitFeed,$result);
+                    // dump($result);
                     // $result=$this->relationshipFeed($submitFeed,$result);s
                     // 记录上传
                     Db::name('amazon_log')->where('id', $id)->update($result);
@@ -142,18 +147,20 @@ class SubmitFeed  extends Controller
                 }
            }
         }
-
+        // dump($result);
         return $isSuccess;
 	}
 
 	// Step 3:返回上传数据处理报告。
-	public function getFeedSubmissionResult($feedSubmissionId,$id)
+	public function getFeedSubmissionResult($feedSubmissionId,$id='')
 	{
         // Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
+        $parameters = $this->parameters;
+        $service = $this->service;
 
-	    $submitFeed=new GetFeedSubmissionResultSample();
-	    $result=$submitFeed->index($feedSubmissionId);
-
+	    $submitFeed = new GetFeedSubmissionResultSample($parameters,$service);
+	    $result = $submitFeed->index($feedSubmissionId);
+        dump($result);
         if(!$result['ProcessingSummary']['MessagesWithError'])
         {
             return true;
@@ -164,18 +171,22 @@ class SubmitFeed  extends Controller
                 if(!empty($result['Result'][0])){
                     foreach ($result['Result'] as $key => $value)
                     {
-                        $ResultCode[$key]=$value['ResultMessageCode'];
-                        $ResultDescr[$key]=$value['ResultDescription'];
+                        $ResultCode[$key] = $value['ResultMessageCode'];
+                        $ResultDescr[$key] = $value['ResultDescription'];
                  
                     }
                 }else{
-                        $ResultCode[0]=$result['Result']['ResultMessageCode'];
-                        $ResultDescr[0]=$result['Result']['ResultDescription'];
+                        $ResultCode[0] = $result['Result']['ResultMessageCode'];
+                        $ResultDescr[0] = $result['Result']['ResultDescription'];
                 }
                 
                 $ResultMessageCode=json_encode($ResultCode);
                 $ResultDescription=json_encode($ResultDescr);
-                Db::name('amazon_log')->where('id', $id)->update(['isError' => '1','submitDate'=>time(),'ResultDescription'=>$ResultDescription,'ResultMessageCode'=>$ResultMessageCode,'feedSubmissionStatus'=>'__DONE__']);
+                if($id!='')
+                {
+                    Db::name('amazon_log')->where('id', $id)->update(['isError' => '1','submitDate'=>time(),'ResultDescription'=>$ResultDescription,'ResultMessageCode'=>$ResultMessageCode,'feedSubmissionStatus'=>'__DONE__']);
+                }
+                
                 return false;
             }
         }
@@ -183,15 +194,17 @@ class SubmitFeed  extends Controller
 	}
 
     // 图片上传
-    public function imageFeed($submitFeed,$result=array())
+    public function imageFeed($submitFeed)
     {
         // $submitFeed=new SubmitFeedSample();
         // 建立图片上传xml
-        $submitdata=$this->submitdata;
-        $submitdata['FeedType']='_POST_PRODUCT_IMAGE_DATA_';
-        $xmlheader=$this->xmlheader('ProductImage');
+        $submitdata = $this->submitdata;
 
-        $xmlmessage='
+        $submitdata['FeedType'] = '_POST_PRODUCT_IMAGE_DATA_';
+
+        $xmlheader = $this->xmlheader('ProductImage');
+
+        $xmlmessage = '
                 <Message>
                     <MessageID>1</MessageID>
                     <OperationType>Update</OperationType>
@@ -201,20 +214,24 @@ class SubmitFeed  extends Controller
                     <ImageLocation>'.$submitdata['mainimg'].'</ImageLocation>
                     </ProductImage>
                 </Message> ';
-        $xml=$xmlheader.$xmlmessage.'</AmazonEnvelope>';
 
-        $account=$submitFeed->index($xml,$submitdata);
-        $result['imageId']=$account['feedSubmissionId'];
-        $result['imageStasus']=$account['feedSubmissionStatus'];
+        $xml = $xmlheader.$xmlmessage.'</AmazonEnvelope>';
+
+        $account = $submitFeed->index($xml,$submitdata);
+
+        $result['imageId'] = $account['feedSubmissionId'];
+        $result['imageStasus'] = $account['feedSubmissionStatus'];
         // dump($result);
         return $result;
 
     }
 
     // 价格上传
-    public function priceFeed($submitFeed,$result=array())
+    public function priceFeed($submitFeed,$result)
     {
+        // $submitFeed=new SubmitFeedSample();
         $submitdata=$this->submitdata;
+
         $submitdata['FeedType']='_POST_PRODUCT_PRICING_DATA_';
 
         // 建立价格上传xml
@@ -237,10 +254,11 @@ class SubmitFeed  extends Controller
     }
 
     // 库存上传
-    public function inventoryFeed($submitFeed,$result=array())
+    public function inventoryFeed($submitFeed)
     {
-        
+        // $submitFeed=new SubmitFeedSample();
         $submitdata=$this->submitdata;
+
         $submitdata['FeedType']='_POST_INVENTORY_AVAILABILITY_DATA_';
 
         // 建立库存上传xml
@@ -263,10 +281,10 @@ class SubmitFeed  extends Controller
     }
 
     // 关系上传
-    public function relationshipFeed($submitFeed,$result=array())
+    public function relationshipFeed($submitFeed)
     {
        
-        // $submitFeed=new SubmitFeedSample();'.$sconfig["sku"].'
+        // $submitFeed=new SubmitFeedSample();
         $submitdata=$this->submitdata;
         $submitFeed['FeedType']='_POST_PRODUCT_RELATIONSHIP_DATA_';
 
@@ -295,11 +313,14 @@ class SubmitFeed  extends Controller
 
     // xml公共头部
     public function xmlheader($MessageType){
+        
+        $parameters = $this->parameters;
+
         $xml='<?xml version="1.0" encoding="utf-8" ?>
                 <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
                 <Header>
                     <DocumentVersion>1.01</DocumentVersion>
-                    <MerchantIdentifier>AFEY1F2OP0KNC</MerchantIdentifier>
+                    <MerchantIdentifier>'.$parameters['Merchant'].'</MerchantIdentifier>
                 </Header>
                 <MessageType>'.$MessageType.'</MessageType>';
         return $xml;

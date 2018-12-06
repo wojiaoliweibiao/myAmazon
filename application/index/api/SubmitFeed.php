@@ -11,10 +11,7 @@ use MarketplaceWebService\Samples\GetFeedSubmissionListSample;
 use MarketplaceWebService\Samples\GetFeedSubmissionResultSample;
 
 
-Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
-Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
-Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
-Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
+
 
 class SubmitFeed  extends Controller
 {
@@ -22,7 +19,10 @@ class SubmitFeed  extends Controller
 	// 整合上传数据功能
 	public function submitFile($sconfig=array(),$submitdata=array())
 	{
-
+        Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
 		// Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
         // Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
         // 提交数据

@@ -43,7 +43,7 @@ class SubmitFeedSample
 
     $parameters['FeedType'] = $submitdata['FeedType'];
     $parameters['FeedContent'] = $feedHandle;
-    $parameters['ContentMd5'] = $base64_encode(md5(stream_get_contents($feedHandle), true));
+    $parameters['ContentMd5'] = base64_encode(md5(stream_get_contents($feedHandle), true));
 
 
     rewind($feedHandle);

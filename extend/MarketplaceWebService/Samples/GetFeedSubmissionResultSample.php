@@ -6,48 +6,42 @@ namespace MarketplaceWebService\Samples;
 class GetFeedSubmissionResultSample
 {
 
+  public function __construct($parameters,$service)
+  {
+    $this->parameters=$parameters;
+    $this->service=$service;
+  }
 
   public function index($FeedSubmissionId)
   {
 
+    $parameters = $this->parameters;
+
+    $ser = $this->service;
 
 
-  // include_once ('.config.inc.php'); 
-
-  $serviceUrl = "https://mws.amazonservices.com";
-
-  $config = array (
-    'ServiceURL' => $serviceUrl,
-    'ProxyHost' => null,
-    'ProxyPort' => -1,
-    'MaxErrorRetry' => 3,
-  );
-
-   $service = new \MarketplaceWebService_Client(
-       AWS_ACCESS_KEY_ID, 
-       AWS_SECRET_ACCESS_KEY, 
-       $config,
-       APPLICATION_NAME,
-       APPLICATION_VERSION);
+    $service = new \MarketplaceWebService_Client(
+           $ser['KEY_ID'], 
+           $ser['ACCESS_KEY'], 
+           $ser['config'],
+           $ser['NAME'],
+           $ser['VERSION']);
   
-   // object or array of parameters
-   $files=@fopen('php://memory', 'rw+');
+    // object or array of parameters
+    $files=@fopen('php://memory', 'rw+');
 
-  $parameters = array (
-   'Merchant' => MERCHANT_ID,
-   'FeedSubmissionId' => $FeedSubmissionId,
-   'FeedSubmissionResult' =>$files,
-   'MWSAuthToken' => 'amzn.mws.ccb17e01-312c-6496-0205-3d3a3ac65cc9', // Optional
-  );
-  //
-  $request = new \MarketplaceWebService_Model_GetFeedSubmissionResultRequest($parameters);
+    $parameters['FeedSubmissionId'] = $FeedSubmissionId;
+    $parameters['FeedSubmissionResult'] = $files;
+
+
+    $request = new \MarketplaceWebService_Model_GetFeedSubmissionResultRequest($parameters);
 
   //$request = new MarketplaceWebService_Model_GetFeedSubmissionResultRequest();
   //$request->setMerchant(MERCHANT_ID);
   //$request->setFeedSubmissionId('<Feed Submission Id>');
   //$request->setFeedSubmissionResult(@fopen('php://memory', 'rw+'));
   //$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
-  echo '<pre>';
+
   $this->invokeGetFeedSubmissionResult($service, $request);
 
 

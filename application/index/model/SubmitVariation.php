@@ -19,44 +19,68 @@ Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXT
 class SubmitVariation  extends Controller
 {
 
-	// 整合上传数据功能
-
-    public function __construct($data = null)
+    public function __construct($parameters,$service,$submitdata)
     {
+        Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
+        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
+
+        $config = array (
+          'ServiceURL' => "https://mws.amazonservices.com",
+          'ProxyHost' => null,
+          'ProxyPort' => -1,
+          'MaxErrorRetry' => 3,
+        );
+
+        $this->service = $service;
+        $this->service['config'] = $config;
+
+        // $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
+        $this->parameters = $parameters;
+
+        $this->submitdata = $submitdata;
         
-        $this->submitdata= $data;
-        $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
-        $this->submitdata['serviceUrl'] = "https://mws.amazonservices.com";
     }
 
-	public function submitFile($sconfig=array(),$submitdata=array())
-	{
+    // 整合上传数据功能(刊登)
+    public function submitFile()
+    {
         
-        $submitdata=$this->submitdata;
-      
-        
-        // 获取对应xml
-        $SubmitXml=new SubmitXml($submitdata);
-        $xml=$SubmitXml->clothingAccessories();
+        $parameters = $this->parameters;
+        // 提交数据
+        $submitdata = $this->submitdata;
 
-        // 上传数据,new公用类
-        $submitFeed=new SubmitFeedSample();
-		$account = $this->submitFeed($submitFeed,$xml,$submitdata);  
+        // dump($submitdata);
+
+        // 用户选择的模板
+        $xmlModel = str_replace('.','_',$submitdata['ProductType']);
+
+        // 获取对应xml
+        // 处理数据，转为xml
+        $SubmitXml = new SubmitXml($submitdata);
+
+        // 找到对应模板
+        $xml = $SubmitXml->$xmlModel();
+        
+        // 上传数据
+        $submitFeed = new SubmitFeedSample($parameters,$submitdata);
+        $account = $this->submitFeed($submitFeed,$xml); 
         // 整合上传数据功能
         // Step1:判断是否提交成功并返回feedSubmissionId.
         if(!empty($account['feedSubmissionId']))
         {
-        	// 上传记录
-        	$account['date']=time();
+            // 上传记录
+            $account['date']=time();
             // dump($account);
-        	Db::name('amazon_log')->insert($account);
+            Db::name('amazon_log')->insert($account);
 
             $id = Db::name('user')->getLastInsID();
             // Step2:判断是否提交成功处理 ,返回__DONE__.
-        	if(!($this->getFeedSubmissionList($account['feedSubmissionId'])))
-        	{
+            if(!($this->getFeedSubmissionList($account['feedSubmissionId'])))
+            {
                 // Step3:是否提交(刊登)基础信息成功.
-        	    if($this->getFeedSubmissionResult($account['feedSubmissionId'],$id)){
+                if($this->getFeedSubmissionResult($account['feedSubmissionId'],$id)){
                     // 库存，价格，图片提交
                     $result=$this->inventoryFeed($submitFeed);
                     $result=$this->priceFeed($submitFeed,$result);
@@ -69,49 +93,54 @@ class SubmitVariation  extends Controller
                     // $atAll=$this->getAllList($feedid);
                     // if(!$atAll)
                     // {
+
                     //     Db::name('amazon_log')->where('id', $id)->update($result);
                     // }
                 } 
-        	}
+            }
         }
-	}
+    }
 
-	// Step 1:上传数据
-	public function submitFeed($submitFeed,$xml='')
-	{
+    // Step 1:上传数据
+    public function submitFeed($submitFeed,$xml='')
+    {
 
         $submitdata=$this->submitdata;
-	    $submitdata['FeedType']='_POST_PRODUCT_DATA_';
-	    // $submitFeed=new SubmitFeedSample();
-	    $account=$submitFeed->index($xml,$submitdata);
-	    return $account;
 
-	}
-	// Step 2:提交一个SubmissionList，等待亚马逊返回"_DONE"状态，如果没有返回则一直等待。
-	public function getFeedSubmissionList($feedSubmissionId)
-	{
+        $submitdata['FeedType']='_POST_PRODUCT_DATA_';
+        // $submitFeed=new SubmitFeedSample();
+        $account=$submitFeed->index($xml,$submitdata);
+        return $account;
+
+    }
+
+    // Step 2:提交一个SubmissionList，等待亚马逊返回"_DONE"状态，如果没有返回则一直等待。
+    public function getFeedSubmissionList($feedSubmissionId)
+    {
 
         // Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
+        $parameters = $this->parameters;
+        $service = $this->service;
 
-        $isSuccess=true;
+        $isSuccess = true;
         if(!is_array($feedSubmissionId))
         {
-          $feedSubmissionId=array($feedSubmissionId);
+          $feedSubmissionId = array($feedSubmissionId);
         }
         $k=0;
         while ($isSuccess)
         {
-	       $submitFeed=new GetFeedSubmissionListSample();  
+           $submitFeed = new GetFeedSubmissionListSample($parameters,$service);  
            $result=$submitFeed->index($feedSubmissionId);
            $k++;
-           if($result['Status']=='_DONE_')
+           if($result['Status'] == '_DONE_')
            {
-               $isSuccess=false;
+               $isSuccess = false;
             
            }else
            {
             // 休息两分钟
-                if($k==10)
+                if($k == 10)
                 {
                     return true;
                 }else{
@@ -122,14 +151,17 @@ class SubmitVariation  extends Controller
         }
 
         return $isSuccess;
-	}
-	// Step 3:返回上传数据处理报告。
-	public function getFeedSubmissionResult($feedSubmissionId,$id)
-	{
-        // Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
+    }
 
-	    $submitFeed=new GetFeedSubmissionResultSample();
-	    $result=$submitFeed->index($feedSubmissionId);
+    // Step 3:返回上传数据处理报告。
+    public function getFeedSubmissionResult($feedSubmissionId,$id)
+    {
+        // Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
+        $parameters = $this->parameters;
+        $service = $this->service;
+
+        $submitFeed = new GetFeedSubmissionResultSample($parameters,$service);
+        $result = $submitFeed->index($feedSubmissionId);
 
         if(!$result['ProcessingSummary']['MessagesWithError'])
         {
@@ -141,13 +173,13 @@ class SubmitVariation  extends Controller
                 if(!empty($result['Result'][0])){
                     foreach ($result['Result'] as $key => $value)
                     {
-                        $ResultCode[$key]=$value['ResultMessageCode'];
-                        $ResultDescr[$key]=$value['ResultDescription'];
+                        $ResultCode[$key] = $value['ResultMessageCode'];
+                        $ResultDescr[$key] = $value['ResultDescription'];
                  
                     }
                 }else{
-                        $ResultCode[0]=$result['Result']['ResultMessageCode'];
-                        $ResultDescr[0]=$result['Result']['ResultDescription'];
+                        $ResultCode[0] = $result['Result']['ResultMessageCode'];
+                        $ResultDescr[0] = $result['Result']['ResultDescription'];
                 }
                 
                 $ResultMessageCode=json_encode($ResultCode);
@@ -157,21 +189,20 @@ class SubmitVariation  extends Controller
             }
         }
  
-	}
+    }
 
-
-    public function imageFeed($submitFeed,$result=array())
+    // 图片上传
+    public function imageFeed($submitFeed)
     {
-
-       
-
         // $submitFeed=new SubmitFeedSample();
         // 建立图片上传xml
-        $submitdata=$this->submitdata;
-        $submitdata['FeedType']='_POST_PRODUCT_IMAGE_DATA_';
-        $xmlheader=$this->xmlheader('ProductImage');
+        $submitdata = $this->submitdata;
 
-        $xmlmessage='
+        $submitdata['FeedType'] = '_POST_PRODUCT_IMAGE_DATA_';
+
+        $xmlheader = $this->xmlheader('ProductImage');
+
+        $xmlmessage = '
                 <Message>
                     <MessageID>1</MessageID>
                     <OperationType>Update</OperationType>
@@ -181,25 +212,27 @@ class SubmitVariation  extends Controller
                     <ImageLocation>'.$submitdata['mainimg'].'</ImageLocation>
                     </ProductImage>
                 </Message> ';
-        $xml=$xmlheader.$xmlmessage.'</AmazonEnvelope>';
+                
+        $xml = $xmlheader.$xmlmessage.'</AmazonEnvelope>';
 
+        $account = $submitFeed->index($xml,$submitdata);
 
-        $account=$submitFeed->index($xml,$submitdata);
-        $result['imageId']=$account['feedSubmissionId'];
-        $result['imageStasus']=$account['feedSubmissionStatus'];
+        $result['imageId'] = $account['feedSubmissionId'];
+        $result['imageStasus'] = $account['feedSubmissionStatus'];
         // dump($result);
         return $result;
 
     }
 
-    public function priceFeed($submitFeed,$result=array())
+    // 价格上传
+    public function priceFeed($submitFeed)
     {
-     
-        $submitdata=$this->submitdata;
-        $submitdata['FeedType']='_POST_PRODUCT_PRICING_DATA_';
         // $submitFeed=new SubmitFeedSample();
-        // 建立价格上传xml
+        $submitdata=$this->submitdata;
 
+        $submitdata['FeedType']='_POST_PRODUCT_PRICING_DATA_';
+
+        // 建立价格上传xml
         $xmlheader=$this->xmlheader('Price');
         $xmlmessage='<Message>
                         <MessageID>1</MessageID>
@@ -218,13 +251,14 @@ class SubmitVariation  extends Controller
 
     }
 
-
-    public function inventoryFeed($submitFeed,$result=array())
+    // 库存上传
+    public function inventoryFeed($submitFeed)
     {
-        
-        $submitdata=$this->submitdata;
-        $submitdata['FeedType']='_POST_INVENTORY_AVAILABILITY_DATA_';
         // $submitFeed=new SubmitFeedSample();
+        $submitdata=$this->submitdata;
+
+        $submitdata['FeedType']='_POST_INVENTORY_AVAILABILITY_DATA_';
+
         // 建立库存上传xml
         $xmlheader=$this->xmlheader('Inventory');
         $xmlmessage='<Message>
@@ -244,11 +278,11 @@ class SubmitVariation  extends Controller
          return $result;
     }
 
-
-    public function relationshipFeed($submitFeed,$result=array())
+    // 关系上传
+    public function relationshipFeed($submitFeed)
     {
        
-        // $submitFeed=new SubmitFeedSample();'.$sconfig["sku"].'
+        // $submitFeed=new SubmitFeedSample();
         $submitdata=$this->submitdata;
         $submitFeed['FeedType']='_POST_PRODUCT_RELATIONSHIP_DATA_';
 
@@ -275,7 +309,7 @@ class SubmitVariation  extends Controller
         
     }
 
-
+    // xml公共头部
     public function xmlheader($MessageType){
         $xml='<?xml version="1.0" encoding="utf-8" ?>
                 <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
@@ -286,22 +320,6 @@ class SubmitVariation  extends Controller
                 <MessageType>'.$MessageType.'</MessageType>';
         return $xml;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

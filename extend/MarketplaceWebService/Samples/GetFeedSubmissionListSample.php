@@ -11,10 +11,10 @@ class GetFeedSubmissionListSample
     $this->service=$service;
   }
 
-  public function index($feedSubmissionId)
+  public function index($feedSubmissionId='')
   {
 
-    $par = $this->parameters;
+    $parameters = $this->parameters;
 
     $ser = $this->service;
 
@@ -24,18 +24,18 @@ class GetFeedSubmissionListSample
        $ser['ACCESS_KEY'], 
        $ser['config'],
        $ser['NAME'],
-       $ser['VERSION']));
+       $ser['VERSION']);
 
   // $feedSubmissionId=array('id1','id2',...)
-  $FeedProcessingStatusList = array("Id" => $feedSubmissionId);
+  if(!empty($feedSubmissionId))
+  {
+    $feedSubmissionId = array("Id" => $feedSubmissionId);
+    $parameters['FeedSubmissionIdList'] = $feedSubmissionId;
+  }
 
-  $parameters = array (
-   'Merchant' => $par['MERCHANT_ID'],
    // 'FeedProcessingStatusList' => array ('Status' => array ('_DONE_')),
-   'FeedSubmissionIdList' =>$FeedProcessingStatusList,
    // 'MWSAuthToken' => 'amzn.mws.ccb17e01-312c-6496-0205-3d3a3ac65cc9', // Optional
-  );
-  //
+
   $request = new \MarketplaceWebService_Model_GetFeedSubmissionListRequest($parameters);
 
   //$request = new MarketplaceWebService_Model_GetFeedSubmissionListRequest();
@@ -49,8 +49,8 @@ class GetFeedSubmissionListSample
   $account=$this->invokeGetFeedSubmissionList($service, $request);
 
 
-  // dump($account);
-  if(count($feedSubmissionId)<=1)
+  dump($account);
+  if(count($account)<=1)
   {
     unset($account[0]['ReportType']);
     return $account[0];

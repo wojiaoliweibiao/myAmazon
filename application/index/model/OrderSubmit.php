@@ -15,22 +15,32 @@ class OrderSubmit  extends Controller
 
     public function __construct($parameters,$server)
     {
-        Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
-        Loader::import('MarketplaceWebService/Model/SubmitFeedRequest', EXTEND_PATH);
-        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
-        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
+       
+        $config = array (
+          'ServiceURL' => "https://mws.amazonservices.com",
+          'ProxyHost' => null,
+          'ProxyPort' => -1,
+          'MaxErrorRetry' => 3,
+        );
 
-        $this->submitdata= $data;
-        $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
+        $this->service = $service;
+        $this->service['config'] = $config;
 
-        $this->submitdata['serviceUrl'] = "https://mws.amazonservices.com";
+        // $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
+        $this->parameters = $parameters;
+
+        $this->submitdata = $submitdata;
     }
 
     // 整合上传数据功能(订单确认 )
-	public function submitFile($sconfig=array(),$submitdata=array())
+	public function submitFile()
 	{
         // 提交数据
-        $submitdata=$this->submitdata;
+        $submitdata = $this->submitdata;
+
+        // 身份参数
+        $parameters = $this->parameters;
+        $service=$this->service;
 
         // 获取对应xml
         $SubmitXml=new SubmitXml($submitdata);
@@ -57,15 +67,43 @@ class OrderSubmit  extends Controller
 
     // xml公共头部
     public function xmlheader($MessageType){
+
+        $parameters = $this->parameters;
+        // OrderFulfillment
         $xml='<?xml version="1.0" encoding="utf-8" ?>
                 <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
                 <Header>
                     <DocumentVersion>1.01</DocumentVersion>
-                    <MerchantIdentifier>AFEY1F2OP0KNC</MerchantIdentifier>
+                    <MerchantIdentifier>'.$parameters['Merchant'].'</MerchantIdentifier>
                 </Header>
                 <MessageType>'.$MessageType.'</MessageType>';
         return $xml;
     }
-
+    
+    public function OrderFulfillment()
+    {
+        $submitdata=$this->submitdata;
+      
+        $headerxml=$this->headerxml();
+        $messagexml='<Message>
+                    <MessageID>1</MessageID>
+                    <OrderFulfillment>
+                        <AmazonOrderID>114-1xxxxx8-2xxxxx7</AmazonOrderID>
+                        <FulfillmentDate>2018-09-24T03:15:52Z</FulfillmentDate>
+                        <FulfillmentData>
+                            <CarrierCode>USPS</CarrierCode>
+                            <ShippingMethod>First Class Mail</ShippingMethod>
+                            <ShipperTrackingNumber>9400xxxxxxxxxxxxxx5204</ShipperTrackingNumber>
+                        </FulfillmentData>
+                        <Item>
+                            <AmazonOrderItemCode>08xxxxxxxxxx02</AmazonOrderItemCode>
+                            <Quantity>2</Quantity>
+                        </Item>
+                    </OrderFulfillment>
+                    </Message>';
+        $xml=$headerxml.$messagexml.'</AmazonEnvelope>';
+        // dump($xml);
+        return $xml;
+    }
 
 }
