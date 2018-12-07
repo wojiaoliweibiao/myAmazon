@@ -29,39 +29,7 @@ class Home  extends Permission
     }
 
     public function test(){
-        Loader::import('MarketplaceWebService/Client', EXTEND_PATH);
-        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionListRequest', EXTEND_PATH);
-        Loader::import('MarketplaceWebService/Model/GetFeedSubmissionResultRequest', EXTEND_PATH);
-        $userIdentify=Db::name('index_user')->where('user_id',$_SESSION['module']['user_id'])->find();
-
-        $parameters['MarketplaceIdList'] = array("Id" => array('ATVPDKIKX0DER'));
-        $parameters['FeedProcessingStatusList'] = array ('Status' => array ('_DONE_'));
-        $parameters['Merchant'] = $userIdentify['merchantId'];
-        $parameters['PurgeAndReplace'] = false;
-
-        // 身份信息
-        $service = array(
-                        'KEY_ID' => $userIdentify['awsAccessKeyId'],
-                        'ACCESS_KEY' => $userIdentify['awsSecretAcessKey'],
-                        'NAME' => $userIdentify['APPLICATION_NAME'],
-                        'VERSION' => APPLICATION_VERSION,
-                    );
-        $config = array (
-          'ServiceURL' => "https://mws.amazonservices.com",
-          'ProxyHost' => null,
-          'ProxyPort' => -1,
-          'MaxErrorRetry' => 3,
-        );
-        $service['config'] = $config;
-
-        $submitdata='';
-        $find = new GetFeedSubmissionListSample($parameters,$service);
-        $data=$find->index();
-        dump($data);
-        
-        $submitFeed=new SubmitFeed($parameters,$service,$submitdata);
-        
-        $submitFeed->getFeedSubmissionResult('54405017871');
+       
 
     }
    
@@ -135,38 +103,13 @@ class Home  extends Permission
 
 
 
-    public function jsonamazon()
-    {
-        $xmlobj=new Xml();
-        $xml=$xmlobj->index();
-        $arr=json_decode($xml,true);
-        $arr=$arr['browseElements'];
-        // dump($arr);
-        foreach ($arr as $key => $value) {
-            $data[$key]['cid']=$value['browsePath'];
-            $data[$key]['level']=$value['level'];
-            $data[$key]['name']=$value['label'];
-            $data[$key]['browsePath']=$value['browsePath'];
-            $data[$key]['pid']=3;
-            $data[$key]['parent_id']=3;
-            $data[$key]['site']=3;
-            $id=Db::name('amazon_categor')->where($data[$key])->find();
-            if(!$id){
-               $category[$key]=Db::name('amazon_categor')->insert($data[$key]);
-            }
-            
-        }
-        dump($category);
-       
-    }
-
     public function requestreport()
     {
        
-        $RequestReportSample=new RequestReportSample;
-        $where['level']=1;
-        $where['site']=3;
-        $where['hasdone']='0';
+        $RequestReportSample = new RequestReportSample;
+        $where['level'] = 1;
+        $where['site' ]= 3;
+        $where['hasdone']= '0';
         $foreach=Db::name('amazon_categor')->where($where)->select();
         // dump($foreach);die;
         foreach ($foreach as $key => $value) {
@@ -209,8 +152,6 @@ class Home  extends Permission
         }
        
         // $data[0]['id']=$id;
-
-       
         // Db::name('report_log')->update($data[0]);
 
     }
