@@ -9,6 +9,19 @@ class RequestReportSample
 
   public function __construct($parameters,$service)
   {
+
+    $this->field_parameters = array (
+        'ReportType' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Merchant' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'marketplaceIdArray' => array('Id' => array(), 'FieldType' => 'array'),
+    );
+    $this->field_service = array (
+        'KEY_ID' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ACCESS_KEY' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'NAME' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'VERSION' => array('FieldValue' => null, 'FieldType' => 'string'),
+    );
+
     $this->parameters=$parameters;
     $this->service=$service;
   }
@@ -19,6 +32,26 @@ class RequestReportSample
     $parameters=$this->parameters;
     // dump($parameters);
     $ser = $this->service;
+
+// sell in:
+// United States:
+//$serviceUrl = "https://mws.amazonservices.com";
+// United Kingdom
+//$serviceUrl = "https://mws.amazonservices.co.uk";
+// Germany
+//$serviceUrl = "https://mws.amazonservices.de";
+// France
+//$serviceUrl = "https://mws.amazonservices.fr";
+// Italy
+//$serviceUrl = "https://mws.amazonservices.it";
+// Japan
+//$serviceUrl = "https://mws.amazonservices.jp";
+// China
+//$serviceUrl = "https://mws.amazonservices.com.cn";
+// Canada
+//$serviceUrl = "https://mws.amazonservices.ca";
+// India
+//$serviceUrl = "https://mws.amazonservices.in";
 
     $config = array (
       'ServiceURL' => $parameters['serviceUrl'],
@@ -36,7 +69,7 @@ class RequestReportSample
 
 
     // Merchant卖家
-    $parameters['Merchant'] = $parameters['SellerId'];
+    $parameters['Merchant'] = $parameters['Merchant'];
   
     $request = new \MarketplaceWebService_Model_RequestReportRequest($parameters);
 

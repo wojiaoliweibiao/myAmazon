@@ -77,7 +77,7 @@ class Orders extends Controller
 
         $data[$k]['AmazonOrderId'] = $v['AmazonOrderId'];//订单编号
         // 订单是否重复
-        dump($v);
+        // dump($v);
         if(!in_array($v['AmazonOrderId'],$allOrder))
         {
           $data[$k]['OrderStatus'] = $v['OrderStatus'];//订单状态

@@ -32,7 +32,7 @@ class ListOrdersSample{
         );
     
     $request = new \MarketplaceWebServiceOrders_Model_ListOrdersRequest($parameters);
-    $request->setSellerId($parameters['SellerId']);
+    $request->setSellerId($parameters['Merchant']);
     // object or array of parameters
     $data=$this->invokeListOrders($service, $request);
     // dump($data);

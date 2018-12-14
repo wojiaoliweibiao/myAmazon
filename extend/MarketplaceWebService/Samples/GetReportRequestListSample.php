@@ -34,7 +34,7 @@ class  GetReportRequestListSample
 
 
     // Merchant卖家
-    $parameters['Merchant'] = $parameters['SellerId'];
+    $parameters['Merchant'] = $parameters['Merchant'];
 
     $request = new \MarketplaceWebService_Model_GetReportRequestListRequest($parameters);
    

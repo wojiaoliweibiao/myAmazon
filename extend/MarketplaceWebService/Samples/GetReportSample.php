@@ -35,9 +35,9 @@ class GetReportSample
 
 
     // Merchant卖家
-    $parameters['Merchant'] = $parameters['SellerId'];
-
-    $parameters['Report'] = @fopen('php://memory', 'rw+');
+    $parameters['Merchant'] = $parameters['Merchant'];
+    $parameters['Report'] = @fopen(ROOT_PATH.'\public\static\amazon.txt', 'rw+');
+    // $parameters['Report'] = @fopen('php://memory', 'rw+');
 
     $request = new \MarketplaceWebService_Model_GetReportRequest($parameters);
     

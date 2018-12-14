@@ -28,7 +28,7 @@ class Permission  extends Controller
 					define('AWS_SECRET_ACCESS_KEY', $data['awsSecretAcessKey']);
 					define('APPLICATION_NAME', 'miaoyanjun');
 					define('APPLICATION_VERSION', '2');
-					define ('MERCHANT_ID', $data['merchantId']);
+					define ('Merchant', $data['Merchant']);
 					define ('MARKETPLACEARRAY', $data['marketplaceIdArray']);
 
 				}

@@ -24,7 +24,10 @@ class Report  extends Controller
     // parameters['StartDate'] ，请求报告开始时间
     $this->parameters=$parameters;
     $this->service=$service;
-    $this->parameters['serviceUrl'] = 'https://mws.amazonservices.com';
+    if(empty($parameters['serviceUrl']))
+    {
+      $this->parameters['serviceUrl'] = 'https://mws.amazonservices.com';  
+    }
   }
 
   // 整合请求报告流程
