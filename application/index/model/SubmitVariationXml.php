@@ -7,7 +7,7 @@ use think\Controller;
 use MarketplaceWebService\Samples\SubmitFeedSample;
 use MarketplaceWebService\Samples\GetFeedSubmissionListSample;
 use MarketplaceWebService\Samples\GetFeedSubmissionResultSample;
-class SubmitXml  extends Controller
+class SubmitVariationXml  extends Controller
 {
 	public function __construct($submitdata,$parameters)
     {
@@ -30,7 +30,7 @@ class SubmitXml  extends Controller
     {
 
         $parameters = $this->parameters;
-
+        
         $xml='<?xml version="1.0" ?>
         <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
             <Header>
@@ -102,65 +102,50 @@ class SubmitXml  extends Controller
                         </ClothingAccessories>
                     </ProductData>
                 </Product>
-            </Message>';
+            </Message>
+            <Message>
+                <MessageID>'.$i++.'</MessageID>
+                <OperationType>Update</OperationType>
+                <Product>
+                    <SKU>'.$value["parentSKU"].'</SKU>
+                    <StandardProductID>
+                        <Type>UPC</Type>
+                        <Value>'.$value["upc"].'</Value>
+                    </StandardProductID>
+                    <Condition>
+                      <ConditionType>New</ConditionType>
+                    </Condition>
+                    <DescriptionData>
+                        <Title>'.$value["title"].'</Title>
+                        <Brand>'.$value["brand"].'</Brand>
+                        <Description>'.$value["description"].'</Description>
+                        '.$bulletPoint.'
+                        <Manufacturer>'.$value["Manufacturer"].'</Manufacturer>
+                        '.$searchTerms.'
+                        <ItemType>'.$value["itemType"].'</ItemType>
+                    </DescriptionData>
+                    <ProductData>
+                        <ClothingAccessories>
+                             <VariationData>
+                                  <Size>'.$value["Size"].'</Size>
+                                  <Color>'.$value["Color"].'</Color>
+                             </VariationData>
+                            <ClassificationData>
+                                <Department>boys</Department>
+                            </ClassificationData>
+                        </ClothingAccessories>
+                    </ProductData>
+                </Product>
+            </Message>
+';
 
             $i++;
         }
-		
+        
         $xml=$headerxml.$messagexml.'</AmazonEnvelope>';
         // dump($xml);
         return $xml;
 	}
-
-
-
-  
-
-
-
-
-
-
-
-
- // <Message>
- //                <MessageID>2</MessageID>
- //                <OperationType>Update</OperationType>
- //                <Product>
- //                    <SKU>'.$submitdata["sku"].'-redX</SKU>
- //                    <StandardProductID>
- //                        <Type>UPC</Type>
- //                        <Value>8011111000294</Value>
- //                    </StandardProductID>
- //                    <Condition>
- //                      <ConditionType>New</ConditionType>
- //                    </Condition>
-
- //                    <DescriptionData>
-
- //                        <Title>'.$submitdata["title"].'</Title>
- //                        <Brand>'.$submitdata["brand"].'</Brand>
- //                        <Description>'.$submitdata["description"].'</Description>
- //                        <BulletPoint>'.$submitdata["bulletPoint"].'</BulletPoint>
- //                        <Manufacturer>'.$submitdata["manufacturer"].'</Manufacturer>
- //                        <SearchTerms>'.$submitdata["searchTerms"].'</SearchTerms>
- //                        <ItemType>'.$submitdata["itemType"].'</ItemType>
- //                    </DescriptionData>
- //                    <ProductData>
- //                        <ClothingAccessories>
- //                             <VariationData>
- //                                  <Parentage>child</Parentage>
- //                                  <Size>Small</Size>
- //                                  <Color>blue</Color>
- //                                  <VariationTheme>SizeColor</VariationTheme>
- //                             </VariationData>
- //                            <ClassificationData>
- //                                <Department>'.$submitdata["itemType"].'</Department>
- //                            </ClassificationData>
- //                        </ClothingAccessories>
- //                    </ProductData>
- //                </Product>
- //            </Message>
 
 
 

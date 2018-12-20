@@ -49,10 +49,11 @@ class Home  extends Permission
          $searchTerms=implode(',',$data['searchTerms']);
          $bulletPoint=implode(',',$data['bulletPoint']);
 
-         $submitdata=$data['data'];
-         $submitdata['searchTerms']=$searchTerms;
-         $submitdata['bulletPoint']=$bulletPoint;
-         $submitdata['date']=time();
+         $submitdata[0]=$data['data'];
+         $submitdata[0]['searchTerms']=$searchTerms;
+         $submitdata[0]['bulletPoint']=$bulletPoint;
+         
+         $submitdata[0]['date']=time();
 
 
          $url = savePicture();
@@ -66,19 +67,23 @@ class Home  extends Permission
               continue;
             }
            // $submitdata[$imgorder[$key]]=$value;
-           $submitdata[$imgorder[$key]]='http://bpic.588ku.com/element_origin_min_pic/18/06/08/e29977141f6af13c01865c7120a217c4.jpg';
+           $submitdata[0][$imgorder[$key]]='http://bpic.588ku.com/element_origin_min_pic/18/06/08/e29977141f6af13c01865c7120a217c4.jpg';
          }
 
         // Db::name('amazon_public')->insert($submitdata);
-        $submitdata['searchTerms']=$data['searchTerms'];
-        $submitdata['bulletPoint']=$data['bulletPoint'];
-        $submitdata['ProductType']=$data['ProductType'];
+        $submitdata[0]['searchTerms']=$data['searchTerms'];
+        $submitdata[0]['bulletPoint']=$data['bulletPoint'];
+        $submitdata[0]['ProductType']=$data['ProductType'];
     
         $userIdentify=Db::name('index_user')->where('user_id',$_SESSION['module']['user_id'])->find();
 
         $parameters['MarketplaceIdList'] = array("Id" => array('ATVPDKIKX0DER'));
         $parameters['Merchant'] = $userIdentify['Merchant'];
         $parameters['PurgeAndReplace'] = false;
+
+        // 变体
+        $submitdata[0]['Size']='X-Small';
+        $submitdata[0]['Color']='red';
 
         // 身份信息
         $service = array(

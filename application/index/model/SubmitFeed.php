@@ -30,7 +30,7 @@ class SubmitFeed  extends Controller
 
         $this->service = $service;
         $this->service['config'] = $config;
-
+        
         // $this->submitdata['marketplaceIdArray'] = array("Id" => array('ATVPDKIKX0DER'));
         $this->parameters = $parameters;
 
@@ -126,26 +126,35 @@ class SubmitFeed  extends Controller
           $feedSubmissionId = array($feedSubmissionId);
         }
         $k=0;
+
         while ($isSuccess)
         {
-	       $submitFeed = new GetFeedSubmissionListSample($parameters,$service);  
-           $result=$submitFeed->index($feedSubmissionId);
-           $k++;
-           if($result['Status'] == '_DONE_')
-           {
+	        $submitFeed = new GetFeedSubmissionListSample($parameters,$service);  
+            if($k == 0 )
+            {
+                
+                sleep(120);
+            }
+
+            $result = $submitFeed->index($feedSubmissionId);
+            $k++;
+
+            
+            if($result[0]['Status'] == '_DONE_')
+            {
                $isSuccess = false;
             
-           }else
-           {
+            }else
+            {
             // 休息两分钟
-                if($k == 10)
+                if($k == 8)
                 {
                     return true;
                 }else{
                     sleep(30); 
                     
                 }
-           }
+            }
         }
         // dump($result);
         return $isSuccess;
@@ -160,7 +169,8 @@ class SubmitFeed  extends Controller
 
 	    $submitFeed = new GetFeedSubmissionResultSample($parameters,$service);
 	    $result = $submitFeed->index($feedSubmissionId);
-        dump($result);
+
+        // dump($result);
         if(!$result['ProcessingSummary']['MessagesWithError'])
         {
             return true;
@@ -168,7 +178,8 @@ class SubmitFeed  extends Controller
         {
             if(!empty($result['Result']))
             {
-                if(!empty($result['Result'][0])){
+                if(!empty($result['Result'][0]))
+                {
                     foreach ($result['Result'] as $key => $value)
                     {
                         $ResultCode[$key] = $value['ResultMessageCode'];

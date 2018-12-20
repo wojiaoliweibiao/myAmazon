@@ -66,6 +66,7 @@ class SubmitVariation  extends Controller
         // 上传数据
         $submitFeed = new SubmitFeedSample($parameters,$submitdata);
         $account = $this->submitFeed($submitFeed,$xml); 
+        
         // 整合上传数据功能
         // Step1:判断是否提交成功并返回feedSubmissionId.
         if(!empty($account['feedSubmissionId']))
