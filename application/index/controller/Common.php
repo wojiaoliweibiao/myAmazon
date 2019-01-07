@@ -1,7 +1,4 @@
 <?php 
-
-
-
 namespace app\index\controller;
 
 use \think\Cache;
@@ -41,8 +38,10 @@ class Common extends Controller
 				// 7.如果有,登陆成功
 				if(!empty($user_db)){
 					// 保存登录信息
+					// $user_db['user_id']
 					Session::set('username',$user_db['username']);
 					Session::set('user_id',$user_db['user_id']);
+					Session::set('group_id',$user_db['group_id']);
 					$this->redirect('index/index');
 					die;
 				}
@@ -76,6 +75,7 @@ class Common extends Controller
 					// 保存登录信息
 					Session::set('username',$user_db['username']);
 					Session::set('user_id',$user_db['user_id']);
+					Session::set('group_id',$user_db['group_id']);
 
 					$result['HasError']=false;
 					

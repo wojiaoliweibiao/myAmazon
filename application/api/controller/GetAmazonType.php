@@ -1,5 +1,5 @@
 <?php
-namespace app\index\api;
+namespace app\api\controller;
 
 use think\Db;
 use think\Loader;

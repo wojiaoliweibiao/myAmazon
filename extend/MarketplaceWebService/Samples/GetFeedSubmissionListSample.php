@@ -49,17 +49,8 @@ class GetFeedSubmissionListSample
   $account=$this->invokeGetFeedSubmissionList($service, $request);
 
 
-  dump($account);
-  if(count($account)<=1)
-  {
-    unset($account[0]['ReportType']);
-    return $account[0];
-    
-  }else{
-
-    return $account;
-  }
-
+  return $account;
+ 
  }
   public function invokeGetFeedSubmissionList(\MarketplaceWebService_Interface $service, $request) 
   {
